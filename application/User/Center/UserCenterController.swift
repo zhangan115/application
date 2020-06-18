@@ -7,29 +7,40 @@
 //
 
 import UIKit
-
+import PGActionSheet
 class UserCenterController: PGBaseViewController {
     
     var userModel:UserModel!
+    var callBack:(()->())?
     
     lazy var userView : UIView = {
         let view = UIView()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(showUserData))
+        view.addGestureRecognizer(tap)
         self.view.addSubview(view)
         return view
     }()
+    
+    @objc func showUserData(){
+        let controller  = UserDataController()
+        self.pushVC(controller)
+    }
     
     lazy var userIcon : UIButton = {
         let view = UIButton()
         view.layer.masksToBounds = true
         view.layer.cornerRadius = 30
-        let tap = UITapGestureRecognizer(target: self, action: #selector(showUserCenter))
-        view.addTarget(self, action: #selector(showUserCenter), for: .touchUpInside)
+        view.addTarget(self, action: #selector(showUserIcon), for: .touchUpInside)
         self.userView.addSubview(view)
         return view
     }()
     
-    @objc func showUserCenter(){
-        
+    @objc func showUserIcon(){
+        if userModel.portraitUrl.count == 0 {
+            avatarImageViewTapHandler(PGActionSheet(buttonList: ["拍照", "从相册选择"]),userIcon)
+        }else{
+            avatarImageViewTapHandler(PGActionSheet(buttonList: ["拍照", "从相册选择", "查看照片"]),userIcon)
+        }
     }
     
     lazy var userNameLabel: UILabel = {
@@ -196,4 +207,70 @@ class UserCenterController: PGBaseViewController {
         }
     }
     
+    func avatarImageViewTapHandler(_ actionSheet:PGActionSheet,_ button:UIButton) {
+        actionSheet.actionSheetTranslucent = false
+        self.currentViewController().present(actionSheet, animated: false, completion: nil)
+        actionSheet.handler = {index in
+            if index == 0 {
+                PermissionManager.permission(type: .camera, completion: {
+                    self.imagePicker(sourceType: .camera)
+                })
+            }else if index == 1 {
+                PermissionManager.permission(type: .photoLibrary, completion: {
+                    self.imagePicker(sourceType: .photoLibrary)
+                })
+            }else {
+                let imagePicker = PGImagePicker(currentImageView: UIImageView(image: button.image(for: .normal)))
+                self.currentViewController().present(imagePicker, animated: false, completion: nil)
+            }
+        }
+    }
+    
+    func imagePicker(sourceType: UIImagePickerController.SourceType) {
+        let pickerVC = UIImagePickerController()
+        pickerVC.view.backgroundColor = UIColor.white
+        pickerVC.delegate = self
+        pickerVC.allowsEditing = false
+        pickerVC.sourceType = sourceType
+        currentViewController().present(pickerVC, animated: true, completion: nil)
+    }
+}
+
+extension UserCenterController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        currentViewController().dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        currentViewController().dismiss(animated: true, completion: nil)
+        var image: UIImage! = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        image = image.fixOrientation()
+        self.view.showHUD(message: "上传中...")
+        let data = image.jpegData(compressionQuality: 0.3)
+        if let data = data {
+            userProvider.requestResult(.postUserPhoto(data: data), success: {[weak self](responseJson) in
+                let url = responseJson["data"].stringValue
+                let userId = UserModel.unarchiver()!.userId!
+                var params :[String:Any] = [:]
+                params["userId"] = userId
+                params["portraitUrl"] = url
+                userProvider.requestResult(.editUser(params:params),success:{[weak self](json) in
+                    self?.userModel.portraitUrl = url
+                    if let model = self?.userModel {
+                        self?.setData(model)
+                        UserModel.archiverUser(model)
+                        self?.callBack!()
+                    }
+                    self?.view.showHUD("修改成功", completion: {
+                        self?.view.hiddenHUD()
+                    })
+                    },failure:{(error)in
+                        self?.view.hiddenHUD()
+                })
+                },failure: {(error)in
+                    self.view.hiddenHUD()
+            })
+        }
+    }
 }

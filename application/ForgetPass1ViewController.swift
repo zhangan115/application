@@ -11,16 +11,18 @@ import Toaster
 import SwiftyJSON
 import RxSwift
 
-class ForgetPass1ViewController: UIViewController {
+class ForgetPass1ViewController: PGBaseViewController {
     
     var forgetTitleStr = "忘记密码"
+    var isSetPass = false
+    var phoneNum = ""
     
     @IBOutlet weak var nameTextFiled:UITextField!
     @IBOutlet weak var passTextFiled:UITextField!
     @IBOutlet weak var toLoginButton:UIButton!
     @IBOutlet weak var getCodeButton:UIButton!
     @IBOutlet weak var titleLabel:UILabel!
-    
+    @IBOutlet weak var noteLabel:UILabel!
     var userName:String?
     var userPass:String?
     
@@ -36,6 +38,14 @@ class ForgetPass1ViewController: UIViewController {
         self.nameTextFiled.addTarget(self, action: #selector(nameTextChange), for: .allEvents)
         self.passTextFiled.addTarget(self, action: #selector(passTextChange), for: .allEvents)
         NotificationCenter.default.addObserver(self, selector: #selector(textViewEditChanged(sender:)), name: UITextField.textDidChangeNotification, object: nil)
+        if isSetPass {
+            self.nameTextFiled.isEnabled = false
+            self.noteLabel.text = "手机号为当前账号，不可更改"
+            if self.phoneNum.count > 0 {
+                self.nameTextFiled.text = self.phoneNum
+                self.userName = self.phoneNum
+            }
+        }
         stateChange()
     }
     
@@ -98,10 +108,10 @@ class ForgetPass1ViewController: UIViewController {
             let viewController = ForgetPass2ViewController()
             viewController.phoneCode = currentPhoneCode
             viewController.phone = self.userName!
+            viewController.isPresent = true
             viewController.callback = {(phone)in
-                self.dismissVC(completion: {
-                    self.callback?(phone)
-                })
+                self.callback?(phone)
+                self.pop()
             }
             self.presentVC(viewController)
         }else{
@@ -110,7 +120,7 @@ class ForgetPass1ViewController: UIViewController {
     }
     
     @IBAction func close(_ sender: UIButton){
-        self.dismissVC(completion: nil)
+        self.pop()
     }
     
     var timeCount = 60

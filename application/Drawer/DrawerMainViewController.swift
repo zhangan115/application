@@ -23,6 +23,9 @@ class DrawerMainViewController: UIViewController {
     
     @objc func showUserCenter(){
         let controller = UserCenterController()
+        controller.callBack = {
+            self.setData(UserModel.unarchiver()!)
+        }
         let nav = PGBaseNavigationController(rootViewController: controller)
         self.presentVC(nav)
     }
@@ -364,7 +367,9 @@ class DrawerMainViewController: UIViewController {
     }
     
     @objc func wallet() {
-        
+        let controller = UserWalletController()
+        let nav = PGBaseNavigationController(rootViewController: controller)
+        self.presentVC(nav)
     }
     
     @objc func study() {

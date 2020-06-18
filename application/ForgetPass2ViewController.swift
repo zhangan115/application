@@ -10,7 +10,7 @@ import UIKit
 import Toaster
 import SwiftyJSON
 
-class ForgetPass2ViewController: UIViewController {
+class ForgetPass2ViewController: PGBaseViewController {
     
     @IBOutlet weak var nameTextFiled:UITextField!
     @IBOutlet weak var passTextFiled:UITextField!
@@ -25,6 +25,7 @@ class ForgetPass2ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        isPresent = true
         self.view.backgroundColor = UIColor.white
         self.toLoginButton.layer.masksToBounds = true
         self.toLoginButton.layer.cornerRadius = 4
@@ -34,23 +35,23 @@ class ForgetPass2ViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(textViewEditChanged(sender:)), name: UITextField.textDidChangeNotification, object: nil)
     }
     
-     var maxLength = 20
+    var maxLength = 20
     
     @objc func textViewEditChanged(sender:NSNotification) {
-         if nameTextFiled.isEditing {
-             let textVStr = nameTextFiled.text! as NSString
-             if (textVStr.length >= maxLength) {
-                 let str = textVStr.substring(to: maxLength)
-                 nameTextFiled.text = str
-             }
-         }else{
-             let textVStr = passTextFiled.text! as NSString
-             if (textVStr.length >= maxLength) {
-                 let str = textVStr.substring(to: maxLength)
-                 passTextFiled.text = str
-             }
-         }
-     }
+        if nameTextFiled.isEditing {
+            let textVStr = nameTextFiled.text! as NSString
+            if (textVStr.length >= maxLength) {
+                let str = textVStr.substring(to: maxLength)
+                nameTextFiled.text = str
+            }
+        }else{
+            let textVStr = passTextFiled.text! as NSString
+            if (textVStr.length >= maxLength) {
+                let str = textVStr.substring(to: maxLength)
+                passTextFiled.text = str
+            }
+        }
+    }
     
     @objc func nameTextChange(){
         self.userName = self.nameTextFiled.text
@@ -86,14 +87,18 @@ class ForgetPass2ViewController: UIViewController {
     }
     
     private func changePassSuccess(){
+        let user = UserModel.unarchiver()!
+        if !user.hasPassword {
+            user.hasPassword = true
+            UserModel.archiverUser(user)
+        }
         showPKHUD(message: "密码修改成功", completion: {(bool)in
             self.callback?(self.phone)
-            self.dismissVC(completion: nil)
+            self.pop()
         })
     }
     
     @IBAction func close(_ sender: UIButton){
-        self.dismissVC(completion: nil)
+        self.pop()
     }
-    
 }

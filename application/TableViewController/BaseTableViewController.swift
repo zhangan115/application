@@ -16,7 +16,7 @@ class BaseTableViewController: HomeTableController {
     //是否有分页
     var isRefresh = true
     var isLoadMore = true
-    var pagingCount : Int = 10
+    var pagingCount : Int = 20
     
     override func viewDidLoad() {
         super.viewDidLoad()

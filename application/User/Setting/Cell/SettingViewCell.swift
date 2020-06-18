@@ -14,5 +14,5 @@ class SettingViewCell: UITableViewCell {
         super.awakeFromNib()
         self.contentView.backgroundColor = UIColor.white
     }
-
+    @IBOutlet weak var isSetPassLabel:UILabel!
 }

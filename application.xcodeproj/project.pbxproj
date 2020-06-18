@@ -29,6 +29,15 @@
 		736CD60E2499C6DF00B66369 /* UserCenterItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736CD60D2499C6DF00B66369 /* UserCenterItemView.swift */; };
 		736CD6122499DC7400B66369 /* UserElectricianController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736CD6102499DC7400B66369 /* UserElectricianController.swift */; };
 		736CD6132499DC7400B66369 /* UserElectricianController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 736CD6112499DC7400B66369 /* UserElectricianController.xib */; };
+		7371C236249AF3D300CB6BAA /* AboutUsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7371C234249AF3D300CB6BAA /* AboutUsController.swift */; };
+		7371C237249AF3D300CB6BAA /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7371C235249AF3D300CB6BAA /* AboutUsController.xib */; };
+		7371C23B249B0CAF00CB6BAA /* UserDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7371C239249B0CAF00CB6BAA /* UserDataController.swift */; };
+		7371C23F249B0F3100CB6BAA /* UserDataInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7371C23D249B0F3100CB6BAA /* UserDataInputCell.swift */; };
+		7371C240249B0F3100CB6BAA /* UserDataInputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7371C23E249B0F3100CB6BAA /* UserDataInputCell.xib */; };
+		7371C243249B0F4100CB6BAA /* UserDataChooseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7371C241249B0F4100CB6BAA /* UserDataChooseCell.swift */; };
+		7371C244249B0F4100CB6BAA /* UserDataChooseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7371C242249B0F4100CB6BAA /* UserDataChooseCell.xib */; };
+		7371C247249B0F5400CB6BAA /* UserDataSureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7371C245249B0F5400CB6BAA /* UserDataSureCell.swift */; };
+		7371C248249B0F5400CB6BAA /* UserDataSureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7371C246249B0F5400CB6BAA /* UserDataSureCell.xib */; };
 		737643582457F53F00CB2050 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737643572457F53F00CB2050 /* AppDelegate.swift */; };
 		7376435A2457F53F00CB2050 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737643592457F53F00CB2050 /* SceneDelegate.swift */; };
 		7376435C2457F53F00CB2050 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7376435B2457F53F00CB2050 /* MainViewController.swift */; };
@@ -52,6 +61,9 @@
 		7394066B2497085A001562CD /* AppDelegate+AMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739406692497085A001562CD /* AppDelegate+AMap.swift */; };
 		7394066E24974462001562CD /* WorkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7394066D24974462001562CD /* WorkModel.swift */; };
 		73940670249753B7001562CD /* CustomAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7394066F249753B7001562CD /* CustomAnnotationView.swift */; };
+		739932FB249B3B2600626534 /* UserWalletController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739932F9249B3B2600626534 /* UserWalletController.swift */; };
+		739932FC249B3B2600626534 /* UserWalletController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 739932FA249B3B2600626534 /* UserWalletController.xib */; };
+		739932FE249B408A00626534 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739932FD249B408A00626534 /* Account.swift */; };
 		73B0DC39249A09050080D1C0 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B0DC38249A09050080D1C0 /* PermissionManager.swift */; };
 		73BC0B0A2490CE5500B5DBDF /* Cookie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BC0AF92490CE5500B5DBDF /* Cookie.swift */; };
 		73BC0B0B2490CE5500B5DBDF /* JSON+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BC0AFB2490CE5500B5DBDF /* JSON+Model.swift */; };
@@ -117,6 +129,11 @@
 		73D68C1F2497656D002055AD /* VerifyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D68C1E2497656D002055AD /* VerifyModel.swift */; };
 		73D68C22249774C6002055AD /* BottomWorkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D68C21249774C6002055AD /* BottomWorkView.swift */; };
 		73D68C25249775A2002055AD /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D68C24249775A2002055AD /* WebViewController.swift */; };
+		73EC522F249B528A004D869A /* UserDataHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EC522E249B528A004D869A /* UserDataHeaderView.swift */; };
+		73EC5232249B5636004D869A /* UserBillController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EC5231249B5636004D869A /* UserBillController.swift */; };
+		73EC5237249B5688004D869A /* UserBillViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EC5235249B5688004D869A /* UserBillViewCell.swift */; };
+		73EC5238249B5688004D869A /* UserBillViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73EC5236249B5688004D869A /* UserBillViewCell.xib */; };
+		73EC523A249B5ACB004D869A /* UserBillHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EC5239249B5ACB004D869A /* UserBillHeaderView.swift */; };
 		907F5BCBC6FBAA7933AE0836 /* Pods_application.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3F8C859EEA62CB253F665ED /* Pods_application.framework */; };
 /* End PBXBuildFile section */
 
@@ -143,6 +160,15 @@
 		736CD60D2499C6DF00B66369 /* UserCenterItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCenterItemView.swift; sourceTree = "<group>"; };
 		736CD6102499DC7400B66369 /* UserElectricianController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserElectricianController.swift; sourceTree = "<group>"; };
 		736CD6112499DC7400B66369 /* UserElectricianController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserElectricianController.xib; sourceTree = "<group>"; };
+		7371C234249AF3D300CB6BAA /* AboutUsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsController.swift; sourceTree = "<group>"; };
+		7371C235249AF3D300CB6BAA /* AboutUsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutUsController.xib; sourceTree = "<group>"; };
+		7371C239249B0CAF00CB6BAA /* UserDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataController.swift; sourceTree = "<group>"; };
+		7371C23D249B0F3100CB6BAA /* UserDataInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataInputCell.swift; sourceTree = "<group>"; };
+		7371C23E249B0F3100CB6BAA /* UserDataInputCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDataInputCell.xib; sourceTree = "<group>"; };
+		7371C241249B0F4100CB6BAA /* UserDataChooseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataChooseCell.swift; sourceTree = "<group>"; };
+		7371C242249B0F4100CB6BAA /* UserDataChooseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDataChooseCell.xib; sourceTree = "<group>"; };
+		7371C245249B0F5400CB6BAA /* UserDataSureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataSureCell.swift; sourceTree = "<group>"; };
+		7371C246249B0F5400CB6BAA /* UserDataSureCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDataSureCell.xib; sourceTree = "<group>"; };
 		737643542457F53F00CB2050 /* 金牌电工.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "金牌电工.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		737643572457F53F00CB2050 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		737643592457F53F00CB2050 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -170,6 +196,9 @@
 		7394066C24973EEF001562CD /* 金牌电工.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "金牌电工.entitlements"; sourceTree = "<group>"; };
 		7394066D24974462001562CD /* WorkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkModel.swift; sourceTree = "<group>"; };
 		7394066F249753B7001562CD /* CustomAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotationView.swift; sourceTree = "<group>"; };
+		739932F9249B3B2600626534 /* UserWalletController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserWalletController.swift; sourceTree = "<group>"; };
+		739932FA249B3B2600626534 /* UserWalletController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserWalletController.xib; sourceTree = "<group>"; };
+		739932FD249B408A00626534 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		73B0DC38249A09050080D1C0 /* PermissionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionManager.swift; sourceTree = "<group>"; };
 		73BC0AEF2490C41A00B5DBDF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		73BC0AF02490C41A00B5DBDF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -237,6 +266,11 @@
 		73D68C1E2497656D002055AD /* VerifyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyModel.swift; sourceTree = "<group>"; };
 		73D68C21249774C6002055AD /* BottomWorkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomWorkView.swift; sourceTree = "<group>"; };
 		73D68C24249775A2002055AD /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		73EC522E249B528A004D869A /* UserDataHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataHeaderView.swift; sourceTree = "<group>"; };
+		73EC5231249B5636004D869A /* UserBillController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBillController.swift; sourceTree = "<group>"; };
+		73EC5235249B5688004D869A /* UserBillViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBillViewCell.swift; sourceTree = "<group>"; };
+		73EC5236249B5688004D869A /* UserBillViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserBillViewCell.xib; sourceTree = "<group>"; };
+		73EC5239249B5ACB004D869A /* UserBillHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBillHeaderView.swift; sourceTree = "<group>"; };
 		A504447D5FB356D44D9201CE /* Pods-application.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-application.release.xcconfig"; path = "Pods/Target Support Files/Pods-application/Pods-application.release.xcconfig"; sourceTree = "<group>"; };
 		C82EDBF22C310BBD447D3908 /* Pods-application.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-application.debug.xcconfig"; path = "Pods/Target Support Files/Pods-application/Pods-application.debug.xcconfig"; sourceTree = "<group>"; };
 		F3F8C859EEA62CB253F665ED /* Pods_application.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_application.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -347,6 +381,49 @@
 			path = Identity;
 			sourceTree = "<group>";
 		};
+		7371C233249AF3B700CB6BAA /* About */ = {
+			isa = PBXGroup;
+			children = (
+				7371C234249AF3D300CB6BAA /* AboutUsController.swift */,
+				7371C235249AF3D300CB6BAA /* AboutUsController.xib */,
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
+		7371C238249B0C9600CB6BAA /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				73EC522D249B5271004D869A /* View */,
+				7371C249249B0F5A00CB6BAA /* Cell */,
+				7371C239249B0CAF00CB6BAA /* UserDataController.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		7371C249249B0F5A00CB6BAA /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				7371C23D249B0F3100CB6BAA /* UserDataInputCell.swift */,
+				7371C23E249B0F3100CB6BAA /* UserDataInputCell.xib */,
+				7371C241249B0F4100CB6BAA /* UserDataChooseCell.swift */,
+				7371C242249B0F4100CB6BAA /* UserDataChooseCell.xib */,
+				7371C245249B0F5400CB6BAA /* UserDataSureCell.swift */,
+				7371C246249B0F5400CB6BAA /* UserDataSureCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		7371C24A249B121600CB6BAA /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				73CC7B2F249A4258009CC7FC /* SettingViewCell.swift */,
+				73CC7B30249A4258009CC7FC /* SettingViewCell.xib */,
+				73CC7B33249A426F009CC7FC /* SettingExitCell.swift */,
+				73CC7B34249A426F009CC7FC /* SettingExitCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		7376434B2457F53F00CB2050 = {
 			isa = PBXGroup;
 			children = (
@@ -401,6 +478,15 @@
 				73940649249702AE001562CD /* GTSDK.framework */,
 			);
 			path = GtSdkLib;
+			sourceTree = "<group>";
+		};
+		739932F8249B3AB200626534 /* Wallet */ = {
+			isa = PBXGroup;
+			children = (
+				739932F9249B3B2600626534 /* UserWalletController.swift */,
+				739932FA249B3B2600626534 /* UserWalletController.xib */,
+			);
+			path = Wallet;
 			sourceTree = "<group>";
 		};
 		73BC0AF12490CB6B00B5DBDF /* Storyboard */ = {
@@ -749,6 +835,7 @@
 				73BC0B882490E57600B5DBDF /* UserModel.swift */,
 				7394066D24974462001562CD /* WorkModel.swift */,
 				73D68C1E2497656D002055AD /* VerifyModel.swift */,
+				739932FD249B408A00626534 /* Account.swift */,
 			);
 			path = Bean;
 			sourceTree = "<group>";
@@ -766,9 +853,13 @@
 			isa = PBXGroup;
 			children = (
 				736CD60A2499B9CA00B66369 /* Center */,
+				7371C233249AF3B700CB6BAA /* About */,
 				736CD6142499DD2E00B66369 /* Identity */,
 				736CD60F2499DC4200B66369 /* Electrician */,
 				73CC7B2C249A4061009CC7FC /* Setting */,
+				7371C238249B0C9600CB6BAA /* Data */,
+				739932F8249B3AB200626534 /* Wallet */,
+				73EC5230249B561F004D869A /* Bill */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -822,11 +913,8 @@
 		73CC7B2C249A4061009CC7FC /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				7371C24A249B121600CB6BAA /* Cell */,
 				73CC7B2D249A40A1009CC7FC /* SettingController.swift */,
-				73CC7B2F249A4258009CC7FC /* SettingViewCell.swift */,
-				73CC7B30249A4258009CC7FC /* SettingViewCell.xib */,
-				73CC7B33249A426F009CC7FC /* SettingExitCell.swift */,
-				73CC7B34249A426F009CC7FC /* SettingExitCell.xib */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -848,6 +936,41 @@
 				73D68C24249775A2002055AD /* WebViewController.swift */,
 			);
 			name = Web;
+			sourceTree = "<group>";
+		};
+		73EC522D249B5271004D869A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				73EC522E249B528A004D869A /* UserDataHeaderView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		73EC5230249B561F004D869A /* Bill */ = {
+			isa = PBXGroup;
+			children = (
+				73EC5234249B5679004D869A /* Cell */,
+				73EC5233249B5675004D869A /* View */,
+				73EC5231249B5636004D869A /* UserBillController.swift */,
+			);
+			path = Bill;
+			sourceTree = "<group>";
+		};
+		73EC5233249B5675004D869A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				73EC5239249B5ACB004D869A /* UserBillHeaderView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		73EC5234249B5679004D869A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				73EC5235249B5688004D869A /* UserBillViewCell.swift */,
+				73EC5236249B5688004D869A /* UserBillViewCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		C54C569AAB3BC170D660A9B6 /* Frameworks */ = {
@@ -938,10 +1061,16 @@
 				736CD6092499B33400B66369 /* UserIdentityController.xib in Resources */,
 				73CC7B32249A4258009CC7FC /* SettingViewCell.xib in Resources */,
 				737643612457F54300CB2050 /* Assets.xcassets in Resources */,
+				7371C237249AF3D300CB6BAA /* AboutUsController.xib in Resources */,
 				7376435F2457F53F00CB2050 /* Main.storyboard in Resources */,
+				739932FC249B3B2600626534 /* UserWalletController.xib in Resources */,
 				731F5BC2249236EE0019D58B /* GuideViewController.xib in Resources */,
+				73EC5238249B5688004D869A /* UserBillViewCell.xib in Resources */,
+				7371C240249B0F3100CB6BAA /* UserDataInputCell.xib in Resources */,
+				7371C244249B0F4100CB6BAA /* UserDataChooseCell.xib in Resources */,
 				73CC7B36249A426F009CC7FC /* SettingExitCell.xib in Resources */,
 				735C0C922498EF7200194FB0 /* HelpItemTableViewCell.xib in Resources */,
+				7371C248249B0F5400CB6BAA /* UserDataSureCell.xib in Resources */,
 				73BC0B1C2490CEB300B5DBDF /* UserLoginViewController.xib in Resources */,
 				736A4E412493503000B2C2F0 /* ForgetPass2ViewController.xib in Resources */,
 			);
@@ -1021,11 +1150,14 @@
 				735C0C872498B85B00194FB0 /* DrawerMainViewController.swift in Sources */,
 				73BC0B0E2490CE5500B5DBDF /* ModelBean.swift in Sources */,
 				73D68C1F2497656D002055AD /* VerifyModel.swift in Sources */,
+				7371C23B249B0CAF00CB6BAA /* UserDataController.swift in Sources */,
 				73CC7B35249A426F009CC7FC /* SettingExitCell.swift in Sources */,
 				73BC0B592490CFBD00B5DBDF /* Array+Extension.swift in Sources */,
 				73BC0B522490CFBD00B5DBDF /* UITableViewCell+Extension.swift in Sources */,
 				735C0C8E2498EDEC00194FB0 /* HelpCenterViewController.swift in Sources */,
 				73BC0B162490CE5500B5DBDF /* PGCollectionViewCell.swift in Sources */,
+				73EC5237249B5688004D869A /* UserBillViewCell.swift in Sources */,
+				739932FE249B408A00626534 /* Account.swift in Sources */,
 				73BC0B252490CF2200B5DBDF /* PGEnumeration.swift in Sources */,
 				73BC0B0C2490CE5500B5DBDF /* PGProvider.swift in Sources */,
 				735C0C83249895DB00194FB0 /* CustomCalloutView.swift in Sources */,
@@ -1037,6 +1169,7 @@
 				73940670249753B7001562CD /* CustomAnnotationView.swift in Sources */,
 				731F5BBF2491FAC30019D58B /* GuideViewController.swift in Sources */,
 				73BC0B0F2490CE5500B5DBDF /* PGAlamofireManager.swift in Sources */,
+				7371C243249B0F4100CB6BAA /* UserDataChooseCell.swift in Sources */,
 				73BC0B0A2490CE5500B5DBDF /* Cookie.swift in Sources */,
 				736CD6052499A99900B66369 /* TestView.swift in Sources */,
 				7394066A2497085A001562CD /* AppDelegate+Gt.swift in Sources */,
@@ -1056,6 +1189,7 @@
 				73BC0B5F2490CFBD00B5DBDF /* Dictionary+Extension.swift in Sources */,
 				73BC0B582490CFBD00B5DBDF /* UIView+currentViewController.swift in Sources */,
 				73BC0B532490CFBD00B5DBDF /* UIButton+Extension.swift in Sources */,
+				73EC522F249B528A004D869A /* UserDataHeaderView.swift in Sources */,
 				73BC0B672490D64700B5DBDF /* UserProvide.swift in Sources */,
 				73BC0B272490CF2200B5DBDF /* PGMacros.swift in Sources */,
 				73BC0B232490CF2200B5DBDF /* PGConstants.swift in Sources */,
@@ -1065,31 +1199,37 @@
 				73CC7B2E249A40A1009CC7FC /* SettingController.swift in Sources */,
 				73BC0B0B2490CE5500B5DBDF /* JSON+Model.swift in Sources */,
 				73BC0B892490E57600B5DBDF /* UserModel.swift in Sources */,
+				7371C236249AF3D300CB6BAA /* AboutUsController.swift in Sources */,
 				73D68C22249774C6002055AD /* BottomWorkView.swift in Sources */,
 				736CD60E2499C6DF00B66369 /* UserCenterItemView.swift in Sources */,
 				73BC0B5D2490CFBD00B5DBDF /* UIViewController+Extension.swift in Sources */,
 				73BC0B612490CFBD00B5DBDF /* String+Html.swift in Sources */,
 				73D68C1D24975D79002055AD /* MainViewController+Ex+Request.swift in Sources */,
 				73BC0B1B2490CEB300B5DBDF /* UserLoginViewController.swift in Sources */,
+				739932FB249B3B2600626534 /* UserWalletController.swift in Sources */,
 				73BC0B512490CFBD00B5DBDF /* UIImage+Extension.swift in Sources */,
 				73BC0B102490CE5500B5DBDF /* MoyaProvider+Extension.swift in Sources */,
 				735C0C81249853D500194FB0 /* WorkDataView.swift in Sources */,
 				736CD6012499A13300B66369 /* WorkDataBottomController.swift in Sources */,
 				73BC0B862490E4D100B5DBDF /* BaseTableView.swift in Sources */,
 				73BC0B802490E4D100B5DBDF /* BeanTableController.swift in Sources */,
+				73EC523A249B5ACB004D869A /* UserBillHeaderView.swift in Sources */,
 				73D68C25249775A2002055AD /* WebViewController.swift in Sources */,
 				73CC7B31249A4258009CC7FC /* SettingViewCell.swift in Sources */,
 				73BC0B562490CFBD00B5DBDF /* UIView+HUD.swift in Sources */,
 				73BC0B242490CF2200B5DBDF /* PGGlobalHelper.swift in Sources */,
 				736CD6032499A71A00B66369 /* WorkViewController.swift in Sources */,
+				73EC5232249B5636004D869A /* UserBillController.swift in Sources */,
 				73BC0B822490E4D100B5DBDF /* PageingListViewController.swift in Sources */,
 				737643582457F53F00CB2050 /* AppDelegate.swift in Sources */,
 				73BC0B552490CFBD00B5DBDF /* DispatchQueue+Extension.swift in Sources */,
+				7371C247249B0F5400CB6BAA /* UserDataSureCell.swift in Sources */,
 				73BC0B572490CFBD00B5DBDF /* UIView+Extension.swift in Sources */,
 				73BC0B7F2490E4D100B5DBDF /* HomeTableController.swift in Sources */,
 				7394066B2497085A001562CD /* AppDelegate+AMap.swift in Sources */,
 				73BC0B5C2490CFBD00B5DBDF /* UIImageView+Extension.swift in Sources */,
 				73BC0B0D2490CE5500B5DBDF /* MoyaProvider+Rx.swift in Sources */,
+				7371C23F249B0F3100CB6BAA /* UserDataInputCell.swift in Sources */,
 				736CD6082499B33400B66369 /* UserIdentityController.swift in Sources */,
 				7376435A2457F53F00CB2050 /* SceneDelegate.swift in Sources */,
 				736CD60C2499B9E600B66369 /* UserCenterController.swift in Sources */,

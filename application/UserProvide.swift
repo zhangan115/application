@@ -27,7 +27,7 @@ enum UserTarget {
     case getIdentifyInfo(picUrl:String)
     case logout
     case accountGet(userId:Int)
-    case accountLogList(userId:Int,count:Int)
+    case accountLogList(params:[String: Any])
     case postCid(cid:String)
     case appVersion(userId:Int,version:Int,longitude:Double,latitude:Double)
     case userChangePass(userMobile:String,password:String,vCode:String)
@@ -104,8 +104,8 @@ extension UserTarget:TargetType {
             return ["picUrl": picUrl]
         case .accountGet(let userId):
             return ["userId": userId]
-        case .accountLogList(let userId,let count):
-            return ["userId": userId, "count": count]
+        case .accountLogList(let params):
+            return params
         case .postCid(let cid):
             return ["cid": cid]
         case .appVersion(let userId,let version,let longitude,let latitude):

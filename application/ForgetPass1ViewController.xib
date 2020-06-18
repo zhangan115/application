@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="getCodeButton" destination="h25-fh-sSL" id="3hs-e6-npd"/>
                 <outlet property="nameTextFiled" destination="u5o-Li-CJY" id="huu-9p-x1C"/>
+                <outlet property="noteLabel" destination="TKv-YO-D4A" id="BjC-ZR-1UO"/>
                 <outlet property="passTextFiled" destination="R5U-t3-rTM" id="xLE-uu-nbK"/>
                 <outlet property="titleLabel" destination="O20-Wi-IVX" id="SWQ-Cd-yxN"/>
                 <outlet property="toLoginButton" destination="hjk-df-zsB" id="le9-LM-bMn"/>

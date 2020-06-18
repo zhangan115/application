@@ -11,21 +11,21 @@ import SwiftyJSON
 class UserModel: NSObject, NSCoding, Mappable {
     
     var enabled: Bool? = nil
-    var userId: Int? = nil
+    var userId: Int! = 0
     var username: String? = nil
     var certificationType: Int? = nil
     var isFreeze: Bool? = nil
-    var linkMan: String? = nil
-    var linkManMobile: String? = nil
-    var portraitUrl: String? = nil
+    var linkMan: String! = ""
+    var linkManMobile: String! = ""
+    var portraitUrl: String! = ""
     var specialOperationGrade: Int? = nil
     var vocationalQualificationGrade: Int? = nil
-    var realName: String? = nil
-    var userAddress: String? = nil
-    var userMobile: String? = nil
-    var workYear: String? = nil
+    var realName: String! = ""
+    var userAddress: String! = ""
+    var userMobile: String! = ""
+    var workYear: String! = ""
     var freezeTime: Int? = nil
-    var hasPassword: Bool? = nil
+    var hasPassword: Bool!
     var freezeReason: String? = nil
     
     func encode(with aCoder: NSCoder) {
@@ -91,7 +91,7 @@ class UserModel: NSObject, NSCoding, Mappable {
         username = aDecoder.decodeObject(forKey: "username") as? String
         realName = aDecoder.decodeObject(forKey: "realName") as? String
         
-        linkMan = aDecoder.decodeObject(forKey: "usernlinkManame") as? String
+        linkMan = aDecoder.decodeObject(forKey: "linkMan") as? String
         linkManMobile = aDecoder.decodeObject(forKey: "linkManMobile") as? String
         portraitUrl = aDecoder.decodeObject(forKey: "portraitUrl") as? String
         specialOperationGrade = aDecoder.decodeObject(forKey: "specialOperationGrade") as? Int
