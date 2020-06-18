@@ -87,18 +87,59 @@ class ForgetPass2ViewController: PGBaseViewController {
     }
     
     private func changePassSuccess(){
-        let user = UserModel.unarchiver()!
-        if !user.hasPassword {
-            user.hasPassword = true
-            UserModel.archiverUser(user)
+        if let user = UserModel.unarchiver() {
+            if !user.hasPassword {
+                user.hasPassword = true
+                UserModel.archiverUser(user)
+            }
         }
         showPKHUD(message: "密码修改成功", completion: {(bool)in
+            self.navigationController?.popViewController(animated: false)
             self.callback?(self.phone)
-            self.pop()
         })
     }
     
     @IBAction func close(_ sender: UIButton){
         self.pop()
+    }
+}
+
+extension ForgetPass2ViewController {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if setupClass() {
+            self.navigationController?.navigationBar.isHidden = true
+        }else {
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if setupClass() {
+            self.navigationController?.navigationBar.isHidden = true
+        }else {
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+     
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    func setupClass() ->Bool {
+        let controller = self.currentViewController()
+        if controller.isKind(of: ForgetPass1ViewController.self) ||
+            controller.isKind(of: ForgetPass2ViewController.self){
+            return true
+        }
+        return false
     }
 }

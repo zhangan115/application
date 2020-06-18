@@ -101,7 +101,7 @@ class UserLoginViewController: BaseHomeController {
             self?.nameTextFiled.text = phone
             self?.userName = phone
         }
-        self.presentVC(controller)
+        self.pushVC(controller)
     }
     
     private let disposeBag = DisposeBag()
@@ -203,7 +203,6 @@ extension UserLoginViewController {
         }else {
             self.navigationController?.setNavigationBarHidden(true, animated: true)
         }
-        UIApplication.shared.statusBarStyle = .default
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -213,25 +212,22 @@ extension UserLoginViewController {
         }else {
             self.navigationController?.setNavigationBarHidden(true, animated: true)
         }
-        UIApplication.shared.statusBarStyle = .default
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        UIApplication.shared.statusBarStyle = .lightContent
-        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        UIApplication.shared.statusBarStyle = .lightContent
     }
     
     func setupClass() ->Bool {
         let controller = self.currentViewController()
-        if controller.isKind(of: WebViewController.self){
+        if controller.isKind(of: WebViewController.self) ||
+            controller.isKind(of: ForgetPass1ViewController.self) {
             return true
         }
         return false

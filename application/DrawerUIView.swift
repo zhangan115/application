@@ -1,14 +1,35 @@
 //
-//  DrawerMainViewController.swift
+//  DrawerUIView.swift
 //  application
 //
-//  Created by sitech on 2020/6/16.
+//  Created by Anson on 2020/6/18.
 //  Copyright © 2020 Sitop. All rights reserved.
 //
 
 import UIKit
 
-class DrawerMainViewController: PGBaseViewController {
+class DrawerUIView: UIView {
+    
+    lazy var overlayView: UIView = {
+        let view = UIView()
+        view.frame = self.bounds
+        view.backgroundColor = UIColor.black.withAlphaComponent(0)
+        self.addSubview(view)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissLogic))
+        view.addGestureRecognizer(tap)
+        return view
+    }()
+    
+    lazy var contentView: UIView = {
+        let view = UIView(frame: self.bounds)
+        view.backgroundColor = UIColor(hexString: "#FFFFFF")
+        var tableViewFrame = self.bounds
+        tableViewFrame.origin.x = -self.bounds.size.width
+        tableViewFrame.size.width -= 100
+        view.frame = tableViewFrame
+        self.addSubview(view)
+        return view
+    }()
     
     var userModel:UserModel!
     
@@ -26,8 +47,7 @@ class DrawerMainViewController: PGBaseViewController {
         controller.callBack = {
             self.setData(UserModel.unarchiver()!)
         }
-        let nav = PGBaseNavigationController(rootViewController: controller)
-        self.presentVC(nav)
+        self.currentViewController().pushVC(controller)
     }
     
     lazy var userNameLabel: UILabel = {
@@ -169,25 +189,12 @@ class DrawerMainViewController: PGBaseViewController {
         return button
     }()
     
-    lazy var overlayView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.black.withAlphaComponent(0)
-        self.view.addSubview(view)
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissLogic))
-        view.addGestureRecognizer(tap)
-        return view
-    }()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
     
-    lazy var contentView: UIView = {
-        let view = UIView(frame: self.view.bounds)
-        view.backgroundColor = UIColor(hexString: "#F8F8F8")
-        self.view.addSubview(view)
-        return view
-    }()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.view.backgroundColor = UIColor(hexString: "#00000000")
+    override func layoutSubviews() {
+        super.layoutSubviews()
         initView()
     }
     
@@ -261,43 +268,6 @@ class DrawerMainViewController: PGBaseViewController {
             make.left.equalToSuperview().offset(20)
             make.top.equalTo(self.button4.snp.bottom).offset(25)
         }
-        setData(self.userModel)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        self.modalPresentationStyle = .custom
-        var tableViewFrame = view.bounds
-        tableViewFrame.origin.x = -view.bounds.size.width
-        tableViewFrame.size.width -= 100
-        contentView.frame = tableViewFrame
-        overlayView.frame = view.bounds
-        view.sendSubviewToBack(overlayView)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        var tableViewFrame = contentView.frame
-        tableViewFrame.origin.x = 0
-        UIView.animate(withDuration: 0.3) {
-            self.contentView.frame = tableViewFrame
-            self.overlayView.backgroundColor = UIColor.black.withAlphaComponent(0.7)
-        }
-    }
-    
-    @objc func dismissLogic() {
-        var tableViewFrame = contentView.frame
-        tableViewFrame.origin.x = -view.bounds.size.width
-        UIView.animate(withDuration: 0.3, animations: {
-            self.contentView.frame = tableViewFrame
-            self.overlayView.backgroundColor = UIColor.black.withAlphaComponent(0)
-        }) {[weak self] _ in
-            self?.dismiss(animated: false, completion: nil)
-        }
     }
     
     func setData(_ model:UserModel){
@@ -357,21 +327,16 @@ class DrawerMainViewController: PGBaseViewController {
     @objc func verify(){
         if userModel.certificationType! == 0 {
             let controller = UserIdentityController()
-            controller.isPresent = true
-            let nav = PGBaseNavigationController(rootViewController: controller)
-            self.presentVC(nav)
+            self.currentViewController().pushVC(controller)
         }else{
             let controller = UserElectricianController()
-            controller.isPresent = true
-            let nav = PGBaseNavigationController(rootViewController: controller)
-            self.presentVC(nav)
+            self.currentViewController().pushVC(controller)
         }
     }
     
     @objc func wallet() {
         let controller = UserWalletController()
-        let nav = PGBaseNavigationController(rootViewController: controller)
-        self.presentVC(nav)
+        self.currentViewController().pushVC(controller)
     }
     
     @objc func study() {
@@ -379,8 +344,7 @@ class DrawerMainViewController: PGBaseViewController {
         controller.title = "学习培训"
         controller.titleList = ["电工服务规范","用户安全手册"]
         controller.urlList = [Config.url_serviceSpecification,Config.url_safetyManual]
-        let nav = PGBaseNavigationController(rootViewController: controller)
-        self.presentVC(nav)
+        self.currentViewController().pushVC(controller)
     }
     
     @objc func help() {
@@ -388,8 +352,7 @@ class DrawerMainViewController: PGBaseViewController {
         controller.title = "帮助中心"
         controller.titleList = ["平台基础知识","为什么成为金牌电工"]
         controller.urlList = [Config.url_basicKnowledge,Config.url_becomeSharingElectrician]
-        let nav = PGBaseNavigationController(rootViewController: controller)
-        self.presentVC(nav)
+        self.currentViewController().pushVC(controller)
     }
     
     @objc func service() {
@@ -406,8 +369,32 @@ class DrawerMainViewController: PGBaseViewController {
     @objc func setting() {
         let controller = SettingController()
         controller.isPresent = true
-        let nav = PGBaseNavigationController(rootViewController: controller)
-        self.presentVC(nav)
+        self.currentViewController().pushVC(controller)
     }
     
+    
+    func showLayout(){
+        self.isHidden = false
+        var tableViewFrame = contentView.frame
+        tableViewFrame.origin.x = 0
+        UIView.animate(withDuration: 0.3) {
+            self.contentView.frame = tableViewFrame
+            self.overlayView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        }
+    }
+    
+    @objc func dismissLogic() {
+        var tableViewFrame = contentView.frame
+        tableViewFrame.origin.x = -self.bounds.size.width
+        UIView.animate(withDuration: 0.3, animations: {
+            self.contentView.frame = tableViewFrame
+            self.overlayView.backgroundColor = UIColor.black.withAlphaComponent(0)
+        }) {[weak self] _ in
+            self?.isHidden = true
+        }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }

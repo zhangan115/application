@@ -68,7 +68,6 @@ class ForgetPass1ViewController: PGBaseViewController {
     
     var currentPhoneCode = ""
     
-    
     @IBAction func toGetCode(_ sender: UIButton){
         if userName == nil || userName!.length == 0 {
             Toast(text: "请输入手机号").show()
@@ -108,12 +107,11 @@ class ForgetPass1ViewController: PGBaseViewController {
             let viewController = ForgetPass2ViewController()
             viewController.phoneCode = currentPhoneCode
             viewController.phone = self.userName!
-            viewController.isPresent = true
-            viewController.callback = {(phone)in
-                self.callback?(phone)
-                self.pop()
+            viewController.callback = {[weak self](phone)in
+                self?.navigationController?.popViewController(animated: false)
+                self?.callback?(phone)
             }
-            self.presentVC(viewController)
+            self.pushVC(viewController)
         }else{
             Toast(text: "验证码错误").show()
         }
@@ -160,5 +158,45 @@ class ForgetPass1ViewController: PGBaseViewController {
         passTextFiled.isSecureTextEntry = false
         passTextFiled.keyboardType = UIKeyboardType.numberPad
         passTextFiled.textContentType = .none
+    }
+}
+
+extension ForgetPass1ViewController {
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if setupClass() {
+            self.navigationController?.navigationBar.isHidden = true
+        }else {
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if setupClass() {
+            self.navigationController?.navigationBar.isHidden = true
+        }else {
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    func setupClass() ->Bool {
+        let controller = self.currentViewController()
+        if  controller.isKind(of: ForgetPass1ViewController.self) ||
+            controller.isKind(of: ForgetPass2ViewController.self) {
+            return true
+        }
+        return false
     }
 }

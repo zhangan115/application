@@ -198,6 +198,13 @@ class MainViewController: BaseHomeController {
     var isRequestAppVersion = false
     let disposeBag = DisposeBag()
     
+    lazy var drawerView : DrawerUIView = {
+          let view = DrawerUIView(frame: self.view.frame)
+          view.isHidden = true
+          self.view.addSubview(view)
+          return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
@@ -206,7 +213,6 @@ class MainViewController: BaseHomeController {
         requestUserData()
         requestUserVeryList()
         hideBottomView()
-        
     }
     //显示侧栏
     @objc func showDrawable(){

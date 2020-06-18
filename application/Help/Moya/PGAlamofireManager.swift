@@ -17,7 +17,7 @@ final class PGAlamofireManager: Alamofire.SessionManager {
         headers["Cookie"] = getCookie
         configuration.httpShouldSetCookies = true
         configuration.httpAdditionalHeaders = headers
-        configuration.timeoutIntervalForRequest = 60.0
+        configuration.timeoutIntervalForRequest = 5.0
         return PGAlamofireManager(configuration: configuration)
     }()
     

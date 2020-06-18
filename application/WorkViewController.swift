@@ -43,7 +43,7 @@ class WorkViewController: PGBaseViewController {
     }
     
     @objc func fuckIos(){
-        print("fuck")
+        self.pop()
     }
     
 
