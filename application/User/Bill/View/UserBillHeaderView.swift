@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import PGDatePicker
 class UserBillHeaderView: UITableViewHeaderFooterView {
     
     lazy var timeButton: UIButton = {
@@ -30,7 +30,7 @@ class UserBillHeaderView: UITableViewHeaderFooterView {
     lazy var icon:UIImageView = {
         let view = UIImageView()
         view.image = UIImage(named: "wallet_icon_down")
-         self.contentView.addSubview(view)
+        self.contentView.addSubview(view)
         return view
     }()
     
@@ -58,7 +58,57 @@ class UserBillHeaderView: UITableViewHeaderFooterView {
     
     
     @objc func chooseTime(){
-        print("===>")
+        showTimePick(0)
     }
     
+    var callback:((Int)->())?
+    
+    private func showTimePick(_ tag :Int) {
+        let startDatePickerManager = PGDatePickManager()
+        let datePicker = startDatePickerManager.datePicker!
+        startDatePickerManager.isShadeBackground = true
+        datePicker.tag = tag
+        datePicker.delegate = self
+        datePicker.datePickerMode = .yearAndMonth
+        datePicker.isHiddenMiddleText = false
+        datePicker.datePickerType = .segment
+        self.currentViewController().present(startDatePickerManager, animated: false, completion: nil)
+    }
+}
+
+extension UserBillHeaderView: PGDatePickerDelegate {
+    
+    func datePicker(_ datePicker: PGDatePicker!, didSelectDate dateComponents: DateComponents!) {
+        if let date = Calendar.current.date(from: dateComponents) {
+            if datePicker.tag == 0 {
+                let dateString: String! = self.endOfMonth(year: date.year, month: date.month).toString(format: "yyyy-MM-dd")
+                let time = date.toString(format: dateString + " 23:59:59")
+                let endTime = date2TimeStamp(time: time, dateFormat: "yyyy-MM-dd HH:mm:ss").toInt
+                self.callback?(endTime)
+            }
+        }
+    }
+    
+    func endOfMonth(year: Int, month: Int, returnEndTime:Bool = false) -> Date {
+        let calendar = NSCalendar.current
+        var components = DateComponents()
+        components.month = 1
+        if returnEndTime {
+            components.second = -1
+        } else {
+            components.day = -1
+        }
+        let endOfYear = calendar.date(byAdding: components,to: startOfMonth(year: year, month:month))!
+        return endOfYear
+    }
+    
+    func startOfMonth(year: Int, month: Int) -> Date {
+        let calendar = NSCalendar.current
+        var startComps = DateComponents()
+        startComps.day = 1
+        startComps.month = month
+        startComps.year = year
+        let startDate = calendar.date(from: startComps)!
+        return startDate
+    }
 }

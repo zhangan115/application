@@ -30,6 +30,7 @@ class UserBillController: BaseTableViewController {
         params["userId"] = userModel.userId
         params["page"] = self.pagingCount
         self.baseIastId = 1
+        requestTime = Date().timeIntervalSince1970.toInt * 1000
     }
     
     var params:[String:Any] = [:]
@@ -39,6 +40,7 @@ class UserBillController: BaseTableViewController {
     
     override func refreshHandler() {
         self.currentPage = 1
+        requestTime = Date().timeIntervalSince1970.toInt * 1000
         super.refreshHandler()
     }
     
@@ -48,9 +50,6 @@ class UserBillController: BaseTableViewController {
     }
     
     override func request() {
-        if self.currentPage == 1 {
-            requestTime = Date().timeIntervalSince1970.toInt * 1000
-        }
         params["endTime"] = requestTime
         userProviderNoPlugin.rxRequest(.accountLogList(params: params))
             .toModel(type: AccountLogList.self).subscribe(onSuccess: {[weak self](model) in
@@ -156,9 +155,14 @@ extension UserBillController{
             backgroundView.backgroundColor = ColorConstants.tableViewBackground
             view?.backgroundView = backgroundView
         }
-        let str =  String(format: "收入 ￥ %0.2f  提现 ￥%0.2f", data.billIn,data.billOut)
+        let str =  String(format: "收入 ￥%0.2f  提现 ￥%0.2f", data.billIn,data.billOut)
         view?.timeButton.setTitle(data.headerTime, for: .normal)
         view?.moneyLabel.text = str
+        view?.callback = {(time)in
+            self.requestTime = time
+            self.currentPage = 1
+            self.request()
+        }
         return view
     }
     
@@ -169,4 +173,5 @@ extension UserBillController{
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
+    
 }
