@@ -21,21 +21,14 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wut-5Q-GeQ">
-                    <rect key="frame" x="10" y="55" width="22" height="22"/>
-                    <state key="normal" backgroundImage="label_icon_back"/>
-                    <connections>
-                        <action selector="close:" destination="-1" eventType="touchUpInside" id="40K-dt-TjY"/>
-                    </connections>
-                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="设置登录密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Nu-Do-lS2">
-                    <rect key="frame" x="20" y="104" width="152" height="30"/>
+                    <rect key="frame" x="20" y="71" width="152" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="4Qa-qS-4EY">
-                    <rect key="frame" x="20" y="204" width="374" height="104"/>
+                    <rect key="frame" x="20" y="171" width="374" height="104"/>
                     <subviews>
                         <view contentMode="scaleToFill" id="DLs-DO-U1H">
                             <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
@@ -112,7 +105,7 @@
                     </constraints>
                 </stackView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2LX-r8-4eZ">
-                    <rect key="frame" x="20" y="391" width="374" height="44"/>
+                    <rect key="frame" x="20" y="358" width="374" height="44"/>
                     <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.0" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="WBZ-ry-yeG"/>
@@ -125,7 +118,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGc-T7-RTe">
-                    <rect key="frame" x="20" y="317" width="167" height="29"/>
+                    <rect key="frame" x="20" y="284" width="167" height="29"/>
                     <string key="text">密码须包含数字、字母2种元素
 密码长度须6-20位</string>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -136,13 +129,11 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Swf-88-rBM" firstAttribute="trailing" secondItem="4Qa-qS-4EY" secondAttribute="trailing" constant="20" id="4Qe-uG-Ygi"/>
+                <constraint firstItem="3Nu-Do-lS2" firstAttribute="top" secondItem="Swf-88-rBM" secondAttribute="top" constant="27" id="7KI-3b-czk"/>
                 <constraint firstItem="fGc-T7-RTe" firstAttribute="leading" secondItem="Swf-88-rBM" secondAttribute="leading" constant="20" id="C3w-tc-MZG"/>
                 <constraint firstItem="2LX-r8-4eZ" firstAttribute="leading" secondItem="Swf-88-rBM" secondAttribute="leading" constant="20" id="DSX-oK-wLm"/>
                 <constraint firstItem="4Qa-qS-4EY" firstAttribute="top" secondItem="3Nu-Do-lS2" secondAttribute="bottom" constant="70" id="Hn8-bA-UhS"/>
                 <constraint firstItem="2LX-r8-4eZ" firstAttribute="top" secondItem="fGc-T7-RTe" secondAttribute="bottom" constant="45" id="V6x-rn-IX6"/>
-                <constraint firstItem="Wut-5Q-GeQ" firstAttribute="leading" secondItem="Swf-88-rBM" secondAttribute="leading" constant="10" id="XDq-ZK-Ogx"/>
-                <constraint firstItem="3Nu-Do-lS2" firstAttribute="top" secondItem="Wut-5Q-GeQ" secondAttribute="bottom" constant="27" id="fqd-Yj-QOE"/>
-                <constraint firstItem="Wut-5Q-GeQ" firstAttribute="top" secondItem="Swf-88-rBM" secondAttribute="top" constant="11" id="g4V-hv-e3I"/>
                 <constraint firstItem="3Nu-Do-lS2" firstAttribute="leading" secondItem="Swf-88-rBM" secondAttribute="leading" constant="20" id="gOp-OA-xAp"/>
                 <constraint firstItem="fGc-T7-RTe" firstAttribute="top" secondItem="4Qa-qS-4EY" secondAttribute="bottom" constant="9" id="iUd-Y4-H3W"/>
                 <constraint firstItem="Swf-88-rBM" firstAttribute="trailing" secondItem="2LX-r8-4eZ" secondAttribute="trailing" constant="20" id="qBd-7Z-tMF"/>
@@ -153,7 +144,6 @@
         </view>
     </objects>
     <resources>
-        <image name="label_icon_back" width="22" height="22"/>
         <image name="login_icon_password" width="18" height="18"/>
     </resources>
 </document>

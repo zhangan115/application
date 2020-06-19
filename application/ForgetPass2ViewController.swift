@@ -25,7 +25,7 @@ class ForgetPass2ViewController: PGBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        isPresent = true
+        hiddenNaviBarLine()
         self.view.backgroundColor = UIColor.white
         self.toLoginButton.layer.masksToBounds = true
         self.toLoginButton.layer.cornerRadius = 4
@@ -97,49 +97,5 @@ class ForgetPass2ViewController: PGBaseViewController {
             self.navigationController?.popViewController(animated: false)
             self.callback?(self.phone)
         })
-    }
-    
-    @IBAction func close(_ sender: UIButton){
-        self.pop()
-    }
-}
-
-extension ForgetPass2ViewController {
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if setupClass() {
-            self.navigationController?.navigationBar.isHidden = true
-        }else {
-            self.navigationController?.setNavigationBarHidden(true, animated: true)
-        }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if setupClass() {
-            self.navigationController?.navigationBar.isHidden = true
-        }else {
-            self.navigationController?.setNavigationBarHidden(true, animated: true)
-        }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-     
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-    }
-    
-    func setupClass() ->Bool {
-        let controller = self.currentViewController()
-        if controller.isKind(of: ForgetPass1ViewController.self) ||
-            controller.isKind(of: ForgetPass2ViewController.self){
-            return true
-        }
-        return false
     }
 }

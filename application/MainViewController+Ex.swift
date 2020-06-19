@@ -211,7 +211,6 @@ extension MainViewController {
         }else {
             self.navigationController?.setNavigationBarHidden(true, animated: true)
         }
-        UIApplication.shared.statusBarStyle = .default
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -221,20 +220,16 @@ extension MainViewController {
         }else {
             self.navigationController?.setNavigationBarHidden(true, animated: true)
         }
-        UIApplication.shared.statusBarStyle = .default
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        UIApplication.shared.statusBarStyle = .lightContent
-        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        UIApplication.shared.statusBarStyle = .lightContent
     }
     
     func setupClass() ->Bool {

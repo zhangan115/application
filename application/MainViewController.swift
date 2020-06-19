@@ -199,10 +199,13 @@ class MainViewController: BaseHomeController {
     let disposeBag = DisposeBag()
     
     lazy var drawerView : DrawerUIView = {
-          let view = DrawerUIView(frame: self.view.frame)
-          view.isHidden = true
-          self.view.addSubview(view)
-          return view
+        let view = DrawerUIView(frame: self.view.frame)
+        view.isHidden = true
+        if let user = UserModel.unarchiver() {
+            view.setData(user)
+        }
+        self.view.addSubview(view)
+        return view
     }()
     
     override func viewDidLoad() {
@@ -216,11 +219,7 @@ class MainViewController: BaseHomeController {
     }
     //显示侧栏
     @objc func showDrawable(){
-        let controller = DrawerMainViewController()
-        controller.userModel = UserModel.unarchiver()!
-        self.present(controller, animated: false, completion: {
-            controller.initView()
-        })
+        drawerView.showLayout()
     }
     //显示工单列表
     @objc func showWork(){

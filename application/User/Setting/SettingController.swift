@@ -71,8 +71,7 @@ class SettingController: HomeTableController {
             if let user = UserModel.unarchiver() {
                 controller.phoneNum = user.userMobile!
             }
-            controller.isPresent = true
-            self.presentVC(controller)
+            self.pushVC(controller)
         }
         if indexPath.section == 1 {
             clearCache()
