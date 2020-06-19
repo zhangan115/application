@@ -67,3 +67,10 @@ class BillList:Mappable{
         self.billName = json["billName"].stringValue
     }
 }
+
+class UserBillHeader {
+    var headerTime: String!
+    var billIn: Float = 0
+    var billOut: Float = 0
+    var list : [BillList]! = []
+}

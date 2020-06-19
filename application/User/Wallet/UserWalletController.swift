@@ -17,8 +17,8 @@ class UserWalletController: PGBaseViewController {
     let disposeBag = DisposeBag()
     override func viewDidLoad() {
         super.viewDidLoad()
+        hiddenNaviBarLine()
         self.title = "钱包"
-        self.isPresent = true
         self.view.backgroundColor = ColorConstants.tableViewBackground
         setupRightButton()
         let user = UserModel.unarchiver()!

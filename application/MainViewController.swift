@@ -198,8 +198,8 @@ class MainViewController: BaseHomeController {
     var isRequestAppVersion = false
     let disposeBag = DisposeBag()
     
-    lazy var drawerView : DrawerUIView = {
-        let view = DrawerUIView(frame: self.view.frame)
+    lazy var drawerView : MainDrawerUIView = {
+        let view = MainDrawerUIView(frame: self.view.frame)
         view.isHidden = true
         if let user = UserModel.unarchiver() {
             view.setData(user)

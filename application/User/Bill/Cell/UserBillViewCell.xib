@@ -26,7 +26,7 @@
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oyw-ns-fW3">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oyw-ns-fW3">
                                 <rect key="frame" x="269" y="12" width="36" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -46,7 +46,7 @@
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lb2-bY-hs1">
                                 <rect key="frame" x="12" y="59" width="305" height="1"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="IG5-aM-6MC"/>
                                 </constraints>
@@ -60,7 +60,6 @@
                             <constraint firstItem="41r-8f-jeX" firstAttribute="leading" secondItem="L1X-xf-YGA" secondAttribute="leading" constant="12" id="AUm-Yi-yo5"/>
                             <constraint firstAttribute="trailing" secondItem="D1W-ae-cZ2" secondAttribute="trailing" constant="12" id="ETC-ah-YZ1"/>
                             <constraint firstAttribute="bottom" secondItem="lb2-bY-hs1" secondAttribute="bottom" id="PnP-Ew-wCQ"/>
-                            <constraint firstItem="Oyw-ns-fW3" firstAttribute="leading" secondItem="L1X-xf-YGA" secondAttribute="trailing" constant="-48" id="T5L-H0-9tv"/>
                             <constraint firstItem="41r-8f-jeX" firstAttribute="top" secondItem="L1X-xf-YGA" secondAttribute="top" constant="12" id="c9R-CL-XGd"/>
                             <constraint firstAttribute="trailing" secondItem="Oyw-ns-fW3" secondAttribute="trailing" constant="12" id="eaW-BH-qkG"/>
                             <constraint firstAttribute="trailing" secondItem="lb2-bY-hs1" secondAttribute="trailing" id="fZU-gx-6na"/>
