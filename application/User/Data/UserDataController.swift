@@ -162,6 +162,9 @@ extension UserDataController {
             var view = tableView.dequeueReusableHeaderFooterView(withIdentifier: identifier)
             if view == nil {
                 view = UserDataHeaderView(reuseIdentifier: identifier)
+                let backgroundView = UIView()
+                backgroundView.backgroundColor = ColorConstants.tableViewBackground
+                view?.backgroundView = backgroundView
             }
             return view
         }

@@ -49,8 +49,11 @@ final class PGProvider: NSObject {
                 if errorCode == -100 || errorCode == -101 { //cookie失效 实现重新登录
                     PGAlamofireManager.cancelAllOperations()
                     showPKHUD(message: json["message"].stringValue, completion: { _ in
-                                           UserDefaults.standard.set(false, forKey: kIsLogin)
-                                           UIApplication.shared.keyWindow?.rootViewController = PGBaseNavigationController(rootViewController: UserLoginViewController())
+                        UserDefaults.standard.set(false, forKey: kIsLogin)
+                        if UIApplication.shared.keyWindow?.currentViewController().isKind(of: UserLoginViewController.self) ?? false {
+                            return
+                        }
+                        UIApplication.shared.keyWindow?.rootViewController = PGBaseNavigationController(rootViewController: UserLoginViewController())
                     })
                 }else if json["message"].stringValue != "" {
                     showPKHUD(message: json["message"].stringValue)
