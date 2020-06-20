@@ -396,7 +396,6 @@ class MainDrawerUIView: UIView {
     
     @objc func setting() {
         let controller = SettingController()
-        controller.isPresent = true
         self.currentViewController().pushVC(controller)
     }
     

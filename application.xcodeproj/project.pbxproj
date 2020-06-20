@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3EB299B8249D909F008ED3C4 /* MainDrawerUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB299B7249D909F008ED3C4 /* MainDrawerUIView.swift */; };
 		731F5BBF2491FAC30019D58B /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731F5BBD2491FAC30019D58B /* GuideViewController.swift */; };
 		731F5BC2249236EE0019D58B /* GuideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 731F5BC1249236EE0019D58B /* GuideViewController.xib */; };
 		735C0C81249853D500194FB0 /* WorkDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735C0C80249853D500194FB0 /* WorkDataView.swift */; };
@@ -138,6 +139,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3EB299B7249D909F008ED3C4 /* MainDrawerUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainDrawerUIView.swift; sourceTree = "<group>"; };
 		731F5BBD2491FAC30019D58B /* GuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
 		731F5BC1249236EE0019D58B /* GuideViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideViewController.xib; sourceTree = "<group>"; };
 		735C0C80249853D500194FB0 /* WorkDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkDataView.swift; sourceTree = "<group>"; };
@@ -922,6 +924,7 @@
 		73D68C20249774B1002055AD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3EB299B7249D909F008ED3C4 /* MainDrawerUIView.swift */,
 				73D68C21249774C6002055AD /* BottomWorkView.swift */,
 				735C0C80249853D500194FB0 /* WorkDataView.swift */,
 				735C0C82249895DB00194FB0 /* CustomCalloutView.swift */,
@@ -1144,6 +1147,7 @@
 			files = (
 				7394066E24974462001562CD /* WorkModel.swift in Sources */,
 				736A4E3C24934DC900B2C2F0 /* ForgetPass1ViewController.swift in Sources */,
+				3EB299B8249D909F008ED3C4 /* MainDrawerUIView.swift in Sources */,
 				73BC0B682490D64700B5DBDF /* TaskProvide.swift in Sources */,
 				73BC0B132490CE5500B5DBDF /* Tools.swift in Sources */,
 				7376435C2457F53F00CB2050 /* MainViewController.swift in Sources */,

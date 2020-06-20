@@ -75,7 +75,7 @@ class UserElectricianController: PGBaseViewController {
                 }
                 photoList[1] = model.vocationalQualificationPic
                 if photoList[1].count == 0 {
-                    layout1.isHidden = true
+                    layout2.isHidden = true
                 }
                 button1.loadNetWorkImage(model.specialOperationPic, placeholder: "qualifications_img1")
                 button2.loadNetWorkImage(model.vocationalQualificationPic, placeholder: "qualifications_img2")
@@ -90,7 +90,7 @@ class UserElectricianController: PGBaseViewController {
                 }
                 photoList[1] = model.vocationalQualificationPic
                 if photoList[1].count == 0 {
-                    layout1.isHidden = true
+                    layout2.isHidden = true
                 }
                 button1.loadNetWorkImage(model.specialOperationPic, placeholder: "qualifications_img1")
                 button2.loadNetWorkImage(model.vocationalQualificationPic, placeholder: "qualifications_img2")

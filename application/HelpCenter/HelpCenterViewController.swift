@@ -17,7 +17,6 @@ class HelpCenterViewController: HomeTableController {
     override func viewDidLoad() {
         super.viewDidLoad()
         showBackButton = true
-        isPresent = true
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 44
         self.tableView.separatorStyle = .none
