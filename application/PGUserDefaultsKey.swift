@@ -15,6 +15,7 @@ let kUserLocation = "user_area"
 let kUserVerifyId = "user_verofy_id"
 let kUsername = "username"
 let kPassword = "password"
+let kUserPromise = "user_promise"
 
 
 // 有推送消息时通知的key值

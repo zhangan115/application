@@ -97,9 +97,21 @@ class UserIdentityController: PGBaseViewController {
                 self.passBgUiView.insertSubview(bgView, at: 0)
             }else{
                 verifyView.isHidden = false
+                if !UserDefaults.standard.bool(forKey: kUserPromise) {
+                    let controller = PromiseController()
+                    self.present(controller, animated: true, completion: {
+                        controller.initView()
+                    })
+                }
             }
         }else{
             verifyView.isHidden = false
+            if !UserDefaults.standard.bool(forKey: kUserPromise) {
+                let controller = PromiseController()
+                self.present(controller, animated: true, completion: {
+                    controller.initView()
+                })
+            }
         }
     }
     
