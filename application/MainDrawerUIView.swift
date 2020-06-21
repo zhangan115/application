@@ -143,7 +143,7 @@ class MainDrawerUIView: UIView {
         let view = UIImageView()
         view.layer.masksToBounds = true
         view.image = UIImage(named: "sidebar_card_img_hat_bg")
-        view.layer.cornerRadius = 20
+        view.layer.cornerRadius = 0
         self.userData.addSubview(view)
         return view
     }()
