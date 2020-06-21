@@ -243,7 +243,36 @@ class MainViewController: BaseHomeController {
     }
     // 抢当前工单
     @objc func raibCurreWork(){
-        
+        let userModel = UserModel.unarchiver()
+        if userModel == nil{
+            return
+        }
+        let controller = UserFreezyController()
+                   self.present(controller, animated: true, completion: {
+                       controller.initView()
+                   })
+        if userModel!.isFreeze ?? false {
+            let controller = UserFreezyController()
+            self.present(controller, animated: true, completion: {
+                controller.initView()
+            })
+            return
+        }
+        if let model = self.currentWorkModel {
+            if model.taskType == WorkType.WORK_TYPE_BASE.rawValue {
+                if userModel!.certificationType == 0 {
+                    showUserVerifyDialog(1)
+                }else{
+                    //去抢单
+                }
+            }else {
+                if userModel!.certificationType! < 1 {
+                  showUserVerifyDialog(0)
+                }else{
+                    //去抢单
+                }
+            }
+        }
     }
     //位置
     @objc func location(){
@@ -261,13 +290,6 @@ class MainViewController: BaseHomeController {
             Toast.init(text: "附近暂无工单").show()
             return
         }
-        if let user = UserModel.unarchiver() {
-            if user.certificationType! == 0 {
-                 showUserVerifyDialog()
-            }
-        }else{
-            return
-        }
         self.currentWorkModel = workModelList.first
         if let model = self.currentWorkModel {
             self.bottomWorkView.workDataView.setData(workData: model)
@@ -280,7 +302,7 @@ class MainViewController: BaseHomeController {
         self.pushVC(controller)
     }
     
-    private func showUserVerifyDialog(){
+    private func showUserVerifyDialog(_ type:Int){
         let verifyDialog =  MainUserVerifyController()
         verifyDialog.callback = {(index) in
             if index == 1 {
@@ -292,7 +314,7 @@ class MainViewController: BaseHomeController {
             }
         }
         self.present(verifyDialog, animated: true, completion: {
-            verifyDialog.initView()
+            verifyDialog.initView(type)
         })
     }
     
@@ -302,6 +324,3 @@ class MainViewController: BaseHomeController {
         }
     }
 }
-
-
-
