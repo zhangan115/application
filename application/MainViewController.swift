@@ -261,6 +261,13 @@ class MainViewController: BaseHomeController {
             Toast.init(text: "附近暂无工单").show()
             return
         }
+        if let user = UserModel.unarchiver() {
+            if user.certificationType! == 0 {
+                 showUserVerifyDialog()
+            }
+        }else{
+            return
+        }
         self.currentWorkModel = workModelList.first
         if let model = self.currentWorkModel {
             self.bottomWorkView.workDataView.setData(workData: model)
@@ -271,6 +278,22 @@ class MainViewController: BaseHomeController {
     @objc func veryf(){
         let controller = UserIdentityController()
         self.pushVC(controller)
+    }
+    
+    private func showUserVerifyDialog(){
+        let verifyDialog =  MainUserVerifyController()
+        verifyDialog.callback = {(index) in
+            if index == 1 {
+                let controller = UserIdentityController()
+                self.pushVC(controller)
+            }else if index == 2 {
+                let controller = UserElectricianController()
+                self.pushVC(controller)
+            }
+        }
+        self.present(verifyDialog, animated: true, completion: {
+            verifyDialog.initView()
+        })
     }
     
     func hideBottomView(){

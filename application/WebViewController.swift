@@ -29,6 +29,7 @@ class WebViewController: PGBaseViewController {
         button.setBackgroundColor(UIColor(hexString: "#FFCC00")!, forState: .normal)
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 4
+        button.addTarget(self, action: #selector(toUserIdentify), for: .touchUpInside)
         button.setTitle("成为电工", for: .normal)
         button.setTitleColor(UIColor(hexString: "#333333")!, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
@@ -39,6 +40,11 @@ class WebViewController: PGBaseViewController {
     var titleStr = ""
     var url = ""
     var showButton = false
+    
+    @objc func toUserIdentify(){
+        let controller = UserIdentityController()
+        self.pushVC(controller)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

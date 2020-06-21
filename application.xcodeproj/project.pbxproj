@@ -10,6 +10,7 @@
 		3EB299B8249D909F008ED3C4 /* MainDrawerUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB299B7249D909F008ED3C4 /* MainDrawerUIView.swift */; };
 		3EB37EE1249EF9ED00A2DBD4 /* MainUserVerifyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB37EE0249EF9ED00A2DBD4 /* MainUserVerifyController.swift */; };
 		3EB37EE5249EFA8300A2DBD4 /* NumVerifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB37EE4249EFA8300A2DBD4 /* NumVerifyView.swift */; };
+		3EB37EE7249F01D000A2DBD4 /* VerifyContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB37EE6249F01D000A2DBD4 /* VerifyContentView.swift */; };
 		731F5BBF2491FAC30019D58B /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731F5BBD2491FAC30019D58B /* GuideViewController.swift */; };
 		731F5BC2249236EE0019D58B /* GuideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 731F5BC1249236EE0019D58B /* GuideViewController.xib */; };
 		735C0C81249853D500194FB0 /* WorkDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735C0C80249853D500194FB0 /* WorkDataView.swift */; };
@@ -144,6 +145,7 @@
 		3EB299B7249D909F008ED3C4 /* MainDrawerUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainDrawerUIView.swift; sourceTree = "<group>"; };
 		3EB37EE0249EF9ED00A2DBD4 /* MainUserVerifyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainUserVerifyController.swift; sourceTree = "<group>"; };
 		3EB37EE4249EFA8300A2DBD4 /* NumVerifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumVerifyView.swift; sourceTree = "<group>"; };
+		3EB37EE6249F01D000A2DBD4 /* VerifyContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyContentView.swift; sourceTree = "<group>"; };
 		731F5BBD2491FAC30019D58B /* GuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
 		731F5BC1249236EE0019D58B /* GuideViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideViewController.xib; sourceTree = "<group>"; };
 		735C0C80249853D500194FB0 /* WorkDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkDataView.swift; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 			isa = PBXGroup;
 			children = (
 				3EB37EE4249EFA8300A2DBD4 /* NumVerifyView.swift */,
+				3EB37EE6249F01D000A2DBD4 /* VerifyContentView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1212,6 +1215,7 @@
 				3EB37EE5249EFA8300A2DBD4 /* NumVerifyView.swift in Sources */,
 				736CD6122499DC7400B66369 /* UserElectricianController.swift in Sources */,
 				73BC0B7E2490E4D100B5DBDF /* BaseTableViewController.swift in Sources */,
+				3EB37EE7249F01D000A2DBD4 /* VerifyContentView.swift in Sources */,
 				736A4E402493503000B2C2F0 /* ForgetPass2ViewController.swift in Sources */,
 				73BC0B142490CE5500B5DBDF /* PGScrollView.swift in Sources */,
 				73BC0B5F2490CFBD00B5DBDF /* Dictionary+Extension.swift in Sources */,
