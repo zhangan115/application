@@ -112,7 +112,7 @@ class UserBillController: BaseTableViewController {
     }
     
     private func requestError(){
-        
+        self.tableView.safeReloadData()
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

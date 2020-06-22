@@ -9,42 +9,86 @@
 import UIKit
 import SnapKit
 class WorkViewController: PGBaseViewController {
-
-    lazy var button1 : UIButton = {
-        let button = UIButton()
-        button.setTitle("测试Button", for: .normal)
-        button.setBackgroundColor(UIColor.red, forState: .normal)
-        button.addTarget(self, action: #selector(fuckIos), for: .touchUpInside)
-        self.view.addSubview(button)
-        return button
-    }()
     
-    lazy var testView:UIView = {
-        let view = TestView()
-        self.view.addSubview(view)
-        return view
-    }()
+   private var controllers :[UIViewController] = []
+   private var pageTitleView: SGPageTitleView!
+    private var pageContentView: SGPageContentView!
+    var currentLocation : CLLocation? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "测试UIButton"
-        self.view.backgroundColor = UIColor.white
-        button1.snp.updateConstraints{(make)in
-            make.left.top.equalToSuperview()
-            make.width.equalTo(100)
-            make.height.equalTo(44)
-        }
-        testView.snp.updateConstraints{(make)in
-            make.top.equalTo(self.button1.snp.bottom).offset(10)
-            make.left.right.equalToSuperview()
-            make.height.equalTo(100)
-        }
+        self.title = "工单列表"
+        hiddenNaviBarLine()
+        setupRightButton()
+        setupPageView()
+    }
+    
+    func setupPageView() {
+        let configure = SGPageTitleViewConfigure()
+        configure.indicatorScrollStyle = SGIndicatorScrollStyleHalf
+        configure.titleFont = UIFont.systemFont(ofSize: 15)
+        configure.titleColor = UIColor(hexString: "#333333")
         
+        configure.titleSelectedColor = UIColor(hexString: "#333333")
+        configure.indicatorColor = UIColor(hexString: "#FFCC00")
+        var titleViewFrame = view.bounds
+        titleViewFrame.size.height = 45
+        
+        let titleList = ["待开始", "进行中","待验收","已完成"]
+        pageTitleView = SGPageTitleView(frame: titleViewFrame, delegate: self, titleNames: titleList, configure: configure)
+        pageTitleView.isShowBottomSeparator = false
+        pageTitleView.backgroundColor = UIColor.white
+        view.addSubview(pageTitleView)
+        
+        let begin = WorkListController()
+        begin.currentIndex = 3
+        begin.currentLocation = self.currentLocation
+        controllers.append(begin)
+        let progress = WorkListController()
+        progress.currentIndex = 4
+             progress.currentLocation = self.currentLocation
+        controllers.append(progress)
+        let check = WorkListController()
+        check.currentIndex = 5
+        check.currentLocation = self.currentLocation
+        controllers.append(check)
+        let finish = WorkListController()
+        finish.currentIndex = 6
+        finish.currentLocation = self.currentLocation
+        controllers.append(finish)
+        var contentViewFrame = view.bounds
+        contentViewFrame.origin.y = pageTitleView.frame.maxY
+        contentViewFrame.size.height = contentViewFrame.size.height - pageTitleView.frame.maxY - tabBarHeight - 20
+        pageContentView = SGPageContentView(frame: contentViewFrame, parentVC: self, childVCs: controllers)
+        pageContentView.delegatePageContentView = self
+        view.addSubview(pageContentView)
     }
     
-    @objc func fuckIos(){
-        self.pop()
+    func setupRightButton() {
+        let button = UIButton(type: .custom)
+        button.setImage(UIImage(named: "work_iocn_abrogation"), for: .normal)
+        button.frame = CGRect(x: 0, y: 0, width: 22, height: 22)
+        button.setTitleColor(UIColor(hexString: "#333333"), for: .normal)
+        button.addTarget(self, action: #selector(endWork), for: .touchUpInside)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button)
     }
     
+    @objc func endWork(){
+        let controller = EndWorkController()
+        controller.currentLocation = self.currentLocation
+        self.pushVC(controller)
+    }
+    
+}
 
+extension WorkViewController: SGPageTitleViewDelegate {
+    func pageTitleView(_ pageTitleView: SGPageTitleView!, selectedIndex: Int) {
+        pageContentView.setPageCententViewCurrentIndex(selectedIndex)
+    }
+}
+
+extension WorkViewController: SGPageContentViewDelegate {
+    func pageContentView(_ pageContentView: SGPageContentView!, progress: CGFloat, originalIndex: Int, targetIndex: Int) {
+        pageTitleView.setPageTitleViewWithProgress(progress, originalIndex: originalIndex, targetIndex: targetIndex)
+    }
 }

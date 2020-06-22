@@ -11,6 +11,8 @@
 		3EB37EE1249EF9ED00A2DBD4 /* MainUserVerifyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB37EE0249EF9ED00A2DBD4 /* MainUserVerifyController.swift */; };
 		3EB37EE5249EFA8300A2DBD4 /* NumVerifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB37EE4249EFA8300A2DBD4 /* NumVerifyView.swift */; };
 		3EB37EE7249F01D000A2DBD4 /* VerifyContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB37EE6249F01D000A2DBD4 /* VerifyContentView.swift */; };
+		7312BBD724A0A352003A291E /* WorkListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7312BBD624A0A352003A291E /* WorkListViewCell.swift */; };
+		7312BBD924A0A37B003A291E /* WorkListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7312BBD824A0A37B003A291E /* WorkListItemView.swift */; };
 		731F5BBF2491FAC30019D58B /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731F5BBD2491FAC30019D58B /* GuideViewController.swift */; };
 		731F5BC2249236EE0019D58B /* GuideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 731F5BC1249236EE0019D58B /* GuideViewController.xib */; };
 		735C0C81249853D500194FB0 /* WorkDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735C0C80249853D500194FB0 /* WorkDataView.swift */; };
@@ -19,6 +21,19 @@
 		735C0C8E2498EDEC00194FB0 /* HelpCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735C0C8D2498EDEC00194FB0 /* HelpCenterViewController.swift */; };
 		735C0C912498EF7200194FB0 /* HelpItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735C0C8F2498EF7200194FB0 /* HelpItemTableViewCell.swift */; };
 		735C0C922498EF7200194FB0 /* HelpItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 735C0C902498EF7200194FB0 /* HelpItemTableViewCell.xib */; };
+		7362EA1324A038CE0011E56E /* PromiseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7362EA1224A038CE0011E56E /* PromiseController.swift */; };
+		7362EA1624A038DD0011E56E /* UserFreezyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7362EA1524A038DD0011E56E /* UserFreezyController.swift */; };
+		7362EA2624A049250011E56E /* UIView+SGFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 7362EA1A24A049250011E56E /* UIView+SGFrame.m */; };
+		7362EA2724A049250011E56E /* SGPageContentScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7362EA1C24A049250011E56E /* SGPageContentScrollView.m */; };
+		7362EA2824A049250011E56E /* SGPageContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7362EA1D24A049250011E56E /* SGPageContentView.m */; };
+		7362EA2924A049250011E56E /* SGPageTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7362EA2124A049250011E56E /* SGPageTitleView.m */; };
+		7362EA2A24A049250011E56E /* SGPageTitleViewConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = 7362EA2224A049250011E56E /* SGPageTitleViewConfigure.m */; };
+		7362EA2D24A04A5E0011E56E /* WorkListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7362EA2C24A04A5E0011E56E /* WorkListController.swift */; };
+		7362EA3024A04A810011E56E /* EndWorkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7362EA2F24A04A810011E56E /* EndWorkController.swift */; };
+		7362EA3224A0556B0011E56E /* WorkVerifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7362EA3124A0556A0011E56E /* WorkVerifyView.swift */; };
+		7362EA3424A061200011E56E /* NetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7362EA3324A061200011E56E /* NetView.swift */; };
+		7362EA3724A08A500011E56E /* WorkEndItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7362EA3624A08A500011E56E /* WorkEndItemViewCell.swift */; };
+		7362EA3924A08AB00011E56E /* WorkEndItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7362EA3824A08AB00011E56E /* WorkEndItemView.swift */; };
 		736A4E3C24934DC900B2C2F0 /* ForgetPass1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736A4E3A24934DC900B2C2F0 /* ForgetPass1ViewController.swift */; };
 		736A4E3D24934DC900B2C2F0 /* ForgetPass1ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 736A4E3B24934DC900B2C2F0 /* ForgetPass1ViewController.xib */; };
 		736A4E402493503000B2C2F0 /* ForgetPass2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736A4E3E2493503000B2C2F0 /* ForgetPass2ViewController.swift */; };
@@ -146,6 +161,8 @@
 		3EB37EE0249EF9ED00A2DBD4 /* MainUserVerifyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainUserVerifyController.swift; sourceTree = "<group>"; };
 		3EB37EE4249EFA8300A2DBD4 /* NumVerifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumVerifyView.swift; sourceTree = "<group>"; };
 		3EB37EE6249F01D000A2DBD4 /* VerifyContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyContentView.swift; sourceTree = "<group>"; };
+		7312BBD624A0A352003A291E /* WorkListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkListViewCell.swift; sourceTree = "<group>"; };
+		7312BBD824A0A37B003A291E /* WorkListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkListItemView.swift; sourceTree = "<group>"; };
 		731F5BBD2491FAC30019D58B /* GuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
 		731F5BC1249236EE0019D58B /* GuideViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideViewController.xib; sourceTree = "<group>"; };
 		735C0C80249853D500194FB0 /* WorkDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkDataView.swift; sourceTree = "<group>"; };
@@ -154,6 +171,25 @@
 		735C0C8D2498EDEC00194FB0 /* HelpCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCenterViewController.swift; sourceTree = "<group>"; };
 		735C0C8F2498EF7200194FB0 /* HelpItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpItemTableViewCell.swift; sourceTree = "<group>"; };
 		735C0C902498EF7200194FB0 /* HelpItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HelpItemTableViewCell.xib; sourceTree = "<group>"; };
+		7362EA1224A038CE0011E56E /* PromiseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromiseController.swift; sourceTree = "<group>"; };
+		7362EA1524A038DD0011E56E /* UserFreezyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserFreezyController.swift; sourceTree = "<group>"; };
+		7362EA1924A049250011E56E /* UIView+SGFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SGFrame.h"; sourceTree = "<group>"; };
+		7362EA1A24A049250011E56E /* UIView+SGFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SGFrame.m"; sourceTree = "<group>"; };
+		7362EA1C24A049250011E56E /* SGPageContentScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGPageContentScrollView.m; sourceTree = "<group>"; };
+		7362EA1D24A049250011E56E /* SGPageContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGPageContentView.m; sourceTree = "<group>"; };
+		7362EA1E24A049250011E56E /* SGPageContentScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGPageContentScrollView.h; sourceTree = "<group>"; };
+		7362EA1F24A049250011E56E /* SGPageContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGPageContentView.h; sourceTree = "<group>"; };
+		7362EA2124A049250011E56E /* SGPageTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGPageTitleView.m; sourceTree = "<group>"; };
+		7362EA2224A049250011E56E /* SGPageTitleViewConfigure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGPageTitleViewConfigure.m; sourceTree = "<group>"; };
+		7362EA2324A049250011E56E /* SGPageTitleViewConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGPageTitleViewConfigure.h; sourceTree = "<group>"; };
+		7362EA2424A049250011E56E /* SGPageTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGPageTitleView.h; sourceTree = "<group>"; };
+		7362EA2524A049250011E56E /* SGPagingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGPagingView.h; sourceTree = "<group>"; };
+		7362EA2C24A04A5E0011E56E /* WorkListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkListController.swift; sourceTree = "<group>"; };
+		7362EA2F24A04A810011E56E /* EndWorkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndWorkController.swift; sourceTree = "<group>"; };
+		7362EA3124A0556A0011E56E /* WorkVerifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkVerifyView.swift; sourceTree = "<group>"; };
+		7362EA3324A061200011E56E /* NetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetView.swift; sourceTree = "<group>"; };
+		7362EA3624A08A500011E56E /* WorkEndItemViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkEndItemViewCell.swift; sourceTree = "<group>"; };
+		7362EA3824A08AB00011E56E /* WorkEndItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkEndItemView.swift; sourceTree = "<group>"; };
 		736A4E3A24934DC900B2C2F0 /* ForgetPass1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPass1ViewController.swift; sourceTree = "<group>"; };
 		736A4E3B24934DC900B2C2F0 /* ForgetPass1ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgetPass1ViewController.xib; sourceTree = "<group>"; };
 		736A4E3E2493503000B2C2F0 /* ForgetPass2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPass2ViewController.swift; sourceTree = "<group>"; };
@@ -335,9 +371,27 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		7312BBD424A0A305003A291E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7362EA3124A0556A0011E56E /* WorkVerifyView.swift */,
+				7312BBD824A0A37B003A291E /* WorkListItemView.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		7312BBD524A0A312003A291E /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				7312BBD624A0A352003A291E /* WorkListViewCell.swift */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
 		735413A42499F80200B79609 /* NetView */ = {
 			isa = PBXGroup;
 			children = (
+				7362EA3324A061200011E56E /* NetView.swift */,
 			);
 			path = NetView;
 			sourceTree = "<group>";
@@ -345,6 +399,7 @@
 		735C0C842498B77200194FB0 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				7362EA1424A038DD0011E56E /* Freezy */,
 				736CD5FF2499A0F600B66369 /* WorkData */,
 				7376435B2457F53F00CB2050 /* MainViewController.swift */,
 				736A4E422493735200B2C2F0 /* MainViewController+Ex.swift */,
@@ -370,6 +425,92 @@
 				735C0C902498EF7200194FB0 /* HelpItemTableViewCell.xib */,
 			);
 			path = HelpCenter;
+			sourceTree = "<group>";
+		};
+		7362EA1424A038DD0011E56E /* Freezy */ = {
+			isa = PBXGroup;
+			children = (
+				7362EA1524A038DD0011E56E /* UserFreezyController.swift */,
+			);
+			path = Freezy;
+			sourceTree = "<group>";
+		};
+		7362EA1724A049250011E56E /* SGPagingView */ = {
+			isa = PBXGroup;
+			children = (
+				7362EA1824A049250011E56E /* Category */,
+				7362EA1B24A049250011E56E /* SGPageContent */,
+				7362EA2024A049250011E56E /* SGPageTitle */,
+				7362EA2524A049250011E56E /* SGPagingView.h */,
+			);
+			path = SGPagingView;
+			sourceTree = "<group>";
+		};
+		7362EA1824A049250011E56E /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				7362EA1924A049250011E56E /* UIView+SGFrame.h */,
+				7362EA1A24A049250011E56E /* UIView+SGFrame.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		7362EA1B24A049250011E56E /* SGPageContent */ = {
+			isa = PBXGroup;
+			children = (
+				7362EA1C24A049250011E56E /* SGPageContentScrollView.m */,
+				7362EA1D24A049250011E56E /* SGPageContentView.m */,
+				7362EA1E24A049250011E56E /* SGPageContentScrollView.h */,
+				7362EA1F24A049250011E56E /* SGPageContentView.h */,
+			);
+			path = SGPageContent;
+			sourceTree = "<group>";
+		};
+		7362EA2024A049250011E56E /* SGPageTitle */ = {
+			isa = PBXGroup;
+			children = (
+				7362EA2124A049250011E56E /* SGPageTitleView.m */,
+				7362EA2224A049250011E56E /* SGPageTitleViewConfigure.m */,
+				7362EA2324A049250011E56E /* SGPageTitleViewConfigure.h */,
+				7362EA2424A049250011E56E /* SGPageTitleView.h */,
+			);
+			path = SGPageTitle;
+			sourceTree = "<group>";
+		};
+		7362EA2B24A04A470011E56E /* List */ = {
+			isa = PBXGroup;
+			children = (
+				7312BBD524A0A312003A291E /* Cell */,
+				7312BBD424A0A305003A291E /* View */,
+				7362EA2C24A04A5E0011E56E /* WorkListController.swift */,
+			);
+			name = List;
+			sourceTree = "<group>";
+		};
+		7362EA2E24A04A710011E56E /* End */ = {
+			isa = PBXGroup;
+			children = (
+				7362EA3A24A08AB50011E56E /* View */,
+				7362EA3524A08A3B0011E56E /* Cell */,
+				7362EA2F24A04A810011E56E /* EndWorkController.swift */,
+			);
+			name = End;
+			sourceTree = "<group>";
+		};
+		7362EA3524A08A3B0011E56E /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				7362EA3624A08A500011E56E /* WorkEndItemViewCell.swift */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		7362EA3A24A08AB50011E56E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7362EA3824A08AB00011E56E /* WorkEndItemView.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		736CD5FF2499A0F600B66369 /* WorkData */ = {
@@ -401,6 +542,7 @@
 		736CD6142499DD2E00B66369 /* Identity */ = {
 			isa = PBXGroup;
 			children = (
+				7362EA1224A038CE0011E56E /* PromiseController.swift */,
 				736CD6062499B33400B66369 /* UserIdentityController.swift */,
 				736CD6072499B33400B66369 /* UserIdentityController.xib */,
 			);
@@ -592,6 +734,7 @@
 		73BC0AF82490CE4A00B5DBDF /* Help */ = {
 			isa = PBXGroup;
 			children = (
+				7362EA1724A049250011E56E /* SGPagingView */,
 				73B0DC38249A09050080D1C0 /* PermissionManager.swift */,
 				73BC0B042490CE5500B5DBDF /* PGImagePicker */,
 				73BC0AFA2490CE5500B5DBDF /* Moya */,
@@ -870,6 +1013,8 @@
 		73BC0B6D2490DA2700B5DBDF /* Work */ = {
 			isa = PBXGroup;
 			children = (
+				7362EA2E24A04A710011E56E /* End */,
+				7362EA2B24A04A470011E56E /* List */,
 				736CD6022499A71A00B66369 /* WorkViewController.swift */,
 				736CD6042499A99900B66369 /* TestView.swift */,
 			);
@@ -1197,14 +1342,18 @@
 				73BC0B542490CFBD00B5DBDF /* UIColor+Extension.swift in Sources */,
 				736A4E432493735200B2C2F0 /* MainViewController+Ex.swift in Sources */,
 				73940670249753B7001562CD /* CustomAnnotationView.swift in Sources */,
+				7362EA3224A0556B0011E56E /* WorkVerifyView.swift in Sources */,
 				731F5BBF2491FAC30019D58B /* GuideViewController.swift in Sources */,
 				73BC0B0F2490CE5500B5DBDF /* PGAlamofireManager.swift in Sources */,
 				7371C243249B0F4100CB6BAA /* UserDataChooseCell.swift in Sources */,
+				7362EA3724A08A500011E56E /* WorkEndItemViewCell.swift in Sources */,
 				73BC0B0A2490CE5500B5DBDF /* Cookie.swift in Sources */,
 				736CD6052499A99900B66369 /* TestView.swift in Sources */,
+				7362EA2724A049250011E56E /* SGPageContentScrollView.m in Sources */,
 				7394066A2497085A001562CD /* AppDelegate+Gt.swift in Sources */,
 				73BC0B112490CE5500B5DBDF /* Single+Model.swift in Sources */,
 				73B0DC39249A09050080D1C0 /* PermissionManager.swift in Sources */,
+				7312BBD724A0A352003A291E /* WorkListViewCell.swift in Sources */,
 				739406512497039B001562CD /* test.m in Sources */,
 				73BC0B812490E4D100B5DBDF /* BaseHomeController.swift in Sources */,
 				73BC0B122490CE5500B5DBDF /* Platform.swift in Sources */,
@@ -1217,15 +1366,18 @@
 				73BC0B7E2490E4D100B5DBDF /* BaseTableViewController.swift in Sources */,
 				3EB37EE7249F01D000A2DBD4 /* VerifyContentView.swift in Sources */,
 				736A4E402493503000B2C2F0 /* ForgetPass2ViewController.swift in Sources */,
+				7362EA1624A038DD0011E56E /* UserFreezyController.swift in Sources */,
 				73BC0B142490CE5500B5DBDF /* PGScrollView.swift in Sources */,
 				73BC0B5F2490CFBD00B5DBDF /* Dictionary+Extension.swift in Sources */,
 				73BC0B582490CFBD00B5DBDF /* UIView+currentViewController.swift in Sources */,
 				73BC0B532490CFBD00B5DBDF /* UIButton+Extension.swift in Sources */,
+				7362EA2624A049250011E56E /* UIView+SGFrame.m in Sources */,
 				73EC522F249B528A004D869A /* UserDataHeaderView.swift in Sources */,
 				73BC0B672490D64700B5DBDF /* UserProvide.swift in Sources */,
 				73BC0B272490CF2200B5DBDF /* PGMacros.swift in Sources */,
 				73BC0B232490CF2200B5DBDF /* PGConstants.swift in Sources */,
 				73BC0B5E2490CFBD00B5DBDF /* UITableView+Extension.swift in Sources */,
+				7312BBD924A0A37B003A291E /* WorkListItemView.swift in Sources */,
 				73BC0B642490CFBD00B5DBDF /* UITabBar+Extenstion.swift in Sources */,
 				73BC0B842490E4D100B5DBDF /* BaseCell.swift in Sources */,
 				73CC7B2E249A40A1009CC7FC /* SettingController.swift in Sources */,
@@ -1245,18 +1397,24 @@
 				736CD6012499A13300B66369 /* WorkDataBottomController.swift in Sources */,
 				73BC0B862490E4D100B5DBDF /* BaseTableView.swift in Sources */,
 				73BC0B802490E4D100B5DBDF /* BeanTableController.swift in Sources */,
+				7362EA3924A08AB00011E56E /* WorkEndItemView.swift in Sources */,
 				73EC523A249B5ACB004D869A /* UserBillHeaderView.swift in Sources */,
+				7362EA2A24A049250011E56E /* SGPageTitleViewConfigure.m in Sources */,
 				73D68C25249775A2002055AD /* WebViewController.swift in Sources */,
 				73CC7B31249A4258009CC7FC /* SettingViewCell.swift in Sources */,
 				73BC0B562490CFBD00B5DBDF /* UIView+HUD.swift in Sources */,
 				73BC0B242490CF2200B5DBDF /* PGGlobalHelper.swift in Sources */,
+				7362EA3024A04A810011E56E /* EndWorkController.swift in Sources */,
 				736CD6032499A71A00B66369 /* WorkViewController.swift in Sources */,
 				73EC5232249B5636004D869A /* UserBillController.swift in Sources */,
+				7362EA2D24A04A5E0011E56E /* WorkListController.swift in Sources */,
 				73BC0B822490E4D100B5DBDF /* PageingListViewController.swift in Sources */,
 				737643582457F53F00CB2050 /* AppDelegate.swift in Sources */,
 				73BC0B552490CFBD00B5DBDF /* DispatchQueue+Extension.swift in Sources */,
 				7371C247249B0F5400CB6BAA /* UserDataSureCell.swift in Sources */,
 				73BC0B572490CFBD00B5DBDF /* UIView+Extension.swift in Sources */,
+				7362EA1324A038CE0011E56E /* PromiseController.swift in Sources */,
+				7362EA2824A049250011E56E /* SGPageContentView.m in Sources */,
 				73BC0B7F2490E4D100B5DBDF /* HomeTableController.swift in Sources */,
 				7394066B2497085A001562CD /* AppDelegate+AMap.swift in Sources */,
 				73BC0B5C2490CFBD00B5DBDF /* UIImageView+Extension.swift in Sources */,
@@ -1264,8 +1422,10 @@
 				7371C23F249B0F3100CB6BAA /* UserDataInputCell.swift in Sources */,
 				736CD6082499B33400B66369 /* UserIdentityController.swift in Sources */,
 				7376435A2457F53F00CB2050 /* SceneDelegate.swift in Sources */,
+				7362EA2924A049250011E56E /* SGPageTitleView.m in Sources */,
 				736CD60C2499B9E600B66369 /* UserCenterController.swift in Sources */,
 				73BC0B852490E4D100B5DBDF /* PGBaseNavigationController.swift in Sources */,
+				7362EA3424A061200011E56E /* NetView.swift in Sources */,
 				73BC0B262490CF2200B5DBDF /* PGUserDefaultsKey.swift in Sources */,
 				73BC0B5B2490CFBD00B5DBDF /* URL+Extension.swift in Sources */,
 				735C0C912498EF7200194FB0 /* HelpItemTableViewCell.swift in Sources */,

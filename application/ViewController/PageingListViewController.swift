@@ -16,7 +16,7 @@ class PageingListViewController: BaseHomeController {
     var baseIastId: Int!
     //是否有分页
     var isPaging: Bool = false
-    var pagingCount : Int = 10
+    var pagingCount : Int = 20
     
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: self.view.bounds, style: .plain)
@@ -72,7 +72,11 @@ class PageingListViewController: BaseHomeController {
         }else {
             tableView.mj_footer?.isHidden = false
         }
-        self.tableView.safeReloadData()
+        if self.tableView.mj_header != nil {
+            self.tableView.safeReloadData()
+        }else{
+            self.tableView.noRefreshReloadData()
+        }
     }
     
     func backButtonLogic() {

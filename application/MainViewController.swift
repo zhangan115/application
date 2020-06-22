@@ -224,6 +224,7 @@ class MainViewController: BaseHomeController {
     //显示工单列表
     @objc func showWork(){
         let controller = WorkViewController()
+        controller.currentLocation = self.currentLocation
         self.pushVC(controller)
     }
     //抢单列表
@@ -247,10 +248,6 @@ class MainViewController: BaseHomeController {
         if userModel == nil{
             return
         }
-        let controller = UserFreezyController()
-                   self.present(controller, animated: true, completion: {
-                       controller.initView()
-                   })
         if userModel!.isFreeze ?? false {
             let controller = UserFreezyController()
             self.present(controller, animated: true, completion: {

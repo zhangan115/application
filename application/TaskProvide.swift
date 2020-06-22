@@ -17,7 +17,7 @@ let taskProviderNoPlugin = MoyaProvider<TaskTarget>(manager: PGAlamofireManager.
 
 enum TaskTarget {
     case getNearbyTask(longitude:Double,latitude:Double)
-    case taskList(taskCreatorId:Int?,count:Int?,lastId:Int?,isExecuting:Int?,taskState:Int?,taskType:Int?,substationId:Int?,isUserRelated:Int?,orderType:Int?,hasEverVerified:Int?)
+    case  getTerminatedTaskList
     case substationTree
     case taskCreate(taskType:Int?,substationIds:String?,taskExecutorIds:String?,taskContent:String?,planStartTime:Int?,planEndTime:Int!,alarmId:String?)
     case taskLoad(taskId:Int)
@@ -42,8 +42,8 @@ extension TaskTarget:TargetType {
         switch self {
         case .getNearbyTask:
             return "task/nearby_can_do"
-        case .taskList:
-            return "task/list"
+        case .getTerminatedTaskList:
+            return "task/terminated_list"
         case .substationTree:
             return "substation/tree"
         case .taskCreate:
@@ -91,39 +91,6 @@ extension TaskTarget:TargetType {
             var param :[String: Any] = [:]
             param["longitude"] = longitude
             param["latitude"] = latitude
-            return param
-        case let .taskList(taskCreatorId,count,lastId,isExecuting,taskState,taskType,substationId,isUserRelated,orderType,hasEverVerified):
-            var param :[String: Any] = [:]
-            if let taskCreatorId = taskCreatorId{
-                param["taskCreatorId"] = taskCreatorId
-            }
-            if let count = count{
-                param["count"] = count
-            }
-            if let lastId = lastId{
-                param["lastId"] = lastId
-            }
-            if let isExecuting = isExecuting{
-                param["isExecuting"] = isExecuting
-            }
-            if let taskState = taskState{
-                param["taskState"] = taskState
-            }
-            if let taskType = taskType{
-                param["taskType"] = taskType
-            }
-            if let substationId = substationId{
-                param["substationId"] = substationId
-            }
-            if let isUserRelated = isUserRelated{
-                param["isUserRelated"] = isUserRelated
-            }
-            if let orderType = orderType{
-                param["orderType"] = orderType
-            }
-            if let hasEverVerified = hasEverVerified{
-                param["hasEverVerified"] = hasEverVerified
-            }
             return param
         case let .taskCreate(taskType, substationIds, taskExecutorIds, taskContent, planStartTime, planEndTime,alarmId):
             var param :[String: Any] = [:]
@@ -218,7 +185,7 @@ extension TaskTarget:TargetType {
     
     var task: Task {
         switch self {
-        case .getNearbyTask,.taskList,.taskCreate,.taskLoad,.submitPlan,.taskSubmit,.taskVerify,.taskAddAttachment,.camerList:
+        case .getNearbyTask,.taskCreate,.taskLoad,.submitPlan,.taskSubmit,.taskVerify,.taskAddAttachment,.camerList:
             return .requestParameters(parameters: parameters!, encoding: parameterEncoding)
         case let .uploadImage(data):
             let formatter = DateFormatter()

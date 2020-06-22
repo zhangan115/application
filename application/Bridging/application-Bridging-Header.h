@@ -9,3 +9,4 @@
 #import <AMapLocationKit/AMapLocationKit.h>
 //个推
 #import <GTSDK/GeTuiSdk.h>
+#import "SGPagingView.h"

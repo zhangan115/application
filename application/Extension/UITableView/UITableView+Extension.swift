@@ -12,10 +12,23 @@ import UIKit
 private var kUITableViewCornerKey: String = ""
 extension UITableView {
     
+    func showLoading(){
+        let netView = NetView(frame: self.bounds)
+        self.backgroundView = netView
+        netView.showProgress()
+    }
+    
     func safeReloadData() {
         reloadData()
+        if self.backgroundView != nil {
+            if let netView = self.backgroundView as? NetView {
+                netView.hideView()
+            }
+        }
         if self.isEmpty() {
-            self.backgroundView = EmptyView(frame: self.bounds, title: "暂无数据，下拉重新加载")
+            let netView = NetView(frame: self.bounds)
+            netView.showEmpty("暂无数据，下拉重新加载")
+            self.backgroundView = netView
         }else {
             self.backgroundView = nil
         }
@@ -23,8 +36,15 @@ extension UITableView {
     
     func noRefreshReloadData() {
         reloadData()
+        if self.backgroundView != nil {
+            if let netView = self.backgroundView as? NetView {
+                netView.hideView()
+            }
+        }
         if self.isEmpty() {
-            self.backgroundView = EmptyView(frame: self.bounds, title: "暂无数据")
+            let netView = NetView(frame: self.bounds)
+            netView.showEmpty("暂无数据")
+            self.backgroundView = netView
         }else {
             self.backgroundView = nil
         }
@@ -32,8 +52,15 @@ extension UITableView {
     
     func reloadDataWithStr(_ str:String){
         reloadData()
+        if self.backgroundView != nil {
+            if let netView = self.backgroundView as? NetView {
+                netView.hideView()
+            }
+        }
         if self.isEmpty() {
-            self.backgroundView = EmptyView(frame: self.bounds, title: str)
+            let netView = NetView(frame: self.bounds)
+            netView.showEmpty(str)
+            self.backgroundView = netView
         }else {
             self.backgroundView = nil
         }
@@ -54,8 +81,15 @@ extension UITableView {
     
     func sectionsNoReloadData() {
         reloadData()
+        if self.backgroundView != nil {
+            if let netView = self.backgroundView as? NetView {
+                netView.hideView()
+            }
+        }
         if self.numberOfSections == 0 {
-            self.backgroundView = EmptyView(frame: self.bounds, title: "暂无数据")
+            let netView = NetView(frame: self.bounds)
+            netView.showEmpty()
+            self.backgroundView = netView
         }else {
             self.backgroundView = nil
         }
@@ -83,7 +117,7 @@ class EmptyView: UIView {
     
     func setupButton(title: String) {
         button = UIButton(type: .custom)
-        button.setImage(UIImage(named: "img_null"), for: .normal)
+        button.setImage(UIImage(named: "public_img_null"), for: .normal)
         button.setTitle(title, for: .normal)
         button.setTitleColor(UIColor(hexString: "#929eb5"), for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 13)
