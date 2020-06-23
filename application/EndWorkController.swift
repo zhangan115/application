@@ -50,7 +50,9 @@ class EndWorkController: BaseTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let model = self.responseDataList[indexPath.section] as! WorkModel
-        
+        let controller = WorkDetailController()
+        controller.workModel = model
+        self.pushVC(controller)
     }
     
 }

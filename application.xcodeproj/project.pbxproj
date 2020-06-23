@@ -63,6 +63,11 @@
 		7376435F2457F53F00CB2050 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7376435D2457F53F00CB2050 /* Main.storyboard */; };
 		737643612457F54300CB2050 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 737643602457F54300CB2050 /* Assets.xcassets */; };
 		737643642457F54300CB2050 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 737643622457F54300CB2050 /* LaunchScreen.storyboard */; };
+		7382E8AF24A1AEE200401DC5 /* WorkListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7382E8AE24A1AEE200401DC5 /* WorkListHeaderView.swift */; };
+		7382E8B324A1B41100401DC5 /* WorkRobController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7382E8B224A1B41100401DC5 /* WorkRobController.swift */; };
+		7382E8B724A1C86400401DC5 /* WorkRobItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7382E8B624A1C86400401DC5 /* WorkRobItemView.swift */; };
+		7382E8B924A1C8EF00401DC5 /* WorkRobItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7382E8B824A1C8EF00401DC5 /* WorkRobItemCell.swift */; };
+		7382E8BE24A1CFA800401DC5 /* WorkDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7382E8BD24A1CFA800401DC5 /* WorkDetailController.swift */; };
 		7394064E249702AE001562CD /* GTSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73940649249702AE001562CD /* GTSDK.framework */; };
 		739406512497039B001562CD /* test.m in Sources */ = {isa = PBXBuildFile; fileRef = 739406502497039B001562CD /* test.m */; };
 		7394065324970574001562CD /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 739406522497055F001562CD /* libsqlite3.tbd */; };
@@ -221,6 +226,11 @@
 		737643602457F54300CB2050 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		737643632457F54300CB2050 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		737643652457F54300CB2050 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7382E8AE24A1AEE200401DC5 /* WorkListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkListHeaderView.swift; sourceTree = "<group>"; };
+		7382E8B224A1B41100401DC5 /* WorkRobController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkRobController.swift; sourceTree = "<group>"; };
+		7382E8B624A1C86400401DC5 /* WorkRobItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkRobItemView.swift; sourceTree = "<group>"; };
+		7382E8B824A1C8EF00401DC5 /* WorkRobItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkRobItemCell.swift; sourceTree = "<group>"; };
+		7382E8BD24A1CFA800401DC5 /* WorkDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkDetailController.swift; sourceTree = "<group>"; };
 		73940649249702AE001562CD /* GTSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GTSDK.framework; sourceTree = "<group>"; };
 		7394064F2497039B001562CD /* application-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "application-Bridging-Header.h"; sourceTree = "<group>"; };
 		739406502497039B001562CD /* test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = test.m; sourceTree = "<group>"; };
@@ -376,6 +386,7 @@
 			children = (
 				7362EA3124A0556A0011E56E /* WorkVerifyView.swift */,
 				7312BBD824A0A37B003A291E /* WorkListItemView.swift */,
+				7382E8AE24A1AEE200401DC5 /* WorkListHeaderView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -630,6 +641,56 @@
 				737643652457F54300CB2050 /* Info.plist */,
 			);
 			path = application;
+			sourceTree = "<group>";
+		};
+		7382E8B024A1B3DE00401DC5 /* Rob */ = {
+			isa = PBXGroup;
+			children = (
+				7382E8B524A1C85400401DC5 /* View */,
+				7382E8B424A1C84F00401DC5 /* Cell */,
+				7382E8B224A1B41100401DC5 /* WorkRobController.swift */,
+			);
+			name = Rob;
+			sourceTree = "<group>";
+		};
+		7382E8B424A1C84F00401DC5 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				7382E8B824A1C8EF00401DC5 /* WorkRobItemCell.swift */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		7382E8B524A1C85400401DC5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7382E8B624A1C86400401DC5 /* WorkRobItemView.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		7382E8BA24A1CF7B00401DC5 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				7382E8BC24A1CF9900401DC5 /* Cell */,
+				7382E8BB24A1CF9100401DC5 /* View */,
+				7382E8BD24A1CFA800401DC5 /* WorkDetailController.swift */,
+			);
+			name = Detail;
+			sourceTree = "<group>";
+		};
+		7382E8BB24A1CF9100401DC5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		7382E8BC24A1CF9900401DC5 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Cell;
 			sourceTree = "<group>";
 		};
 		739405D0249702AE001562CD /* lib */ = {
@@ -1013,6 +1074,8 @@
 		73BC0B6D2490DA2700B5DBDF /* Work */ = {
 			isa = PBXGroup;
 			children = (
+				7382E8BA24A1CF7B00401DC5 /* Detail */,
+				7382E8B024A1B3DE00401DC5 /* Rob */,
 				7362EA2E24A04A710011E56E /* End */,
 				7362EA2B24A04A470011E56E /* List */,
 				736CD6022499A71A00B66369 /* WorkViewController.swift */,
@@ -1360,6 +1423,7 @@
 				73BC0B182490CE5500B5DBDF /* PGPhotoAlbumUtil.swift in Sources */,
 				73BC0B5A2490CFBD00B5DBDF /* MJRefresh+Extension.swift in Sources */,
 				73BC0B172490CE5500B5DBDF /* PGImagePickerDelegate.swift in Sources */,
+				7382E8B924A1C8EF00401DC5 /* WorkRobItemCell.swift in Sources */,
 				73BC0B622490CFBD00B5DBDF /* PGDispatchTimeExtension.swift in Sources */,
 				3EB37EE5249EFA8300A2DBD4 /* NumVerifyView.swift in Sources */,
 				736CD6122499DC7400B66369 /* UserElectricianController.swift in Sources */,
@@ -1384,6 +1448,7 @@
 				73BC0B0B2490CE5500B5DBDF /* JSON+Model.swift in Sources */,
 				73BC0B892490E57600B5DBDF /* UserModel.swift in Sources */,
 				7371C236249AF3D300CB6BAA /* AboutUsController.swift in Sources */,
+				7382E8B724A1C86400401DC5 /* WorkRobItemView.swift in Sources */,
 				73D68C22249774C6002055AD /* BottomWorkView.swift in Sources */,
 				736CD60E2499C6DF00B66369 /* UserCenterItemView.swift in Sources */,
 				73BC0B5D2490CFBD00B5DBDF /* UIViewController+Extension.swift in Sources */,
@@ -1407,7 +1472,9 @@
 				7362EA3024A04A810011E56E /* EndWorkController.swift in Sources */,
 				736CD6032499A71A00B66369 /* WorkViewController.swift in Sources */,
 				73EC5232249B5636004D869A /* UserBillController.swift in Sources */,
+				7382E8AF24A1AEE200401DC5 /* WorkListHeaderView.swift in Sources */,
 				7362EA2D24A04A5E0011E56E /* WorkListController.swift in Sources */,
+				7382E8B324A1B41100401DC5 /* WorkRobController.swift in Sources */,
 				73BC0B822490E4D100B5DBDF /* PageingListViewController.swift in Sources */,
 				737643582457F53F00CB2050 /* AppDelegate.swift in Sources */,
 				73BC0B552490CFBD00B5DBDF /* DispatchQueue+Extension.swift in Sources */,
@@ -1421,6 +1488,7 @@
 				73BC0B0D2490CE5500B5DBDF /* MoyaProvider+Rx.swift in Sources */,
 				7371C23F249B0F3100CB6BAA /* UserDataInputCell.swift in Sources */,
 				736CD6082499B33400B66369 /* UserIdentityController.swift in Sources */,
+				7382E8BE24A1CFA800401DC5 /* WorkDetailController.swift in Sources */,
 				7376435A2457F53F00CB2050 /* SceneDelegate.swift in Sources */,
 				7362EA2924A049250011E56E /* SGPageTitleView.m in Sources */,
 				736CD60C2499B9E600B66369 /* UserCenterController.swift in Sources */,

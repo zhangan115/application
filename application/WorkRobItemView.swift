@@ -1,14 +1,16 @@
 //
-//  WorkListItemView.swift
+//  WorkRobItemView.swift
 //  application
 //
-//  Created by sitech on 2020/6/22.
+//  Created by sitech on 2020/6/23.
 //  Copyright © 2020 Sitop. All rights reserved.
 //
 
 import UIKit
 
-class WorkListItemView: UIView {
+class WorkRobItemView: UIView {
+    
+    var currentModel:WorkModel? = nil
     
     lazy var contentLayoutView : UIView = {
         let layerView = UIView()
@@ -74,7 +76,7 @@ class WorkListItemView: UIView {
     }()
     lazy var textName2 :UILabel = {
         let view = UILabel()
-        view.text = ""
+        view.text = "高科集团西安高新区热力有限公司"
         view.font = UIFont.systemFont(ofSize: 14)
         view.textColor = UIColor(hexString: "#333333")
         self.contentLayoutView.addSubview(view)
@@ -103,7 +105,6 @@ class WorkListItemView: UIView {
         self.contentLayoutView.addSubview(view)
         return view
     }()
-    
     lazy var textName6 :UILabel = {
         let view = UILabel()
         view.text = ""
@@ -134,48 +135,33 @@ class WorkListItemView: UIView {
         self.contentLayoutView.addSubview(layerView)
         return layerView
     }()
-    
     lazy var icon4View :UIImageView = {
         let view = UIImageView()
         view.image = UIImage(named:"home_card_icon_time")
         self.tiemLayoutView.addSubview(view)
         return view
     }()
-    
     lazy var textName4 :UILabel = {
         let view = UILabel()
-        view.text = ""
-        view.font = UIFont.systemFont(ofSize: 13)
+        view.text = "计划开始时间："
+        view.font = UIFont.systemFont(ofSize: 14)
         view.textColor = UIColor(hexString: "#454545")
         self.tiemLayoutView.addSubview(view)
         return view
     }()
     
-    lazy var bottomLabel1 :UILabel = {
-        let view = UILabel()
-        view.text = ""
-        view.font = UIFont.systemFont(ofSize: 14,weight: .medium)
-        view.textColor = UIColor(hexString: "#FF5252")
-        view.isHidden = true
+    lazy var icon5View :UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named:"home_card_icon_time")
         self.tiemLayoutView.addSubview(view)
         return view
     }()
     
-    lazy var bottomLabel2 :UILabel = {
+    lazy var textName5 :UILabel = {
         let view = UILabel()
-        view.text = ""
-        view.font = UIFont.systemFont(ofSize: 13,weight: .medium)
-        view.textColor = UIColor(hexString: "#333333")
-        view.isHidden = true
-        self.tiemLayoutView.addSubview(view)
-        return view
-    }()
-    lazy var bottomLabel3 :UILabel = {
-        let view = UILabel()
-        view.text = ""
-        view.font = UIFont.systemFont(ofSize: 22,weight: .medium)
-        view.textColor = UIColor(hexString: "#FF2020")
-        view.isHidden = true
+        view.text = "计划结束时间："
+        view.font = UIFont.systemFont(ofSize: 14)
+        view.textColor = UIColor(hexString: "#454545")
         self.tiemLayoutView.addSubview(view)
         return view
     }()
@@ -183,7 +169,7 @@ class WorkListItemView: UIView {
     lazy var raibWorkBtn: UIButton = {
         let button = UIButton()
         button.addTarget(self, action: #selector(raibWork), for: .touchUpInside)
-        button.setTitle("", for: .normal)
+        button.setTitle("抢单", for: .normal)
         button.setTitleColor(UIColor(hexString: "#454545"), for: .normal)
         button.setBackgroundColor(UIColor(hexString: "#FFCC00")!, forState: .normal)
         button.layer.masksToBounds = true
@@ -193,10 +179,7 @@ class WorkListItemView: UIView {
         return button
     }()
     
-    var currentRequestType = 3
-    
-    func setData(workData:WorkModel,requestType:Int){
-        self.currentRequestType = requestType
+    func setData(workData:WorkModel){
         if workData.taskType == 1 {
             iconView.image = UIImage(named: "home_card_img_yellow")
         }else if workData.taskType == 2 {
@@ -207,6 +190,15 @@ class WorkListItemView: UIView {
         equipmentView.image = UIImage(named: "home_card_img1")
         money.text = "￥" + workData.taskFee
         textName2.text = workData.taskLocation
+        if workData.distance < 3 {
+            textName7.text = "<3km"
+        } else if workData.distance < 6 && workData.distance >= 3{
+            textName7.text = "<6km"
+        } else if workData.distance < 9 && workData.distance >= 6{
+            textName7.text = "<9km"
+        } else {
+            textName7.text = ">9km"
+        }
         let requiredSocLevel = workData.requiredSocLevel
         let requiredEpqcLevel = workData.requiredEpqcLevel
         var str = "资格要求：无要求"
@@ -221,64 +213,10 @@ class WorkListItemView: UIView {
                 str = "资格要求：" + (getSpecialString(level:requiredSocLevel!) ?? "") + " " + (getVocationalString(level: requiredEpqcLevel!) ?? "")
             }
         }
-        if workData.distance < 3 {
-            textName7.text = "<3km"
-        } else if workData.distance < 6 && workData.distance >= 3{
-            textName7.text = "<6km"
-        } else if workData.distance < 9 && workData.distance >= 6{
-            textName7.text = "<9km"
-        } else {
-            textName7.text = ">9km"
-        }
         textName6.text = str
         textName3.text = workData.taskName
-        if requestType == 3 {
-            icon4View.image = UIImage(named: "home_card_icon_time")
-            raibWorkBtn.isHidden = false
-            bottomLabel3.isHidden = true
-            bottomLabel2.isHidden = true
-            raibWorkBtn.setTitle("导航前往", for: .normal)
-            
-            let currentDate = (Date().timeIntervalSince1970 * 1000).toInt
-            let planStartTime = workData.planStartTime!
-            if currentDate > planStartTime {//逾期
-                bottomLabel1.isHidden = true
-                textName4.text = "工单已逾期，请立即前往作业！"
-                textName4.textColor = UIColor(hexString:"#FF5252")
-            }else{//没有逾期
-                bottomLabel1.isHidden = false
-                let time = planStartTime - currentDate
-                textName4.text = "距离开始还剩"
-                textName4.textColor = UIColor(hexString:"#454545")
-                if time > 3600 * 1000 * 24 {
-                    bottomLabel1.text = dateString(millisecond: TimeInterval(time), dateFormat: "dd天HH小时mm分ss秒")
-                }else {
-                    bottomLabel1.text = dateString(millisecond: TimeInterval(time), dateFormat: "HH小时mm分ss秒")
-                }
-            }
-        }else if requestType == 4 {
-            icon4View.image = UIImage(named: "home_card_icon_time")
-            raibWorkBtn.isHidden = false
-            bottomLabel3.isHidden = true
-            bottomLabel2.isHidden = false
-            raibWorkBtn.setTitle("资料上传", for: .normal)
-            textName4.text = "作业开始时间"
-            bottomLabel2.text = dateString(millisecond: TimeInterval(workData.actualStartTime ?? 0), dateFormat: "yyyy-MM-dd HH:mm:ss")
-        }else if requestType == 5 {
-            icon4View.image = UIImage(named: "home_card_icon_time")
-            raibWorkBtn.isHidden = true
-            bottomLabel3.isHidden = true
-            textName4.text = "客服验收中，请等待..."
-            textName4.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        }else {
-            icon4View.image = UIImage(named: "home_card_icon_yuan")
-            raibWorkBtn.isHidden = true
-            textName4.text = "工单收入"
-            bottomLabel1.isHidden = true
-            bottomLabel2.isHidden = true
-            bottomLabel3.isHidden = false
-            bottomLabel3.text = "￥" + workData.actualFee
-        }
+        textName4.text = "计划开始时间：" + dateString(millisecond: TimeInterval(workData.planStartTime), dateFormat: "yyyy-MM-dd HH:mm")
+        textName5.text = "计划结束时间：" + dateString(millisecond: TimeInterval(workData.planEndTime), dateFormat: "yyyy-MM-dd HH:mm")
     }
     
     override init(frame: CGRect) {
@@ -295,7 +233,7 @@ class WorkListItemView: UIView {
         }
         iconView.snp.updateConstraints{(make)in
             make.right.equalToSuperview().offset(-8)
-            make.top.equalToSuperview().offset(0)
+            make.top.equalToSuperview().offset(-2)
             make.height.width.equalTo(40)
         }
         equipmentView.snp.updateConstraints{(make)in
@@ -322,7 +260,6 @@ class WorkListItemView: UIView {
         }
         textName2.snp.updateConstraints{(make)in
             make.left.equalTo(self.icon2View.snp.right).offset(4)
-            make.right.equalToSuperview().offset(-12)
             make.centerY.equalTo(icon2View)
         }
         icon7View.snp.updateConstraints{(make)in
@@ -355,31 +292,27 @@ class WorkListItemView: UIView {
         tiemLayoutView.snp.updateConstraints{(make)in
             make.bottom.equalToSuperview()
             make.left.right.equalToSuperview()
-            make.height.equalTo(46)
+            make.height.equalTo(70)
         }
         icon4View.snp.updateConstraints{(make)in
             make.left.equalToSuperview().offset(15)
-            make.centerY.equalToSuperview()
+            make.top.equalToSuperview().offset(16)
         }
         textName4.snp.updateConstraints{(make)in
             make.left.equalTo(self.icon4View.snp.right).offset(4)
-            make.centerY.equalToSuperview()
+            make.centerY.equalTo(icon4View)
         }
-        bottomLabel1.snp.updateConstraints { (make) in
-            make.left.equalTo(self.textName4.snp.right).offset(0)
-            make.centerY.equalToSuperview()
+        icon5View.snp.updateConstraints{(make)in
+            make.left.equalToSuperview().offset(15)
+            make.bottom.equalToSuperview().offset(-16)
         }
-        bottomLabel2.snp.updateConstraints { (make) in
-            make.left.equalTo(self.textName4.snp.right).offset(0)
-            make.centerY.equalToSuperview()
-        }
-        bottomLabel3.snp.updateConstraints { (make) in
-            make.right.equalToSuperview().offset(-12)
-            make.centerY.equalToSuperview()
+        textName5.snp.updateConstraints{(make)in
+            make.left.equalTo(self.icon5View.snp.right).offset(4)
+            make.centerY.equalTo(icon5View)
         }
         raibWorkBtn.snp.updateConstraints{(make)in
             make.right.equalToSuperview().offset(-12)
-            make.width.equalTo(70)
+            make.width.equalTo(60)
             make.height.equalTo(32)
             make.centerY.equalToSuperview()
         }
@@ -389,10 +322,9 @@ class WorkListItemView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var callback:((Int)->())?
     
     @objc func raibWork(){
-        callback?(self.currentRequestType)
+        
     }
     
 }

@@ -229,7 +229,9 @@ class MainViewController: BaseHomeController {
     }
     //抢单列表
     @objc func raibWork(){
-       
+        let controller = WorkRobController()
+        controller.currentLocation = self.currentLocation
+        self.pushVC(controller)
     }
     //客服
     @objc func showService(){
@@ -261,12 +263,18 @@ class MainViewController: BaseHomeController {
                     showUserVerifyDialog(1)
                 }else{
                     //去抢单
+                    let controller = WorkDetailController()
+                    controller.workModel = self.currentWorkModel
+                    self.pushVC(controller)
                 }
             }else {
                 if userModel!.certificationType! < 1 {
-                  showUserVerifyDialog(0)
+                    showUserVerifyDialog(0)
                 }else{
                     //去抢单
+                    let controller = WorkDetailController()
+                    controller.workModel = self.currentWorkModel
+                    self.pushVC(controller)
                 }
             }
         }
@@ -284,7 +292,7 @@ class MainViewController: BaseHomeController {
     //立即抢单
     @objc func raibNow(){
         if workModelList.isEmpty {
-            Toast.init(text: "附近暂无工单").show()
+            self.view.toast("附近暂无工单")
             return
         }
         self.currentWorkModel = workModelList.first

@@ -19,8 +19,8 @@ enum TaskTarget {
     case getNearbyTask(longitude:Double,latitude:Double)
     case  getTerminatedTaskList
     case substationTree
-    case taskCreate(taskType:Int?,substationIds:String?,taskExecutorIds:String?,taskContent:String?,planStartTime:Int?,planEndTime:Int!,alarmId:String?)
-    case taskLoad(taskId:Int)
+    case getMyCheckTaskList(params:[String: Any])
+    case getMyTaskList(params:[String: Any])
     case submitPlan(taskId:Int,securityManager:String?,requireDriver:String?
         ,requireDevice:String?,requireVehicle:String?,requireMaterial:String?
         ,requireParts:String?,planContent:String?)
@@ -46,10 +46,10 @@ extension TaskTarget:TargetType {
             return "task/terminated_list"
         case .substationTree:
             return "substation/tree"
-        case .taskCreate:
-            return "task/create"
-        case .taskLoad:
-            return "task/load"
+        case .getMyCheckTaskList:
+            return "task/my_submit_list"
+        case .getMyTaskList:
+            return "task/my_list"
         case .submitPlan:
             return "task/submit_plan"
         case .uploadImage:
@@ -92,32 +92,10 @@ extension TaskTarget:TargetType {
             param["longitude"] = longitude
             param["latitude"] = latitude
             return param
-        case let .taskCreate(taskType, substationIds, taskExecutorIds, taskContent, planStartTime, planEndTime,alarmId):
-            var param :[String: Any] = [:]
-            if let taskType = taskType{
-                param["taskType"] = taskType
-            }
-            if let substationIds = substationIds{
-                param["substationIds"] = substationIds
-            }
-            if let taskExecutorIds = taskExecutorIds{
-                param["taskExecutorIds"] = taskExecutorIds
-            }
-            if let taskContent = taskContent{
-                param["taskContent"] = taskContent
-            }
-            if let planStartTime = planStartTime{
-                param["planStartTime"] = planStartTime
-            }
-            if let planEndTime = planEndTime{
-                param["planEndTime"] = planEndTime
-            }
-            if let alarmId = alarmId{
-                param["alarmId"] = alarmId
-            }
-            return param
-        case let .taskLoad(taskId):
-            return ["taskId":taskId]
+        case .getMyCheckTaskList(let params):
+            return params
+        case .getMyTaskList(let params):
+             return params
         case let .submitPlan(taskId, securityManager, requireDriver, requireDevice, requireVehicle, requireMaterial, requireParts, planContent):
             var param :[String: Any] = [:]
               param["taskId"] = taskId
@@ -185,7 +163,7 @@ extension TaskTarget:TargetType {
     
     var task: Task {
         switch self {
-        case .getNearbyTask,.taskCreate,.taskLoad,.submitPlan,.taskSubmit,.taskVerify,.taskAddAttachment,.camerList:
+        case .getNearbyTask,.getMyCheckTaskList,.getMyTaskList,.submitPlan,.taskSubmit,.taskVerify,.taskAddAttachment,.camerList:
             return .requestParameters(parameters: parameters!, encoding: parameterEncoding)
         case let .uploadImage(data):
             let formatter = DateFormatter()

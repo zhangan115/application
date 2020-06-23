@@ -10,8 +10,8 @@ import UIKit
 
 class WorkListViewCell: UITableViewCell {
 
- lazy var workEndItemView : WorkEndItemView = {
-     let view = WorkEndItemView()
+ lazy var workListItemView : WorkListItemView = {
+     let view = WorkListItemView()
      self.addSubview(view)
      return view
  }()
@@ -24,13 +24,13 @@ class WorkListViewCell: UITableViewCell {
  override func layoutSubviews() {
      super.layoutSubviews()
      self.selectionStyle = .none
-     workEndItemView.snp.updateConstraints { (make) in
+     workListItemView.snp.updateConstraints { (make) in
          make.left.right.top.bottom.equalToSuperview()
      }
  }
  
- func setModel(model:WorkModel){
-     workEndItemView.setData(workData: model)
+    func setModel(model:WorkModel,requestType:Int){
+     workListItemView.setData(workData: model,requestType: requestType)
  }
 
 }
