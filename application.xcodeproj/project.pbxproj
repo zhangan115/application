@@ -1052,8 +1052,8 @@
 		73BC0B6B2490DA0500B5DBDF /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				3EB37EE2249EFA5E00A2DBD4 /* Verify */,
 				735C0C842498B77200194FB0 /* Base */,
+				3EB37EE2249EFA5E00A2DBD4 /* Verify */,
 				735C0C852498B78800194FB0 /* Drawer */,
 				735C0C8B2498ED9600194FB0 /* HelpCenter */,
 			);

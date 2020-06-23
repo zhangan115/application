@@ -43,7 +43,6 @@ final class PGProvider: NSObject {
             let json = try! JSON(data: responseObject.data)
             let errorCode = json["errorCode"].intValue
             if errorCode == 0 {
-                print(json)
                 success(json)
             }else {
                 if errorCode == -100 || errorCode == -101 { //cookie失效 实现重新登录
