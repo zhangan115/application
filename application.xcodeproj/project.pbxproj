@@ -11,10 +11,33 @@
 		3EB37EE1249EF9ED00A2DBD4 /* MainUserVerifyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB37EE0249EF9ED00A2DBD4 /* MainUserVerifyController.swift */; };
 		3EB37EE5249EFA8300A2DBD4 /* NumVerifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB37EE4249EFA8300A2DBD4 /* NumVerifyView.swift */; };
 		3EB37EE7249F01D000A2DBD4 /* VerifyContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB37EE6249F01D000A2DBD4 /* VerifyContentView.swift */; };
+		730C0D0F24A33676009B2144 /* WorkInspectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730C0D0D24A33676009B2144 /* WorkInspectCell.swift */; };
+		730C0D1024A33676009B2144 /* WorkInspectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 730C0D0E24A33676009B2144 /* WorkInspectCell.xib */; };
+		730C0D1324A3442A009B2144 /* WorkFinishTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730C0D1124A3442A009B2144 /* WorkFinishTimeCell.swift */; };
+		730C0D1424A3442A009B2144 /* WorkFinishTimeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 730C0D1224A3442A009B2144 /* WorkFinishTimeCell.xib */; };
+		730C0D1724A34683009B2144 /* WorkEndCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730C0D1524A34683009B2144 /* WorkEndCell.swift */; };
+		730C0D1824A34683009B2144 /* WorkEndCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 730C0D1624A34683009B2144 /* WorkEndCell.xib */; };
+		730C0D1B24A347FF009B2144 /* WorkTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730C0D1924A347FF009B2144 /* WorkTitleCell.swift */; };
+		730C0D1C24A347FF009B2144 /* WorkTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 730C0D1A24A347FF009B2144 /* WorkTitleCell.xib */; };
 		7312BBD724A0A352003A291E /* WorkListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7312BBD624A0A352003A291E /* WorkListViewCell.swift */; };
 		7312BBD924A0A37B003A291E /* WorkListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7312BBD824A0A37B003A291E /* WorkListItemView.swift */; };
 		731F5BBF2491FAC30019D58B /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731F5BBD2491FAC30019D58B /* GuideViewController.swift */; };
 		731F5BC2249236EE0019D58B /* GuideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 731F5BC1249236EE0019D58B /* GuideViewController.xib */; };
+		7325055524A2E19B001CF373 /* WorkCostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7325055324A2E19B001CF373 /* WorkCostCell.swift */; };
+		7325055624A2E19B001CF373 /* WorkCostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7325055424A2E19B001CF373 /* WorkCostCell.xib */; };
+		7325055924A2E933001CF373 /* WorkInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7325055724A2E933001CF373 /* WorkInfoCell.swift */; };
+		7325055A24A2E933001CF373 /* WorkInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7325055824A2E933001CF373 /* WorkInfoCell.xib */; };
+		7325055D24A31FEE001CF373 /* CustomerInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7325055B24A31FEE001CF373 /* CustomerInfoCell.swift */; };
+		7325055E24A31FEE001CF373 /* CustomerInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7325055C24A31FEE001CF373 /* CustomerInfoCell.xib */; };
+		7325056124A322A5001CF373 /* WorkRemarksCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7325055F24A322A5001CF373 /* WorkRemarksCell.swift */; };
+		7325056224A322A5001CF373 /* WorkRemarksCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7325056024A322A5001CF373 /* WorkRemarksCell.xib */; };
+		7325056524A326E3001CF373 /* WorkButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7325056324A326E3001CF373 /* WorkButtonCell.swift */; };
+		7325056624A326E3001CF373 /* WorkButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7325056424A326E3001CF373 /* WorkButtonCell.xib */; };
+		7325056924A329D8001CF373 /* WorkEnclosureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7325056724A329D8001CF373 /* WorkEnclosureCell.swift */; };
+		7325056A24A329D8001CF373 /* WorkEnclosureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7325056824A329D8001CF373 /* WorkEnclosureCell.xib */; };
+		7325056D24A32DB4001CF373 /* HeaderWorkEnclosureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7325056C24A32DB4001CF373 /* HeaderWorkEnclosureView.swift */; };
+		7325057024A32EF2001CF373 /* WorkTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7325056E24A32EF2001CF373 /* WorkTimeCell.swift */; };
+		7325057124A32EF2001CF373 /* WorkTimeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7325056F24A32EF2001CF373 /* WorkTimeCell.xib */; };
 		735C0C81249853D500194FB0 /* WorkDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735C0C80249853D500194FB0 /* WorkDataView.swift */; };
 		735C0C83249895DB00194FB0 /* CustomCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735C0C82249895DB00194FB0 /* CustomCalloutView.swift */; };
 		735C0C872498B85B00194FB0 /* DrawerMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735C0C862498B85B00194FB0 /* DrawerMainViewController.swift */; };
@@ -166,10 +189,33 @@
 		3EB37EE0249EF9ED00A2DBD4 /* MainUserVerifyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainUserVerifyController.swift; sourceTree = "<group>"; };
 		3EB37EE4249EFA8300A2DBD4 /* NumVerifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumVerifyView.swift; sourceTree = "<group>"; };
 		3EB37EE6249F01D000A2DBD4 /* VerifyContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyContentView.swift; sourceTree = "<group>"; };
+		730C0D0D24A33676009B2144 /* WorkInspectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkInspectCell.swift; sourceTree = "<group>"; };
+		730C0D0E24A33676009B2144 /* WorkInspectCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkInspectCell.xib; sourceTree = "<group>"; };
+		730C0D1124A3442A009B2144 /* WorkFinishTimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkFinishTimeCell.swift; sourceTree = "<group>"; };
+		730C0D1224A3442A009B2144 /* WorkFinishTimeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkFinishTimeCell.xib; sourceTree = "<group>"; };
+		730C0D1524A34683009B2144 /* WorkEndCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkEndCell.swift; sourceTree = "<group>"; };
+		730C0D1624A34683009B2144 /* WorkEndCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkEndCell.xib; sourceTree = "<group>"; };
+		730C0D1924A347FF009B2144 /* WorkTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkTitleCell.swift; sourceTree = "<group>"; };
+		730C0D1A24A347FF009B2144 /* WorkTitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkTitleCell.xib; sourceTree = "<group>"; };
 		7312BBD624A0A352003A291E /* WorkListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkListViewCell.swift; sourceTree = "<group>"; };
 		7312BBD824A0A37B003A291E /* WorkListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkListItemView.swift; sourceTree = "<group>"; };
 		731F5BBD2491FAC30019D58B /* GuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
 		731F5BC1249236EE0019D58B /* GuideViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideViewController.xib; sourceTree = "<group>"; };
+		7325055324A2E19B001CF373 /* WorkCostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkCostCell.swift; sourceTree = "<group>"; };
+		7325055424A2E19B001CF373 /* WorkCostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkCostCell.xib; sourceTree = "<group>"; };
+		7325055724A2E933001CF373 /* WorkInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkInfoCell.swift; sourceTree = "<group>"; };
+		7325055824A2E933001CF373 /* WorkInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkInfoCell.xib; sourceTree = "<group>"; };
+		7325055B24A31FEE001CF373 /* CustomerInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerInfoCell.swift; sourceTree = "<group>"; };
+		7325055C24A31FEE001CF373 /* CustomerInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomerInfoCell.xib; sourceTree = "<group>"; };
+		7325055F24A322A5001CF373 /* WorkRemarksCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkRemarksCell.swift; sourceTree = "<group>"; };
+		7325056024A322A5001CF373 /* WorkRemarksCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkRemarksCell.xib; sourceTree = "<group>"; };
+		7325056324A326E3001CF373 /* WorkButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkButtonCell.swift; sourceTree = "<group>"; };
+		7325056424A326E3001CF373 /* WorkButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkButtonCell.xib; sourceTree = "<group>"; };
+		7325056724A329D8001CF373 /* WorkEnclosureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkEnclosureCell.swift; sourceTree = "<group>"; };
+		7325056824A329D8001CF373 /* WorkEnclosureCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkEnclosureCell.xib; sourceTree = "<group>"; };
+		7325056C24A32DB4001CF373 /* HeaderWorkEnclosureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderWorkEnclosureView.swift; sourceTree = "<group>"; };
+		7325056E24A32EF2001CF373 /* WorkTimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkTimeCell.swift; sourceTree = "<group>"; };
+		7325056F24A32EF2001CF373 /* WorkTimeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkTimeCell.xib; sourceTree = "<group>"; };
 		735C0C80249853D500194FB0 /* WorkDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkDataView.swift; sourceTree = "<group>"; };
 		735C0C82249895DB00194FB0 /* CustomCalloutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalloutView.swift; sourceTree = "<group>"; };
 		735C0C862498B85B00194FB0 /* DrawerMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerMainViewController.swift; sourceTree = "<group>"; };
@@ -397,6 +443,14 @@
 				7312BBD624A0A352003A291E /* WorkListViewCell.swift */,
 			);
 			name = Cell;
+			sourceTree = "<group>";
+		};
+		7325056B24A32B2A001CF373 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				7325056C24A32DB4001CF373 /* HeaderWorkEnclosureView.swift */,
+			);
+			name = Header;
 			sourceTree = "<group>";
 		};
 		735413A42499F80200B79609 /* NetView */ = {
@@ -672,6 +726,7 @@
 		7382E8BA24A1CF7B00401DC5 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				7325056B24A32B2A001CF373 /* Header */,
 				7382E8BC24A1CF9900401DC5 /* Cell */,
 				7382E8BB24A1CF9100401DC5 /* View */,
 				7382E8BD24A1CFA800401DC5 /* WorkDetailController.swift */,
@@ -689,6 +744,28 @@
 		7382E8BC24A1CF9900401DC5 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				7325055324A2E19B001CF373 /* WorkCostCell.swift */,
+				7325055424A2E19B001CF373 /* WorkCostCell.xib */,
+				7325055724A2E933001CF373 /* WorkInfoCell.swift */,
+				7325055824A2E933001CF373 /* WorkInfoCell.xib */,
+				7325055B24A31FEE001CF373 /* CustomerInfoCell.swift */,
+				7325055C24A31FEE001CF373 /* CustomerInfoCell.xib */,
+				7325055F24A322A5001CF373 /* WorkRemarksCell.swift */,
+				7325056024A322A5001CF373 /* WorkRemarksCell.xib */,
+				7325056324A326E3001CF373 /* WorkButtonCell.swift */,
+				7325056424A326E3001CF373 /* WorkButtonCell.xib */,
+				7325056724A329D8001CF373 /* WorkEnclosureCell.swift */,
+				7325056824A329D8001CF373 /* WorkEnclosureCell.xib */,
+				7325056E24A32EF2001CF373 /* WorkTimeCell.swift */,
+				7325056F24A32EF2001CF373 /* WorkTimeCell.xib */,
+				730C0D0D24A33676009B2144 /* WorkInspectCell.swift */,
+				730C0D0E24A33676009B2144 /* WorkInspectCell.xib */,
+				730C0D1124A3442A009B2144 /* WorkFinishTimeCell.swift */,
+				730C0D1224A3442A009B2144 /* WorkFinishTimeCell.xib */,
+				730C0D1524A34683009B2144 /* WorkEndCell.swift */,
+				730C0D1624A34683009B2144 /* WorkEndCell.xib */,
+				730C0D1924A347FF009B2144 /* WorkTitleCell.swift */,
+				730C0D1A24A347FF009B2144 /* WorkTitleCell.xib */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -1291,21 +1368,32 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7325056224A322A5001CF373 /* WorkRemarksCell.xib in Resources */,
+				7325056624A326E3001CF373 /* WorkButtonCell.xib in Resources */,
+				730C0D1C24A347FF009B2144 /* WorkTitleCell.xib in Resources */,
 				736CD6132499DC7400B66369 /* UserElectricianController.xib in Resources */,
 				736A4E3D24934DC900B2C2F0 /* ForgetPass1ViewController.xib in Resources */,
 				737643642457F54300CB2050 /* LaunchScreen.storyboard in Resources */,
 				736CD6092499B33400B66369 /* UserIdentityController.xib in Resources */,
+				7325057124A32EF2001CF373 /* WorkTimeCell.xib in Resources */,
 				73CC7B32249A4258009CC7FC /* SettingViewCell.xib in Resources */,
 				737643612457F54300CB2050 /* Assets.xcassets in Resources */,
 				7371C237249AF3D300CB6BAA /* AboutUsController.xib in Resources */,
+				7325056A24A329D8001CF373 /* WorkEnclosureCell.xib in Resources */,
 				7376435F2457F53F00CB2050 /* Main.storyboard in Resources */,
 				739932FC249B3B2600626534 /* UserWalletController.xib in Resources */,
 				731F5BC2249236EE0019D58B /* GuideViewController.xib in Resources */,
+				730C0D1824A34683009B2144 /* WorkEndCell.xib in Resources */,
 				73EC5238249B5688004D869A /* UserBillViewCell.xib in Resources */,
 				7371C240249B0F3100CB6BAA /* UserDataInputCell.xib in Resources */,
 				7371C244249B0F4100CB6BAA /* UserDataChooseCell.xib in Resources */,
+				7325055E24A31FEE001CF373 /* CustomerInfoCell.xib in Resources */,
+				7325055624A2E19B001CF373 /* WorkCostCell.xib in Resources */,
 				73CC7B36249A426F009CC7FC /* SettingExitCell.xib in Resources */,
 				735C0C922498EF7200194FB0 /* HelpItemTableViewCell.xib in Resources */,
+				730C0D1024A33676009B2144 /* WorkInspectCell.xib in Resources */,
+				7325055A24A2E933001CF373 /* WorkInfoCell.xib in Resources */,
+				730C0D1424A3442A009B2144 /* WorkFinishTimeCell.xib in Resources */,
 				7371C248249B0F5400CB6BAA /* UserDataSureCell.xib in Resources */,
 				73BC0B1C2490CEB300B5DBDF /* UserLoginViewController.xib in Resources */,
 				736A4E412493503000B2C2F0 /* ForgetPass2ViewController.xib in Resources */,
@@ -1380,7 +1468,9 @@
 			files = (
 				7394066E24974462001562CD /* WorkModel.swift in Sources */,
 				736A4E3C24934DC900B2C2F0 /* ForgetPass1ViewController.swift in Sources */,
+				730C0D1B24A347FF009B2144 /* WorkTitleCell.swift in Sources */,
 				3EB299B8249D909F008ED3C4 /* MainDrawerUIView.swift in Sources */,
+				7325055D24A31FEE001CF373 /* CustomerInfoCell.swift in Sources */,
 				73BC0B682490D64700B5DBDF /* TaskProvide.swift in Sources */,
 				73BC0B132490CE5500B5DBDF /* Tools.swift in Sources */,
 				7376435C2457F53F00CB2050 /* MainViewController.swift in Sources */,
@@ -1395,16 +1485,21 @@
 				73BC0B162490CE5500B5DBDF /* PGCollectionViewCell.swift in Sources */,
 				3EB37EE1249EF9ED00A2DBD4 /* MainUserVerifyController.swift in Sources */,
 				73EC5237249B5688004D869A /* UserBillViewCell.swift in Sources */,
+				7325056524A326E3001CF373 /* WorkButtonCell.swift in Sources */,
 				739932FE249B408A00626534 /* Account.swift in Sources */,
 				73BC0B252490CF2200B5DBDF /* PGEnumeration.swift in Sources */,
 				73BC0B0C2490CE5500B5DBDF /* PGProvider.swift in Sources */,
+				7325055924A2E933001CF373 /* WorkInfoCell.swift in Sources */,
 				735C0C83249895DB00194FB0 /* CustomCalloutView.swift in Sources */,
 				73BC0B632490CFBD00B5DBDF /* NSObject+Utilities.swift in Sources */,
+				7325056924A329D8001CF373 /* WorkEnclosureCell.swift in Sources */,
 				73BC0B832490E4D100B5DBDF /* PGBaseViewController.swift in Sources */,
 				73BC0B602490CFBD00B5DBDF /* String+Extension.swift in Sources */,
 				73BC0B542490CFBD00B5DBDF /* UIColor+Extension.swift in Sources */,
 				736A4E432493735200B2C2F0 /* MainViewController+Ex.swift in Sources */,
 				73940670249753B7001562CD /* CustomAnnotationView.swift in Sources */,
+				730C0D0F24A33676009B2144 /* WorkInspectCell.swift in Sources */,
+				7325055524A2E19B001CF373 /* WorkCostCell.swift in Sources */,
 				7362EA3224A0556B0011E56E /* WorkVerifyView.swift in Sources */,
 				731F5BBF2491FAC30019D58B /* GuideViewController.swift in Sources */,
 				73BC0B0F2490CE5500B5DBDF /* PGAlamofireManager.swift in Sources */,
@@ -1420,12 +1515,14 @@
 				739406512497039B001562CD /* test.m in Sources */,
 				73BC0B812490E4D100B5DBDF /* BaseHomeController.swift in Sources */,
 				73BC0B122490CE5500B5DBDF /* Platform.swift in Sources */,
+				7325056D24A32DB4001CF373 /* HeaderWorkEnclosureView.swift in Sources */,
 				73BC0B182490CE5500B5DBDF /* PGPhotoAlbumUtil.swift in Sources */,
 				73BC0B5A2490CFBD00B5DBDF /* MJRefresh+Extension.swift in Sources */,
 				73BC0B172490CE5500B5DBDF /* PGImagePickerDelegate.swift in Sources */,
 				7382E8B924A1C8EF00401DC5 /* WorkRobItemCell.swift in Sources */,
 				73BC0B622490CFBD00B5DBDF /* PGDispatchTimeExtension.swift in Sources */,
 				3EB37EE5249EFA8300A2DBD4 /* NumVerifyView.swift in Sources */,
+				730C0D1324A3442A009B2144 /* WorkFinishTimeCell.swift in Sources */,
 				736CD6122499DC7400B66369 /* UserElectricianController.swift in Sources */,
 				73BC0B7E2490E4D100B5DBDF /* BaseTableViewController.swift in Sources */,
 				3EB37EE7249F01D000A2DBD4 /* VerifyContentView.swift in Sources */,
@@ -1438,6 +1535,7 @@
 				7362EA2624A049250011E56E /* UIView+SGFrame.m in Sources */,
 				73EC522F249B528A004D869A /* UserDataHeaderView.swift in Sources */,
 				73BC0B672490D64700B5DBDF /* UserProvide.swift in Sources */,
+				7325057024A32EF2001CF373 /* WorkTimeCell.swift in Sources */,
 				73BC0B272490CF2200B5DBDF /* PGMacros.swift in Sources */,
 				73BC0B232490CF2200B5DBDF /* PGConstants.swift in Sources */,
 				73BC0B5E2490CFBD00B5DBDF /* UITableView+Extension.swift in Sources */,
@@ -1475,6 +1573,7 @@
 				7382E8AF24A1AEE200401DC5 /* WorkListHeaderView.swift in Sources */,
 				7362EA2D24A04A5E0011E56E /* WorkListController.swift in Sources */,
 				7382E8B324A1B41100401DC5 /* WorkRobController.swift in Sources */,
+				730C0D1724A34683009B2144 /* WorkEndCell.swift in Sources */,
 				73BC0B822490E4D100B5DBDF /* PageingListViewController.swift in Sources */,
 				737643582457F53F00CB2050 /* AppDelegate.swift in Sources */,
 				73BC0B552490CFBD00B5DBDF /* DispatchQueue+Extension.swift in Sources */,
@@ -1486,6 +1585,7 @@
 				7394066B2497085A001562CD /* AppDelegate+AMap.swift in Sources */,
 				73BC0B5C2490CFBD00B5DBDF /* UIImageView+Extension.swift in Sources */,
 				73BC0B0D2490CE5500B5DBDF /* MoyaProvider+Rx.swift in Sources */,
+				7325056124A322A5001CF373 /* WorkRemarksCell.swift in Sources */,
 				7371C23F249B0F3100CB6BAA /* UserDataInputCell.swift in Sources */,
 				736CD6082499B33400B66369 /* UserIdentityController.swift in Sources */,
 				7382E8BE24A1CFA800401DC5 /* WorkDetailController.swift in Sources */,
