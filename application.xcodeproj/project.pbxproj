@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E34795524B20F1B00A2A5C0 /* WorkDetailExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E34795424B20F1B00A2A5C0 /* WorkDetailExt.swift */; };
 		3EB299B8249D909F008ED3C4 /* MainDrawerUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB299B7249D909F008ED3C4 /* MainDrawerUIView.swift */; };
 		3EB37EE1249EF9ED00A2DBD4 /* MainUserVerifyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB37EE0249EF9ED00A2DBD4 /* MainUserVerifyController.swift */; };
 		3EB37EE5249EFA8300A2DBD4 /* NumVerifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB37EE4249EFA8300A2DBD4 /* NumVerifyView.swift */; };
@@ -185,6 +186,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3E34795424B20F1B00A2A5C0 /* WorkDetailExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkDetailExt.swift; sourceTree = "<group>"; };
 		3EB299B7249D909F008ED3C4 /* MainDrawerUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainDrawerUIView.swift; sourceTree = "<group>"; };
 		3EB37EE0249EF9ED00A2DBD4 /* MainUserVerifyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainUserVerifyController.swift; sourceTree = "<group>"; };
 		3EB37EE4249EFA8300A2DBD4 /* NumVerifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumVerifyView.swift; sourceTree = "<group>"; };
@@ -730,6 +732,7 @@
 				7382E8BC24A1CF9900401DC5 /* Cell */,
 				7382E8BB24A1CF9100401DC5 /* View */,
 				7382E8BD24A1CFA800401DC5 /* WorkDetailController.swift */,
+				3E34795424B20F1B00A2A5C0 /* WorkDetailExt.swift */,
 			);
 			name = Detail;
 			sourceTree = "<group>";
@@ -1517,6 +1520,7 @@
 				73BC0B122490CE5500B5DBDF /* Platform.swift in Sources */,
 				7325056D24A32DB4001CF373 /* HeaderWorkEnclosureView.swift in Sources */,
 				73BC0B182490CE5500B5DBDF /* PGPhotoAlbumUtil.swift in Sources */,
+				3E34795524B20F1B00A2A5C0 /* WorkDetailExt.swift in Sources */,
 				73BC0B5A2490CFBD00B5DBDF /* MJRefresh+Extension.swift in Sources */,
 				73BC0B172490CE5500B5DBDF /* PGImagePickerDelegate.swift in Sources */,
 				7382E8B924A1C8EF00401DC5 /* WorkRobItemCell.swift in Sources */,

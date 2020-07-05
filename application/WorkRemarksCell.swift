@@ -14,11 +14,10 @@ class WorkRemarksCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-    
     }
 
     func setModel(model:WorkModel){
-        
+        remarkLabel.text = model.taskNote
     }
     
 }

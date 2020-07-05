@@ -17,8 +17,8 @@ let taskProviderNoPlugin = MoyaProvider<TaskTarget>(manager: PGAlamofireManager.
 
 enum TaskTarget {
     case getNearbyTask(longitude:Double,latitude:Double)
-    case  getTerminatedTaskList
-    case substationTree
+    case getTerminatedTaskList
+    case getWorkDetail(taskId:Int)
     case getMyCheckTaskList(params:[String: Any])
     case getMyTaskList(params:[String: Any])
     case submitPlan(taskId:Int,securityManager:String?,requireDriver:String?
@@ -44,8 +44,8 @@ extension TaskTarget:TargetType {
             return "task/nearby_can_do"
         case .getTerminatedTaskList:
             return "task/terminated_list"
-        case .substationTree:
-            return "substation/tree"
+        case .getWorkDetail:
+            return "task/detail"
         case .getMyCheckTaskList:
             return "task/my_submit_list"
         case .getMyTaskList:
@@ -91,6 +91,10 @@ extension TaskTarget:TargetType {
             var param :[String: Any] = [:]
             param["longitude"] = longitude
             param["latitude"] = latitude
+            return param
+        case let .getWorkDetail(taskId):
+            var param :[String: Any] = [:]
+            param["taskId"] = taskId
             return param
         case .getMyCheckTaskList(let params):
             return params
@@ -163,7 +167,7 @@ extension TaskTarget:TargetType {
     
     var task: Task {
         switch self {
-        case .getNearbyTask,.getMyCheckTaskList,.getMyTaskList,.submitPlan,.taskSubmit,.taskVerify,.taskAddAttachment,.camerList:
+        case .getNearbyTask,.getWorkDetail,.getMyCheckTaskList,.getMyTaskList,.submitPlan,.taskSubmit,.taskVerify,.taskAddAttachment,.camerList:
             return .requestParameters(parameters: parameters!, encoding: parameterEncoding)
         case let .uploadImage(data):
             let formatter = DateFormatter()

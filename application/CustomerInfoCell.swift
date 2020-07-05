@@ -19,8 +19,22 @@ class CustomerInfoCell: UITableViewCell {
     }
     
     func setModel(model:WorkModel) -> Void {
-        
+        var str = model.customerContact!
+        if str.count >= 3 {
+            let startIndex = str.index(str.startIndex, offsetBy:str.count-2)
+            let endIndex = str.index(str.startIndex, offsetBy:str.count)
+            let range = startIndex...endIndex
+            str.replaceSubrange(range, with:"**")
+        }
+        customerName.text = str
+        var phoneStr = model.customerPhone!
+        if phoneStr.count == 11 {
+            let startIndex = str.index(str.startIndex, offsetBy:4)
+            let endIndex = str.index(str.startIndex, offsetBy:8)
+            let range = startIndex...endIndex
+            phoneStr.replaceSubrange(range, with:"****")
+        }
+        customerPhone.text = phoneStr
     }
-
     
 }

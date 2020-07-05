@@ -32,8 +32,7 @@ class WorkTitleCell: UITableViewCell {
         bgLayer1.masksToBounds = true
         bgLayer1.cornerRadius = 4
         self.bgView.layer.addSublayer(bgLayer1)
-        
-        drawDashLine(lineView: line1, lineLength: 3, lineSpacing: 3, lineColor: UIColor(hexString: "#666666"))
+        drawDashLine(lineView: line1, lineLength: 3, lineSpacing: 3, lineColor: UIColor(hexString: "#666666")!)
     }
     
 }

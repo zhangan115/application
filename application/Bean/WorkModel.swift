@@ -20,6 +20,7 @@ class WorkModel: Mappable {
     var distance: Double!
     var equipmentCode: String!
     var equipmentType: String!
+    var equipmentName: String!
     var executorName:String!
     var executorTakeTime:Int!
     var executorUserId:Int!
@@ -65,6 +66,7 @@ class WorkModel: Mappable {
         self.distance = json["distance"].doubleValue
         self.equipmentCode = json["equipmentCode"].stringValue
         self.equipmentType = json["equipmentType"].stringValue
+        self.equipmentName = json["equipmentName"].stringValue
         self.executorName = json["executorName"].stringValue
         self.executorTakeTime = json["executorTakeTime"].intValue
         self.executorUserId = json["executorUserId"].intValue
