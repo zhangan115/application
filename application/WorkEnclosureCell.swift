@@ -19,7 +19,8 @@ class WorkEnclosureCell: UITableViewCell {
     }
     
     func setModel(model:TaskAttachment){
-        
+        label.text = model.fileName
+        icon.image = UIImage(named: "icon_ppt")
     }
     
 }
