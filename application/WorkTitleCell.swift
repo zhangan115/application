@@ -11,7 +11,7 @@ import UIKit
 class WorkTitleCell: UITableViewCell {
     
     @IBOutlet var bgView : UIView! // 背景
-    @IBOutlet var icons : [UIImageView]! // 背景
+    @IBOutlet var icons : [UIImageView]!
     @IBOutlet var labels:[UILabel]!
     @IBOutlet var line1 : UIView! // 虚线
     @IBOutlet var line2 : UIView! // 实线
@@ -33,7 +33,7 @@ class WorkTitleCell: UITableViewCell {
         self.bgView.layer.addSublayer(bgLayer1)
         line2.backgroundColor = UIColor(hexString: "#333333")
         drawDashLine(lineView: line1, lineLength: 3, lineSpacing: 3, lineColor: UIColor(hexString: "#666666")!)
-        
+       
         labels[0].textColor = UIColor(hexString: "#333333")
         labels[1].textColor = UIColor(hexString: "#333333")
         labels[2].textColor = UIColor(hexString: "#666666")
@@ -47,22 +47,23 @@ class WorkTitleCell: UITableViewCell {
         icons[4].image = UIImage(named: "detail_circuit_icon_hook_nor")
      
         let xValue = screenWidth / 10
-        line2.frame = CGRect(x: xValue, y: 40, width: screenWidth / 5, height: 1)
+         line1.frame = CGRect(x: xValue, y: 0, width: screenWidth / 5 * 4, height: 1)
+        line2.frame = CGRect(x: xValue, y: 0, width: screenWidth / 5, height: 1)
         
         if model.taskState >= WorkState.WORK_PROGRESS.rawValue {
             icons[2].image = UIImage(named: "detail_circuit_icon_hook_sel")
             labels[2].textColor = UIColor(hexString: "#333333")
-           line2.frame = CGRect(x: xValue, y: 40, width: screenWidth / 5 * 2, height: 1)
+           line2.frame = CGRect(x: xValue, y: 0, width: screenWidth / 5 * 2, height: 1)
         }
         if model.taskState >= WorkState.WORK_CHECK.rawValue {
             icons[3].image = UIImage(named: "detail_circuit_icon_hook_sel")
             labels[3].textColor = UIColor(hexString: "#333333")
-            line2.frame = CGRect(x: xValue, y: 40, width: screenWidth / 5 * 3, height: 1)
+            line2.frame = CGRect(x: xValue, y: 0, width: screenWidth / 5 * 3, height: 1)
         }
         if model.taskState >= WorkState.WORK_FINISH.rawValue {
             icons[4].image = UIImage(named: "detail_circuit_icon_hook_sel")
             labels[4].textColor = UIColor(hexString: "#333333")
-           line2.frame = CGRect(x: xValue, y: 40, width: screenWidth / 5 * 4, height: 1)
+           line2.frame = CGRect(x: xValue, y: 0, width: screenWidth / 5 * 4, height: 1)
         }
         
     }

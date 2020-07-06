@@ -26,16 +26,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kzp-8L-Dmr">
                                 <rect key="frame" x="0.0" y="39.5" width="320" height="1"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fd5-Lt-p0K">
+                                    <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fd5-Lt-p0K">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S9l-l6-68H">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="S9l-l6-68H" secondAttribute="bottom" id="26Y-H4-14q"/>
                                     <constraint firstAttribute="trailing" secondItem="S9l-l6-68H" secondAttribute="trailing" id="5uY-pm-NsC"/>
@@ -70,7 +67,6 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstItem="tH2-Sb-ROr" firstAttribute="centerX" secondItem="zKa-VP-7hO" secondAttribute="centerX" id="SMA-bA-1fh"/>
                                             <constraint firstItem="Hr5-ec-grc" firstAttribute="centerX" secondItem="zKa-VP-7hO" secondAttribute="centerX" id="V4c-bz-ZC4"/>
@@ -93,7 +89,6 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstItem="qHI-yF-Oy2" firstAttribute="centerX" secondItem="6HF-73-CaO" secondAttribute="centerX" id="06H-tr-m2f"/>
                                             <constraint firstItem="vV5-lF-RT3" firstAttribute="centerX" secondItem="6HF-73-CaO" secondAttribute="centerX" id="6IW-Jo-q56"/>
@@ -114,7 +109,6 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstItem="P35-KY-ftm" firstAttribute="centerX" secondItem="UuJ-0o-waD" secondAttribute="centerX" id="FKy-TY-GLr"/>
                                             <constraint firstItem="Ebj-dP-C7o" firstAttribute="centerX" secondItem="UuJ-0o-waD" secondAttribute="centerX" id="FTe-QE-ykE"/>
@@ -135,7 +129,6 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstItem="hZ0-6V-V8q" firstAttribute="centerY" secondItem="3VX-hx-yk0" secondAttribute="centerY" id="aE8-EF-Mgd"/>
                                             <constraint firstItem="TMv-xP-C27" firstAttribute="centerX" secondItem="3VX-hx-yk0" secondAttribute="centerX" id="cah-SO-TVw"/>
@@ -156,7 +149,6 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstItem="hQ1-yg-nPD" firstAttribute="centerX" secondItem="3Ee-VK-7cH" secondAttribute="centerX" id="3ED-zc-HqL"/>
                                             <constraint firstItem="JQX-K0-8Sy" firstAttribute="centerY" secondItem="3Ee-VK-7cH" secondAttribute="centerY" id="5YX-Tn-chE"/>
@@ -167,7 +159,6 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="97O-p8-oaz" secondAttribute="bottom" id="2mN-Xi-R5h"/>
                             <constraint firstItem="kzp-8L-Dmr" firstAttribute="centerY" secondItem="KN5-V0-xxC" secondAttribute="centerY" id="AQ3-Hv-09y"/>
