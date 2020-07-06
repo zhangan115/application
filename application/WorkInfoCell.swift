@@ -15,6 +15,7 @@ class WorkInfoCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.contentView.backgroundColor = UIColor.white
     }
     
     func setModel(model:WorkModel){

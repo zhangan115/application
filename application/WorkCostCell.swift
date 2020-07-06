@@ -14,10 +14,11 @@ class WorkCostCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.contentView.backgroundColor = UIColor.white
     }
     
     func setModel(model:WorkModel){
-        self.constLable.text = "￥" + model.cost
+        self.constLable.text = "￥" + model.taskFee
     }
     
 }

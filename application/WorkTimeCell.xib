@@ -60,6 +60,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="chooseTimeBtn" destination="OHG-eH-THM" id="uTj-Gc-vop"/>
+                <outlet property="timeBlackLabel" destination="Ytg-zc-4TG" id="ejX-nu-KCl"/>
                 <outlet property="timeLabel" destination="0Xo-4S-yb1" id="axy-02-Upp"/>
                 <outlet property="timeTitleLabel" destination="yYa-pF-2uy" id="aBo-x5-CZZ"/>
             </connections>

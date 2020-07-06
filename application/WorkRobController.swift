@@ -87,7 +87,7 @@ extension WorkRobController {
     
     override  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if  (!self.list1.isEmpty || !self.list2.isEmpty ) && section == 0 {
-            let identifier = "header"
+            let identifier = "header_1"
             var view = tableView.dequeueReusableHeaderFooterView(withIdentifier: identifier) as? WorkListHeaderView
             if view == nil {
                 view = WorkListHeaderView(reuseIdentifier: identifier)
@@ -103,7 +103,7 @@ extension WorkRobController {
             return view
         }
         if self.headerPosition != nil && section == self.headerPosition! {
-            let identifier = "header"
+            let identifier = "header_2"
             var view = tableView.dequeueReusableHeaderFooterView(withIdentifier: identifier) as? WorkListHeaderView
             if view == nil {
                 view = WorkListHeaderView(reuseIdentifier: identifier)

@@ -14,7 +14,7 @@ class UserModel: NSObject, NSCoding, Mappable {
     var userId: Int! = 0
     var username: String? = nil
     var certificationType: Int? = nil
-    var isFreeze: Bool? = nil
+    var isFreeze: Bool! = false
     var linkMan: String! = ""
     var linkManMobile: String! = ""
     var portraitUrl: String! = ""

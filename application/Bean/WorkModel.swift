@@ -45,6 +45,7 @@ class WorkModel: Mappable {
     var terminateState:Int!
     var terminateTime:Int!
     var terminateUserId:Int!
+    var planArriveTime:Int!
     var workflowId: Int!
     var hasEverSubmitted:Bool!
     var requiredSocLevel:Int?
@@ -57,6 +58,7 @@ class WorkModel: Mappable {
             return
         }
         self.actualStartTime = json["actualStartTime"].intValue
+        self.planArriveTime = json["planArriveTime"].intValue
         self.canDo = json["canDo"].boolValue
         self.confirmUserId = json["confirmUserId"].intValue
         self.actualFee = json["actualFee"].stringValue

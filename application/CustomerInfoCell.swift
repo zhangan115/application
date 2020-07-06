@@ -15,22 +15,27 @@ class CustomerInfoCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.backgroundColor = UIColor.white
+        self.contentView.backgroundColor = UIColor.white
     }
     
     func setModel(model:WorkModel) -> Void {
+        if model.taskState >= WorkState.WORK_BEGIN.rawValue {
+            customerName.text = model.customerContact!
+            customerPhone.text = model.customerPhone!
+            return
+        }
         var str = model.customerContact!
         if str.count >= 3 {
             let startIndex = str.index(str.startIndex, offsetBy:str.count-2)
-            let endIndex = str.index(str.startIndex, offsetBy:str.count)
+            let endIndex = str.index(str.startIndex, offsetBy:str.count-1)
             let range = startIndex...endIndex
             str.replaceSubrange(range, with:"**")
         }
         customerName.text = str
         var phoneStr = model.customerPhone!
         if phoneStr.count == 11 {
-            let startIndex = str.index(str.startIndex, offsetBy:4)
-            let endIndex = str.index(str.startIndex, offsetBy:8)
+            let startIndex = phoneStr.index(phoneStr.startIndex, offsetBy:4)
+            let endIndex = phoneStr.index(phoneStr.startIndex, offsetBy:8)
             let range = startIndex...endIndex
             phoneStr.replaceSubrange(range, with:"****")
         }

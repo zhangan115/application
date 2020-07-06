@@ -21,11 +21,9 @@ enum TaskTarget {
     case getWorkDetail(taskId:Int)
     case getMyCheckTaskList(params:[String: Any])
     case getMyTaskList(params:[String: Any])
-    case submitPlan(taskId:Int,securityManager:String?,requireDriver:String?
-        ,requireDevice:String?,requireVehicle:String?,requireMaterial:String?
-        ,requireParts:String?,planContent:String?)
+    case takeTask(taskId:Int,planArriveTime:Int)
     case uploadImage(data: Data)
-    case taskSubmit(taskId:Int,taskSummary:String,taskImages:String)
+    case taskUpdateTime(taskId:Int,planArriveTime:Int)
     case taskVerify(taskId:Int,verifyContent:String,isPassed:Int)//是否通过，1：通过，0：不通过
     case substationListUser
     case taskAddAttachment(params:[String:Any])
@@ -50,12 +48,12 @@ extension TaskTarget:TargetType {
             return "task/my_submit_list"
         case .getMyTaskList:
             return "task/my_list"
-        case .submitPlan:
-            return "task/submit_plan"
+        case .takeTask:
+            return "task/take"
         case .uploadImage:
             return "task/upload_file"
-        case .taskSubmit:
-            return "task/submit"
+        case .taskUpdateTime:
+            return "task/update_arrive_time"
         case .taskVerify:
             return "task/verify"
         case .substationListUser:
@@ -82,7 +80,7 @@ extension TaskTarget:TargetType {
         default:
             return .post
         }
-      
+        
     }
     
     var parameters: [String: Any]? {
@@ -99,37 +97,16 @@ extension TaskTarget:TargetType {
         case .getMyCheckTaskList(let params):
             return params
         case .getMyTaskList(let params):
-             return params
-        case let .submitPlan(taskId, securityManager, requireDriver, requireDevice, requireVehicle, requireMaterial, requireParts, planContent):
-            var param :[String: Any] = [:]
-              param["taskId"] = taskId
-            if let securityManager = securityManager {
-                param["securityManager"] = securityManager
-            }
-            if let requireDriver = requireDriver{
-                param["requireDriver"] = requireDriver
-            }
-            if let requireDevice = requireDevice{
-                param["requireDevice"] = requireDevice
-            }
-            if let requireVehicle = requireVehicle{
-                param["requireVehicle"] = requireVehicle
-            }
-            if let requireMaterial = requireMaterial{
-                param["requireMaterial"] = requireMaterial
-            }
-            if let requireParts = requireParts{
-                param["requireParts"] = requireParts
-            }
-            if let planContent = planContent{
-                param["planContent"] = planContent
-            }
-            return param
-        case let .taskSubmit(taskId,taskSummary,taskImages):
+            return params
+        case let .takeTask(taskId, planArriveTime):
             var param :[String: Any] = [:]
             param["taskId"] = taskId
-            param["taskSummary"] = taskSummary
-            param["taskImages"] = taskImages
+            param["planArriveTime"] = planArriveTime
+            return param
+        case let .taskUpdateTime(taskId, planArriveTime):
+            var param :[String: Any] = [:]
+           param["taskId"] = taskId
+            param["planArriveTime"] = planArriveTime
             return param
         case let .taskVerify(taskId,verifyContent,isPassed):
             var param :[String: Any] = [:]
@@ -167,7 +144,7 @@ extension TaskTarget:TargetType {
     
     var task: Task {
         switch self {
-        case .getNearbyTask,.getWorkDetail,.getMyCheckTaskList,.getMyTaskList,.submitPlan,.taskSubmit,.taskVerify,.taskAddAttachment,.camerList:
+        case .getNearbyTask,.getWorkDetail,.getMyCheckTaskList,.getMyTaskList,.takeTask,.taskUpdateTime,.taskVerify,.taskAddAttachment,.camerList:
             return .requestParameters(parameters: parameters!, encoding: parameterEncoding)
         case let .uploadImage(data):
             let formatter = DateFormatter()
