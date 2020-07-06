@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3E34795524B20F1B00A2A5C0 /* WorkDetailExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E34795424B20F1B00A2A5C0 /* WorkDetailExt.swift */; };
+		3E4833DD24B35F9A00A2203A /* WorkBeginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4833DC24B35F9A00A2203A /* WorkBeginController.swift */; };
+		3E4833DF24B35FB100A2203A /* WorkEndController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4833DE24B35FB100A2203A /* WorkEndController.swift */; };
+		3E4833E224B3678B00A2203A /* TakePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4833E124B3678B00A2203A /* TakePhotoView.swift */; };
 		3EB299B8249D909F008ED3C4 /* MainDrawerUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB299B7249D909F008ED3C4 /* MainDrawerUIView.swift */; };
 		3EB37EE1249EF9ED00A2DBD4 /* MainUserVerifyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB37EE0249EF9ED00A2DBD4 /* MainUserVerifyController.swift */; };
 		3EB37EE5249EFA8300A2DBD4 /* NumVerifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB37EE4249EFA8300A2DBD4 /* NumVerifyView.swift */; };
@@ -187,6 +190,9 @@
 
 /* Begin PBXFileReference section */
 		3E34795424B20F1B00A2A5C0 /* WorkDetailExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkDetailExt.swift; sourceTree = "<group>"; };
+		3E4833DC24B35F9A00A2203A /* WorkBeginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkBeginController.swift; sourceTree = "<group>"; };
+		3E4833DE24B35FB100A2203A /* WorkEndController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkEndController.swift; sourceTree = "<group>"; };
+		3E4833E124B3678B00A2203A /* TakePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakePhotoView.swift; sourceTree = "<group>"; };
 		3EB299B7249D909F008ED3C4 /* MainDrawerUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainDrawerUIView.swift; sourceTree = "<group>"; };
 		3EB37EE0249EF9ED00A2DBD4 /* MainUserVerifyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainUserVerifyController.swift; sourceTree = "<group>"; };
 		3EB37EE4249EFA8300A2DBD4 /* NumVerifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumVerifyView.swift; sourceTree = "<group>"; };
@@ -402,6 +408,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E4833DA24B35F6D00A2203A /* Begin */ = {
+			isa = PBXGroup;
+			children = (
+				3E4833E024B3677700A2203A /* View */,
+				3E4833DC24B35F9A00A2203A /* WorkBeginController.swift */,
+			);
+			name = Begin;
+			sourceTree = "<group>";
+		};
+		3E4833DB24B35F7900A2203A /* End */ = {
+			isa = PBXGroup;
+			children = (
+				3E4833DE24B35FB100A2203A /* WorkEndController.swift */,
+			);
+			name = End;
+			sourceTree = "<group>";
+		};
+		3E4833E024B3677700A2203A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3E4833E124B3678B00A2203A /* TakePhotoView.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		3EB37EE2249EFA5E00A2DBD4 /* Verify */ = {
 			isa = PBXGroup;
 			children = (
@@ -1154,6 +1185,8 @@
 		73BC0B6D2490DA2700B5DBDF /* Work */ = {
 			isa = PBXGroup;
 			children = (
+				3E4833DB24B35F7900A2203A /* End */,
+				3E4833DA24B35F6D00A2203A /* Begin */,
 				7382E8BA24A1CF7B00401DC5 /* Detail */,
 				7382E8B024A1B3DE00401DC5 /* Rob */,
 				7362EA2E24A04A710011E56E /* End */,
@@ -1485,6 +1518,7 @@
 				73BC0B592490CFBD00B5DBDF /* Array+Extension.swift in Sources */,
 				73BC0B522490CFBD00B5DBDF /* UITableViewCell+Extension.swift in Sources */,
 				735C0C8E2498EDEC00194FB0 /* HelpCenterViewController.swift in Sources */,
+				3E4833DF24B35FB100A2203A /* WorkEndController.swift in Sources */,
 				73BC0B162490CE5500B5DBDF /* PGCollectionViewCell.swift in Sources */,
 				3EB37EE1249EF9ED00A2DBD4 /* MainUserVerifyController.swift in Sources */,
 				73EC5237249B5688004D869A /* UserBillViewCell.swift in Sources */,
@@ -1542,6 +1576,7 @@
 				7325057024A32EF2001CF373 /* WorkTimeCell.swift in Sources */,
 				73BC0B272490CF2200B5DBDF /* PGMacros.swift in Sources */,
 				73BC0B232490CF2200B5DBDF /* PGConstants.swift in Sources */,
+				3E4833E224B3678B00A2203A /* TakePhotoView.swift in Sources */,
 				73BC0B5E2490CFBD00B5DBDF /* UITableView+Extension.swift in Sources */,
 				7312BBD924A0A37B003A291E /* WorkListItemView.swift in Sources */,
 				73BC0B642490CFBD00B5DBDF /* UITabBar+Extenstion.swift in Sources */,
@@ -1590,6 +1625,7 @@
 				73BC0B5C2490CFBD00B5DBDF /* UIImageView+Extension.swift in Sources */,
 				73BC0B0D2490CE5500B5DBDF /* MoyaProvider+Rx.swift in Sources */,
 				7325056124A322A5001CF373 /* WorkRemarksCell.swift in Sources */,
+				3E4833DD24B35F9A00A2203A /* WorkBeginController.swift in Sources */,
 				7371C23F249B0F3100CB6BAA /* UserDataInputCell.swift in Sources */,
 				736CD6082499B33400B66369 /* UserIdentityController.swift in Sources */,
 				7382E8BE24A1CFA800401DC5 /* WorkDetailController.swift in Sources */,

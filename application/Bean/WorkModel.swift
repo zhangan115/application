@@ -51,6 +51,8 @@ class WorkModel: Mappable {
     var requiredSocLevel:Int?
     var requiredEpqcLevel:Int?
     var cost:String!
+    var beforeStartFile:TaskUploadFile?
+    var afterFinishFile:TaskUploadFile?
     var taskAttachmentList: [TaskAttachment]!
     
     required init(fromJson json: JSON!) {
@@ -106,6 +108,8 @@ class WorkModel: Mappable {
                 self.taskAttachmentList.append(value)
             }
         }
+        self.beforeStartFile = TaskUploadFile(fromJson: json["beforeStartFile"])
+        self.afterFinishFile = TaskUploadFile(fromJson: json["afterFinishFile"])
     }
 }
 
@@ -122,5 +126,115 @@ class TaskAttachment : Mappable {
         self.fileUrl = json["fileUrl"].stringValue
     }
     
+}
+class TaskUploadFile : Mappable{
+    
+    var fromNodeId:Int!
+    var nodeData:String!
+    var nodeExecutorId:Int!
+    var nodeIndex:Int!
+    var nodeName:String!
+    var nodePic:String!
+    var nodeNote:String!
+    var nodeStartTime:Int!
+    var nodeStatus:Int!
+    var taskId:Int!
+    var taskNodeId:Int!
+    var nodePicList:[PicNote]!
+    var nodeAttachmentList:[TaskAttachment]!
+    
+    required init(fromJson json: JSON!) {
+        if json.isEmpty{
+            return
+        }
+        self.fromNodeId = json["fromNodeId"].intValue
+        self.nodeData = json["nodeData"].stringValue
+        self.nodeExecutorId = json["nodeExecutorId"].intValue
+        self.nodeIndex = json["nodeIndex"].intValue
+        self.nodeName = json["nodeName"].stringValue
+        self.nodePic = json["nodePic"].stringValue
+        self.nodeNote = json["nodeNote"].stringValue
+        self.nodeStartTime = json["nodeStartTime"].intValue
+        self.nodeExecutorId = json["nodeExecutorId"].intValue
+        self.nodeStatus = json["nodeStatus"].intValue
+        self.taskId = json["taskId"].intValue
+        self.taskNodeId = json["taskNodeId"].intValue
+        
+        self.nodePicList = [PicNote]()
+        let list1 = json["nodePicList"].arrayValue
+        if !list1.isEmpty {
+            for array in list1 {
+                let value = PicNote(fromJson: array)
+                self.nodePicList.append(value)
+            }
+        }
+        
+        self.nodeAttachmentList = [TaskAttachment]()
+        let list2 = json["nodePicList"].arrayValue
+        if !list2.isEmpty {
+            for array in list2 {
+                let value = TaskAttachment(fromJson: array)
+                self.nodeAttachmentList.append(value)
+            }
+        }
+    }
     
 }
+
+class PicNote : Mappable{
+    
+    var picCount:Int!
+    var picName:String!
+    var picNote:String!
+    var picUrlList:[String]!
+    
+    required init(fromJson json: JSON!) {
+        if json.isEmpty{
+            return
+        }
+        self.picCount = json["picCount"].intValue
+        self.picName = json["picName"].stringValue
+        self.picNote = json["picNote"].stringValue
+        
+        self.picUrlList = [String]()
+        let list1 = json["picUrlList"].arrayValue
+        if !list1.isEmpty {
+            for array in list1 {
+                let value = array.stringValue
+                self.picUrlList.append(value)
+            }
+        }
+    }
+    
+}
+class CurrentNode: Mappable {
+    
+    var fromNodeId:Int!
+    var nodeIndex: Int!
+    var nodeName: String!
+    var nodeStatus: Int!
+    var taskId: Int!
+    var taskNodeId: Int!
+    var nodePicList:[PicNote]!
+    
+    required init(fromJson json: JSON!) {
+        if json.isEmpty{
+            return
+        }
+        self.fromNodeId = json["fromNodeId"].intValue
+        self.nodeIndex = json["nodeIndex"].intValue
+        self.nodeName = json["nodeName"].stringValue
+        self.nodeStatus = json["nodeStatus"].intValue
+        self.taskId = json["taskId"].intValue
+        self.taskNodeId = json["taskNodeId"].intValue
+        self.nodePicList = [PicNote]()
+        let list1 = json["nodePicList"].arrayValue
+        if !list1.isEmpty {
+            for array in list1 {
+                let value = PicNote(fromJson: array)
+                self.nodePicList.append(value)
+            }
+        }
+    }
+}
+
