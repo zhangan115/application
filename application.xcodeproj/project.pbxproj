@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E2BB45524B4BD7900A2E52C /* RoutTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2BB45324B4BD7900A2E52C /* RoutTitleCell.swift */; };
+		3E2BB45624B4BD7900A2E52C /* RoutTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E2BB45424B4BD7900A2E52C /* RoutTitleCell.xib */; };
+		3E2BB45924B4BE6000A2E52C /* RoutItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2BB45724B4BE6000A2E52C /* RoutItemCell.swift */; };
+		3E2BB45A24B4BE6000A2E52C /* RoutItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E2BB45824B4BE6000A2E52C /* RoutItemCell.xib */; };
 		3E34795524B20F1B00A2A5C0 /* WorkDetailExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E34795424B20F1B00A2A5C0 /* WorkDetailExt.swift */; };
 		3E4833DD24B35F9A00A2203A /* WorkBeginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4833DC24B35F9A00A2203A /* WorkBeginController.swift */; };
 		3E4833DF24B35FB100A2203A /* WorkEndController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4833DE24B35FB100A2203A /* WorkEndController.swift */; };
@@ -193,6 +197,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3E2BB45324B4BD7900A2E52C /* RoutTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutTitleCell.swift; sourceTree = "<group>"; };
+		3E2BB45424B4BD7900A2E52C /* RoutTitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoutTitleCell.xib; sourceTree = "<group>"; };
+		3E2BB45724B4BE6000A2E52C /* RoutItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutItemCell.swift; sourceTree = "<group>"; };
+		3E2BB45824B4BE6000A2E52C /* RoutItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoutItemCell.xib; sourceTree = "<group>"; };
 		3E34795424B20F1B00A2A5C0 /* WorkDetailExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkDetailExt.swift; sourceTree = "<group>"; };
 		3E4833DC24B35F9A00A2203A /* WorkBeginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkBeginController.swift; sourceTree = "<group>"; };
 		3E4833DE24B35FB100A2203A /* WorkEndController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkEndController.swift; sourceTree = "<group>"; };
@@ -416,6 +424,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E2BB45124B4B94900A2E52C /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				3E2BB45324B4BD7900A2E52C /* RoutTitleCell.swift */,
+				3E2BB45424B4BD7900A2E52C /* RoutTitleCell.xib */,
+				3E2BB45724B4BE6000A2E52C /* RoutItemCell.swift */,
+				3E2BB45824B4BE6000A2E52C /* RoutItemCell.xib */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		3E2BB45224B4B95200A2E52C /* Header */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Header;
+			sourceTree = "<group>";
+		};
 		3E4833DA24B35F6D00A2203A /* Begin */ = {
 			isa = PBXGroup;
 			children = (
@@ -505,6 +531,8 @@
 		735ACBB724B443CA00E97B68 /* Rout */ = {
 			isa = PBXGroup;
 			children = (
+				3E2BB45224B4B95200A2E52C /* Header */,
+				3E2BB45124B4B94900A2E52C /* Cell */,
 				735ACBB824B443E600E97B68 /* WorkRoutController.swift */,
 			);
 			name = Rout;
@@ -737,8 +765,8 @@
 				73BC0AF22490CB8100B5DBDF /* Base */,
 				73BC0AF52490CBAA00B5DBDF /* View */,
 				73BC0B6C2490DA0E00B5DBDF /* Bean */,
-				73BC0AF12490CB6B00B5DBDF /* Storyboard */,
 				73BC0AF72490CD1000B5DBDF /* Realm */,
+				73BC0AF12490CB6B00B5DBDF /* Storyboard */,
 				73BC0AF62490CCC300B5DBDF /* Bridging */,
 				737643602457F54300CB2050 /* Assets.xcassets */,
 				737643652457F54300CB2050 /* Info.plist */,
@@ -1430,6 +1458,7 @@
 				736CD6132499DC7400B66369 /* UserElectricianController.xib in Resources */,
 				736A4E3D24934DC900B2C2F0 /* ForgetPass1ViewController.xib in Resources */,
 				737643642457F54300CB2050 /* LaunchScreen.storyboard in Resources */,
+				3E2BB45624B4BD7900A2E52C /* RoutTitleCell.xib in Resources */,
 				736CD6092499B33400B66369 /* UserIdentityController.xib in Resources */,
 				7325057124A32EF2001CF373 /* WorkTimeCell.xib in Resources */,
 				73CC7B32249A4258009CC7FC /* SettingViewCell.xib in Resources */,
@@ -1449,6 +1478,7 @@
 				735C0C922498EF7200194FB0 /* HelpItemTableViewCell.xib in Resources */,
 				730C0D1024A33676009B2144 /* WorkInspectCell.xib in Resources */,
 				735ACBBD24B4495E00E97B68 /* WorkProgressItemCell.xib in Resources */,
+				3E2BB45A24B4BE6000A2E52C /* RoutItemCell.xib in Resources */,
 				7325055A24A2E933001CF373 /* WorkInfoCell.xib in Resources */,
 				730C0D1424A3442A009B2144 /* WorkFinishTimeCell.xib in Resources */,
 				7371C248249B0F5400CB6BAA /* UserDataSureCell.xib in Resources */,
@@ -1611,11 +1641,13 @@
 				7382E8B724A1C86400401DC5 /* WorkRobItemView.swift in Sources */,
 				73D68C22249774C6002055AD /* BottomWorkView.swift in Sources */,
 				736CD60E2499C6DF00B66369 /* UserCenterItemView.swift in Sources */,
+				3E2BB45924B4BE6000A2E52C /* RoutItemCell.swift in Sources */,
 				73BC0B5D2490CFBD00B5DBDF /* UIViewController+Extension.swift in Sources */,
 				73BC0B612490CFBD00B5DBDF /* String+Html.swift in Sources */,
 				73D68C1D24975D79002055AD /* MainViewController+Ex+Request.swift in Sources */,
 				73BC0B1B2490CEB300B5DBDF /* UserLoginViewController.swift in Sources */,
 				739932FB249B3B2600626534 /* UserWalletController.swift in Sources */,
+				3E2BB45524B4BD7900A2E52C /* RoutTitleCell.swift in Sources */,
 				73BC0B512490CFBD00B5DBDF /* UIImage+Extension.swift in Sources */,
 				73BC0B102490CE5500B5DBDF /* MoyaProvider+Extension.swift in Sources */,
 				735C0C81249853D500194FB0 /* WorkDataView.swift in Sources */,

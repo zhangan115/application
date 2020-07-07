@@ -116,7 +116,6 @@ class WorkBeginController: PGBaseViewController {
             }) {[weak self] (_) in
                 self?.view.toast("提交失败")
         }.disposed(by: self.disposeBag)
-        
     }
     
     func requestModel(){

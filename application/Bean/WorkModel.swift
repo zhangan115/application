@@ -141,6 +141,7 @@ class TaskUploadFile : Mappable{
     var taskId:Int!
     var taskNodeId:Int!
     var nodePicList:[PicNote]!
+    var nodeDataList:[DataItem]!
     var nodeAttachmentList:[TaskAttachment]!
     
     required init(fromJson json: JSON!) {
@@ -168,11 +169,18 @@ class TaskUploadFile : Mappable{
                 self.nodePicList.append(value)
             }
         }
-        
-        self.nodeAttachmentList = [TaskAttachment]()
-        let list2 = json["nodePicList"].arrayValue
+        self.nodeDataList = [DataItem]()
+        let list2 = json["nodeDataList"].arrayValue
         if !list2.isEmpty {
             for array in list2 {
+                let value = DataItem(fromJson: array)
+                self.nodeDataList.append(value)
+            }
+        }
+        self.nodeAttachmentList = [TaskAttachment]()
+        let list3 = json["nodePicList"].arrayValue
+        if !list3.isEmpty {
+            for array in list3 {
                 let value = TaskAttachment(fromJson: array)
                 self.nodeAttachmentList.append(value)
             }
@@ -260,3 +268,18 @@ class CurrentNode: Mappable {
     }
 }
 
+class DataItem : Mappable{
+    
+    required init(fromJson json: JSON!) {
+        self.id = json["id"].intValue
+        self.taskId = json["taskId"].intValue
+        self.itemName = json["itemName"].stringValue
+        self.itemValue = json["itemValue"].stringValue
+    }
+    
+    var id: Int!
+    var taskId: Int!
+    var itemName:String!
+    var itemValue:String?
+    
+}
