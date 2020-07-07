@@ -42,6 +42,10 @@
 		7325056D24A32DB4001CF373 /* HeaderWorkEnclosureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7325056C24A32DB4001CF373 /* HeaderWorkEnclosureView.swift */; };
 		7325057024A32EF2001CF373 /* WorkTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7325056E24A32EF2001CF373 /* WorkTimeCell.swift */; };
 		7325057124A32EF2001CF373 /* WorkTimeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7325056F24A32EF2001CF373 /* WorkTimeCell.xib */; };
+		735ACBB924B443E600E97B68 /* WorkRoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735ACBB824B443E600E97B68 /* WorkRoutController.swift */; };
+		735ACBBC24B4495E00E97B68 /* WorkProgressItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735ACBBA24B4495E00E97B68 /* WorkProgressItemCell.swift */; };
+		735ACBBD24B4495E00E97B68 /* WorkProgressItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 735ACBBB24B4495E00E97B68 /* WorkProgressItemCell.xib */; };
+		735ACBBF24B46BFB00E97B68 /* WorkFileVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735ACBBE24B46BFB00E97B68 /* WorkFileVIew.swift */; };
 		735C0C81249853D500194FB0 /* WorkDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735C0C80249853D500194FB0 /* WorkDataView.swift */; };
 		735C0C83249895DB00194FB0 /* CustomCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735C0C82249895DB00194FB0 /* CustomCalloutView.swift */; };
 		735C0C872498B85B00194FB0 /* DrawerMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735C0C862498B85B00194FB0 /* DrawerMainViewController.swift */; };
@@ -224,6 +228,10 @@
 		7325056C24A32DB4001CF373 /* HeaderWorkEnclosureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderWorkEnclosureView.swift; sourceTree = "<group>"; };
 		7325056E24A32EF2001CF373 /* WorkTimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkTimeCell.swift; sourceTree = "<group>"; };
 		7325056F24A32EF2001CF373 /* WorkTimeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkTimeCell.xib; sourceTree = "<group>"; };
+		735ACBB824B443E600E97B68 /* WorkRoutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkRoutController.swift; sourceTree = "<group>"; };
+		735ACBBA24B4495E00E97B68 /* WorkProgressItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkProgressItemCell.swift; sourceTree = "<group>"; };
+		735ACBBB24B4495E00E97B68 /* WorkProgressItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkProgressItemCell.xib; sourceTree = "<group>"; };
+		735ACBBE24B46BFB00E97B68 /* WorkFileVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkFileVIew.swift; sourceTree = "<group>"; };
 		735C0C80249853D500194FB0 /* WorkDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkDataView.swift; sourceTree = "<group>"; };
 		735C0C82249895DB00194FB0 /* CustomCalloutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalloutView.swift; sourceTree = "<group>"; };
 		735C0C862498B85B00194FB0 /* DrawerMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerMainViewController.swift; sourceTree = "<group>"; };
@@ -492,6 +500,14 @@
 				7362EA3324A061200011E56E /* NetView.swift */,
 			);
 			path = NetView;
+			sourceTree = "<group>";
+		};
+		735ACBB724B443CA00E97B68 /* Rout */ = {
+			isa = PBXGroup;
+			children = (
+				735ACBB824B443E600E97B68 /* WorkRoutController.swift */,
+			);
+			name = Rout;
 			sourceTree = "<group>";
 		};
 		735C0C842498B77200194FB0 /* Base */ = {
@@ -771,6 +787,7 @@
 		7382E8BB24A1CF9100401DC5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				735ACBBE24B46BFB00E97B68 /* WorkFileVIew.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -800,6 +817,8 @@
 				730C0D1624A34683009B2144 /* WorkEndCell.xib */,
 				730C0D1924A347FF009B2144 /* WorkTitleCell.swift */,
 				730C0D1A24A347FF009B2144 /* WorkTitleCell.xib */,
+				735ACBBA24B4495E00E97B68 /* WorkProgressItemCell.swift */,
+				735ACBBB24B4495E00E97B68 /* WorkProgressItemCell.xib */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -1185,6 +1204,7 @@
 		73BC0B6D2490DA2700B5DBDF /* Work */ = {
 			isa = PBXGroup;
 			children = (
+				735ACBB724B443CA00E97B68 /* Rout */,
 				3E4833DB24B35F7900A2203A /* End */,
 				3E4833DA24B35F6D00A2203A /* Begin */,
 				7382E8BA24A1CF7B00401DC5 /* Detail */,
@@ -1428,6 +1448,7 @@
 				73CC7B36249A426F009CC7FC /* SettingExitCell.xib in Resources */,
 				735C0C922498EF7200194FB0 /* HelpItemTableViewCell.xib in Resources */,
 				730C0D1024A33676009B2144 /* WorkInspectCell.xib in Resources */,
+				735ACBBD24B4495E00E97B68 /* WorkProgressItemCell.xib in Resources */,
 				7325055A24A2E933001CF373 /* WorkInfoCell.xib in Resources */,
 				730C0D1424A3442A009B2144 /* WorkFinishTimeCell.xib in Resources */,
 				7371C248249B0F5400CB6BAA /* UserDataSureCell.xib in Resources */,
@@ -1554,6 +1575,7 @@
 				73BC0B122490CE5500B5DBDF /* Platform.swift in Sources */,
 				7325056D24A32DB4001CF373 /* HeaderWorkEnclosureView.swift in Sources */,
 				73BC0B182490CE5500B5DBDF /* PGPhotoAlbumUtil.swift in Sources */,
+				735ACBBC24B4495E00E97B68 /* WorkProgressItemCell.swift in Sources */,
 				3E34795524B20F1B00A2A5C0 /* WorkDetailExt.swift in Sources */,
 				73BC0B5A2490CFBD00B5DBDF /* MJRefresh+Extension.swift in Sources */,
 				73BC0B172490CE5500B5DBDF /* PGImagePickerDelegate.swift in Sources */,
@@ -1572,6 +1594,7 @@
 				73BC0B532490CFBD00B5DBDF /* UIButton+Extension.swift in Sources */,
 				7362EA2624A049250011E56E /* UIView+SGFrame.m in Sources */,
 				73EC522F249B528A004D869A /* UserDataHeaderView.swift in Sources */,
+				735ACBBF24B46BFB00E97B68 /* WorkFileVIew.swift in Sources */,
 				73BC0B672490D64700B5DBDF /* UserProvide.swift in Sources */,
 				7325057024A32EF2001CF373 /* WorkTimeCell.swift in Sources */,
 				73BC0B272490CF2200B5DBDF /* PGMacros.swift in Sources */,
@@ -1602,6 +1625,7 @@
 				7362EA3924A08AB00011E56E /* WorkEndItemView.swift in Sources */,
 				73EC523A249B5ACB004D869A /* UserBillHeaderView.swift in Sources */,
 				7362EA2A24A049250011E56E /* SGPageTitleViewConfigure.m in Sources */,
+				735ACBB924B443E600E97B68 /* WorkRoutController.swift in Sources */,
 				73D68C25249775A2002055AD /* WebViewController.swift in Sources */,
 				73CC7B31249A4258009CC7FC /* SettingViewCell.swift in Sources */,
 				73BC0B562490CFBD00B5DBDF /* UIView+HUD.swift in Sources */,

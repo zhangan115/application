@@ -33,7 +33,7 @@ class WorkButtonCell: UITableViewCell {
             if self.workModel!.taskState == WorkState.WORK_ROB.rawValue {
                 showTimePick(0)
             }else{
-               
+                self.callBack?(nil)
             }
         }else {
             if !self.workModel!.canDo {

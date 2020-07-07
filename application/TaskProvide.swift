@@ -24,7 +24,7 @@ enum TaskTarget {
     case takeTask(taskId:Int,planArriveTime:Int)
     case uploadImage(data: Data)
     case taskUpdateTime(taskId:Int,planArriveTime:Int)
-    case taskVerify(taskId:Int,verifyContent:String,isPassed:Int)//是否通过，1：通过，0：不通过
+    case taskStart(taskId:Int,params:String)
     case substationListUser
     case taskAddAttachment(params:[String:Any])
     case camerList(substationId:Int)
@@ -51,11 +51,11 @@ extension TaskTarget:TargetType {
         case .takeTask:
             return "task/take"
         case .uploadImage:
-            return "task/upload_file"
+            return "task/upload"
         case .taskUpdateTime:
             return "task/update_arrive_time"
-        case .taskVerify:
-            return "task/verify"
+        case .taskStart:
+            return "task/start"
         case .substationListUser:
             return "substation/list/user"
         case .taskAddAttachment:
@@ -105,14 +105,13 @@ extension TaskTarget:TargetType {
             return param
         case let .taskUpdateTime(taskId, planArriveTime):
             var param :[String: Any] = [:]
-           param["taskId"] = taskId
+            param["taskId"] = taskId
             param["planArriveTime"] = planArriveTime
             return param
-        case let .taskVerify(taskId,verifyContent,isPassed):
+        case let .taskStart(taskId,params):
             var param :[String: Any] = [:]
             param["taskId"] = taskId
-            param["verifyContent"] = verifyContent
-            param["isPassed"] = isPassed
+            param["startPic"] = params
             return param
         case let .taskAddAttachment(params):
             return params
@@ -144,7 +143,9 @@ extension TaskTarget:TargetType {
     
     var task: Task {
         switch self {
-        case .getNearbyTask,.getWorkDetail,.getMyCheckTaskList,.getMyTaskList,.takeTask,.taskUpdateTime,.taskVerify,.taskAddAttachment,.camerList:
+        case .getNearbyTask,.getWorkDetail,.getMyCheckTaskList
+        ,.getMyTaskList,.takeTask,.taskUpdateTime
+        ,.taskStart,.taskAddAttachment,.camerList:
             return .requestParameters(parameters: parameters!, encoding: parameterEncoding)
         case let .uploadImage(data):
             let formatter = DateFormatter()

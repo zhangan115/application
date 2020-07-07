@@ -181,12 +181,34 @@ class TaskUploadFile : Mappable{
     
 }
 
-class PicNote : Mappable{
+class PicNote : NSObject, NSCoding, Mappable{
     
     var picCount:Int!
     var picName:String!
     var picNote:String!
     var picUrlList:[String]!
+    
+    func encode(with aCoder: NSCoder) {
+        if picCount != nil {
+            aCoder.encode(picCount, forKey: "picCount")
+        }
+        if picName != nil {
+            aCoder.encode(picName, forKey: "picName")
+        }
+        if picNote != nil {
+            aCoder.encode(picNote, forKey: "picNote")
+        }
+        if picUrlList != nil {
+            aCoder.encode(picUrlList, forKey: "picUrlList")
+        }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        picCount = aDecoder.decodeObject(forKey: "picCount") as? Int
+        picName = aDecoder.decodeObject(forKey: "picName") as? String
+        picNote = aDecoder.decodeObject(forKey: "picNote") as? String
+        picUrlList = aDecoder.decodeObject(forKey: "picUrlList") as? [String]
+    }
     
     required init(fromJson json: JSON!) {
         if json.isEmpty{

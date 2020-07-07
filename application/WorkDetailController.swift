@@ -20,11 +20,13 @@ var workFinishTimeCell = "WorkFinishTimeCell"
 var workEndCell = "WorkEndCell"
 var workTitleCell = "WorkTitleCell"
 var headerWorkEnclosureView = "HeaderWorkEnclosureView"
+var workProgressItemCell = "WorkProgressItemCell"
 
 class WorkDetailController: BaseTableViewController {
     
     var workModel:WorkModel!
     var disposeBag = DisposeBag()
+    var fileList : [String]  = []
     
     override func viewDidLoad() {
         self.isLoadMore = false
@@ -48,6 +50,7 @@ class WorkDetailController: BaseTableViewController {
         self.tableView.register(UINib(nibName: workInspectCell, bundle: nil), forCellReuseIdentifier: workInspectCell)
         self.tableView.register(UINib(nibName: workFinishTimeCell, bundle: nil), forCellReuseIdentifier: workFinishTimeCell)
         self.tableView.register(UINib(nibName: workTitleCell, bundle: nil), forCellReuseIdentifier: workTitleCell)
+        self.tableView.register(UINib(nibName: workProgressItemCell, bundle: nil), forCellReuseIdentifier: workProgressItemCell)
         self.request()
     }
     
@@ -58,6 +61,9 @@ class WorkDetailController: BaseTableViewController {
         }
         if self.workModel.taskState == WorkState.WORK_BEGIN.rawValue {
             return getBeginCell(indexPath: indexPath)
+        }
+        if self.workModel.taskState == WorkState.WORK_PROGRESS.rawValue{
+            return getProgressCell(indexPath: indexPath)
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
         return cell

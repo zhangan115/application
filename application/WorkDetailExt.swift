@@ -23,7 +23,7 @@ extension WorkDetailController {
         }else if self.workModel.taskState == WorkState.WORK_BEGIN.rawValue {
             return 8
         }else if self.workModel.taskState == WorkState.WORK_PROGRESS.rawValue {
-            return 6
+            return 8
         }else if self.workModel.taskState == WorkState.WORK_CHECK.rawValue {
             return 6
         }else if self.workModel.taskState == WorkState.WORK_FINISH.rawValue {
@@ -45,7 +45,10 @@ extension WorkDetailController {
             }
             return 1
         }else if self.workModel.taskState == WorkState.WORK_PROGRESS.rawValue {
-            return 6
+            if section == 7 {
+                return self.workModel.taskAttachmentList.count
+            }
+            return 1
         }else if self.workModel.taskState == WorkState.WORK_CHECK.rawValue {
             return 6
         }else if self.workModel.taskState == WorkState.WORK_FINISH.rawValue {
@@ -57,7 +60,8 @@ extension WorkDetailController {
     
     override  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if self.workModel.taskState == WorkState.WORK_ROB.rawValue && section == 4
-            || self.workModel.taskState == WorkState.WORK_BEGIN.rawValue && section == 6 {
+            || self.workModel.taskState == WorkState.WORK_BEGIN.rawValue && section == 6
+            || self.workModel.taskState == WorkState.WORK_PROGRESS.rawValue && section == 7 {
             return 58
         }
         return 12
@@ -88,6 +92,18 @@ extension WorkDetailController {
             }else{
                 return UITableView.automaticDimension
             }
+        }else if self.workModel.taskState == WorkState.WORK_PROGRESS.rawValue {
+            if indexPath.section == 0 || indexPath.section == 1 || indexPath.section == 3 {
+                return 80
+            }else if indexPath.section == 5 {
+                return 104
+            }else if indexPath.section == 7 {
+                return 40
+            }else if indexPath.section == 8 {
+                return 64
+            }else{
+                return UITableView.automaticDimension
+            }
         }
         return 184
     }
@@ -97,7 +113,8 @@ extension WorkDetailController {
      */
     override  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if self.workModel.taskState == WorkState.WORK_ROB.rawValue && section == 4
-            || self.workModel.taskState == WorkState.WORK_BEGIN.rawValue && section == 6 {
+            || self.workModel.taskState == WorkState.WORK_BEGIN.rawValue && section == 6
+            || self.workModel.taskState == WorkState.WORK_PROGRESS.rawValue && section == 7{
             let identifier = "taskAttachmentList_header"
             var view = tableView.dequeueReusableHeaderFooterView(withIdentifier: identifier) as? HeaderWorkEnclosureView
             if view == nil {
@@ -202,10 +219,67 @@ extension WorkDetailController {
             cell.setModel(model: self.workModel)
             cell.button.setTitle("到达现场上传作业前照片", for: .normal)
             cell.callBack = {(time)in
-                
+                let controller = WorkBeginController()
+                controller.workModel = self.workModel
+                self.pushVC(controller)
             }
             return cell
         }
     }
+    
+    //进行中
+     func getProgressCell(indexPath:IndexPath)->UITableViewCell{
+         if indexPath.section == 0 {
+             let cell = tableView.dequeueReusableCell(withIdentifier: workTitleCell) as! WorkTitleCell
+             cell.setModel(model: self.workModel)
+             return cell
+         }else if indexPath.section == 1 {
+             let cell = tableView.dequeueReusableCell(withIdentifier: workTimeCell) as! WorkTimeCell
+             cell.callBack = {(time)in
+                 taskProvider.rxRequest(.taskUpdateTime(taskId:self.workModel.taskId, planArriveTime: time))
+                     .subscribe(onSuccess: {[weak self] (model) in
+                         if self == nil{
+                             return
+                         }
+                         self?.view.toast("更新时间成功")
+                         self?.request()
+                     }) {[weak self] _ in
+                         self?.tableView.noRefreshReloadData()
+                 }.disposed(by: self.disposeBag)
+             }
+             cell.setModel(model: self.workModel)
+             return cell
+         }else if indexPath.section == 2 {
+             let cell = tableView.dequeueReusableCell(withIdentifier: workProgressItemCell) as! WorkProgressItemCell
+            cell.fileList = self.fileList
+            cell.addFileCallBack = {(url)in
+                let saveName = url.split("/").last ?? ""
+                self.fileList.append(saveName)
+                self.tableView.reloadData()
+            }
+            cell.setModel(workModel: self.workModel)
+             return cell
+         }else if indexPath.section == 3 {
+             let cell = tableView.dequeueReusableCell(withIdentifier: workCostCell) as! WorkCostCell
+             cell.setModel(model: self.workModel)
+             return cell
+         }else if indexPath.section == 4 {
+             let cell = tableView.dequeueReusableCell(withIdentifier: workInfoCell) as! WorkInfoCell
+             cell.setModel(model: self.workModel)
+             return cell
+         }else if indexPath.section == 5 {
+             let cell = tableView.dequeueReusableCell(withIdentifier: customerInfoCell) as! CustomerInfoCell
+             cell.setModel(model: self.workModel)
+             return cell
+         }else if indexPath.section == 6 {
+             let cell = tableView.dequeueReusableCell(withIdentifier: workRemarksCell) as! WorkRemarksCell
+             cell.setModel(model: self.workModel)
+             return cell
+         }else{
+             let cell = tableView.dequeueReusableCell(withIdentifier: workEnclosureCell) as! WorkEnclosureCell
+             cell.setModel(model: self.workModel.taskAttachmentList[indexPath.row])
+             return cell
+         }
+     }
     
 }
