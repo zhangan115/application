@@ -20,11 +20,27 @@ class WorkInspectCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.backgroundColor = UIColor.white
+        self.contentView.backgroundColor = UIColor.white
     }
     
     func setModel(model:WorkModel){
-        
+        if model.taskState == WorkState.WORK_PROGRESS.rawValue {
+            // 有过验收，没有通过
+            label1.isHidden = false
+            label2.isHidden = false
+            label3.isHidden = false
+            label4.isHidden = true
+            label5.isHidden = true
+            icon.isHidden = false
+        }else if model.taskState == WorkState.WORK_CHECK.rawValue {
+            //等待验收
+            label1.isHidden = true
+            label2.isHidden = true
+            label3.isHidden = true
+            label4.isHidden = false
+            label5.isHidden = false
+            icon.isHidden = true
+        }
     }
     
 }

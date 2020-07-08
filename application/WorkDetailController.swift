@@ -55,7 +55,6 @@ class WorkDetailController: BaseTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //抢单
         if self.workModel.taskState == WorkState.WORK_ROB.rawValue {
             return getRobCell(indexPath: indexPath)
         }
@@ -64,6 +63,9 @@ class WorkDetailController: BaseTableViewController {
         }
         if self.workModel.taskState == WorkState.WORK_PROGRESS.rawValue{
             return getProgressCell(indexPath: indexPath)
+        }
+        if self.workModel.taskState == WorkState.WORK_CHECK.rawValue{
+            return getCheckCell(indexPath: indexPath)
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
         return cell
@@ -89,7 +91,6 @@ class WorkDetailController: BaseTableViewController {
         alertController.addAction(sureAction)
         self.present(alertController, animated: true, completion: nil)
     }
-    
     
     override func request() {
         taskProviderNoPlugin.rxRequest(.getWorkDetail(taskId:self.workModel.taskId))

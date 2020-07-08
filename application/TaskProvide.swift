@@ -26,7 +26,7 @@ enum TaskTarget {
     case taskUpdateTime(taskId:Int,planArriveTime:Int)
     case taskStart(taskId:Int,params:String)
     case substationListUser
-    case taskAddAttachment(params:[String:Any])
+    case taskSubmit(params:[String:Any])
     case camerList(substationId:Int)
     case getCarList(substationId:Int)
     case getInstrument(substationId:Int)
@@ -58,8 +58,8 @@ extension TaskTarget:TargetType {
             return "task/start"
         case .substationListUser:
             return "substation/list/user"
-        case .taskAddAttachment:
-            return "task/add_attachment"
+        case .taskSubmit:
+            return "task/submit"
         case .camerList:
             return "camera/get/list"
         case .getCarList:
@@ -113,7 +113,7 @@ extension TaskTarget:TargetType {
             param["taskId"] = taskId
             param["startPic"] = params
             return param
-        case let .taskAddAttachment(params):
+        case let .taskSubmit(params):
             return params
         case let .camerList(substationId):
             return ["substationId":substationId]
@@ -145,7 +145,7 @@ extension TaskTarget:TargetType {
         switch self {
         case .getNearbyTask,.getWorkDetail,.getMyCheckTaskList
         ,.getMyTaskList,.takeTask,.taskUpdateTime
-        ,.taskStart,.taskAddAttachment,.camerList:
+        ,.taskStart,.taskSubmit,.camerList:
             return .requestParameters(parameters: parameters!, encoding: parameterEncoding)
         case let .uploadImage(data):
             let formatter = DateFormatter()

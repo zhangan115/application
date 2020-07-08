@@ -67,6 +67,14 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="icon" destination="7ui-D0-DfQ" id="AtX-jN-Coo"/>
+                <outlet property="label1" destination="Jyk-VP-GM6" id="dwX-An-xKf"/>
+                <outlet property="label2" destination="zni-On-Tef" id="e50-rX-qqV"/>
+                <outlet property="label3" destination="foR-dp-zhl" id="B9l-G0-5If"/>
+                <outlet property="label4" destination="UnB-IQ-k6S" id="CYV-T1-PlS"/>
+                <outlet property="label5" destination="82q-Gr-Wan" id="6uU-4T-col"/>
+            </connections>
             <point key="canvasLocation" x="131.8840579710145" y="162.05357142857142"/>
         </tableViewCell>
     </objects>

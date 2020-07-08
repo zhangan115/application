@@ -18,7 +18,7 @@ class RoutTitleCell: UITableViewCell {
     }
 
     func setModel(_ section:Int,model:DataItem){
-        titleLabel.text = (section + 1).toString + model.itemName
+        titleLabel.text = (section + 1).toString + ". " + model.itemName
     }
     
 }

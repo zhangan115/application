@@ -193,6 +193,10 @@
 		73EC5237249B5688004D869A /* UserBillViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EC5235249B5688004D869A /* UserBillViewCell.swift */; };
 		73EC5238249B5688004D869A /* UserBillViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73EC5236249B5688004D869A /* UserBillViewCell.xib */; };
 		73EC523A249B5ACB004D869A /* UserBillHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EC5239249B5ACB004D869A /* UserBillHeaderView.swift */; };
+		73F0F3F024B554AA00AA2E12 /* RoutButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F0F3EE24B554AA00AA2E12 /* RoutButtonCell.swift */; };
+		73F0F3F124B554AA00AA2E12 /* RoutButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73F0F3EF24B554AA00AA2E12 /* RoutButtonCell.xib */; };
+		73F0F3F324B56D4A00AA2E12 /* RealmConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F0F3F224B56D4A00AA2E12 /* RealmConfiguration.swift */; };
+		73F0F3F524B56E0C00AA2E12 /* TaskRoutRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F0F3F424B56E0C00AA2E12 /* TaskRoutRealm.swift */; };
 		907F5BCBC6FBAA7933AE0836 /* Pods_application.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3F8C859EEA62CB253F665ED /* Pods_application.framework */; };
 /* End PBXBuildFile section */
 
@@ -395,6 +399,10 @@
 		73EC5235249B5688004D869A /* UserBillViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBillViewCell.swift; sourceTree = "<group>"; };
 		73EC5236249B5688004D869A /* UserBillViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserBillViewCell.xib; sourceTree = "<group>"; };
 		73EC5239249B5ACB004D869A /* UserBillHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBillHeaderView.swift; sourceTree = "<group>"; };
+		73F0F3EE24B554AA00AA2E12 /* RoutButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutButtonCell.swift; sourceTree = "<group>"; };
+		73F0F3EF24B554AA00AA2E12 /* RoutButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoutButtonCell.xib; sourceTree = "<group>"; };
+		73F0F3F224B56D4A00AA2E12 /* RealmConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmConfiguration.swift; sourceTree = "<group>"; };
+		73F0F3F424B56E0C00AA2E12 /* TaskRoutRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRoutRealm.swift; sourceTree = "<group>"; };
 		A504447D5FB356D44D9201CE /* Pods-application.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-application.release.xcconfig"; path = "Pods/Target Support Files/Pods-application/Pods-application.release.xcconfig"; sourceTree = "<group>"; };
 		C82EDBF22C310BBD447D3908 /* Pods-application.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-application.debug.xcconfig"; path = "Pods/Target Support Files/Pods-application/Pods-application.debug.xcconfig"; sourceTree = "<group>"; };
 		F3F8C859EEA62CB253F665ED /* Pods_application.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_application.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -431,6 +439,8 @@
 				3E2BB45424B4BD7900A2E52C /* RoutTitleCell.xib */,
 				3E2BB45724B4BE6000A2E52C /* RoutItemCell.swift */,
 				3E2BB45824B4BE6000A2E52C /* RoutItemCell.xib */,
+				73F0F3EE24B554AA00AA2E12 /* RoutButtonCell.swift */,
+				73F0F3EF24B554AA00AA2E12 /* RoutButtonCell.xib */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -946,6 +956,8 @@
 		73BC0AF72490CD1000B5DBDF /* Realm */ = {
 			isa = PBXGroup;
 			children = (
+				73F0F3F224B56D4A00AA2E12 /* RealmConfiguration.swift */,
+				73F0F3F424B56E0C00AA2E12 /* TaskRoutRealm.swift */,
 			);
 			name = Realm;
 			sourceTree = "<group>";
@@ -1462,6 +1474,7 @@
 				736CD6092499B33400B66369 /* UserIdentityController.xib in Resources */,
 				7325057124A32EF2001CF373 /* WorkTimeCell.xib in Resources */,
 				73CC7B32249A4258009CC7FC /* SettingViewCell.xib in Resources */,
+				73F0F3F124B554AA00AA2E12 /* RoutButtonCell.xib in Resources */,
 				737643612457F54300CB2050 /* Assets.xcassets in Resources */,
 				7371C237249AF3D300CB6BAA /* AboutUsController.xib in Resources */,
 				7325056A24A329D8001CF373 /* WorkEnclosureCell.xib in Resources */,
@@ -1560,6 +1573,7 @@
 				7325055D24A31FEE001CF373 /* CustomerInfoCell.swift in Sources */,
 				73BC0B682490D64700B5DBDF /* TaskProvide.swift in Sources */,
 				73BC0B132490CE5500B5DBDF /* Tools.swift in Sources */,
+				73F0F3F524B56E0C00AA2E12 /* TaskRoutRealm.swift in Sources */,
 				7376435C2457F53F00CB2050 /* MainViewController.swift in Sources */,
 				735C0C872498B85B00194FB0 /* DrawerMainViewController.swift in Sources */,
 				73BC0B0E2490CE5500B5DBDF /* ModelBean.swift in Sources */,
@@ -1581,6 +1595,7 @@
 				735C0C83249895DB00194FB0 /* CustomCalloutView.swift in Sources */,
 				73BC0B632490CFBD00B5DBDF /* NSObject+Utilities.swift in Sources */,
 				7325056924A329D8001CF373 /* WorkEnclosureCell.swift in Sources */,
+				73F0F3F324B56D4A00AA2E12 /* RealmConfiguration.swift in Sources */,
 				73BC0B832490E4D100B5DBDF /* PGBaseViewController.swift in Sources */,
 				73BC0B602490CFBD00B5DBDF /* String+Extension.swift in Sources */,
 				73BC0B542490CFBD00B5DBDF /* UIColor+Extension.swift in Sources */,
@@ -1654,6 +1669,7 @@
 				736CD6012499A13300B66369 /* WorkDataBottomController.swift in Sources */,
 				73BC0B862490E4D100B5DBDF /* BaseTableView.swift in Sources */,
 				73BC0B802490E4D100B5DBDF /* BeanTableController.swift in Sources */,
+				73F0F3F024B554AA00AA2E12 /* RoutButtonCell.swift in Sources */,
 				7362EA3924A08AB00011E56E /* WorkEndItemView.swift in Sources */,
 				73EC523A249B5ACB004D869A /* UserBillHeaderView.swift in Sources */,
 				7362EA2A24A049250011E56E /* SGPageTitleViewConfigure.m in Sources */,

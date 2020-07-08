@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import PGActionSheet
+import RealmSwift
 class WorkProgressItemCell: UITableViewCell {
     
     @IBOutlet var bgView1 : UIView! // 背景
@@ -20,7 +21,7 @@ class WorkProgressItemCell: UITableViewCell {
     @IBOutlet var finishView : UIView!
     @IBOutlet var fileView : UIView!
     @IBOutlet var noteTextView : UITextView!
-    
+    @IBOutlet var progressLable:UILabel!
     @IBOutlet weak var finishHeight1:NSLayoutConstraint!
     @IBOutlet weak var finishlayoutHeight1: NSLayoutConstraint!
     @IBOutlet weak var roubHeight: NSLayoutConstraint!
@@ -29,6 +30,7 @@ class WorkProgressItemCell: UITableViewCell {
     var workModel:WorkModel!
     var disposeBag = DisposeBag()
     var callback:((WorkModel)->())?
+    var updateCallBack:(()->())?
     var viewList:[TakePhotoView] = []
     
     var addFileCallBack:((String)->())?
@@ -44,10 +46,24 @@ class WorkProgressItemCell: UITableViewCell {
         bgView2.layer.cornerRadius = 4
         subButton.layer.masksToBounds = true
         subButton.layer.cornerRadius = 4
+        let tap = UITapGestureRecognizer(target: self, action: #selector(showRoub))
+        roubView.addGestureRecognizer(tap)
     }
     
+    @objc func showRoub(){
+        let controller = WorkRoutController()
+        controller.workModel = self.workModel
+        controller.callback = {
+            self.updateCallBack?()
+        }
+        currentViewController().pushVC(controller)
+    }
+    
+    let realm = try! Realm()
+    
     func setModel(workModel:WorkModel){
-        if workModel.taskType == WorkType.WORK_TYPE_ROUT.rawValue {
+        self.workModel = workModel
+        if workModel.taskType == WorkType.WORK_TYPE_ROUT.rawValue && workModel.taskState == WorkState.WORK_PROGRESS.rawValue {
             roubHeight.constant = 44
             roubView.isHidden = false
         }else{
@@ -97,6 +113,7 @@ class WorkProgressItemCell: UITableViewCell {
                     view.callback = {
                         
                     }
+                    view.canTakePhoto = workModel.taskState == WorkState.WORK_PROGRESS.rawValue
                     view.tag = index
                     view.picNote = item
                     self.viewList.append(view)
@@ -106,6 +123,15 @@ class WorkProgressItemCell: UITableViewCell {
                     for (index,view) in viewList.enumerated() {
                         view.frame = CGRect(x: 0, y: CGFloat(0 + index * 90), w: screenWidth, h: 90)
                     }
+                }
+                if workModel.afterFinishFile != nil && !workModel.afterFinishFile!.nodeDataList.isEmpty {
+                    let taskId : Int = workModel.taskId
+                    let objects = self.realm.objects(TaskRoutRealm.self).filter("taskId == \(taskId)")
+                    let count = workModel.afterFinishFile!.nodeDataList.count
+                    progressLable.text = "完成" + ((objects.count / count) * 100 ).toString + "% >"
+                }
+                for item in workModel.afterFinishFile!.nodeAttachmentList {
+                    self.fileList.append(item.fileName)
                 }
             }
         }
@@ -123,6 +149,14 @@ class WorkProgressItemCell: UITableViewCell {
                 view.frame = CGRect(x: 0, y: CGFloat(0 + index * 34), w: screenWidth, h: 34)
             }
             self.fileView.addSubviews(viewList)
+        }
+        if workModel.taskState > WorkState.WORK_PROGRESS.rawValue {
+            noteTextView.backgroundColor = ColorConstants.tableViewBackground
+            noteTextView.isEditable = false
+            if workModel.afterFinishFile != nil {
+                noteTextView.text = workModel.afterFinishFile!.nodeNote
+            }
+            
         }
     }
     
@@ -152,7 +186,6 @@ class WorkProgressItemCell: UITableViewCell {
                 self.currentViewController().present(imagePicker, animated: false, completion: nil)
             }else {
                 button.setImage(UIImage(named: "upload_icon_photo"), for: .normal)
-                
             }
         }
     }

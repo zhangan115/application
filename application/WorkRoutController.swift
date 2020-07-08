@@ -8,9 +8,11 @@
 
 import UIKit
 import RxSwift
+import RealmSwift
+
 private var routTitleCell = "RoutTitleCell"
 private var routItemCell = "RoutItemCell"
-private var workButtonCell1 = "WorkButtonCell"
+private var routButtonCell = "RoutButtonCell"
 
 class WorkRoutController: BaseTableViewController {
     
@@ -18,6 +20,8 @@ class WorkRoutController: BaseTableViewController {
     var workModel:WorkModel!
     var disposeBag = DisposeBag()
     var selectStrList:[String?] = []
+    var canNext: Bool = false
+    var callback:(()->())?
     override func viewDidLoad() {
         self.isRefresh = false
         self.isLoadMore = false
@@ -32,15 +36,24 @@ class WorkRoutController: BaseTableViewController {
         
         self.tableView.register(UINib(nibName: routTitleCell, bundle: nil), forCellReuseIdentifier: routTitleCell)
         self.tableView.register(UINib(nibName: routItemCell, bundle: nil), forCellReuseIdentifier: routItemCell)
-        self.tableView.register(UINib(nibName: workButtonCell1, bundle: nil), forCellReuseIdentifier: workButtonCell1)
+        self.tableView.register(UINib(nibName: routButtonCell, bundle: nil), forCellReuseIdentifier: routButtonCell)
         request()
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == self.dateList.count {
-            let cell = tableView.dequeueReusableCell(withIdentifier: workButtonCell1) as! WorkButtonCell
-            cell.button.setTitle("下一步", for: .normal)
+            let cell = tableView.dequeueReusableCell(withIdentifier: routButtonCell) as! RoutButtonCell
+            cell.button.isEnabled = self.canNext
+            cell.callback = {
+                let controller = WorkEndController()
+                controller.workModel = self.workModel
+                controller.callback = {
+                    self.navigationController?.popViewController(animated: false)
+                    self.callback?()
+                }
+                self.pushVC(controller)
+            }
             return cell
         }else{
             if indexPath.row == 0 {
@@ -68,8 +81,26 @@ class WorkRoutController: BaseTableViewController {
                 if let list = model.afterFinishFile?.nodeDataList {
                     self?.dateList = list
                     self?.selectStrList.removeAll()
-                    for _ in list {
-                        self?.selectStrList.append(nil)
+                    let taskId : Int = model.taskId
+                    for item in list {
+                        let name : String = item.itemName
+                        let objects = self?.realm.objects(TaskRoutRealm.self).filter("taskId == \(taskId)").filter("itemName == %@",name)
+                        if objects != nil && !objects!.isEmpty {
+                            if let bean = objects!.first {
+                                self?.selectStrList.append(bean.itemValue)
+                            }else{
+                                self?.selectStrList.append(nil)
+                            }
+                        }else{
+                            self?.selectStrList.append(nil)
+                        }
+                    }
+                    self?.canNext = true
+                    for item in self?.selectStrList ?? [] {
+                        if item == nil {
+                            self?.canNext = false
+                            break
+                        }
                     }
                 }
                 self?.tableView.noRefreshReloadData()
@@ -78,19 +109,70 @@ class WorkRoutController: BaseTableViewController {
         }.disposed(by: self.disposeBag)
     }
     
+    let realm = try! Realm()
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == dateList.count {
-            for item in self.selectStrList {
-                if item == nil {
-                    return
+        if indexPath.row == 1 && indexPath.section != self.dateList.count {
+            let taskId : Int = self.workModel.taskId
+            let name : String = self.dateList[indexPath.section].itemName
+            let list = realm.objects(TaskRoutRealm.self).filter("taskId == \(taskId)").filter("itemName == %@",name)
+            if list.isEmpty {
+                let taskRout = TaskRoutRealm()
+                taskRout.taskId.value = taskId
+                taskRout.itemName = name
+                taskRout.itemValue = "正常"
+                try! realm.write {
+                    realm.add(taskRout)
+                }
+            }else{
+                if let bean = list.first {
+                    try! realm.write {
+                        bean.itemValue = "正常"
+                    }
                 }
             }
-        }else if indexPath.row == 1 {
             self.selectStrList[indexPath.section] = "正常"
-            tableView.noRefreshReloadData()
-        }else if indexPath.row == 2 {
+            canNext = true
+            for item in self.selectStrList {
+                if item == nil {
+                    canNext = false
+                    break
+                }
+            }
+            tableView.reloadRows(at: [IndexPath(row: 1, section: indexPath.section)
+                ,IndexPath(row: 2, section: indexPath.section)
+                ,IndexPath(row: 0, section: dateList.count)], with: .none)
+        }else if indexPath.row == 2 &&  indexPath.section != self.dateList.count {
+            let taskId : Int = self.workModel.taskId
+            let name : String = self.dateList[indexPath.section].itemName
+            let list = realm.objects(TaskRoutRealm.self).filter("taskId == \(taskId)").filter("itemName == %@",name)
+            if list.isEmpty {
+                let taskRout = TaskRoutRealm()
+                taskRout.taskId.value = taskId
+                taskRout.itemName = name
+                taskRout.itemValue = "异常"
+                try! realm.write {
+                    realm.add(taskRout)
+                }
+            }else{
+                if let bean = list.first {
+                    bean.itemValue = "异常"
+                    try! realm.write {
+                        bean.itemValue = "异常"
+                    }
+                }
+            }
             self.selectStrList[indexPath.section] = "异常"
-             tableView.noRefreshReloadData()
+            canNext = true
+            for item in self.selectStrList {
+                if item == nil {
+                    canNext = false
+                    break
+                }
+            }
+            tableView.reloadRows(at: [IndexPath(row: 1, section: indexPath.section)
+                ,IndexPath(row: 2, section: indexPath.section)
+                ,IndexPath(row: 0, section: dateList.count)], with: .none)
         }
     }
 }

@@ -12,7 +12,7 @@ class WorkBeginController: PGBaseViewController {
     
     var workModel:WorkModel!
     var disposeBag = DisposeBag()
-    var callback:((WorkModel)->())?
+    var callback:(()->())?
     var viewList:[TakePhotoView] = []
     
     lazy var noteLabel : UILabel = {
@@ -124,17 +124,23 @@ class WorkBeginController: PGBaseViewController {
             .subscribe(onSuccess: { [weak self](model) in
                 self?.workModel = model
                 if (model.taskType == WorkType.WORK_TYPE_ROUT.rawValue) {//去巡检
-                  
+                    let controller = WorkRoutController()
+                    controller.workModel = self?.workModel
+                    controller.callback = {
+                        self?.navigationController?.popViewController(animated: false)
+                        self?.callback?()
+                    }
+                    self?.pushVC(controller)
                 } else {//结束后上传资料
                     let controller = WorkEndController()
                     controller.workModel = self?.workModel
-                    controller.callback = {(model)in
+                    controller.callback = {
                         self?.popVC()
-                        self?.callback?(model)
+                        self?.callback?()
                     }
                     self?.pushVC(controller)
                 }
-            }) { [weak self](_) in
+            }) { (_) in
                 print("error")
         }.disposed(by: self.disposeBag)
     }

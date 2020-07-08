@@ -215,6 +215,7 @@
                 <outlet property="finishView" destination="Ej4-jf-ij8" id="fA9-yT-aja"/>
                 <outlet property="finishlayoutHeight1" destination="MXM-jr-fbo" id="jUb-Zz-FCg"/>
                 <outlet property="noteTextView" destination="oa4-Q4-LOl" id="Pv1-M0-5Yi"/>
+                <outlet property="progressLable" destination="qvf-5S-CpK" id="Wn1-Dj-Stm"/>
                 <outlet property="roubHeight" destination="sSE-Hd-SRs" id="GnZ-Ln-7B8"/>
                 <outlet property="roubView" destination="Hlk-uy-yY1" id="B1p-Br-BPm"/>
                 <outlet property="subButton" destination="ptq-Dq-hRj" id="p4H-yI-fgw"/>

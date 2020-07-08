@@ -9,11 +9,12 @@
 import UIKit
 import RxSwift
 import PGActionSheet
+import RealmSwift
 class WorkEndController: PGBaseViewController {
     
     var workModel:WorkModel!
     var disposeBag = DisposeBag()
-    var callback:((WorkModel)->())?
+    var callback:(()->())?
     var viewList:[TakePhotoView] = []
     var fileList : [String]  = []
     var fileUrlList : [String]  = []
@@ -152,7 +153,11 @@ class WorkEndController: PGBaseViewController {
         }
     }
     
+    let realm = try! Realm()
+    
     @objc func startAction(){
+        var params : [String:Any] = [:]
+        params["taskId"] = self.workModel.taskId
         var stringList : [[String:Any]] = []
         for item in self.viewList {
             var param = [String:Any]()
@@ -161,9 +166,40 @@ class WorkEndController: PGBaseViewController {
             param["picUrlList"] = item.picNote!.picUrlList
             stringList.append(param)
         }
-        taskProvider.rxRequest(.taskStart(taskId: self.workModel.taskId, params: stringList.toJson()))
+        params["finishPic"] = stringList.toJson()
+        if self.textInput.text.count != 0{
+            params["note"] = self.textInput.text
+        }
+        var fileStringList : [[String:Any]] = []
+        if !self.fileList.isEmpty {
+            for (index,item) in self.fileList.enumerated() {
+                var param = [String:Any]()
+                param["fileName"] = item
+                param["fileUrl"] = fileUrlList[index]
+                fileStringList.append(param)
+            }
+            params["attachment"] = fileStringList.toJson()
+        }
+        if self.workModel.taskType == WorkType.WORK_TYPE_ROUT.rawValue {
+            var stringList : [[String:Any]] = []
+            let taskId : Int = self.workModel.taskId
+            let list = realm.objects(TaskRoutRealm.self).filter("taskId == \(taskId)")
+            if !list.isEmpty {
+                for item in list {
+                    var param = [String:Any]()
+                    param["itemName"] = item.itemName
+                    param["itemValue"] = item.itemValue
+                    stringList.append(param)
+                }
+            }
+            params["data"] = stringList.toJson()
+        }
+        taskProvider.rxRequest(.taskSubmit(params: params))
             .subscribe(onSuccess: { [weak self](json) in
-                self?.requestModel()
+                //提交成功
+                self?.view.toast("提交成功")
+                self?.navigationController?.popViewController(animated: false)
+                self?.callback?()
             }) {[weak self] (_) in
                 self?.view.toast("提交失败")
         }.disposed(by: self.disposeBag)
@@ -222,6 +258,12 @@ class WorkEndController: PGBaseViewController {
             view.setData(name: file)
             view.frame = CGRect(x: 0, y: CGFloat(0 + 34 * index), w: screenWidth, h: 34)
             self.fileView.addSubview(view)
+        }
+        fileView.snp.updateConstraints { (make) in
+            make.left.equalToSuperview().offset(12)
+            make.right.equalToSuperview().offset(-12)
+            make.height.equalTo(CGFloat( 34 * self.fileList.count))
+            make.top.equalTo(self.fileLabel.snp.bottom).offset(12)
         }
     }
 }

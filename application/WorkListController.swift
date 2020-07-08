@@ -52,8 +52,10 @@ class WorkListController: BaseTableViewController {
                             return data
                     }.toListModel(type: WorkModel.self)
                         .subscribe(onSuccess: {[weak self](list) in
+                            self?.responseDataList.removeAll()
                             self?.requestSuccessMonitor(list: list)
                         }) { [weak self] _ in
+                            self?.responseDataList.removeAll()
                             self?.requestSuccessMonitor(list: [])
                     }.disposed(by: self.disposeBag)
                 }else {
@@ -74,6 +76,8 @@ class WorkListController: BaseTableViewController {
                                 return
                             }
                             if self!.currentIndex == WorkState.WORK_PROGRESS.rawValue {
+                                self!.list1.removeAll()
+                                self!.list2.removeAll()
                                 var allList : [WorkModel] = []
                                 for item in list {
                                     if item.hasEverSubmitted {
@@ -87,11 +91,14 @@ class WorkListController: BaseTableViewController {
                                 if !self!.list1.isEmpty {
                                     self!.headerPosition = self!.list1.count
                                 }
+                                self?.responseDataList.removeAll()
                                 self?.requestSuccessMonitor(list: allList)
                             }else {
+                                self?.responseDataList.removeAll()
                                 self?.requestSuccessMonitor(list: list)
                             }
                         }) { [weak self] _ in
+                            self?.responseDataList.removeAll()
                             self?.requestSuccessMonitor(list: [])
                     }.disposed(by: self.disposeBag)
                 }
@@ -128,7 +135,7 @@ extension WorkListController {
     override  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if self.currentIndex == WorkState.WORK_PROGRESS.rawValue {
             if  (!self.list1.isEmpty || !self.list2.isEmpty) && section == 0 {
-                let identifier = "header"
+                let identifier = "header_1"
                 var view = tableView.dequeueReusableHeaderFooterView(withIdentifier: identifier) as? WorkListHeaderView
                 if view == nil {
                     view = WorkListHeaderView(reuseIdentifier: identifier)
