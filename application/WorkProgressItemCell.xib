@@ -180,20 +180,45 @@
                             <action selector="sub:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Iwh-Ha-1q9"/>
                         </connections>
                     </button>
+                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rjr-Hh-mOp">
+                        <rect key="frame" x="0.0" y="871" width="320" height="40"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="work_detail_icon_time" translatesAutoresizingMaskIntoConstraints="NO" id="IVe-RM-0op">
+                                <rect key="frame" x="72" y="13" width="14" height="14"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="客服验收中，请等待…" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kZn-hz-tCU">
+                                <rect key="frame" x="90" y="11.5" width="140" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="kZn-hz-tCU" firstAttribute="centerX" secondItem="Rjr-Hh-mOp" secondAttribute="centerX" id="4GV-Sd-1lL"/>
+                            <constraint firstItem="kZn-hz-tCU" firstAttribute="centerY" secondItem="Rjr-Hh-mOp" secondAttribute="centerY" id="5Ue-1K-xnT"/>
+                            <constraint firstAttribute="height" constant="40" id="Noz-i7-7eH"/>
+                            <constraint firstItem="kZn-hz-tCU" firstAttribute="leading" secondItem="IVe-RM-0op" secondAttribute="trailing" constant="4" id="Xp1-hd-hJT"/>
+                            <constraint firstItem="IVe-RM-0op" firstAttribute="centerY" secondItem="Rjr-Hh-mOp" secondAttribute="centerY" id="j7Q-wv-G2n"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="ptq-Dq-hRj" firstAttribute="top" secondItem="Hlk-uy-yY1" secondAttribute="bottom" constant="12" id="2fj-6y-LKA"/>
                     <constraint firstItem="ZRv-d3-4Y5" firstAttribute="top" secondItem="1Xc-pk-XRs" secondAttribute="bottom" constant="8" id="ICe-Q5-RFh"/>
                     <constraint firstItem="1Xc-pk-XRs" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="IPz-9Q-akY"/>
+                    <constraint firstItem="Rjr-Hh-mOp" firstAttribute="top" secondItem="Hlk-uy-yY1" secondAttribute="bottom" id="KER-Q1-ei9"/>
                     <constraint firstItem="Hlk-uy-yY1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="MQx-RA-Cd9"/>
                     <constraint firstItem="ZRv-d3-4Y5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="Nc4-b6-PKe"/>
                     <constraint firstItem="wku-fN-vpH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="Niq-4Q-1PV"/>
+                    <constraint firstAttribute="trailing" secondItem="Rjr-Hh-mOp" secondAttribute="trailing" id="Nrd-Ky-lrN"/>
                     <constraint firstItem="eMO-mD-VWy" firstAttribute="top" secondItem="Uiz-ST-Wj0" secondAttribute="bottom" constant="12" id="Ubl-7c-cOI"/>
                     <constraint firstAttribute="trailing" secondItem="Hlk-uy-yY1" secondAttribute="trailing" id="Uc3-zO-8mg"/>
                     <constraint firstItem="eMO-mD-VWy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="Ugm-Ei-r1w"/>
                     <constraint firstAttribute="trailing" secondItem="wku-fN-vpH" secondAttribute="trailing" constant="12" id="XnN-8b-omb"/>
                     <constraint firstItem="Hlk-uy-yY1" firstAttribute="top" secondItem="ZRv-d3-4Y5" secondAttribute="bottom" constant="12" id="c4B-g4-7dc"/>
                     <constraint firstAttribute="trailing" secondItem="ptq-Dq-hRj" secondAttribute="trailing" constant="12" id="fCu-Qo-aWq"/>
+                    <constraint firstItem="Rjr-Hh-mOp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="fn3-TV-UpJ"/>
                     <constraint firstAttribute="bottom" secondItem="ptq-Dq-hRj" secondAttribute="bottom" constant="12" id="hZi-82-06f"/>
                     <constraint firstItem="1Xc-pk-XRs" firstAttribute="top" secondItem="wku-fN-vpH" secondAttribute="bottom" constant="12" id="jn7-rS-1oC"/>
                     <constraint firstItem="wku-fN-vpH" firstAttribute="top" secondItem="eMO-mD-VWy" secondAttribute="bottom" constant="8" id="lL2-3x-Hah"/>
@@ -208,6 +233,7 @@
                 <outlet property="addFileButton" destination="xVg-yg-JYT" id="4OA-rH-zDV"/>
                 <outlet property="bgView1" destination="wku-fN-vpH" id="n0Z-C8-Wj9"/>
                 <outlet property="bgView2" destination="ZRv-d3-4Y5" id="EuH-fC-vfh"/>
+                <outlet property="checkUIView" destination="Rjr-Hh-mOp" id="fhw-Qx-FVt"/>
                 <outlet property="fileHeigt" destination="9D9-Yr-YSm" id="oZi-Ut-5in"/>
                 <outlet property="fileView" destination="kjI-4D-5iV" id="D5a-4t-Vua"/>
                 <outlet property="finishHeight1" destination="mdU-rZ-RLd" id="Xyh-WT-S1m"/>
@@ -226,5 +252,6 @@
     <resources>
         <image name="upload_icon_annex" width="27" height="27"/>
         <image name="work_detail_icon_Inspection" width="20" height="20"/>
+        <image name="work_detail_icon_time" width="14" height="14"/>
     </resources>
 </document>

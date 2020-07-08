@@ -26,7 +26,7 @@ class WorkProgressItemCell: UITableViewCell {
     @IBOutlet weak var finishlayoutHeight1: NSLayoutConstraint!
     @IBOutlet weak var roubHeight: NSLayoutConstraint!
     @IBOutlet weak var fileHeigt: NSLayoutConstraint!
-    
+    @IBOutlet var checkUIView : UIView!
     var workModel:WorkModel!
     var disposeBag = DisposeBag()
     var callback:((WorkModel)->())?
@@ -77,6 +77,7 @@ class WorkProgressItemCell: UITableViewCell {
             addFileButton.isHidden = true
             subButton.isHidden = true
         }
+        checkUIView.isHidden = workModel.taskState != WorkState.WORK_CHECK.rawValue
         self.bgView1.removeSubviews()
         finishHeight1.constant = 396
         if let before = workModel.beforeStartFile {
