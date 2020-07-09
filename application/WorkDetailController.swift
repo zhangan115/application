@@ -22,7 +22,8 @@ var workTitleCell = "WorkTitleCell"
 var headerWorkEnclosureView = "HeaderWorkEnclosureView"
 var workProgressItemCell = "WorkProgressItemCell"
 var workCostDetailCell = "WorkCostDetailCell"
-
+var workProgressAfterCell = "WorkProgressAfterCell"
+var workProgressButtomCell = "WorkProgressButtomCell"
 class WorkDetailController: BaseTableViewController {
     
     var workModel:WorkModel!
@@ -30,6 +31,7 @@ class WorkDetailController: BaseTableViewController {
     var fileList : [String]  = []
     var fileUrlList : [String]  = []
     var stopState:Int = StopState.Normal.rawValue
+    var noteText:String?
     
     override func viewDidLoad() {
         self.isLoadMore = false
@@ -56,6 +58,8 @@ class WorkDetailController: BaseTableViewController {
         self.tableView.register(UINib(nibName: workProgressItemCell, bundle: nil), forCellReuseIdentifier: workProgressItemCell)
         self.tableView.register(UINib(nibName: workCostDetailCell, bundle: nil), forCellReuseIdentifier: workCostDetailCell)
         self.tableView.register(UINib(nibName: workEndCell, bundle: nil), forCellReuseIdentifier: workEndCell)
+        self.tableView.register(UINib(nibName: workProgressAfterCell, bundle: nil), forCellReuseIdentifier: workProgressAfterCell)
+        self.tableView.register(UINib(nibName: workProgressButtomCell, bundle: nil), forCellReuseIdentifier: workProgressButtomCell)
         self.request()
     }
     

@@ -62,15 +62,40 @@ extension WorkDetailController {
             if stopState == StopState.Normal.rawValue && !self.workModel.hasEverSubmitted && section == 7 {
                 return self.workModel.taskAttachmentList.count
             }
+            if section == 2 {
+                if !self.workModel.hasEverSubmitted && stopState == StopState.Normal.rawValue  {
+                    return 3
+                }
+                return 1
+            }
+            if section == 3 {
+                if self.workModel.hasEverSubmitted || stopState != StopState.Normal.rawValue  {
+                    return 3
+                }
+                return 1
+            }
             return 1
         }else if self.workModel.taskState == WorkState.WORK_CHECK.rawValue {
             if section == 8 {
                 return self.workModel.taskAttachmentList.count
             }
+            if section == 3 {
+                if self.workModel.taskType == WorkType.WORK_TYPE_ROUT.rawValue {
+                    return 3
+                }
+                return 2
+            }
             return 1
         }else if self.workModel.taskState == WorkState.WORK_FINISH.rawValue {
             if section == 8 {
                 return self.workModel.taskAttachmentList.count
+            }
+            if section == 3 {
+                if self.workModel.taskType == WorkType.WORK_TYPE_ROUT.rawValue {
+                    return 3
+                }else{
+                    return 2
+                }
             }
             return 1
         }else{
@@ -364,28 +389,45 @@ extension WorkDetailController {
             cell.setModel(model: self.workModel)
             return cell
         }else if indexPath.section == 2 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: workProgressItemCell) as! WorkProgressItemCell
-            cell.fileList = self.fileList
-            cell.fileUrlList = self.fileUrlList
-            cell.addFileCallBack = {(url)in
-                let saveName = url.split("/").last ?? ""
-                self.fileList.append(saveName)
-                self.fileUrlList.append(url)
-                self.tableView.reloadRows(at: [indexPath], with: .none)
+            if indexPath.row == 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: workProgressItemCell) as! WorkProgressItemCell
+                cell.setModel(workModel: self.workModel)
+                return cell
+            }else if indexPath.row == 1 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: workProgressAfterCell) as! WorkProgressAfterCell
+                cell.fileList = self.fileList
+                cell.fileUrlList = self.fileUrlList
+                cell.addFileCallBack = {(url)in
+                    let saveName = url.split("/").last ?? ""
+                    self.fileList.append(saveName)
+                    self.fileUrlList.append(url)
+                    self.tableView.reloadRows(at: [indexPath], with: .none)
+                }
+                cell.updateCallBack = {
+                    self.request()
+                }
+                cell.textChangeCallBack = {(text)in
+                    self.noteText = text
+                    self.tableView.reloadRows(at: [IndexPath(row: 2, section: 2)], with: .none)
+                }
+                cell.delectFileCallBack = {(index)in
+                    self.fileList.remove(at: index)
+                    self.fileUrlList.remove(at: index)
+                    self.tableView.reloadRows(at: [indexPath], with: .none)
+                }
+                cell.setModel(workModel: self.workModel)
+                return cell
+            }else{
+                let cell = tableView.dequeueReusableCell(withIdentifier: workProgressButtomCell) as! WorkProgressButtomCell
+                cell.setModel(workModel: self.workModel)
+                cell.fileList = self.fileList
+                cell.fileUrlList = self.fileUrlList
+                cell.noteText = self.noteText
+                cell.subCallBack = {
+                    self.request()
+                }
+                return cell
             }
-            cell.updateCallBack = {
-                self.request()
-            }
-            cell.delectFileCallBack = {(index)in
-                self.fileList.remove(at: index)
-                self.fileUrlList.remove(at: index)
-                self.tableView.reloadRows(at: [indexPath], with: .none)
-            }
-            cell.subCallBack = {
-                self.request()
-            }
-            cell.setModel(workModel: self.workModel)
-            return cell
         }else if indexPath.section == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: workCostCell) as! WorkCostCell
             cell.setModel(model: self.workModel)
@@ -423,10 +465,24 @@ extension WorkDetailController {
             cell.setModel(model: self.workModel)
             return cell
         }else if indexPath.section == 3 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: workProgressItemCell) as! WorkProgressItemCell
-            cell.fileList = self.fileList
-            cell.setModel(workModel: self.workModel)
-            return cell
+            if indexPath.row == 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: workProgressItemCell) as! WorkProgressItemCell
+                cell.setModel(workModel: self.workModel)
+                return cell
+            }else if indexPath.row == 1 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: workProgressAfterCell) as! WorkProgressAfterCell
+                cell.fileList = self.fileList
+                cell.fileUrlList = self.fileUrlList
+                cell.setModel(workModel: self.workModel)
+                return cell
+            }else{
+                let cell = tableView.dequeueReusableCell(withIdentifier: workProgressButtomCell) as! WorkProgressButtomCell
+                cell.setModel(workModel: self.workModel)
+                cell.fileList = self.fileList
+                cell.fileUrlList = self.fileUrlList
+                cell.noteText = self.noteText
+                return cell
+            }
         }else if indexPath.section == 4 {
             if stopState == StopState.Stop.rawValue {
                 let cell = tableView.dequeueReusableCell(withIdentifier: workCostDetailCell) as! WorkCostDetailCell
@@ -470,10 +526,24 @@ extension WorkDetailController {
             cell.setModel(model: self.workModel)
             return cell
         }else if indexPath.section == 3 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: workProgressItemCell) as! WorkProgressItemCell
-            cell.fileList = self.fileList
-            cell.setModel(workModel: self.workModel)
-            return cell
+            if indexPath.row == 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: workProgressItemCell) as! WorkProgressItemCell
+                cell.setModel(workModel: self.workModel)
+                return cell
+            }else if indexPath.row == 1 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: workProgressAfterCell) as! WorkProgressAfterCell
+                cell.fileList = self.fileList
+                cell.fileUrlList = self.fileUrlList
+                cell.setModel(workModel: self.workModel)
+                return cell
+            }else{
+                let cell = tableView.dequeueReusableCell(withIdentifier: workProgressButtomCell) as! WorkProgressButtomCell
+                cell.setModel(workModel: self.workModel)
+                cell.fileList = self.fileList
+                cell.fileUrlList = self.fileUrlList
+                cell.noteText = self.noteText
+                return cell
+            }
         }else if indexPath.section == 4 {
             let cell = tableView.dequeueReusableCell(withIdentifier: workCostDetailCell) as! WorkCostDetailCell
             cell.setModel(model: self.workModel)
@@ -511,28 +581,45 @@ extension WorkDetailController {
             cell.setModel(model: self.workModel)
             return cell
         }else if indexPath.section == 3 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: workProgressItemCell) as! WorkProgressItemCell
-            cell.fileList = self.fileList
-            cell.fileUrlList = self.fileUrlList
-            cell.addFileCallBack = {(url)in
-                let saveName = url.split("/").last ?? ""
-                self.fileList.append(saveName)
-                self.fileUrlList.append(url)
-                self.tableView.reloadRows(at: [indexPath], with: .none)
+            if indexPath.row == 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: workProgressItemCell) as! WorkProgressItemCell
+                cell.setModel(workModel: self.workModel)
+                return cell
+            }else if indexPath.row == 1 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: workProgressAfterCell) as! WorkProgressAfterCell
+                cell.fileList = self.fileList
+                cell.fileUrlList = self.fileUrlList
+                cell.addFileCallBack = {(url)in
+                    let saveName = url.split("/").last ?? ""
+                    self.fileList.append(saveName)
+                    self.fileUrlList.append(url)
+                    self.tableView.reloadRows(at: [indexPath], with: .none)
+                }
+                cell.updateCallBack = {
+                    self.request()
+                }
+                cell.textChangeCallBack = {(text)in
+                    self.noteText = text
+                    self.tableView.reloadRows(at: [IndexPath(row: 2, section: 2)], with: .none)
+                }
+                cell.delectFileCallBack = {(index)in
+                    self.fileList.remove(at: index)
+                    self.fileUrlList.remove(at: index)
+                    self.tableView.reloadRows(at: [indexPath], with: .none)
+                }
+                cell.setModel(workModel: self.workModel)
+                return cell
+            }else{
+                let cell = tableView.dequeueReusableCell(withIdentifier: workProgressButtomCell) as! WorkProgressButtomCell
+                cell.setModel(workModel: self.workModel)
+                cell.fileList = self.fileList
+                cell.fileUrlList = self.fileUrlList
+                cell.noteText = self.noteText
+                cell.subCallBack = {
+                    self.request()
+                }
+                return cell
             }
-            cell.updateCallBack = {
-                self.request()
-            }
-            cell.delectFileCallBack = {(index)in
-                self.fileList.remove(at: index)
-                self.fileUrlList.remove(at: index)
-                self.tableView.reloadRows(at: [indexPath], with: .none)
-            }
-            cell.subCallBack = {
-                self.request()
-            }
-            cell.setModel(workModel: self.workModel)
-            return cell
         }else if indexPath.section == 4 {
             let cell = tableView.dequeueReusableCell(withIdentifier: workCostCell) as! WorkCostCell
             cell.setModel(model: self.workModel)
@@ -570,11 +657,24 @@ extension WorkDetailController {
             cell.setModel(model: self.workModel)
             return cell
         }else if indexPath.section == 3 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: workProgressItemCell) as! WorkProgressItemCell
-            cell.fileList = self.fileList
-            cell.fileUrlList = self.fileUrlList
-            cell.setModel(workModel: self.workModel)
-            return cell
+            if indexPath.row == 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: workProgressItemCell) as! WorkProgressItemCell
+                cell.setModel(workModel: self.workModel)
+                return cell
+            }else if indexPath.row == 1 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: workProgressAfterCell) as! WorkProgressAfterCell
+                cell.fileList = self.fileList
+                cell.fileUrlList = self.fileUrlList
+                cell.setModel(workModel: self.workModel)
+                return cell
+            }else{
+                let cell = tableView.dequeueReusableCell(withIdentifier: workProgressButtomCell) as! WorkProgressButtomCell
+                cell.setModel(workModel: self.workModel)
+                cell.fileList = self.fileList
+                cell.fileUrlList = self.fileUrlList
+                cell.noteText = self.noteText
+                return cell
+            }
         }else if indexPath.section == 4 {
             if stopState == StopState.Stop.rawValue {
                 let cell = tableView.dequeueReusableCell(withIdentifier: workCostDetailCell) as! WorkCostDetailCell
