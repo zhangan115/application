@@ -123,7 +123,7 @@ extension TakePhotoView: UIImagePickerControllerDelegate, UINavigationController
         self.showHUD(message: "上传中...")
         let data = image.jpegData(compressionQuality: 0.3)
         if let data = data {
-            taskProvider.requestResult(.uploadImage(data: data), success: {(responseJson) in
+            taskProvider.requestResult(.uploadImage(taskId: nil, data: data), success: {(responseJson) in
                 self.showHUD("上传成功", completion: {
                     self.hiddenHUD()
                 })

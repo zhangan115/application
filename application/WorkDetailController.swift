@@ -21,12 +21,15 @@ var workEndCell = "WorkEndCell"
 var workTitleCell = "WorkTitleCell"
 var headerWorkEnclosureView = "HeaderWorkEnclosureView"
 var workProgressItemCell = "WorkProgressItemCell"
+var workCostDetailCell = "WorkCostDetailCell"
 
 class WorkDetailController: BaseTableViewController {
     
     var workModel:WorkModel!
     var disposeBag = DisposeBag()
     var fileList : [String]  = []
+    var fileUrlList : [String]  = []
+    var stopState:Int = StopState.Normal.rawValue
     
     override func viewDidLoad() {
         self.isLoadMore = false
@@ -51,6 +54,8 @@ class WorkDetailController: BaseTableViewController {
         self.tableView.register(UINib(nibName: workFinishTimeCell, bundle: nil), forCellReuseIdentifier: workFinishTimeCell)
         self.tableView.register(UINib(nibName: workTitleCell, bundle: nil), forCellReuseIdentifier: workTitleCell)
         self.tableView.register(UINib(nibName: workProgressItemCell, bundle: nil), forCellReuseIdentifier: workProgressItemCell)
+        self.tableView.register(UINib(nibName: workCostDetailCell, bundle: nil), forCellReuseIdentifier: workCostDetailCell)
+        self.tableView.register(UINib(nibName: workEndCell, bundle: nil), forCellReuseIdentifier: workEndCell)
         self.request()
     }
     
@@ -66,6 +71,9 @@ class WorkDetailController: BaseTableViewController {
         }
         if self.workModel.taskState == WorkState.WORK_CHECK.rawValue{
             return getCheckCell(indexPath: indexPath)
+        }
+        if self.workModel.taskState == WorkState.WORK_FINISH.rawValue{
+            return getFinishCell(indexPath: indexPath)
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
         return cell
@@ -99,7 +107,22 @@ class WorkDetailController: BaseTableViewController {
                 if self == nil{
                     return
                 }
+                if let attachmen = model.afterFinishFile {
+                    if attachmen.nodeAttachmentList != nil {
+                        for item in attachmen.nodeAttachmentList {
+                            self?.fileList.append(item.fileName)
+                            self?.fileUrlList.append(item.fileUrl)
+                        }
+                    }
+                }
                 self?.workModel = model
+                if model.isTerminated {
+                    if model.actualFee != nil{
+                        self?.stopState = StopState.Stop.rawValue
+                    }else{
+                        self?.stopState = StopState.Progress.rawValue
+                    }
+                }
                 self?.tableView.noRefreshReloadData()
             }) {[weak self] _ in
                 self?.tableView.noRefreshReloadData()

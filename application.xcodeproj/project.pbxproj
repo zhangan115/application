@@ -46,6 +46,9 @@
 		7325056D24A32DB4001CF373 /* HeaderWorkEnclosureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7325056C24A32DB4001CF373 /* HeaderWorkEnclosureView.swift */; };
 		7325057024A32EF2001CF373 /* WorkTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7325056E24A32EF2001CF373 /* WorkTimeCell.swift */; };
 		7325057124A32EF2001CF373 /* WorkTimeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7325056F24A32EF2001CF373 /* WorkTimeCell.xib */; };
+		734C541724B6E7B300B9DC55 /* WorkCostDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C541524B6E7B300B9DC55 /* WorkCostDetailCell.swift */; };
+		734C541824B6E7B300B9DC55 /* WorkCostDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 734C541624B6E7B300B9DC55 /* WorkCostDetailCell.xib */; };
+		734C541A24B7094900B9DC55 /* WorkStopilExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C541924B7094900B9DC55 /* WorkStopilExt.swift */; };
 		735ACBB924B443E600E97B68 /* WorkRoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735ACBB824B443E600E97B68 /* WorkRoutController.swift */; };
 		735ACBBC24B4495E00E97B68 /* WorkProgressItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735ACBBA24B4495E00E97B68 /* WorkProgressItemCell.swift */; };
 		735ACBBD24B4495E00E97B68 /* WorkProgressItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 735ACBBB24B4495E00E97B68 /* WorkProgressItemCell.xib */; };
@@ -197,6 +200,10 @@
 		73F0F3F124B554AA00AA2E12 /* RoutButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73F0F3EF24B554AA00AA2E12 /* RoutButtonCell.xib */; };
 		73F0F3F324B56D4A00AA2E12 /* RealmConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F0F3F224B56D4A00AA2E12 /* RealmConfiguration.swift */; };
 		73F0F3F524B56E0C00AA2E12 /* TaskRoutRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F0F3F424B56E0C00AA2E12 /* TaskRoutRealm.swift */; };
+		73F141A324B717A1000E93A4 /* WorkProgressAfterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F141A124B717A1000E93A4 /* WorkProgressAfterCell.swift */; };
+		73F141A424B717A1000E93A4 /* WorkProgressAfterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73F141A224B717A1000E93A4 /* WorkProgressAfterCell.xib */; };
+		73F141A724B71D62000E93A4 /* WorkProgressButtomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F141A524B71D62000E93A4 /* WorkProgressButtomCell.swift */; };
+		73F141A824B71D62000E93A4 /* WorkProgressButtomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73F141A624B71D62000E93A4 /* WorkProgressButtomCell.xib */; };
 		907F5BCBC6FBAA7933AE0836 /* Pods_application.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3F8C859EEA62CB253F665ED /* Pods_application.framework */; };
 /* End PBXBuildFile section */
 
@@ -240,6 +247,9 @@
 		7325056C24A32DB4001CF373 /* HeaderWorkEnclosureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderWorkEnclosureView.swift; sourceTree = "<group>"; };
 		7325056E24A32EF2001CF373 /* WorkTimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkTimeCell.swift; sourceTree = "<group>"; };
 		7325056F24A32EF2001CF373 /* WorkTimeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkTimeCell.xib; sourceTree = "<group>"; };
+		734C541524B6E7B300B9DC55 /* WorkCostDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkCostDetailCell.swift; sourceTree = "<group>"; };
+		734C541624B6E7B300B9DC55 /* WorkCostDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkCostDetailCell.xib; sourceTree = "<group>"; };
+		734C541924B7094900B9DC55 /* WorkStopilExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkStopilExt.swift; sourceTree = "<group>"; };
 		735ACBB824B443E600E97B68 /* WorkRoutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkRoutController.swift; sourceTree = "<group>"; };
 		735ACBBA24B4495E00E97B68 /* WorkProgressItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkProgressItemCell.swift; sourceTree = "<group>"; };
 		735ACBBB24B4495E00E97B68 /* WorkProgressItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkProgressItemCell.xib; sourceTree = "<group>"; };
@@ -403,6 +413,10 @@
 		73F0F3EF24B554AA00AA2E12 /* RoutButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoutButtonCell.xib; sourceTree = "<group>"; };
 		73F0F3F224B56D4A00AA2E12 /* RealmConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmConfiguration.swift; sourceTree = "<group>"; };
 		73F0F3F424B56E0C00AA2E12 /* TaskRoutRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRoutRealm.swift; sourceTree = "<group>"; };
+		73F141A124B717A1000E93A4 /* WorkProgressAfterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkProgressAfterCell.swift; sourceTree = "<group>"; };
+		73F141A224B717A1000E93A4 /* WorkProgressAfterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkProgressAfterCell.xib; sourceTree = "<group>"; };
+		73F141A524B71D62000E93A4 /* WorkProgressButtomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkProgressButtomCell.swift; sourceTree = "<group>"; };
+		73F141A624B71D62000E93A4 /* WorkProgressButtomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkProgressButtomCell.xib; sourceTree = "<group>"; };
 		A504447D5FB356D44D9201CE /* Pods-application.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-application.release.xcconfig"; path = "Pods/Target Support Files/Pods-application/Pods-application.release.xcconfig"; sourceTree = "<group>"; };
 		C82EDBF22C310BBD447D3908 /* Pods-application.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-application.debug.xcconfig"; path = "Pods/Target Support Files/Pods-application/Pods-application.debug.xcconfig"; sourceTree = "<group>"; };
 		F3F8C859EEA62CB253F665ED /* Pods_application.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_application.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -639,14 +653,14 @@
 			name = List;
 			sourceTree = "<group>";
 		};
-		7362EA2E24A04A710011E56E /* End */ = {
+		7362EA2E24A04A710011E56E /* Stop */ = {
 			isa = PBXGroup;
 			children = (
 				7362EA3A24A08AB50011E56E /* View */,
 				7362EA3524A08A3B0011E56E /* Cell */,
 				7362EA2F24A04A810011E56E /* EndWorkController.swift */,
 			);
-			name = End;
+			name = Stop;
 			sourceTree = "<group>";
 		};
 		7362EA3524A08A3B0011E56E /* Cell */ = {
@@ -818,6 +832,7 @@
 				7382E8BB24A1CF9100401DC5 /* View */,
 				7382E8BD24A1CFA800401DC5 /* WorkDetailController.swift */,
 				3E34795424B20F1B00A2A5C0 /* WorkDetailExt.swift */,
+				734C541924B7094900B9DC55 /* WorkStopilExt.swift */,
 			);
 			name = Detail;
 			sourceTree = "<group>";
@@ -857,6 +872,12 @@
 				730C0D1A24A347FF009B2144 /* WorkTitleCell.xib */,
 				735ACBBA24B4495E00E97B68 /* WorkProgressItemCell.swift */,
 				735ACBBB24B4495E00E97B68 /* WorkProgressItemCell.xib */,
+				734C541524B6E7B300B9DC55 /* WorkCostDetailCell.swift */,
+				734C541624B6E7B300B9DC55 /* WorkCostDetailCell.xib */,
+				73F141A124B717A1000E93A4 /* WorkProgressAfterCell.swift */,
+				73F141A224B717A1000E93A4 /* WorkProgressAfterCell.xib */,
+				73F141A524B71D62000E93A4 /* WorkProgressButtomCell.swift */,
+				73F141A624B71D62000E93A4 /* WorkProgressButtomCell.xib */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -1249,7 +1270,7 @@
 				3E4833DA24B35F6D00A2203A /* Begin */,
 				7382E8BA24A1CF7B00401DC5 /* Detail */,
 				7382E8B024A1B3DE00401DC5 /* Rob */,
-				7362EA2E24A04A710011E56E /* End */,
+				7362EA2E24A04A710011E56E /* Stop */,
 				7362EA2B24A04A470011E56E /* List */,
 				736CD6022499A71A00B66369 /* WorkViewController.swift */,
 				736CD6042499A99900B66369 /* TestView.swift */,
@@ -1470,6 +1491,7 @@
 				736CD6132499DC7400B66369 /* UserElectricianController.xib in Resources */,
 				736A4E3D24934DC900B2C2F0 /* ForgetPass1ViewController.xib in Resources */,
 				737643642457F54300CB2050 /* LaunchScreen.storyboard in Resources */,
+				73F141A824B71D62000E93A4 /* WorkProgressButtomCell.xib in Resources */,
 				3E2BB45624B4BD7900A2E52C /* RoutTitleCell.xib in Resources */,
 				736CD6092499B33400B66369 /* UserIdentityController.xib in Resources */,
 				7325057124A32EF2001CF373 /* WorkTimeCell.xib in Resources */,
@@ -1484,6 +1506,8 @@
 				730C0D1824A34683009B2144 /* WorkEndCell.xib in Resources */,
 				73EC5238249B5688004D869A /* UserBillViewCell.xib in Resources */,
 				7371C240249B0F3100CB6BAA /* UserDataInputCell.xib in Resources */,
+				734C541824B6E7B300B9DC55 /* WorkCostDetailCell.xib in Resources */,
+				73F141A424B717A1000E93A4 /* WorkProgressAfterCell.xib in Resources */,
 				7371C244249B0F4100CB6BAA /* UserDataChooseCell.xib in Resources */,
 				7325055E24A31FEE001CF373 /* CustomerInfoCell.xib in Resources */,
 				7325055624A2E19B001CF373 /* WorkCostCell.xib in Resources */,
@@ -1588,6 +1612,7 @@
 				3EB37EE1249EF9ED00A2DBD4 /* MainUserVerifyController.swift in Sources */,
 				73EC5237249B5688004D869A /* UserBillViewCell.swift in Sources */,
 				7325056524A326E3001CF373 /* WorkButtonCell.swift in Sources */,
+				734C541724B6E7B300B9DC55 /* WorkCostDetailCell.swift in Sources */,
 				739932FE249B408A00626534 /* Account.swift in Sources */,
 				73BC0B252490CF2200B5DBDF /* PGEnumeration.swift in Sources */,
 				73BC0B0C2490CE5500B5DBDF /* PGProvider.swift in Sources */,
@@ -1604,6 +1629,7 @@
 				730C0D0F24A33676009B2144 /* WorkInspectCell.swift in Sources */,
 				7325055524A2E19B001CF373 /* WorkCostCell.swift in Sources */,
 				7362EA3224A0556B0011E56E /* WorkVerifyView.swift in Sources */,
+				73F141A724B71D62000E93A4 /* WorkProgressButtomCell.swift in Sources */,
 				731F5BBF2491FAC30019D58B /* GuideViewController.swift in Sources */,
 				73BC0B0F2490CE5500B5DBDF /* PGAlamofireManager.swift in Sources */,
 				7371C243249B0F4100CB6BAA /* UserDataChooseCell.swift in Sources */,
@@ -1633,6 +1659,7 @@
 				3EB37EE7249F01D000A2DBD4 /* VerifyContentView.swift in Sources */,
 				736A4E402493503000B2C2F0 /* ForgetPass2ViewController.swift in Sources */,
 				7362EA1624A038DD0011E56E /* UserFreezyController.swift in Sources */,
+				73F141A324B717A1000E93A4 /* WorkProgressAfterCell.swift in Sources */,
 				73BC0B142490CE5500B5DBDF /* PGScrollView.swift in Sources */,
 				73BC0B5F2490CFBD00B5DBDF /* Dictionary+Extension.swift in Sources */,
 				73BC0B582490CFBD00B5DBDF /* UIView+currentViewController.swift in Sources */,
@@ -1708,6 +1735,7 @@
 				7362EA3424A061200011E56E /* NetView.swift in Sources */,
 				73BC0B262490CF2200B5DBDF /* PGUserDefaultsKey.swift in Sources */,
 				73BC0B5B2490CFBD00B5DBDF /* URL+Extension.swift in Sources */,
+				734C541A24B7094900B9DC55 /* WorkStopilExt.swift in Sources */,
 				735C0C912498EF7200194FB0 /* HelpItemTableViewCell.swift in Sources */,
 				73BC0B152490CE5500B5DBDF /* PGImagePicker.swift in Sources */,
 				73BC0B872490E4D100B5DBDF /* PlaceholderTextView.swift in Sources */,

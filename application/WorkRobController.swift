@@ -38,6 +38,9 @@ class WorkRobController: BaseTableViewController {
                 if self == nil{
                     return
                 }
+                self?.list1.removeAll()
+                self?.list2.removeAll()
+                self?.responseDataList.removeAll()
                 var allList : [WorkModel] = []
                 for item in list {
                     if item.canDo {

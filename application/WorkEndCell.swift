@@ -14,11 +14,11 @@ class WorkEndCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.backgroundColor = UIColor.white
+        self.contentView.backgroundColor = UIColor.white
     }
     
     func setModel(model:WorkModel){
-        
+        endReasonLabel.text = model.terminateReason
     }
 
     

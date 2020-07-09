@@ -281,7 +281,7 @@ extension WorkEndController: UIImagePickerControllerDelegate, UINavigationContro
         self.view.showHUD(message: "上传中...")
         let data = image.jpegData(compressionQuality: 0.3)
         if let data = data {
-            taskProvider.requestResult(.uploadImage(data: data), success: {(responseJson) in
+            taskProvider.requestResult(.uploadImage(taskId: workModel.taskId, data: data), success: {(responseJson) in
                 self.view.showHUD("上传成功", completion: {
                     self.view.hiddenHUD()
                 })

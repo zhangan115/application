@@ -26,7 +26,6 @@ class EndWorkController: BaseTableViewController {
         self.tableView.sectionHeaderHeight = 0.01
         self.tableView.sectionFooterHeight = 0.01
         self.tableView.register(WorkEndItemViewCell.self, forCellReuseIdentifier: itemCell)
-        request()
     }
     
     override func request() {

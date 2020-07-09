@@ -27,15 +27,18 @@ class WorkProgressItemCell: UITableViewCell {
     @IBOutlet weak var roubHeight: NSLayoutConstraint!
     @IBOutlet weak var fileHeigt: NSLayoutConstraint!
     @IBOutlet var checkUIView : UIView!
+    
     var workModel:WorkModel!
     var disposeBag = DisposeBag()
+    
+    var viewList:[TakePhotoView] = []
     var callback:((WorkModel)->())?
     var updateCallBack:(()->())?
-    var viewList:[TakePhotoView] = []
-    
     var addFileCallBack:((String)->())?
+    var delectFileCallBack:((Int)->())?
+    var subCallBack:(()->())?
     var fileList:[String] = []
-    
+    var fileUrlList : [String]  = []
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -62,8 +65,12 @@ class WorkProgressItemCell: UITableViewCell {
     let realm = try! Realm()
     
     func setModel(workModel:WorkModel){
+        finishHeight1.constant = 396
         self.workModel = workModel
         if workModel.taskType == WorkType.WORK_TYPE_ROUT.rawValue && workModel.taskState == WorkState.WORK_PROGRESS.rawValue {
+            roubHeight.constant = 44
+            roubView.isHidden = false
+        }else if workModel.taskType == WorkType.WORK_TYPE_ROUT.rawValue && workModel.taskState == WorkState.WORK_FINISH.rawValue{
             roubHeight.constant = 44
             roubView.isHidden = false
         }else{
@@ -76,10 +83,12 @@ class WorkProgressItemCell: UITableViewCell {
         }else{
             addFileButton.isHidden = true
             subButton.isHidden = true
+            addFileButton.snp.updateConstraints { (make) in
+                make.height.equalTo(0)
+            }
         }
         checkUIView.isHidden = workModel.taskState != WorkState.WORK_CHECK.rawValue
         self.bgView1.removeSubviews()
-        finishHeight1.constant = 396
         if let before = workModel.beforeStartFile {
             if before.nodePicList != nil && !before.nodePicList.isEmpty{
                 self.viewList.removeAll()
@@ -111,9 +120,6 @@ class WorkProgressItemCell: UITableViewCell {
                     let view = TakePhotoView()
                     view.setData(picNote: item)
                     view.titleLable.text = item.picName
-                    view.callback = {
-                        
-                    }
                     view.canTakePhoto = workModel.taskState == WorkState.WORK_PROGRESS.rawValue
                     view.tag = index
                     view.picNote = item
@@ -131,33 +137,45 @@ class WorkProgressItemCell: UITableViewCell {
                     let count = workModel.afterFinishFile!.nodeDataList.count
                     progressLable.text = "完成" + ((objects.count / count) * 100 ).toString + "% >"
                 }
-                for item in workModel.afterFinishFile!.nodeAttachmentList {
-                    self.fileList.append(item.fileName)
-                }
             }
         }
         self.fileView.removeSubviews()
-        if !self.fileList.isEmpty {
-            fileHeigt.constant = CGFloat(self.fileList.count * 34)
-            finishHeight1.constant = finishHeight1.constant + CGFloat(self.fileList.count * 34)
-            var viewList : [WorkFileVIew] = []
-            for item in self.fileList {
-                let view = WorkFileVIew()
-                view.setData(name: item)
-                viewList.append(view)
-            }
-            for (index,view) in viewList.enumerated() {
-                view.frame = CGRect(x: 0, y: CGFloat(0 + index * 34), w: screenWidth, h: 34)
-            }
-            self.fileView.addSubviews(viewList)
-        }
+        reloadFileView(height: finishHeight1.constant)
         if workModel.taskState > WorkState.WORK_PROGRESS.rawValue {
             noteTextView.backgroundColor = ColorConstants.tableViewBackground
             noteTextView.isEditable = false
             if workModel.afterFinishFile != nil {
                 noteTextView.text = workModel.afterFinishFile!.nodeNote
             }
-            
+        }
+    }
+    
+    private func reloadFileView(height:CGFloat){
+        self.fileView.removeSubviews()
+        if !self.fileList.isEmpty {
+            fileHeigt.constant = CGFloat(self.fileList.count * 34)
+            finishHeight1.constant = height + CGFloat(self.fileList.count * 34)
+            var viewList : [WorkFileVIew] = []
+            for (index,item) in self.fileList.enumerated() {
+                let view = WorkFileVIew()
+                view.tag = index
+                view.delectButton.isHidden = self.workModel.taskState != WorkState.WORK_PROGRESS.rawValue
+                view.callback = {(view)in
+                    let position = view.tag
+                    self.fileList.remove(at: position)
+                    self.reloadFileView(height: height)
+                    self.delectFileCallBack?(position)
+                }
+                view.setData(name: item)
+                viewList.append(view)
+            }
+            for (index,view) in viewList.enumerated() {
+                view.frame = CGRect(x: 0, y: CGFloat(0 + index * 34), w: screenWidth - 36, h: 34)
+            }
+            self.fileView.addSubviews(viewList)
+        }else{
+            fileHeigt.constant = CGFloat(self.fileList.count * 34)
+            finishHeight1.constant = height + CGFloat(self.fileList.count * 34)
         }
     }
     
@@ -166,8 +184,52 @@ class WorkProgressItemCell: UITableViewCell {
     }
     
     @IBAction func sub(_ sender:UIButton){
-        let note = self.noteTextView.text
-        print(note ?? "")
+        var params : [String:Any] = [:]
+        params["taskId"] = self.workModel.taskId
+        var stringList : [[String:Any]] = []
+        for item in self.viewList {
+            var param = [String:Any]()
+            param["picName"] = item.picNote!.picName
+            param["picCount"] = item.picNote!.picCount
+            param["picUrlList"] = item.picNote!.picUrlList
+            stringList.append(param)
+        }
+        params["finishPic"] = stringList.toJson()
+        if self.noteTextView.text.count != 0{
+            params["note"] = self.noteTextView.text
+        }
+        var fileStringList : [[String:Any]] = []
+        if !self.fileList.isEmpty {
+            for (index,item) in self.fileList.enumerated() {
+                var param = [String:Any]()
+                param["fileName"] = item
+                param["fileUrl"] = fileUrlList[index]
+                fileStringList.append(param)
+            }
+            params["attachment"] = fileStringList.toJson()
+        }
+        if self.workModel.taskType == WorkType.WORK_TYPE_ROUT.rawValue {
+            var stringList : [[String:Any]] = []
+            let taskId : Int = self.workModel.taskId
+            let list = realm.objects(TaskRoutRealm.self).filter("taskId == \(taskId)")
+            if !list.isEmpty {
+                for item in list {
+                    var param = [String:Any]()
+                    param["itemName"] = item.itemName
+                    param["itemValue"] = item.itemValue
+                    stringList.append(param)
+                }
+            }
+            params["data"] = stringList.toJson()
+        }
+        taskProvider.rxRequest(.taskSubmit(params: params))
+            .subscribe(onSuccess: { [weak self](json) in
+                //提交成功
+                self?.toast("提交成功")
+                self?.subCallBack?()
+            }) {[weak self] (_) in
+                self?.toast("提交失败")
+        }.disposed(by: self.disposeBag)
     }
     
     func avatarImageViewTapHandler(_ actionSheet:PGActionSheet,_ button:UIButton) {
@@ -215,7 +277,7 @@ extension WorkProgressItemCell: UIImagePickerControllerDelegate, UINavigationCon
         self.showHUD(message: "上传中...")
         let data = image.jpegData(compressionQuality: 0.3)
         if let data = data {
-            taskProvider.requestResult(.uploadImage(data: data), success: {(responseJson) in
+            taskProvider.requestResult(.uploadImage(taskId: workModel.taskId, data: data), success: {(responseJson) in
                 self.showHUD("上传成功", completion: {
                     self.hiddenHUD()
                 })

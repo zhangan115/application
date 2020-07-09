@@ -29,6 +29,7 @@ class WorkInspectCell: UITableViewCell {
             label1.isHidden = false
             label2.isHidden = false
             label3.isHidden = false
+            label3.text = model.lastNote
             label4.isHidden = true
             label5.isHidden = true
             icon.isHidden = false
@@ -40,6 +41,9 @@ class WorkInspectCell: UITableViewCell {
             label4.isHidden = false
             label5.isHidden = false
             icon.isHidden = true
+        }else if model.taskState == WorkState.WORK_FINISH.rawValue {
+            label1.text = "验收通过"
+            label3.text = model.lastNote
         }
     }
     

@@ -11,12 +11,14 @@ import SwiftyJSON
 class WorkModel: Mappable {
     
     var actualStartTime:Int?
+    var actualEndTime : Int?
     var canDo: Bool!
     var confirmUserId: Int!
     var actualFee:String!
     var createTime: Int!
     var customerContact: String!
     var customerPhone: String!
+    var lastNote: String?
     var distance: Double!
     var equipmentCode: String!
     var equipmentType: String!
@@ -51,6 +53,7 @@ class WorkModel: Mappable {
     var requiredSocLevel:Int?
     var requiredEpqcLevel:Int?
     var cost:String!
+    var cutFeeDetail:String?
     var beforeStartFile:TaskUploadFile?
     var afterFinishFile:TaskUploadFile?
     var taskAttachmentList: [TaskAttachment]!
@@ -60,6 +63,7 @@ class WorkModel: Mappable {
             return
         }
         self.actualStartTime = json["actualStartTime"].intValue
+        self.actualEndTime = json["actualEndTime"].intValue
         self.planArriveTime = json["planArriveTime"].intValue
         self.canDo = json["canDo"].boolValue
         self.confirmUserId = json["confirmUserId"].intValue
@@ -71,6 +75,7 @@ class WorkModel: Mappable {
         self.equipmentCode = json["equipmentCode"].stringValue
         self.equipmentType = json["equipmentType"].stringValue
         self.equipmentName = json["equipmentName"].stringValue
+        self.lastNote = json["lastNote"].stringValue
         self.executorName = json["executorName"].stringValue
         self.executorTakeTime = json["executorTakeTime"].intValue
         self.executorUserId = json["executorUserId"].intValue
@@ -100,6 +105,7 @@ class WorkModel: Mappable {
         self.requiredSocLevel = json["requiredSocLevel"].intValue
         self.requiredEpqcLevel = json["requiredEpqcLevel"].intValue
         self.cost = json["cost"].stringValue
+        self.cutFeeDetail = json["cutFeeDetail"].stringValue
         self.taskAttachmentList = [TaskAttachment]()
         let taskList = json["list"].arrayValue
         if !taskList.isEmpty {
@@ -169,6 +175,7 @@ class TaskUploadFile : Mappable{
                 self.nodePicList.append(value)
             }
         }
+        
         self.nodeDataList = [DataItem]()
         let list2 = json["nodeDataList"].arrayValue
         if !list2.isEmpty {
@@ -178,7 +185,7 @@ class TaskUploadFile : Mappable{
             }
         }
         self.nodeAttachmentList = [TaskAttachment]()
-        let list3 = json["nodePicList"].arrayValue
+        let list3 = json["nodeAttachmentList"].arrayValue
         if !list3.isEmpty {
             for array in list3 {
                 let value = TaskAttachment(fromJson: array)

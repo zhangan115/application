@@ -200,6 +200,12 @@ enum MessageType: Int {
     case alarm
 }
 
+enum StopState:Int {
+    case Normal = 0
+    case Progress = 1
+    case Stop = 2
+}
+
 
 ///工单状态
 enum TicketState: Int {

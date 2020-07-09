@@ -22,13 +22,13 @@ class WorkInfoCell: UITableViewCell {
         self.workTypeBtn.layer.masksToBounds = true
         self.workTypeBtn.layer.cornerRadius = 10
         if model.taskType == WorkType.WORK_TYPE_BASE.rawValue {
-            self.workTypeBtn.setTitle("基础", for: .normal)
+            self.workTypeBtn.setTitle("基础单", for: .normal)
             self.workTypeBtn.setBackgroundColor(UIColor(hexString: "#FFCC00")!, forState: .normal)
         }else if model.taskType == WorkType.WORK_TYPE_ROUT.rawValue {
-            self.workTypeBtn.setTitle("巡检", for: .normal)
+            self.workTypeBtn.setTitle("巡检单", for: .normal)
             self.workTypeBtn.setBackgroundColor(UIColor(hexString: "#00A0FF")!, forState: .normal)
         }else{
-            self.workTypeBtn.setTitle("技术", for: .normal)
+            self.workTypeBtn.setTitle("技术单", for: .normal)
             self.workTypeBtn.setBackgroundColor(UIColor(hexString: "#FF3232")!, forState: .normal)
         }
         labels[0].text = model.taskName

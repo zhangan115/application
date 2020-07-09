@@ -17,12 +17,22 @@ class WorkFileVIew: UIView {
         return view
     }()
     
+    var callback:((WorkFileVIew)->())?
+    
     lazy var label : UILabel = {
         let view = UILabel()
         view.textColor = UIColor(hexString: "#333333")
         view.font = UIFont.systemFont(ofSize: 14)
         self.addSubview(view)
         return view
+    }()
+    
+    lazy var delectButton : UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "photo_icon_close"), for: .normal)
+        button.addTarget(self, action: #selector(delectAction), for: .touchUpInside)
+        self.addSubview(button)
+        return button
     }()
     
     lazy var arrow : UIImageView = {
@@ -41,14 +51,20 @@ class WorkFileVIew: UIView {
         icon.snp.updateConstraints { (make) in
             make.centerY.equalToSuperview()
             make.left.equalToSuperview().offset(0)
+            make.width.height.equalTo(27)
         }
         label.snp.updateConstraints { (make) in
             make.centerY.equalToSuperview()
             make.left.equalTo(self.icon.snp.right).offset(8)
+            make.right.equalTo(self.delectButton.snp.left).offset(-8)
         }
         arrow.snp.updateConstraints { (make) in
             make.centerY.equalToSuperview()
-            make.right.equalToSuperview().offset(0)
+            make.right.equalToSuperview().offset(-12)
+        }
+        delectButton.snp.updateConstraints { (make) in
+            make.centerY.equalToSuperview()
+            make.right.equalTo(self.arrow.snp.left).offset(-12)
         }
     }
     
@@ -58,6 +74,11 @@ class WorkFileVIew: UIView {
     
     func setData(name:String){
         label.text = name
+    }
+    
+    @objc func delectAction(){
+        print("===")
+        callback?(self)
     }
     
 }

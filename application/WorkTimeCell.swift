@@ -39,6 +39,9 @@ class WorkTimeCell: UITableViewCell {
                 timeLabel.text =  ""
             }
         }
+        if model.isTerminated {
+            chooseTimeBtn.isHidden = true
+        }
     }
     
     @IBAction func chooseTime(sender:UIButton){

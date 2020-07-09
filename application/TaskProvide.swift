@@ -22,7 +22,7 @@ enum TaskTarget {
     case getMyCheckTaskList(params:[String: Any])
     case getMyTaskList(params:[String: Any])
     case takeTask(taskId:Int,planArriveTime:Int)
-    case uploadImage(data: Data)
+    case uploadImage(taskId:Int?,data: Data)
     case taskUpdateTime(taskId:Int,planArriveTime:Int)
     case taskStart(taskId:Int,params:String)
     case substationListUser
@@ -147,12 +147,17 @@ extension TaskTarget:TargetType {
         ,.getMyTaskList,.takeTask,.taskUpdateTime
         ,.taskStart,.taskSubmit,.camerList:
             return .requestParameters(parameters: parameters!, encoding: parameterEncoding)
-        case let .uploadImage(data):
+        case let .uploadImage(taskId,data):
             let formatter = DateFormatter()
             formatter.dateFormat = "ddMMyyyyHHmmss"
             let dateString: String = formatter.string(from: Date())
             let photoName: String = dateString + ".jpg"
-            let multipartFormData = [MultipartFormData(provider: .data(data), name: "file", fileName: photoName, mimeType: "image/jpg")]
+            var multipartFormData = [MultipartFormData(provider: .data(data), name: "file", fileName: photoName, mimeType: "image/jpg")]
+            if let taskId = taskId {
+                let strData = taskId.toString.data(using: .utf8)
+                let formData1 = MultipartFormData(provider: .data(strData!), name: "taskId")
+                multipartFormData.append(formData1)
+            }
             return .uploadMultipart(multipartFormData)
         case .getCarList,.getSpareList,.getDirverList,.getInstrument:
             return .requestParameters(parameters: parameters!, encoding: URLEncoding.default)
