@@ -10,10 +10,10 @@ import UIKit
 import SnapKit
 class WorkViewController: PGBaseViewController {
     
-   private var controllers :[UIViewController] = []
-   private var pageTitleView: SGPageTitleView!
+    private var controllers :[UIViewController] = []
+    private var pageTitleView: SGPageTitleView!
     private var pageContentView: SGPageContentView!
-    var currentLocation : CLLocation? = nil
+    var currentLocation : CLLocation!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +46,7 @@ class WorkViewController: PGBaseViewController {
         controllers.append(begin)
         let progress = WorkListController()
         progress.currentIndex = 4
-             progress.currentLocation = self.currentLocation
+        progress.currentLocation = self.currentLocation
         controllers.append(progress)
         let check = WorkListController()
         check.currentIndex = 5

@@ -18,7 +18,7 @@ class WorkMoreController: BaseTableViewController {
         self.isLoadMore = false
         self.isRefresh = false
         super.viewDidLoad()
-        self.title = ""
+        self.title = "更多操作"
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 44
         self.tableView.separatorStyle = .none
@@ -64,7 +64,8 @@ class WorkMoreController: BaseTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            
+            let controller = WorkMethodController()
+            self.pushVC(controller)
         }else if indexPath.section == 1{
             let alertController = UIAlertController(title: kServicePhone, message:"是否拨打电话?", preferredStyle: .alert)
             let noAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
@@ -75,7 +76,9 @@ class WorkMoreController: BaseTableViewController {
             alertController.addAction(sureAction)
             self.currentViewController().present(alertController, animated: true, completion: nil)
         }else{
-            
+            let controller = WorkEndController()
+            controller.workModel = self.workModel
+            self.pushVC(controller)
         }
     }
 }

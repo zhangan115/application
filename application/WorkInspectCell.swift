@@ -18,12 +18,17 @@ class WorkInspectCell: UITableViewCell {
     @IBOutlet var label5: UILabel!
     @IBOutlet var icon: UIImageView!
     
+    var workModel:WorkModel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.contentView.backgroundColor = UIColor.white
+        let tap = UITapGestureRecognizer(target: self, action: #selector(showRecordController))
+        self.contentView.addGestureRecognizer(tap)
     }
     
     func setModel(model:WorkModel){
+        self.workModel = model
         if model.taskState == WorkState.WORK_PROGRESS.rawValue {
             // 有过验收，没有通过
             label1.isHidden = false
@@ -45,6 +50,12 @@ class WorkInspectCell: UITableViewCell {
             label1.text = "验收通过"
             label3.text = model.lastNote
         }
+    }
+    
+    @objc func showRecordController(){
+        let controller = WorkRecordController()
+        controller.workModel = self.workModel
+        currentViewController().pushVC(controller)
     }
     
 }

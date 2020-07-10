@@ -12,11 +12,12 @@ class WorkProgressAfterCell: UITableViewCell {
     
     @IBOutlet var bgView2 : UIView! // 背景
     @IBOutlet var addFileButton : UIButton!
-    @IBOutlet var noteTextView : UITextView!
+    @IBOutlet var noteTextView : PlaceholderTextView!
     @IBOutlet var fileView : UIView!
     @IBOutlet var finishView : UIView!
     @IBOutlet weak var fileHeigt: NSLayoutConstraint!
     @IBOutlet weak var finishlayoutHeight1: NSLayoutConstraint!
+    @IBOutlet var textCount:UILabel!
     
     var workModel:WorkModel!
     
@@ -39,11 +40,16 @@ class WorkProgressAfterCell: UITableViewCell {
         self.workModel = workModel
         if workModel.taskState == WorkState.WORK_PROGRESS.rawValue && !workModel.isTerminated {
             addFileButton.isHidden = false
+            textCount.isHidden = false
+            noteTextView.placeholder = "请输入备注信息"
+            noteTextView.placeholderColor = UIColor(hexString: "#BBBBBB")!
+            noteTextView.placeholderFont = UIFont.systemFont(ofSize: 14)
         }else{
             addFileButton.isHidden = true
             addFileButton.snp.updateConstraints { (make) in
                 make.height.equalTo(0)
             }
+            textCount.isHidden = true
         }
         if let finish = workModel.afterFinishFile {
             if finish.nodePicList != nil && !finish.nodePicList.isEmpty{
@@ -75,6 +81,19 @@ class WorkProgressAfterCell: UITableViewCell {
                 noteTextView.text = workModel.afterFinishFile!.nodeNote
             }
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(textViewEditChanged(sender:)), name: UITextView.textDidChangeNotification, object: nil)
+    }
+    
+    let MAX_STARWORDS_LENGTH = 256
+    
+    @objc func textViewEditChanged(sender:NSNotification) {
+        let textVStr = noteTextView.text as NSString
+        if (textVStr.length >= MAX_STARWORDS_LENGTH) {
+            let str = textVStr.substring(to: MAX_STARWORDS_LENGTH)
+            noteTextView.text = str
+        }
+        textCount.text = (MAX_STARWORDS_LENGTH - noteTextView.text.count).toString
     }
     
     private func reloadFileView(){
@@ -109,34 +128,34 @@ class WorkProgressAfterCell: UITableViewCell {
     }
     
     func avatarImageViewTapHandler(_ actionSheet:PGActionSheet,_ button:UIButton) {
-          actionSheet.actionSheetTranslucent = false
-          self.currentViewController().present(actionSheet, animated: false, completion: nil)
-          actionSheet.handler = {index in
-              if index == 0 {
-                  PermissionManager.permission(type: .camera, completion: {
-                      self.imagePicker(sourceType: .camera)
-                  })
-              }else if index == 1 {
-                  PermissionManager.permission(type: .photoLibrary, completion: {
-                      self.imagePicker(sourceType: .photoLibrary)
-                  })
-              }else if index == 2 {
-                  let imagePicker = PGImagePicker(currentImageView: button.imageView!)
-                  self.currentViewController().present(imagePicker, animated: false, completion: nil)
-              }else {
-                  button.setImage(UIImage(named: "upload_icon_photo"), for: .normal)
-              }
-          }
-      }
-      
-      func imagePicker(sourceType: UIImagePickerController.SourceType) {
-          let pickerVC = UIImagePickerController()
-          pickerVC.view.backgroundColor = UIColor.white
-          pickerVC.delegate = self
-          pickerVC.allowsEditing = false
-          pickerVC.sourceType = sourceType
-          currentViewController().present(pickerVC, animated: true, completion: nil)
-      }
+        actionSheet.actionSheetTranslucent = false
+        self.currentViewController().present(actionSheet, animated: false, completion: nil)
+        actionSheet.handler = {index in
+            if index == 0 {
+                PermissionManager.permission(type: .camera, completion: {
+                    self.imagePicker(sourceType: .camera)
+                })
+            }else if index == 1 {
+                PermissionManager.permission(type: .photoLibrary, completion: {
+                    self.imagePicker(sourceType: .photoLibrary)
+                })
+            }else if index == 2 {
+                let imagePicker = PGImagePicker(currentImageView: button.imageView!)
+                self.currentViewController().present(imagePicker, animated: false, completion: nil)
+            }else {
+                button.setImage(UIImage(named: "upload_icon_photo"), for: .normal)
+            }
+        }
+    }
+    
+    func imagePicker(sourceType: UIImagePickerController.SourceType) {
+        let pickerVC = UIImagePickerController()
+        pickerVC.view.backgroundColor = UIColor.white
+        pickerVC.delegate = self
+        pickerVC.allowsEditing = false
+        pickerVC.sourceType = sourceType
+        currentViewController().present(pickerVC, animated: true, completion: nil)
+    }
 }
 
 extension WorkProgressAfterCell: UIImagePickerControllerDelegate, UINavigationControllerDelegate {

@@ -86,6 +86,13 @@
 		736CD60E2499C6DF00B66369 /* UserCenterItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736CD60D2499C6DF00B66369 /* UserCenterItemView.swift */; };
 		736CD6122499DC7400B66369 /* UserElectricianController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736CD6102499DC7400B66369 /* UserElectricianController.swift */; };
 		736CD6132499DC7400B66369 /* UserElectricianController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 736CD6112499DC7400B66369 /* UserElectricianController.xib */; };
+		736CF74C24B84865009AFF6A /* WorkRecordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736CF74B24B84865009AFF6A /* WorkRecordController.swift */; };
+		736CF75024B8491B009AFF6A /* WorkRecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736CF74E24B8491B009AFF6A /* WorkRecordCell.swift */; };
+		736CF75124B8491B009AFF6A /* WorkRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 736CF74F24B8491B009AFF6A /* WorkRecordCell.xib */; };
+		736CF75424B85C73009AFF6A /* WorkMethodController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736CF75324B85C73009AFF6A /* WorkMethodController.swift */; };
+		736CF75824B85E4F009AFF6A /* MethodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736CF75624B85E4F009AFF6A /* MethodCell.swift */; };
+		736CF75924B85E4F009AFF6A /* MethodCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 736CF75724B85E4F009AFF6A /* MethodCell.xib */; };
+		736CF75C24B866E1009AFF6A /* WorkMethodHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736CF75B24B866E1009AFF6A /* WorkMethodHeaderView.swift */; };
 		7371C236249AF3D300CB6BAA /* AboutUsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7371C234249AF3D300CB6BAA /* AboutUsController.swift */; };
 		7371C237249AF3D300CB6BAA /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7371C235249AF3D300CB6BAA /* AboutUsController.xib */; };
 		7371C23B249B0CAF00CB6BAA /* UserDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7371C239249B0CAF00CB6BAA /* UserDataController.swift */; };
@@ -194,6 +201,8 @@
 		73D90CE624B82E020036F63A /* WorkMoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D90CE524B82E020036F63A /* WorkMoreController.swift */; };
 		73D90CEA24B82F520036F63A /* WorkMoreItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D90CE824B82F520036F63A /* WorkMoreItemCell.swift */; };
 		73D90CEB24B82F520036F63A /* WorkMoreItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73D90CE924B82F520036F63A /* WorkMoreItemCell.xib */; };
+		73D90CEF24B832A90036F63A /* WorkEndController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D90CED24B832A90036F63A /* WorkEndController.swift */; };
+		73D90CF024B832A90036F63A /* WorkEndController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73D90CEE24B832A90036F63A /* WorkEndController.xib */; };
 		73EC522F249B528A004D869A /* UserDataHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EC522E249B528A004D869A /* UserDataHeaderView.swift */; };
 		73EC5232249B5636004D869A /* UserBillController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EC5231249B5636004D869A /* UserBillController.swift */; };
 		73EC5237249B5688004D869A /* UserBillViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EC5235249B5688004D869A /* UserBillViewCell.swift */; };
@@ -296,6 +305,13 @@
 		736CD60D2499C6DF00B66369 /* UserCenterItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCenterItemView.swift; sourceTree = "<group>"; };
 		736CD6102499DC7400B66369 /* UserElectricianController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserElectricianController.swift; sourceTree = "<group>"; };
 		736CD6112499DC7400B66369 /* UserElectricianController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserElectricianController.xib; sourceTree = "<group>"; };
+		736CF74B24B84865009AFF6A /* WorkRecordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkRecordController.swift; sourceTree = "<group>"; };
+		736CF74E24B8491B009AFF6A /* WorkRecordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkRecordCell.swift; sourceTree = "<group>"; };
+		736CF74F24B8491B009AFF6A /* WorkRecordCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkRecordCell.xib; sourceTree = "<group>"; };
+		736CF75324B85C73009AFF6A /* WorkMethodController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkMethodController.swift; sourceTree = "<group>"; };
+		736CF75624B85E4F009AFF6A /* MethodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodCell.swift; sourceTree = "<group>"; };
+		736CF75724B85E4F009AFF6A /* MethodCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MethodCell.xib; sourceTree = "<group>"; };
+		736CF75B24B866E1009AFF6A /* WorkMethodHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkMethodHeaderView.swift; sourceTree = "<group>"; };
 		7371C234249AF3D300CB6BAA /* AboutUsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsController.swift; sourceTree = "<group>"; };
 		7371C235249AF3D300CB6BAA /* AboutUsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutUsController.xib; sourceTree = "<group>"; };
 		7371C239249B0CAF00CB6BAA /* UserDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataController.swift; sourceTree = "<group>"; };
@@ -410,6 +426,8 @@
 		73D90CE524B82E020036F63A /* WorkMoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkMoreController.swift; sourceTree = "<group>"; };
 		73D90CE824B82F520036F63A /* WorkMoreItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkMoreItemCell.swift; sourceTree = "<group>"; };
 		73D90CE924B82F520036F63A /* WorkMoreItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkMoreItemCell.xib; sourceTree = "<group>"; };
+		73D90CED24B832A90036F63A /* WorkEndController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkEndController.swift; sourceTree = "<group>"; };
+		73D90CEE24B832A90036F63A /* WorkEndController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkEndController.xib; sourceTree = "<group>"; };
 		73EC522E249B528A004D869A /* UserDataHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataHeaderView.swift; sourceTree = "<group>"; };
 		73EC5231249B5636004D869A /* UserBillController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBillController.swift; sourceTree = "<group>"; };
 		73EC5235249B5688004D869A /* UserBillViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBillViewCell.swift; sourceTree = "<group>"; };
@@ -719,6 +737,51 @@
 				736CD6072499B33400B66369 /* UserIdentityController.xib */,
 			);
 			path = Identity;
+			sourceTree = "<group>";
+		};
+		736CF74A24B8484B009AFF6A /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				736CF74D24B848FC009AFF6A /* Cell */,
+				736CF74B24B84865009AFF6A /* WorkRecordController.swift */,
+			);
+			name = Record;
+			sourceTree = "<group>";
+		};
+		736CF74D24B848FC009AFF6A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				736CF74E24B8491B009AFF6A /* WorkRecordCell.swift */,
+				736CF74F24B8491B009AFF6A /* WorkRecordCell.xib */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		736CF75224B85C3C009AFF6A /* Method */ = {
+			isa = PBXGroup;
+			children = (
+				736CF75A24B866B9009AFF6A /* Header */,
+				736CF75524B85E39009AFF6A /* Cell */,
+				736CF75324B85C73009AFF6A /* WorkMethodController.swift */,
+			);
+			name = Method;
+			sourceTree = "<group>";
+		};
+		736CF75524B85E39009AFF6A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				736CF75624B85E4F009AFF6A /* MethodCell.swift */,
+				736CF75724B85E4F009AFF6A /* MethodCell.xib */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		736CF75A24B866B9009AFF6A /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				736CF75B24B866E1009AFF6A /* WorkMethodHeaderView.swift */,
+			);
+			name = Header;
 			sourceTree = "<group>";
 		};
 		7371C233249AF3B700CB6BAA /* About */ = {
@@ -1271,6 +1334,8 @@
 		73BC0B6D2490DA2700B5DBDF /* Work */ = {
 			isa = PBXGroup;
 			children = (
+				736CF75224B85C3C009AFF6A /* Method */,
+				736CF74A24B8484B009AFF6A /* Record */,
 				73D90CEC24B831A10036F63A /* End */,
 				73D90CE424B82DE90036F63A /* More */,
 				735ACBB724B443CA00E97B68 /* Rout */,
@@ -1397,6 +1462,8 @@
 		73D90CEC24B831A10036F63A /* End */ = {
 			isa = PBXGroup;
 			children = (
+				73D90CED24B832A90036F63A /* WorkEndController.swift */,
+				73D90CEE24B832A90036F63A /* WorkEndController.xib */,
 			);
 			name = End;
 			sourceTree = "<group>";
@@ -1526,6 +1593,7 @@
 				737643642457F54300CB2050 /* LaunchScreen.storyboard in Resources */,
 				73F141A824B71D62000E93A4 /* WorkProgressButtomCell.xib in Resources */,
 				3E2BB45624B4BD7900A2E52C /* RoutTitleCell.xib in Resources */,
+				736CF75924B85E4F009AFF6A /* MethodCell.xib in Resources */,
 				736CD6092499B33400B66369 /* UserIdentityController.xib in Resources */,
 				7325057124A32EF2001CF373 /* WorkTimeCell.xib in Resources */,
 				73CC7B32249A4258009CC7FC /* SettingViewCell.xib in Resources */,
@@ -1533,6 +1601,7 @@
 				737643612457F54300CB2050 /* Assets.xcassets in Resources */,
 				7371C237249AF3D300CB6BAA /* AboutUsController.xib in Resources */,
 				7325056A24A329D8001CF373 /* WorkEnclosureCell.xib in Resources */,
+				736CF75124B8491B009AFF6A /* WorkRecordCell.xib in Resources */,
 				7376435F2457F53F00CB2050 /* Main.storyboard in Resources */,
 				739932FC249B3B2600626534 /* UserWalletController.xib in Resources */,
 				731F5BC2249236EE0019D58B /* GuideViewController.xib in Resources */,
@@ -1544,6 +1613,7 @@
 				7371C244249B0F4100CB6BAA /* UserDataChooseCell.xib in Resources */,
 				7325055E24A31FEE001CF373 /* CustomerInfoCell.xib in Resources */,
 				7325055624A2E19B001CF373 /* WorkCostCell.xib in Resources */,
+				73D90CF024B832A90036F63A /* WorkEndController.xib in Resources */,
 				73CC7B36249A426F009CC7FC /* SettingExitCell.xib in Resources */,
 				73D90CEB24B82F520036F63A /* WorkMoreItemCell.xib in Resources */,
 				735C0C922498EF7200194FB0 /* HelpItemTableViewCell.xib in Resources */,
@@ -1648,6 +1718,7 @@
 				7325056524A326E3001CF373 /* WorkButtonCell.swift in Sources */,
 				734C541724B6E7B300B9DC55 /* WorkCostDetailCell.swift in Sources */,
 				739932FE249B408A00626534 /* Account.swift in Sources */,
+				736CF75824B85E4F009AFF6A /* MethodCell.swift in Sources */,
 				73BC0B252490CF2200B5DBDF /* PGEnumeration.swift in Sources */,
 				73BC0B0C2490CE5500B5DBDF /* PGProvider.swift in Sources */,
 				7325055924A2E933001CF373 /* WorkInfoCell.swift in Sources */,
@@ -1707,6 +1778,7 @@
 				73BC0B232490CF2200B5DBDF /* PGConstants.swift in Sources */,
 				3E4833E224B3678B00A2203A /* TakePhotoView.swift in Sources */,
 				73BC0B5E2490CFBD00B5DBDF /* UITableView+Extension.swift in Sources */,
+				736CF75024B8491B009AFF6A /* WorkRecordCell.swift in Sources */,
 				7312BBD924A0A37B003A291E /* WorkListItemView.swift in Sources */,
 				73BC0B642490CFBD00B5DBDF /* UITabBar+Extenstion.swift in Sources */,
 				73BC0B842490E4D100B5DBDF /* BaseCell.swift in Sources */,
@@ -1716,6 +1788,7 @@
 				7371C236249AF3D300CB6BAA /* AboutUsController.swift in Sources */,
 				7382E8B724A1C86400401DC5 /* WorkRobItemView.swift in Sources */,
 				73D68C22249774C6002055AD /* BottomWorkView.swift in Sources */,
+				736CF75C24B866E1009AFF6A /* WorkMethodHeaderView.swift in Sources */,
 				736CD60E2499C6DF00B66369 /* UserCenterItemView.swift in Sources */,
 				3E2BB45924B4BE6000A2E52C /* RoutItemCell.swift in Sources */,
 				73BC0B5D2490CFBD00B5DBDF /* UIViewController+Extension.swift in Sources */,
@@ -1723,11 +1796,13 @@
 				73D68C1D24975D79002055AD /* MainViewController+Ex+Request.swift in Sources */,
 				73BC0B1B2490CEB300B5DBDF /* UserLoginViewController.swift in Sources */,
 				739932FB249B3B2600626534 /* UserWalletController.swift in Sources */,
+				736CF75424B85C73009AFF6A /* WorkMethodController.swift in Sources */,
 				73D90CE624B82E020036F63A /* WorkMoreController.swift in Sources */,
 				3E2BB45524B4BD7900A2E52C /* RoutTitleCell.swift in Sources */,
 				73BC0B512490CFBD00B5DBDF /* UIImage+Extension.swift in Sources */,
 				73BC0B102490CE5500B5DBDF /* MoyaProvider+Extension.swift in Sources */,
 				735C0C81249853D500194FB0 /* WorkDataView.swift in Sources */,
+				73D90CEF24B832A90036F63A /* WorkEndController.swift in Sources */,
 				736CD6012499A13300B66369 /* WorkDataBottomController.swift in Sources */,
 				73BC0B862490E4D100B5DBDF /* BaseTableView.swift in Sources */,
 				73BC0B802490E4D100B5DBDF /* BeanTableController.swift in Sources */,
@@ -1774,6 +1849,7 @@
 				734C541A24B7094900B9DC55 /* WorkStopilExt.swift in Sources */,
 				735C0C912498EF7200194FB0 /* HelpItemTableViewCell.swift in Sources */,
 				73BC0B152490CE5500B5DBDF /* PGImagePicker.swift in Sources */,
+				736CF74C24B84865009AFF6A /* WorkRecordController.swift in Sources */,
 				73BC0B872490E4D100B5DBDF /* PlaceholderTextView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

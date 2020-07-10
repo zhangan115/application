@@ -67,7 +67,9 @@ class WorkDetailController: BaseTableViewController {
     }
     
     override func rightBarAction() {
-        
+        let controller = WorkMoreController()
+        controller.workModel = self.workModel
+        self.pushVC(controller)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

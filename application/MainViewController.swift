@@ -223,12 +223,18 @@ class MainViewController: BaseHomeController {
     }
     //显示工单列表
     @objc func showWork(){
+        if self.currentLocation == nil {
+            return
+        }
         let controller = WorkViewController()
         controller.currentLocation = self.currentLocation
         self.pushVC(controller)
     }
     //抢单列表
     @objc func raibWork(){
+        if self.currentLocation == nil {
+            return
+        }
         let controller = WorkRobController()
         controller.currentLocation = self.currentLocation
         self.pushVC(controller)

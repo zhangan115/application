@@ -27,8 +27,8 @@ enum TaskTarget {
     case taskStart(taskId:Int,params:String)
     case substationListUser
     case taskSubmit(params:[String:Any])
-    case camerList(substationId:Int)
-    case getCarList(substationId:Int)
+    case terminateTask(taskId:Int,terminateReason:String)
+    case getTaskVerifyLog(taskId:Int)
     case getInstrument(substationId:Int)
     case getDirverList(substationId:Int)
     case getSpareList(substationId:Int)
@@ -60,10 +60,10 @@ extension TaskTarget:TargetType {
             return "substation/list/user"
         case .taskSubmit:
             return "task/submit"
-        case .camerList:
-            return "camera/get/list"
-        case .getCarList:
-            return "app/car/list"
+        case .terminateTask:
+            return "task/request_terminate"
+        case .getTaskVerifyLog:
+            return "task/verify_log"
         case .getInstrument:
             return "app/instrument/list"
         case .getDirverList:
@@ -75,7 +75,7 @@ extension TaskTarget:TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .getCarList,.getInstrument,.getDirverList,.getSpareList:
+        case .getInstrument,.getDirverList,.getSpareList:
             return .get
         default:
             return .post
@@ -115,10 +115,10 @@ extension TaskTarget:TargetType {
             return param
         case let .taskSubmit(params):
             return params
-        case let .camerList(substationId):
-            return ["substationId":substationId]
-        case let .getCarList(substationId):
-            return ["substationId":substationId]
+        case let .terminateTask(taskId,terminateReason):
+            return ["taskId":taskId,"terminateReason":terminateReason]
+        case let .getTaskVerifyLog(taskId):
+            return ["taskId":taskId]
         case let .getInstrument(substationId):
             return ["substationId":substationId]
         case let .getDirverList(substationId):
@@ -145,7 +145,7 @@ extension TaskTarget:TargetType {
         switch self {
         case .getNearbyTask,.getWorkDetail,.getMyCheckTaskList
         ,.getMyTaskList,.takeTask,.taskUpdateTime
-        ,.taskStart,.taskSubmit,.camerList:
+        ,.taskStart,.taskSubmit,.terminateTask,.getTaskVerifyLog:
             return .requestParameters(parameters: parameters!, encoding: parameterEncoding)
         case let .uploadImage(taskId,data):
             let formatter = DateFormatter()
@@ -159,7 +159,7 @@ extension TaskTarget:TargetType {
                 multipartFormData.append(formData1)
             }
             return .uploadMultipart(multipartFormData)
-        case .getCarList,.getSpareList,.getDirverList,.getInstrument:
+        case .getSpareList,.getDirverList,.getInstrument:
             return .requestParameters(parameters: parameters!, encoding: URLEncoding.default)
         default :
             return .requestPlain

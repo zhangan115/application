@@ -13,7 +13,7 @@ class WorkListController: BaseTableViewController {
     
     var currentIndex = 3
     var headerPosition : Int? = nil
-    var currentLocation : CLLocation? = nil
+    var currentLocation : CLLocation!
     var list1 : [WorkModel] = []
     var list2 : [WorkModel] = []
     var disposeBag = DisposeBag()

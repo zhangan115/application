@@ -290,3 +290,28 @@ class DataItem : Mappable{
     var itemValue:String?
     
 }
+
+class TaskVerifyModel: Mappable{
+    
+    var date: Int!
+    var note: String!
+    var title: String!
+    
+    required init(fromJson json: JSON!) {
+        self.date = json["date"].intValue
+        self.note = json["note"].stringValue
+        self.title = json["title"].stringValue
+    }
+}
+
+
+class WorkMethod {
+    var headerTitle:String!
+    var headerContent:String!
+    var contentList:[QAContent]!
+}
+
+class QAContent {
+    var qA:String!
+    var content:String!
+}

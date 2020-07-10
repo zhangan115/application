@@ -70,7 +70,7 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="jUw-s8-Ck4"/>
                                 </constraints>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sOJ-kC-nJP">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sOJ-kC-nJP" customClass="PlaceholderTextView" customModule="金牌电工" customModuleProvider="target">
                                 <rect key="frame" x="12" y="312" width="272" height="80"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
@@ -84,6 +84,12 @@
                                 <rect key="frame" x="12" y="282" width="31" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.27058823529999998" green="0.27058823529999998" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="256" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZS7-Ev-mHW">
+                                <rect key="frame" x="246" y="375" width="26" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -100,6 +106,7 @@
                             <constraint firstItem="iVS-GY-xAY" firstAttribute="top" secondItem="8II-wc-6Vi" secondAttribute="bottom" constant="12" id="Nop-hx-ByV"/>
                             <constraint firstItem="8II-wc-6Vi" firstAttribute="leading" secondItem="cOg-Yf-SR5" secondAttribute="leading" constant="12" id="UJ5-lx-dG9"/>
                             <constraint firstItem="8II-wc-6Vi" firstAttribute="top" secondItem="0Af-sK-eOQ" secondAttribute="bottom" id="VKI-dX-h8J"/>
+                            <constraint firstItem="ZS7-Ev-mHW" firstAttribute="bottom" secondItem="sOJ-kC-nJP" secondAttribute="bottom" id="VsQ-Gg-cdK"/>
                             <constraint firstItem="hUl-Bh-U5U" firstAttribute="top" secondItem="iVS-GY-xAY" secondAttribute="bottom" constant="8" symbolic="YES" id="ZIL-pG-e3J"/>
                             <constraint firstItem="cNY-Cx-M7N" firstAttribute="top" secondItem="x3d-z4-gYd" secondAttribute="bottom" id="Zv8-Py-EJN"/>
                             <constraint firstItem="x3d-z4-gYd" firstAttribute="leading" secondItem="cOg-Yf-SR5" secondAttribute="leading" id="dfs-3r-7JD"/>
@@ -107,6 +114,7 @@
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="sOJ-kC-nJP" secondAttribute="bottom" constant="12" id="gS0-nf-NAg"/>
                             <constraint firstAttribute="trailing" secondItem="cNY-Cx-M7N" secondAttribute="trailing" constant="12" id="hxT-MA-g0q"/>
                             <constraint firstItem="x3d-z4-gYd" firstAttribute="top" secondItem="cOg-Yf-SR5" secondAttribute="top" id="jWB-iH-abm"/>
+                            <constraint firstAttribute="trailing" secondItem="ZS7-Ev-mHW" secondAttribute="trailing" constant="24" id="jrj-N7-jMR"/>
                             <constraint firstAttribute="trailing" secondItem="x3d-z4-gYd" secondAttribute="trailing" id="mdd-iG-t4m"/>
                             <constraint firstItem="cNY-Cx-M7N" firstAttribute="leading" secondItem="cOg-Yf-SR5" secondAttribute="leading" constant="12" id="mts-AF-aU6"/>
                             <constraint firstItem="sOJ-kC-nJP" firstAttribute="top" secondItem="hUl-Bh-U5U" secondAttribute="bottom" constant="12" id="saa-uG-KvP"/>
@@ -132,6 +140,7 @@
                 <outlet property="finishView" destination="x3d-z4-gYd" id="36z-NF-fAR"/>
                 <outlet property="finishlayoutHeight1" destination="SrK-fk-fcm" id="AVT-30-7AX"/>
                 <outlet property="noteTextView" destination="sOJ-kC-nJP" id="jpV-SA-ya4"/>
+                <outlet property="textCount" destination="ZS7-Ev-mHW" id="SBd-6c-tXB"/>
             </connections>
             <point key="canvasLocation" x="131.8840579710145" y="183.81696428571428"/>
         </tableViewCell>

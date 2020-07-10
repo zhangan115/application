@@ -28,10 +28,11 @@ class HomeTableController: BeanTableController {
     }
     
     func rightMoreButton(){
-        let button = UIButton(x: 0, y: 0, w: 40, h: 40, target: self, action: #selector(rightBarAction))
+        let button = UIButton(type: .custom)
         button.setImage(UIImage(named: "work_detail_icon_more"), for: .normal)
-        button.contentEdgeInsets = UIEdgeInsets(top: 0, left: -15, bottom: 0, right: 0)
-        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -15, bottom: 0, right: 0)
+        button.frame = CGRect(x: 0, y: 0, width: 22, height: 22)
+        button.setTitleColor(UIColor(hexString: "#333333"), for: .normal)
+        button.addTarget(self, action: #selector(rightBarAction), for: .touchUpInside)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button)
     }
     
