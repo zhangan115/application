@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RxSwift
 import PGActionSheet
 class WorkProgressAfterCell: UITableViewCell {
     
@@ -26,10 +25,8 @@ class WorkProgressAfterCell: UITableViewCell {
     var delectFileCallBack:((Int)->())?
     
     var fileList:[String] = []
-    var fileUrlList : [String]  = []
-    var textChangeCallBack:((String)->())?
+    var fileUrlList:[String]  = []
     var viewList:[TakePhotoView] = []
-    var disposeBag = DisposeBag()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -78,11 +75,6 @@ class WorkProgressAfterCell: UITableViewCell {
                 noteTextView.text = workModel.afterFinishFile!.nodeNote
             }
         }
-        NotificationCenter.default.addObserver(self, selector: #selector(textChange), name: UITextView.textDidChangeNotification, object: nil)
-    }
-    
-    @objc func textChange(){
-        textChangeCallBack?(noteTextView.text)
     }
     
     private func reloadFileView(){
@@ -93,7 +85,7 @@ class WorkProgressAfterCell: UITableViewCell {
             for (index,item) in self.fileList.enumerated() {
                 let view = WorkFileVIew()
                 view.tag = index
-                view.delectButton.isHidden = self.workModel.taskState != WorkState.WORK_PROGRESS.rawValue && !self.workModel.isTerminated
+                view.delectButton.isHidden = self.workModel.taskState != WorkState.WORK_PROGRESS.rawValue && !self.workModel.isTerminated || self.workModel.isTerminated
                 view.callback = {(view)in
                     let position = view.tag
                     self.fileList.remove(at: position)

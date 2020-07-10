@@ -107,7 +107,7 @@ class WorkModel: Mappable {
         self.cost = json["cost"].stringValue
         self.cutFeeDetail = json["cutFeeDetail"].stringValue
         self.taskAttachmentList = [TaskAttachment]()
-        let taskList = json["list"].arrayValue
+        let taskList = json["taskAttachmentList"].arrayValue
         if !taskList.isEmpty {
             for array in taskList {
                 let value = TaskAttachment(fromJson: array)

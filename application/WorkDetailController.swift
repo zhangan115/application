@@ -8,6 +8,8 @@
 
 import UIKit
 import RxSwift
+import RealmSwift
+
 var workCostCell = "WorkCostCell"
 var workInfoCell = "WorkInfoCell"
 var customerInfoCell = "CustomerInfoCell"
@@ -31,7 +33,7 @@ class WorkDetailController: BaseTableViewController {
     var fileList : [String]  = []
     var fileUrlList : [String]  = []
     var stopState:Int = StopState.Normal.rawValue
-    var noteText:String?
+    let realm = try! Realm()
     
     override func viewDidLoad() {
         self.isLoadMore = false
@@ -61,6 +63,11 @@ class WorkDetailController: BaseTableViewController {
         self.tableView.register(UINib(nibName: workProgressAfterCell, bundle: nil), forCellReuseIdentifier: workProgressAfterCell)
         self.tableView.register(UINib(nibName: workProgressButtomCell, bundle: nil), forCellReuseIdentifier: workProgressButtomCell)
         self.request()
+        rightMoreButton()
+    }
+    
+    override func rightBarAction() {
+        
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -132,6 +139,66 @@ class WorkDetailController: BaseTableViewController {
                 self?.tableView.noRefreshReloadData()
         }.disposed(by: disposeBag)
     }
+    
+    func subData(){
+        var canSub = true
+        var params : [String:Any] = [:]
+        params["taskId"] = self.workModel.taskId
+        var stringList : [[String:Any]] = []
+        for item in self.workModel.afterFinishFile!.nodePicList {
+            if item.picUrlList == nil || item.picUrlList.isEmpty {
+                canSub = false
+                break
+            }
+            var param = [String:Any]()
+            param["picName"] = item.picName
+            param["picCount"] = item.picCount
+            param["picUrlList"] = item.picUrlList
+            stringList.append(param)
+        }
+        if !canSub {
+            self.view.showAutoHUD("请完成资料上传")
+            return
+        }
+        params["finishPic"] = stringList.toJson()
+        let cell = self.tableView.cellForRow(at: IndexPath(row: 1, section: 2)) as? WorkProgressAfterCell
+        if cell != nil {
+            params["note"] = cell?.noteTextView.text
+        }
+        var fileStringList : [[String:Any]] = []
+        if !self.fileList.isEmpty {
+            for (index,item) in self.fileList.enumerated() {
+                var param = [String:Any]()
+                param["fileName"] = item
+                param["fileUrl"] = fileUrlList[index]
+                fileStringList.append(param)
+            }
+            params["attachment"] = fileStringList.toJson()
+        }
+        if self.workModel.taskType == WorkType.WORK_TYPE_ROUT.rawValue {
+            var stringList : [[String:Any]] = []
+            let taskId : Int = self.workModel.taskId
+            let list = realm.objects(TaskRoutRealm.self).filter("taskId == \(taskId)")
+            if !list.isEmpty {
+                for item in list {
+                    var param = [String:Any]()
+                    param["itemName"] = item.itemName
+                    param["itemValue"] = item.itemValue
+                    stringList.append(param)
+                }
+            }
+            params["data"] = stringList.toJson()
+        }
+        taskProvider.rxRequest(.taskSubmit(params: params))
+            .subscribe(onSuccess: { [weak self](json) in
+                self?.view.toast("提交成功")
+                self?.request()
+            }) {[weak self] (_) in
+                self?.view.toast("提交失败")
+        }.disposed(by: self.disposeBag)
+    }
+    
+    
 }
 
 extension WorkDetailController{

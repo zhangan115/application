@@ -1,5 +1,5 @@
 //
-//  WorkEndController.swift
+//  WorkFinishController.swift
 //  application
 //
 //  Created by Anson on 2020/7/6.
@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import PGActionSheet
 import RealmSwift
-class WorkEndController: PGBaseViewController {
+class WorkFinishController: PGBaseViewController {
     
     var workModel:WorkModel!
     var disposeBag = DisposeBag()
@@ -156,15 +156,24 @@ class WorkEndController: PGBaseViewController {
     let realm = try! Realm()
     
     @objc func startAction(){
+        var canSub = true
         var params : [String:Any] = [:]
         params["taskId"] = self.workModel.taskId
         var stringList : [[String:Any]] = []
         for item in self.viewList {
+            if item.picNote!.picUrlList == nil || item.picNote!.picUrlList.isEmpty {
+                canSub = false
+                break
+            }
             var param = [String:Any]()
             param["picName"] = item.picNote!.picName
             param["picCount"] = item.picNote!.picCount
             param["picUrlList"] = item.picNote!.picUrlList
             stringList.append(param)
+        }
+        if !canSub {
+            self.view.showAutoHUD("请完成资料上传")
+            return
         }
         params["finishPic"] = stringList.toJson()
         if self.textInput.text.count != 0{
@@ -215,7 +224,7 @@ class WorkEndController: PGBaseViewController {
             .subscribe(onSuccess: { [weak self](model) in
                 self?.workModel = model
                 self?.initView()
-            }) { [weak self](_) in
+            }) { (_) in
                 print("error")
         }.disposed(by: self.disposeBag)
     }
@@ -268,7 +277,7 @@ class WorkEndController: PGBaseViewController {
     }
 }
 
-extension WorkEndController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension WorkFinishController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         currentViewController().dismiss(animated: true, completion: nil)

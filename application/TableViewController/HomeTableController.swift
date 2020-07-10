@@ -27,6 +27,18 @@ class HomeTableController: BeanTableController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: button)
     }
     
+    func rightMoreButton(){
+        let button = UIButton(x: 0, y: 0, w: 40, h: 40, target: self, action: #selector(rightBarAction))
+        button.setImage(UIImage(named: "work_detail_icon_more"), for: .normal)
+        button.contentEdgeInsets = UIEdgeInsets(top: 0, left: -15, bottom: 0, right: 0)
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -15, bottom: 0, right: 0)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button)
+    }
+    
+    @objc func rightBarAction(){
+        
+    }
+    
     @objc func pop() {
         if isPresent {
             self.dismiss(animated: true, completion: nil)
