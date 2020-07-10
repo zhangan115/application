@@ -22,7 +22,7 @@ class WorkMethodHeaderView: UITableViewHeaderFooterView {
         label.text = ""
         label.font = UIFont.systemFont(ofSize: 15,weight: .medium)
         label.textColor = UIColor(hexString: "#333333")
-        self.bgView.addSubview(label)
+        self.contentView.addSubview(label)
         return label
     }()
     
@@ -31,19 +31,20 @@ class WorkMethodHeaderView: UITableViewHeaderFooterView {
         label.text = ""
         label.font = UIFont.systemFont(ofSize: 13)
         label.textColor = UIColor(hexString: "#888888")
-        self.bgView.addSubview(label)
+        self.contentView.addSubview(label)
         return label
     }()
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-        self.contentView.backgroundColor = ColorConstants.tableViewBackground
+        self.contentView.backgroundColor = UIColor.white
         bgView.snp.updateConstraints{ (make) in
-            make.left.right.bottom.equalToSuperview()
-            make.top.equalToSuperview().offset(12)
+            make.left.right.equalToSuperview()
+            make.top.equalToSuperview()
+            make.height.equalTo(0)
         }
         centerLabel.snp.updateConstraints { (make) in
-            make.top.equalToSuperview().offset(16)
+            make.top.equalTo(self.bgView.snp.bottom).offset(16)
             make.left.equalToSuperview().offset(12)
         }
         centerLabel1.snp.updateConstraints { (make) in
@@ -55,13 +56,13 @@ class WorkMethodHeaderView: UITableViewHeaderFooterView {
     func setModel(isFirst:Bool = false,model:WorkMethod){
         if isFirst {
             bgView.snp.updateConstraints{ (make) in
-                make.left.right.bottom.equalToSuperview()
+                make.left.right.equalToSuperview()
                 make.top.equalToSuperview().offset(0)
                 make.height.equalTo(12)
             }
         }else{
             bgView.snp.updateConstraints{ (make) in
-                make.left.right.bottom.equalToSuperview()
+                make.left.right.equalToSuperview()
                 make.top.equalToSuperview().offset(0)
                 make.height.equalTo(0)
             }

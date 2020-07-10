@@ -260,6 +260,7 @@ class WorkRobItemView: UIView {
         }
         textName2.snp.updateConstraints{(make)in
             make.left.equalTo(self.icon2View.snp.right).offset(4)
+            make.right.equalToSuperview().offset(-12)
             make.centerY.equalTo(icon2View)
         }
         icon7View.snp.updateConstraints{(make)in

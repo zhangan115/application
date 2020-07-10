@@ -120,6 +120,8 @@ class WorkDetailController: BaseTableViewController {
                 if self == nil{
                     return
                 }
+                self?.fileList.removeAll()
+                self?.fileUrlList.removeAll()
                 if let attachmen = model.afterFinishFile {
                     if attachmen.nodeAttachmentList != nil {
                         for item in attachmen.nodeAttachmentList {

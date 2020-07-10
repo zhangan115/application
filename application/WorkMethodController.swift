@@ -55,7 +55,9 @@ class WorkMethodController: BaseTableViewController {
         ["电动汽车BMS系统故障；","多试充电几次；","车辆未获取充电桩提供的辅助电源；",
          "是否插好充电连接线缆、通讯线是否松动，屏蔽线是否接地，辅助电源是否故障，辅助电源接线是否松动；",
          "充电连接线未连接到位或通讯线松动；","通讯协议是否一致，不一致需要客户去4S店升级BMS；",
-         "充电机和电动汽车通信协议不匹配；","仍无法充电反馈厂家现场解决；"]
+         "充电机和电动汽车通信协议不匹配；","仍无法充电反馈厂家现场解决；"],
+        ["交流进线开关未合闸或者（42KW交流桩）急停被按，交流进线开关跳闸；","急停按钮顺时针旋转（处于弹出的状态），重新合上交流进线开关；","700/30-T型开关电源关闭或损坏；","打开700/30-T型开关电源的开关；若损坏，更换电源；","交流进线开关下端无电；","进线开关下端无电：检查低压配电箱或配电房，开关是否跳闸；"],
+        ["SIM卡异常；","SIM卡是否锁卡或未激活：解卡或者激活、或更换SIM卡；","SIM卡与TCU接触不良；","重新取出SIM卡弄平整，再插入TCU；","APP、后台异常；","联系后台查询APP后台状态；","TCU损坏；","TCU损坏：更换TCU；","桩设备编码和档案不正确；","重新整理档案，设置设备编码；","站点信号太弱；","更换SIM卡供应商或站点安装信号放大器；"]
     ]
     
     override func viewDidLoad() {
@@ -63,6 +65,7 @@ class WorkMethodController: BaseTableViewController {
         self.isRefresh = false
         super.viewDidLoad()
         self.title = "处理办法"
+        self.tableView = UITableView.init(frame: self.view.frame, style: .grouped)
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.separatorStyle = .none
         self.tableView.backgroundColor = ColorConstants.tableViewBackground
@@ -83,9 +86,9 @@ class WorkMethodController: BaseTableViewController {
             for(index2,item2) in qAList[index1].enumerated() {
                 let bean1 = QAContent()
                 if index2 % 2 == 0 {
-                    bean1.qA = "Q"
+                    bean1.qA = "Q:"
                 }else{
-                    bean1.qA = "A"
+                    bean1.qA = "A:"
                 }
                 bean1.content = item2
                 qABeanList.append(bean1)

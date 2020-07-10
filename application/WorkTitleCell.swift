@@ -16,6 +16,8 @@ class WorkTitleCell: UITableViewCell {
     @IBOutlet var line1 : UIView! // 虚线
     @IBOutlet var line2 : UIView! // 实线
     
+    var line:[UIView] = []
+    
     @IBOutlet var workState : UILabel!
     
     
@@ -24,6 +26,19 @@ class WorkTitleCell: UITableViewCell {
     }
     
     func setModel(model:WorkModel){
+        let w = (screenWidth - 60 ) / 10 * 8 / 4
+        line.append(UIView(x: screenWidth/10 + 6, y: 0, w: w, h: 1))
+        line.append(UIView(x: 3 * screenWidth / 10  + 6, y: 0, w:w, h: 1))
+        line.append(UIView(x: screenWidth/2 + 6, y: 0, w: w, h: 1))
+        line.append(UIView(x: 7 * screenWidth / 10 + 6, y: 0, w: w, h: 1))
+        
+        drawDashLine(lineView: line[0], lineLength: 3, lineSpacing: 0, lineColor: UIColor(hexString: "#333333")!)
+        drawDashLine(lineView: line[1], lineLength: 3, lineSpacing: 3, lineColor: UIColor(hexString: "#666666")!)
+        drawDashLine(lineView: line[2], lineLength: 3, lineSpacing: 3, lineColor: UIColor(hexString: "#666666")!)
+        drawDashLine(lineView: line[3], lineLength: 3, lineSpacing: 3, lineColor: UIColor(hexString: "#666666")!)
+        
+        self.line1.addSubviews(line)
+        
         let bgLayer1 = CAGradientLayer()
         bgLayer1.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 80)
         if model.isTerminated {
@@ -49,28 +64,24 @@ class WorkTitleCell: UITableViewCell {
         icons[3].image = UIImage(named: "detail_circuit_icon_hook_nor")
         icons[4].image = UIImage(named: "detail_circuit_icon_hook_nor")
         
-        let xValue = screenWidth / 10
-        line1.frame = CGRect(x: xValue, y: 0, width: screenWidth / 5 * 4, height: 0.5)
-        drawDashLine(lineView: line1, lineLength: 3, lineSpacing: 3, lineColor: UIColor(hexString: "#666666")!)
-        line2.frame = CGRect(x: xValue, y: 0, width: screenWidth / 5, height: 1)
-        
         if model.taskState >= WorkState.WORK_PROGRESS.rawValue {
             workState.text = "进行中"
             icons[2].image = UIImage(named: "detail_circuit_icon_hook_sel")
             labels[2].textColor = UIColor(hexString: "#333333")
-            line2.frame = CGRect(x: xValue, y: 0, width: screenWidth / 5 * 2, height: 1)
+            drawDashLine(lineView: line[1], lineLength: 3, lineSpacing: 0, lineColor: UIColor(hexString: "#333333")!)
+            
         }
         if model.taskState >= WorkState.WORK_CHECK.rawValue {
             workState.text = "待验收"
             icons[3].image = UIImage(named: "detail_circuit_icon_hook_sel")
             labels[3].textColor = UIColor(hexString: "#333333")
-            line2.frame = CGRect(x: xValue, y: 0, width: screenWidth / 5 * 3, height: 1)
+            drawDashLine(lineView: line[2], lineLength: 3, lineSpacing: 0, lineColor: UIColor(hexString: "#333333")!)
         }
         if model.taskState >= WorkState.WORK_FINISH.rawValue {
             workState.text = "已完成"
             icons[4].image = UIImage(named: "detail_circuit_icon_hook_sel")
             labels[4].textColor = UIColor(hexString: "#333333")
-            line2.frame = CGRect(x: xValue, y: 0, width: screenWidth / 5 * 4, height: 1)
+            drawDashLine(lineView: line[3], lineLength: 3, lineSpacing: 0, lineColor: UIColor(hexString: "#333333")!)
         }
         
     }

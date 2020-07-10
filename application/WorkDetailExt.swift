@@ -601,7 +601,7 @@ extension WorkDetailController {
                 let cell = tableView.dequeueReusableCell(withIdentifier: workProgressButtomCell) as! WorkProgressButtomCell
                 cell.setModel(workModel: self.workModel)
                 cell.subCallBack = {
-                    self.request()
+                    self.subData()
                 }
                 return cell
             }

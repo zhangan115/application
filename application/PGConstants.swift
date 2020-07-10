@@ -11,7 +11,8 @@ import UIKit
 
 struct Config {
     #if DEBUG
-    static let baseURL: URL = URL(string:"http://172.16.40.240:8081")!
+    //http://172.16.40.240:8081
+    static let baseURL: URL = URL(string:"http://114.215.94.141:8085")!
     #else
     static let baseURL: URL = URL(string:"http://114.215.94.141:8085")!
     #endif
