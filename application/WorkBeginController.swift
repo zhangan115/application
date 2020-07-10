@@ -132,7 +132,7 @@ class WorkBeginController: PGBaseViewController {
                     }
                     self?.pushVC(controller)
                 } else {//结束后上传资料
-                    let controller = WorkEndController()
+                    let controller = WorkFinishController()
                     controller.workModel = self?.workModel
                     controller.callback = {
                         self?.popVC()
