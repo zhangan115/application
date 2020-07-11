@@ -81,7 +81,8 @@ class DrawerMainViewController: PGBaseViewController {
     lazy var userLabel2: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(hexString: "#333333")
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont.systemFont(ofSize: 120)
+        label.numberOfLines = 0
         self.userData.addSubview(label)
         return label
     }()
@@ -228,6 +229,7 @@ class DrawerMainViewController: PGBaseViewController {
         userLabel2.snp.updateConstraints{(make)in
             make.left.equalToSuperview().offset(10)
             make.top.equalTo(self.icon1.snp.bottom).offset(8)
+            make.bottom.greaterThanOrEqualToSuperview().offset(-12)
         }
         icon2.snp.updateConstraints{(make)in
             make.right.equalToSuperview()
@@ -343,6 +345,9 @@ class DrawerMainViewController: PGBaseViewController {
                     contentText = contentText + text2!
                 }
                 userLabel2.text = contentText
+                if text1 != nil && text2 != nil {
+                    
+                }
             }
         }else{
             userLabel1.text = "访客"

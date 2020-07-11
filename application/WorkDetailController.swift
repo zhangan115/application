@@ -35,12 +35,20 @@ class WorkDetailController: BaseTableViewController {
     var stopState:Int = StopState.Normal.rawValue
     let realm = try! Realm()
     
+//    lazy var workInComeView : WorkInComeView = {
+//        let view = WorkInComeView()
+//        self.view.addSubview(view)
+//        return view
+//    }()
+    
     override func viewDidLoad() {
         self.isLoadMore = false
         self.isRefresh = false
         super.viewDidLoad()
         hiddenNaviBarLine()
         self.title = "工单详情"
+        self.tableView = UITableView(frame: self.view.frame)
+        self.view.backgroundColor = ColorConstants.tableViewBackground
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 44
         self.tableView.separatorStyle = .none
@@ -63,7 +71,6 @@ class WorkDetailController: BaseTableViewController {
         self.tableView.register(UINib(nibName: workProgressAfterCell, bundle: nil), forCellReuseIdentifier: workProgressAfterCell)
         self.tableView.register(UINib(nibName: workProgressButtomCell, bundle: nil), forCellReuseIdentifier: workProgressButtomCell)
         self.request()
-        rightMoreButton()
     }
     
     override func rightBarAction() {
@@ -131,6 +138,9 @@ class WorkDetailController: BaseTableViewController {
                     }
                 }
                 self?.workModel = model
+                if model.taskState >= WorkState.WORK_BEGIN.rawValue {
+                    self?.rightMoreButton()
+                }
                 if model.isTerminated {
                     if model.actualFee != nil{
                         self?.stopState = StopState.Stop.rawValue
@@ -139,9 +149,22 @@ class WorkDetailController: BaseTableViewController {
                     }
                 }
                 self?.tableView.noRefreshReloadData()
+//                self?.updateInComeView()
             }) {[weak self] _ in
                 self?.tableView.noRefreshReloadData()
         }.disposed(by: disposeBag)
+    }
+    
+    func updateInComeView(){
+        if self.workModel.taskState == WorkState.WORK_FINISH.rawValue || self.stopState == StopState.Stop.rawValue {
+            let frame = CGRect(x: 0, y: self.view.frame.height - 44, w: screenWidth, h: 44)
+            let workInComeView = WorkInComeView(frame: frame)
+            self.view.addSubview(workInComeView)
+            workInComeView.isHidden = false
+            workInComeView.label.text = "工单收入"
+            workInComeView.label1.text = "￥" + self.workModel.actualFee
+        }
+        
     }
     
     func subData(){

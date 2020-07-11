@@ -118,10 +118,20 @@ class MainDrawerUIView: UIView {
         return label
     }()
     
+    lazy var userLabel3:UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor(hexString: "#888888")
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.text = "当前资格："
+        self.userData.addSubview(label)
+        return label
+    }()
+    
     lazy var userLabel2: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(hexString: "#333333")
         label.font = UIFont.systemFont(ofSize: 12)
+        label.numberOfLines = 0
         self.userData.addSubview(label)
         return label
     }()
@@ -261,8 +271,9 @@ class MainDrawerUIView: UIView {
             make.centerY.equalTo(self.icon1)
         }
         userLabel2.snp.updateConstraints{(make)in
-            make.left.equalToSuperview().offset(10)
-            make.top.equalTo(self.icon1.snp.bottom).offset(8)
+            make.left.equalTo(self.userLabel3.snp.right).offset(0)
+            make.top.equalTo(self.userLabel1.snp.bottom).offset(8)
+            make.bottom.greaterThanOrEqualToSuperview().offset(-12)
         }
         icon2.snp.updateConstraints{(make)in
             make.right.equalToSuperview()
@@ -316,6 +327,11 @@ class MainDrawerUIView: UIView {
         }else{
             userNameLabel.text = model.username
         }
+        userLabel3.snp.updateConstraints{(make)in
+            make.left.equalToSuperview().offset(10)
+            make.top.equalTo(self.icon1.snp.bottom).offset(8)
+            make.width.equalTo(0)
+        }
         if model.certificationType!>0 {
             userTypeLabel.text = "已认证"
             userTypeLabel.textColor = UIColor.white
@@ -341,6 +357,12 @@ class MainDrawerUIView: UIView {
                     contentText = contentText + text2!
                 }
                 userLabel2.text = contentText
+                userLabel3.isHidden = false
+                userLabel3.snp.updateConstraints { (make) in
+                    make.left.equalToSuperview().offset(10)
+                    make.top.equalTo(self.icon1.snp.bottom).offset(8)
+                    make.width.equalTo(60)
+                }
             }
         }else{
             userLabel1.text = "访客"
