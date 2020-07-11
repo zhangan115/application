@@ -32,6 +32,8 @@ enum TaskTarget {
     case getInstrument(substationId:Int)
     case getDirverList(substationId:Int)
     case getSpareList(substationId:Int)
+    case checkFile(fileUrl:String)
+    
 }
 
 extension TaskTarget:TargetType {
@@ -70,6 +72,8 @@ extension TaskTarget:TargetType {
             return "app/driver/list"
         case .getSpareList:
             return "app/spare/list"
+        case let .checkFile(fileUrl):
+            return fileUrl
         }
     }
     
@@ -161,9 +165,26 @@ extension TaskTarget:TargetType {
             return .uploadMultipart(multipartFormData)
         case .getSpareList,.getDirverList,.getInstrument:
             return .requestParameters(parameters: parameters!, encoding: URLEncoding.default)
+            case let .checkFile(fileUrl):
+                       let saveName = fileUrl.split("/").last ?? ""
+                       let localLocation: URL = DefaultDownloadDir.appendingPathComponent(saveName)
+                       let downloadDestination:DownloadDestination = { _, _ in
+                           return (localLocation, .removePreviousFile) }
+                       return .downloadDestination(downloadDestination)
         default :
             return .requestPlain
         }
     }
 }
 
+//定义下载的DownloadDestination（不改变文件名，同名文件不会覆盖）
+private let DefaultDownloadDestination: DownloadDestination = { temporaryURL, response in
+    return (DefaultDownloadDir.appendingPathComponent(response.suggestedFilename!), [.removePreviousFile])
+}
+
+//默认下载保存地址（用户文档目录）
+let DefaultDownloadDir: URL = {
+    let directoryURLs = FileManager.default.urls(for: .documentDirectory,
+                                                 in: .userDomainMask)
+    return directoryURLs.first ?? URL(fileURLWithPath: NSTemporaryDirectory())
+}()

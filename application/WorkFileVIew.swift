@@ -17,6 +17,9 @@ class WorkFileVIew: UIView {
         return view
     }()
     
+    var fileName:String?
+    var fileUrl:String?
+    
     var callback:((WorkFileVIew)->())?
     
     lazy var label : UILabel = {
@@ -44,6 +47,8 @@ class WorkFileVIew: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(showFileController))
+        self.addGestureRecognizer(tap)
     }
     
     override func layoutSubviews() {
@@ -77,8 +82,16 @@ class WorkFileVIew: UIView {
     }
     
     @objc func delectAction(){
-        print("===")
         callback?(self)
+    }
+    
+    @objc func showFileController(){
+        if fileName != nil && fileUrl != nil {
+            let controller = CheckFileViewController()
+            controller.fileName = self.fileName!
+            controller.fileUrl = self.fileUrl!
+            self.currentViewController().pushVC(controller)
+        }
     }
     
 }

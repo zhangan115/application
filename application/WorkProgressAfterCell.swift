@@ -103,6 +103,8 @@ class WorkProgressAfterCell: UITableViewCell {
             var viewList : [WorkFileVIew] = []
             for (index,item) in self.fileList.enumerated() {
                 let view = WorkFileVIew()
+                view.fileName = item
+                view.fileUrl = self.fileUrlList[index]
                 view.tag = index
                 view.delectButton.isHidden = self.workModel.taskState != WorkState.WORK_PROGRESS.rawValue && !self.workModel.isTerminated || self.workModel.isTerminated
                 view.callback = {(view)in

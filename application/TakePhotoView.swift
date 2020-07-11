@@ -57,7 +57,7 @@ class TakePhotoView: UIView {
         self.picNote = picNote
         if let note = picNote {
             if note.picUrlList != nil && !note.picUrlList.isEmpty {
-                takePhotoButton.loadNetWorkImage(note.picUrlList[0], placeholder: "")
+                takePhotoButton.loadNetWorkImage(note.picUrlList[0], placeholder: "img_null")
             }else{
                 takePhotoButton.setImage(UIImage(named: "upload_icon_photo"), for: .normal)
             }

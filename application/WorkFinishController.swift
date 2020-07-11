@@ -264,6 +264,8 @@ class WorkFinishController: PGBaseViewController {
         self.fileView.removeSubviews()
         for (index,file) in self.fileList.enumerated(){
             let view = WorkFileVIew()
+            view.fileUrl = self.fileUrlList[index]
+            view.fileName = file
             view.setData(name: file)
             view.frame = CGRect(x: 0, y: CGFloat(0 + 34 * index), w: screenWidth, h: 34)
             self.fileView.addSubview(view)
