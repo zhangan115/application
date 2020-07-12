@@ -165,7 +165,9 @@ extension MainViewController:MAMapViewDelegate,AMapLocationManagerDelegate{
     }
     
     func mapView(_ mapView: MAMapView!, viewFor annotation: MAAnnotation!) -> MAAnnotationView! {
-        if annotation.isKind(of: MAPointAnnotation.self) {
+        if annotation.isKind(of: MAUserLocation.self){
+            return nil
+        }else if annotation.isKind(of: MAPointAnnotation.self) {
             let pointReuseIndetifier = "pointReuseIndetifier"
             var annotationView: CustomAnnotationView? = mapView.dequeueReusableAnnotationView(withIdentifier: pointReuseIndetifier) as! CustomAnnotationView?
             if annotationView == nil {
@@ -178,7 +180,15 @@ extension MainViewController:MAMapViewDelegate,AMapLocationManagerDelegate{
             let idx = annotations.firstIndex(of: annotation as! MAPointAnnotation)
             if idx != nil {
                 let model  = self.workModelList[idx!]
-                annotationView?.setIdexAndModel(model: model,currentLocation: self.currentLocation!)
+                annotationView?.currentLocation = self.currentLocation!
+                annotationView?.workModel = model
+                if model.taskType == WorkType.WORK_TYPE_BASE.rawValue{
+                    annotationView?.image = UIImage(named: "home_icon_basis")
+                }else if model.taskType == WorkType.WORK_TYPE_ROUT.rawValue{
+                    annotationView?.image = UIImage(named: "home_icon_inspection")
+                }else{
+                    annotationView?.image = UIImage(named: "home_icon_skill")
+                }
             }
             return annotationView!
         }
@@ -186,17 +196,20 @@ extension MainViewController:MAMapViewDelegate,AMapLocationManagerDelegate{
     }
     
     func mapView(_ mapView: MAMapView!, didSelect view: MAAnnotationView!) {
-        if view is CustomAnnotationView {
-            let aView: CustomAnnotationView = view as! CustomAnnotationView
-            aView.showRightView()
+        if view.isKind(of: CustomAnnotationView.self) {
+            let customView = view as? CustomAnnotationView
+            if customView != nil {
+                let model = customView!.workModel
+                self.currentWorkModel = model
+                self.bottomWorkView.workDataView.setData(workData: model!)
+                self.bottomWorkView.isHidden = false
+                self.routeSearch(workModel: self.currentWorkModel!)
+            }
         }
     }
     
     func mapView(_ mapView: MAMapView!, didDeselect view: MAAnnotationView!) {
-        if view is CustomAnnotationView {
-            let aView: CustomAnnotationView = view as! CustomAnnotationView
-            aView.hideRightView()
-        }
+        
     }
     
 }

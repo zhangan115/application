@@ -28,6 +28,7 @@ extension MainViewController {
         if let model = self.currentWorkModel {
             bottomWorkView.workDataView.setData(workData: model)
         }
+        mapView.removeAnnotations(self.annotations)
         annotations.removeAll()
         self.workModelList.removeAll()
         self.workModelList = list
@@ -119,4 +120,64 @@ extension MainViewController {
         userProviderNoPlugin.rxRequest(.appVersion(userId: user!.userId!,version:Config.APP_VERSION,longitude:self.currentLocation!.coordinate.longitude,latitude: self.currentLocation!.coordinate.latitude)).subscribe().disposed(by: disposeBag)
     }
     
+    func routeSearch(workModel:WorkModel){
+        let request = AMapDrivingRouteSearchRequest()
+        request.origin = AMapGeoPoint.location(withLatitude: CGFloat(self.currentLocation!.coordinate.latitude), longitude: CGFloat(self.currentLocation!.coordinate.longitude))
+        request.destination = AMapGeoPoint.location(withLatitude: CGFloat(workModel.taskLocationLatitude), longitude: CGFloat(workModel.taskLocationLongitude))
+        request.requireExtension = true
+        self.search.aMapDrivingRouteSearch(request)
+    }
+}
+
+extension MainViewController : AMapSearchDelegate {
+    
+    func onRouteSearchDone(_ request: AMapRouteSearchBaseRequest!, response: AMapRouteSearchResponse!) {
+        if response.count > 0 {
+            //解析response获取路径信息
+            if response.route == nil{
+                return
+            }
+            pathPolyLines.removeAll()
+            let path : AMapPath = response.route.paths[0]
+            var stepArray : [String] = []
+            for item in path.steps {
+                stepArray.append(item.polyline)
+            }
+            var location = CLLocationCoordinate2D.init()
+            for td in stepArray {
+                let cutting = td.components(separatedBy: ";")
+                for ad in cutting {
+                    let  lays = ad.components(separatedBy: ",")
+                    location.longitude = CLLocationDegrees(lays[0])!
+                    location.latitude = CLLocationDegrees(lays[1])!
+                    pathPolyLines.append(location)
+                }
+            }
+            if self.pathPolyLines == nil || self.pathPolyLines.isEmpty {
+                return
+            }
+            if polyline != nil {
+                mapView.remove(polyline)
+            }
+            polyline = MAPolyline.init(coordinates: &pathPolyLines, count: UInt(pathPolyLines.count))
+            mapView.add(polyline)
+        }
+    }
+    
+    func aMapSearchRequest(_ request: Any!, didFailWithError error: Error!) {
+        print("Error:\(String(describing: error))")
+    }
+    
+    func mapView(_ mapView: MAMapView!, rendererFor overlay: MAOverlay!) -> MAOverlayRenderer! {
+        if overlay.isKind(of: MAPolyline.self){
+            let polylineRendeerer = MAPolylineRenderer.init(overlay: overlay)
+            polylineRendeerer?.lineWidth = 4
+            polylineRendeerer?.strokeColor = UIColor(hexString: "#0097F1")!
+            polylineRendeerer?.fillColor = UIColor(hexString: "#0097F1")!
+            polylineRendeerer?.lineJoinType = kMALineJoinRound
+            polylineRendeerer?.lineCapType = kMALineCapRound
+            return polylineRendeerer
+        }
+        return nil
+    }
 }

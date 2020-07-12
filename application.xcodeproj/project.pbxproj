@@ -135,6 +135,7 @@
 		739932FB249B3B2600626534 /* UserWalletController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739932F9249B3B2600626534 /* UserWalletController.swift */; };
 		739932FC249B3B2600626534 /* UserWalletController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 739932FA249B3B2600626534 /* UserWalletController.xib */; };
 		739932FE249B408A00626534 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739932FD249B408A00626534 /* Account.swift */; };
+		739A49D224BAAFC1005E7ABE /* CustomerCalloutView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739A49D124BAAFC1005E7ABE /* CustomerCalloutView1.swift */; };
 		73B0DC39249A09050080D1C0 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B0DC38249A09050080D1C0 /* PermissionManager.swift */; };
 		73BC0B0A2490CE5500B5DBDF /* Cookie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BC0AF92490CE5500B5DBDF /* Cookie.swift */; };
 		73BC0B0B2490CE5500B5DBDF /* JSON+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BC0AFB2490CE5500B5DBDF /* JSON+Model.swift */; };
@@ -360,6 +361,7 @@
 		739932F9249B3B2600626534 /* UserWalletController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserWalletController.swift; sourceTree = "<group>"; };
 		739932FA249B3B2600626534 /* UserWalletController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserWalletController.xib; sourceTree = "<group>"; };
 		739932FD249B408A00626534 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		739A49D124BAAFC1005E7ABE /* CustomerCalloutView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerCalloutView1.swift; sourceTree = "<group>"; };
 		73B0DC38249A09050080D1C0 /* PermissionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionManager.swift; sourceTree = "<group>"; };
 		73BC0AEF2490C41A00B5DBDF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		73BC0AF02490C41A00B5DBDF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -1443,6 +1445,7 @@
 				735C0C80249853D500194FB0 /* WorkDataView.swift */,
 				735C0C82249895DB00194FB0 /* CustomCalloutView.swift */,
 				7394066F249753B7001562CD /* CustomAnnotationView.swift */,
+				739A49D124BAAFC1005E7ABE /* CustomerCalloutView1.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1715,6 +1718,7 @@
 				7325055D24A31FEE001CF373 /* CustomerInfoCell.swift in Sources */,
 				73BC0B682490D64700B5DBDF /* TaskProvide.swift in Sources */,
 				73BC0B132490CE5500B5DBDF /* Tools.swift in Sources */,
+				739A49D224BAAFC1005E7ABE /* CustomerCalloutView1.swift in Sources */,
 				73F0F3F524B56E0C00AA2E12 /* TaskRoutRealm.swift in Sources */,
 				7376435C2457F53F00CB2050 /* MainViewController.swift in Sources */,
 				735C0C872498B85B00194FB0 /* DrawerMainViewController.swift in Sources */,

@@ -11,42 +11,28 @@ import SnapKit
 
 class CustomAnnotationView: MAAnnotationView {
     
-    lazy var calloutView: CustomCalloutView = {
-        let view = CustomCalloutView()
-        self.addSubview(view)
-        return view
-    }()
+    var calloutView: CustomerCalloutView1!
     
     var workModel: WorkModel!
-    var currentLocation: CLLocation?
-    
-    func setIdexAndModel(model:WorkModel,currentLocation:CLLocation){
-        self.workModel = model
-        calloutView.setData(workData: model,currentLocation: currentLocation)
-    }
-    
-    func hideRightView(){
-        calloutView.rightView.alpha = 0
-    }
-    
-    func showRightView(){
-        calloutView.rightView.alpha = 1
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        calloutView.frame = CGRect(x: 0, y: 0, w: 200, h: 35)
-        calloutView.center = CGPoint(x: self.bounds.size.width / 2 + self.calloutOffset.x,
-                                     y: -calloutView.bounds.size.height / 2 + self.calloutOffset.y)
-        self.addSubview(calloutView)
-    }
+    var currentLocation: CLLocation!
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         if (self.isSelected == selected) {
             return
         }
-        print("===>")
-        print(selected)
+        if selected {
+            calloutView = CustomerCalloutView1()
+            calloutView.layer.cornerRadius = 12
+            self.addSubview(calloutView)
+            calloutView.frame = CGRect(x: 0, y: 0, w: 67, h: 24)
+            calloutView.center = CGPoint(x: self.bounds.size.width / 2 + self.calloutOffset.x,
+                                         y: -calloutView.bounds.size.height / 2 + self.calloutOffset.y)
+            let abs = currentLocation.distance(from: CLLocation(latitude: workModel.taskLocationLatitude, longitude: workModel.taskLocationLongitude))/1000
+            let distance = String(format: "%.2f", abs)
+            calloutView.disLable.text = distance + "km"
+        }else {
+            calloutView.removeFromSuperview()
+        }
         super.setSelected(selected, animated: animated)
     }
     

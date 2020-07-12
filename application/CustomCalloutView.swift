@@ -20,13 +20,6 @@ class CustomCalloutView: UIView {
         return view
     }()
     
-    lazy var centerView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "map_bg_line")
-        self.addSubview(imageView)
-        return imageView
-    }()
-    
     lazy var disLable: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 13)
@@ -34,6 +27,13 @@ class CustomCalloutView: UIView {
         self.rightView.addSubview(label)
         return label
     }()
+    
+    lazy var centerView: UIImageView = {
+           let imageView = UIImageView()
+           imageView.image = UIImage(named: "map_bg_line")
+           self.addSubview(imageView)
+           return imageView
+       }()
     
     override func layoutSubviews() {
         super.layoutSubviews()

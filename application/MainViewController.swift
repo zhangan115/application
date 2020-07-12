@@ -198,6 +198,10 @@ class MainViewController: BaseHomeController {
     var isRequestAppVersion = false
     let disposeBag = DisposeBag()
     
+    let search :AMapSearchAPI = AMapSearchAPI()
+    var pathPolyLines:[CLLocationCoordinate2D]! = []
+    var polyline : MAPolyline? = nil
+    
     lazy var drawerView : MainDrawerUIView = {
         let view = MainDrawerUIView(frame: self.view.frame)
         view.isHidden = true
@@ -216,6 +220,7 @@ class MainViewController: BaseHomeController {
         requestUserData()
         requestUserVeryList()
         hideBottomView()
+        search.delegate = self
     }
     //显示侧栏
     @objc func showDrawable(){
@@ -303,6 +308,9 @@ class MainViewController: BaseHomeController {
         }
         self.currentWorkModel = workModelList.first
         if let model = self.currentWorkModel {
+            if !self.annotations.isEmpty {
+                self.mapView.selectAnnotation(self.annotations.first!, animated: true)
+            }
             self.bottomWorkView.workDataView.setData(workData: model)
             self.bottomWorkView.isHidden = false
         }
@@ -332,6 +340,9 @@ class MainViewController: BaseHomeController {
     func hideBottomView(){
         if !self.bottomWorkView.isHidden {
             self.bottomWorkView.isHidden = true
+        }
+        if polyline != nil {
+            mapView.remove(polyline)
         }
     }
 }
