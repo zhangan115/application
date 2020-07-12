@@ -47,7 +47,22 @@ class WorkInfoCell: UITableViewCell {
         labels[5].text = model.equipmentType
         labels[6].text = model.equipmentName
         labels[7].text = model.equipmentCode
-        labels[8].text = model.taskContent
+        let requiredSocLevel = model.requiredSocLevel
+        let requiredEpqcLevel = model.requiredEpqcLevel
+        var str = "无要求"
+        if (model.taskType != WorkType.WORK_TYPE_BASE.hashValue){
+            if (requiredSocLevel==nil && requiredEpqcLevel == nil){
+                str = "技术电工"
+            }else if (requiredSocLevel != nil && requiredEpqcLevel == nil){
+                str = (getSpecialString(level:requiredSocLevel!) ?? "")
+            }else if (requiredSocLevel == nil && requiredEpqcLevel != nil){
+                str = (getVocationalString(level: requiredEpqcLevel!) ?? "")
+            }else{
+                str = (getSpecialString(level:requiredSocLevel!) ?? "") + " " + (getVocationalString(level: requiredEpqcLevel!) ?? "")
+            }
+        }
+        labels[8].text = str
+        labels[9].text = model.taskContent
     }
     
     @IBAction func showLocation(sender:UIButton){

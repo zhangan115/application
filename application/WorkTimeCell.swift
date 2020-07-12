@@ -39,7 +39,7 @@ class WorkTimeCell: UITableViewCell {
                 timeLabel.text =  ""
             }
         }
-        if model.isTerminated {
+        if model.isTerminated || model.taskType != WorkType.WORK_TYPE_ROUT.rawValue{
             chooseTimeBtn.isHidden = true
         }
     }

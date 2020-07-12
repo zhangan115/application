@@ -305,7 +305,11 @@ extension WorkDetailController {
             cell.setModel(model: self.workModel)
             cell.callBack = {(time)in
                 if time == nil {
-                    
+                    let currentTime = Date().timeIntervalSince1970.toInt * 1000
+                    let todayStrTime = dateString(millisecond: TimeInterval(currentTime), dateFormat: "yyyy-MM-dd 00:00:00")
+                    let todayTime = date2TimeStamp(time: todayStrTime, dateFormat: "yyyy-MM-dd 00:00:00").toInt
+                    print(todayTime)
+                    self.robWork(time: todayTime)
                 }else {
                     self.showTimeDailog(time: time!)
                 }

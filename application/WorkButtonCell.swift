@@ -31,8 +31,12 @@ class WorkButtonCell: UITableViewCell {
         let isfreese = UserModel.unarchiver()!.isFreeze != nil && !UserModel.unarchiver()!.isFreeze
         if self.workModel!.canDo && !isfreese {
             if self.workModel!.taskState == WorkState.WORK_ROB.rawValue {
-                showTimePick(0)
-            }else{
+                if self.workModel!.taskType == WorkType.WORK_TYPE_ROUT.rawValue {
+                     showTimePick(0)
+                }else{
+                     self.callBack?(nil)
+                }
+            }else if workModel!.taskState == WorkState.WORK_BEGIN.rawValue {
                 self.callBack?(nil)
             }
         }else {

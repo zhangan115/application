@@ -26,6 +26,7 @@ var workProgressItemCell = "WorkProgressItemCell"
 var workCostDetailCell = "WorkCostDetailCell"
 var workProgressAfterCell = "WorkProgressAfterCell"
 var workProgressButtomCell = "WorkProgressButtomCell"
+
 class WorkDetailController: BaseTableViewController {
     
     var workModel:WorkModel!
@@ -104,20 +105,24 @@ class WorkDetailController: BaseTableViewController {
         let alertController = UIAlertController(title: text, message:"请在工单规定时间内完成作业", preferredStyle: .alert)
         let noAction = UIAlertAction(title: "修改时间", style: .cancel, handler: nil)
         let sureAction = UIAlertAction(title: "确定", style: .default, handler: {(_)->Void in
-            taskProvider.rxRequest(.takeTask(taskId:self.workModel.taskId, planArriveTime: time))
-                .subscribe(onSuccess: {[weak self] (model) in
-                    if self == nil{
-                        return
-                    }
-                    self?.view.toast("抢单成功")
-                    self?.request()
-                }) {[weak self] _ in
-                    self?.tableView.noRefreshReloadData()
-            }.disposed(by: self.disposeBag)
+            self.robWork(time: time)
         })
         alertController.addAction(noAction)
         alertController.addAction(sureAction)
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func robWork(time:Int){
+        taskProvider.rxRequest(.takeTask(taskId:self.workModel.taskId, planArriveTime: time))
+                       .subscribe(onSuccess: {[weak self] (model) in
+                           if self == nil{
+                               return
+                           }
+                           self?.view.toast("抢单成功")
+                           self?.request()
+                       }) {[weak self] _ in
+                           self?.tableView.noRefreshReloadData()
+                   }.disposed(by: self.disposeBag)
     }
     
     override func request() {

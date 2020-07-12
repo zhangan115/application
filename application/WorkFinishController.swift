@@ -18,6 +18,9 @@ class WorkFinishController: PGBaseViewController {
     var viewList:[TakePhotoView] = []
     var fileList : [String]  = []
     var fileUrlList : [String]  = []
+    
+    var fromController:Int = -1
+    
     lazy var startButton:UIButton = {
         let view = UIButton()
         view.layer.masksToBounds = true

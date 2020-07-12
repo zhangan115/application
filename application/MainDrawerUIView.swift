@@ -361,7 +361,7 @@ class MainDrawerUIView: UIView {
                 userLabel3.snp.updateConstraints { (make) in
                     make.left.equalToSuperview().offset(10)
                     make.top.equalTo(self.icon1.snp.bottom).offset(8)
-                    make.width.equalTo(60)
+                    make.width.equalTo(65)
                 }
             }
         }else{

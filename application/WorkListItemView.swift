@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class WorkListItemView: UIView {
     
@@ -194,8 +195,9 @@ class WorkListItemView: UIView {
     }()
     
     var currentRequestType = 3
-    
+    var workData:WorkModel!
     func setData(workData:WorkModel,requestType:Int){
+        self.workData = workData
         self.currentRequestType = requestType
         if workData.taskType == 1 {
             iconView.image = UIImage(named: "home_card_img_yellow")
@@ -247,7 +249,7 @@ class WorkListItemView: UIView {
                 textName4.textColor = UIColor(hexString:"#FF5252")
             }else{//没有逾期
                 bottomLabel1.isHidden = false
-                let time = planStartTime - currentDate
+                let time = planStartTime - currentDate - 8 * 60 * 60 * 1000
                 textName4.text = "距离开始还剩"
                 textName4.textColor = UIColor(hexString:"#454545")
                 if time > 3600 * 1000 * 24 {
@@ -392,7 +394,69 @@ class WorkListItemView: UIView {
     var callback:((Int)->())?
     
     @objc func raibWork(){
-        callback?(self.currentRequestType)
+        if self.workData.taskState == WorkState.WORK_BEGIN.rawValue {
+            goToSystemMap()
+        }else if self.workData.taskState == WorkState.WORK_PROGRESS.rawValue  {
+            let controller = WorkFinishController()
+            controller.workModel = self.workData
+            controller.callback = {
+                let detailController = WorkDetailController()
+                detailController.workModel = self.workData
+                self.currentViewController().pushVC(detailController)
+            }
+            currentViewController().pushVC(controller)
+        }else{
+            callback?(self.currentRequestType)
+        }
+    }
+    
+    func go2Map() {
+        let annotation:MAAnnotation?
+        let toLocation = CLLocationCoordinate2D(latitude: self.workData.taskLocationLatitude, longitude: self.workData.taskLocationLongitude)
+    
+        //======其他地图都没的话就直接用系统地图========
+        if !UIApplication.shared.canOpenURL(URL.init(string: "baidumap://")!) && !UIApplication.shared.canOpenURL(URL.init(string: "iosamap://")!) {
+            goToSystemMap()
+            return
+        }
+        let alertController = UIAlertController(title: "选择导航地图", message: nil, preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction.init(title: "取消", style: .cancel) { (action) in
+            
+        }
+        //==================系统地图============
+        let appleAction = UIAlertAction(title: "系统地图", style: .default){ (action) in
+            self.goToSystemMap()
+        }
+        //=================百度地图=============
+        if UIApplication.shared.canOpenURL(URL.init(string: "baidumap://")!) {//判断是否安装了地图
+            let baiduAction = UIAlertAction(title: "百度地图", style: .default){ (action) in
+                //origin={{我的位置}} ，目的地随便写
+                let urlString = "baidumap://map/direction?origin={{我的位置}}&destination=latlng:\(self.workData.taskLocationLatitude),\(self.workData.taskLocationLongitude)|name=\(String(describing: self.workData.taskLocation))&mode=driving&coord_type=gcj02"
+                let escapedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+                UIApplication.shared.openURL(URL.init(string: escapedString!)!)
+            }
+            alertController.addAction(baiduAction)
+        }
+        //高德地图
+        if UIApplication.shared.canOpenURL(URL.init(string: "iosamap://")!) {
+            let gaodeAction = UIAlertAction(title: "高德地图", style: .default){ (action) in
+                let urlString = "iosamap://navi?sourceApplication=金牌电工&backScheme=youappscheme&lat=\(self.workData.taskLocationLatitude)&lon=\(self.workData.taskLocationLongitude)&dev=0&style=2"
+                let escapedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+                UIApplication.shared.openURL(URL.init(string: escapedString!)!)
+            }
+            alertController.addAction(gaodeAction)
+        }
+        alertController.addAction(cancelAction)
+        alertController.addAction(appleAction)
+        self.currentViewController().present(alertController, animated: true, completion: nil)
+        
+    }
+    
+    func goToSystemMap(){
+        let toLocation1 = CLLocationCoordinate2D(latitude: self.workData.taskLocationLatitude, longitude: self.workData.taskLocationLongitude)
+        let currentLocation = MKMapItem.forCurrentLocation()
+        let toLocation = MKMapItem.init(placemark: MKPlacemark.init(coordinate: toLocation1, addressDictionary: nil))
+        MKMapItem.openMaps(with: [currentLocation, toLocation],launchOptions: [MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving,MKLaunchOptionsShowsTrafficKey:true])
     }
     
 }
