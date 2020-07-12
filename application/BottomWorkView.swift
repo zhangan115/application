@@ -60,6 +60,7 @@ class BottomWorkView: UIView {
         workDataView.snp.updateConstraints{(make)in
             make.left.bottom.right.equalToSuperview()
             make.height.equalTo(218)
+          
         }
         raibWorkBtn.snp.updateConstraints{(make)in
             make.bottom.equalTo(self.workDataView.snp.top).offset(-8)

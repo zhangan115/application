@@ -57,8 +57,6 @@ class WorkViewController: PGBaseViewController {
         finish.currentLocation = self.currentLocation
         controllers.append(finish)
         let height = self.view.bounds.height - 45
-        print(screenHeight)
-        print(height - CGFloat(CF_NavHeight + TabbarSafeBottomMargin))
         pageContentView = SGPageContentView(frame: CGRect(x: 0, y: 45, w: self.view.bounds.width, h: height - CGFloat(CF_NavHeight + TabbarSafeBottomMargin)), parentVC: self, childVCs: controllers)
         pageContentView.delegatePageContentView = self
         view.addSubview(pageContentView)

@@ -16,6 +16,7 @@ class WorkProgressAfterCell: UITableViewCell {
     @IBOutlet var fileView : UIView!
     @IBOutlet var finishView : UIView!
     @IBOutlet weak var fileHeigt: NSLayoutConstraint!
+    @IBOutlet weak var addFileButtonHeigt: NSLayoutConstraint!
     @IBOutlet weak var finishlayoutHeight1: NSLayoutConstraint!
     @IBOutlet var textCount:UILabel!
     
@@ -46,9 +47,7 @@ class WorkProgressAfterCell: UITableViewCell {
             noteTextView.placeholderFont = UIFont.systemFont(ofSize: 14)
         }else{
             addFileButton.isHidden = true
-            addFileButton.snp.updateConstraints { (make) in
-                make.height.equalTo(0)
-            }
+            addFileButtonHeigt.constant = 0
             textCount.isHidden = true
         }
         if let finish = workModel.afterFinishFile {
