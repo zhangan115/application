@@ -7,11 +7,12 @@
 //
 
 import UIKit
-
+import MapKit
 class WorkInfoCell: UITableViewCell {
     
     @IBOutlet var labels:[UILabel]!
     @IBOutlet var workTypeBtn:UIButton!
+    var workData:WorkModel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -19,6 +20,7 @@ class WorkInfoCell: UITableViewCell {
     }
     
     func setModel(model:WorkModel){
+        self.workData = model
         self.workTypeBtn.layer.masksToBounds = true
         self.workTypeBtn.layer.cornerRadius = 10
         if model.taskType == WorkType.WORK_TYPE_BASE.rawValue {
@@ -66,7 +68,13 @@ class WorkInfoCell: UITableViewCell {
     }
     
     @IBAction func showLocation(sender:UIButton){
-        
+        goToSystemMap()
     }
     
+    func goToSystemMap(){
+        let toLocation1 = CLLocationCoordinate2D(latitude: self.workData.taskLocationLatitude, longitude: self.workData.taskLocationLongitude)
+        let currentLocation = MKMapItem.forCurrentLocation()
+        let toLocation = MKMapItem.init(placemark: MKPlacemark.init(coordinate: toLocation1, addressDictionary: nil))
+        MKMapItem.openMaps(with: [currentLocation, toLocation],launchOptions: [MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving,MKLaunchOptionsShowsTrafficKey:true])
+    }
 }

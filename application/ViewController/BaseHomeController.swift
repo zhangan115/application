@@ -10,7 +10,6 @@ import UIKit
 
 class BaseHomeController: UIViewController,UIGestureRecognizerDelegate {
     
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()

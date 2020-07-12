@@ -27,7 +27,7 @@ var workCostDetailCell = "WorkCostDetailCell"
 var workProgressAfterCell = "WorkProgressAfterCell"
 var workProgressButtomCell = "WorkProgressButtomCell"
 
-class WorkDetailController: BaseTableViewController {
+class WorkDetailController: PGBaseViewController,UITableViewDelegate,UITableViewDataSource {
     
     var workModel:WorkModel!
     var disposeBag = DisposeBag()
@@ -36,19 +36,24 @@ class WorkDetailController: BaseTableViewController {
     var stopState:Int = StopState.Normal.rawValue
     let realm = try! Realm()
     
-//    lazy var workInComeView : WorkInComeView = {
-//        let view = WorkInComeView()
-//        self.view.addSubview(view)
-//        return view
-//    }()
+    lazy var tableView : UITableView = {
+        let view = UITableView()
+        view.delegate = self
+        view.dataSource = self
+        self.view.addSubview(view)
+        return view
+    }()
+    
+    lazy var workInComeView : WorkInComeView = {
+        let view = WorkInComeView()
+        self.view.addSubview(view)
+        return view
+    }()
     
     override func viewDidLoad() {
-        self.isLoadMore = false
-        self.isRefresh = false
         super.viewDidLoad()
         hiddenNaviBarLine()
         self.title = "工单详情"
-        self.tableView = UITableView(frame: self.view.frame)
         self.view.backgroundColor = ColorConstants.tableViewBackground
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 44
@@ -71,6 +76,14 @@ class WorkDetailController: BaseTableViewController {
         self.tableView.register(UINib(nibName: workEndCell, bundle: nil), forCellReuseIdentifier: workEndCell)
         self.tableView.register(UINib(nibName: workProgressAfterCell, bundle: nil), forCellReuseIdentifier: workProgressAfterCell)
         self.tableView.register(UINib(nibName: workProgressButtomCell, bundle: nil), forCellReuseIdentifier: workProgressButtomCell)
+        self.workInComeView.snp.updateConstraints { (make) in
+            make.right.bottom.left.equalToSuperview()
+            make.height.equalTo(0)
+        }
+        self.tableView.snp.updateConstraints { (make) in
+            make.left.right.top.equalToSuperview()
+            make.bottom.equalTo(self.workInComeView.snp.top)
+        }
         self.request()
     }
     
@@ -80,7 +93,7 @@ class WorkDetailController: BaseTableViewController {
         self.pushVC(controller)
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if self.workModel.taskState == WorkState.WORK_ROB.rawValue {
             return getRobCell(indexPath: indexPath)
         }
@@ -114,18 +127,18 @@ class WorkDetailController: BaseTableViewController {
     
     func robWork(time:Int){
         taskProvider.rxRequest(.takeTask(taskId:self.workModel.taskId, planArriveTime: time))
-                       .subscribe(onSuccess: {[weak self] (model) in
-                           if self == nil{
-                               return
-                           }
-                           self?.view.toast("抢单成功")
-                           self?.request()
-                       }) {[weak self] _ in
-                           self?.tableView.noRefreshReloadData()
-                   }.disposed(by: self.disposeBag)
+            .subscribe(onSuccess: {[weak self] (model) in
+                if self == nil{
+                    return
+                }
+                self?.view.toast("抢单成功")
+                self?.request()
+            }) {[weak self] _ in
+                self?.tableView.noRefreshReloadData()
+        }.disposed(by: self.disposeBag)
     }
     
-    override func request() {
+    func request() {
         taskProviderNoPlugin.rxRequest(.getWorkDetail(taskId:self.workModel.taskId))
             .toModel(type: WorkModel.self)
             .subscribe(onSuccess: {[weak self] (model) in
@@ -154,7 +167,7 @@ class WorkDetailController: BaseTableViewController {
                     }
                 }
                 self?.tableView.noRefreshReloadData()
-//                self?.updateInComeView()
+                self?.updateInComeView()
             }) {[weak self] _ in
                 self?.tableView.noRefreshReloadData()
         }.disposed(by: disposeBag)
@@ -162,12 +175,17 @@ class WorkDetailController: BaseTableViewController {
     
     func updateInComeView(){
         if self.workModel.taskState == WorkState.WORK_FINISH.rawValue || self.stopState == StopState.Stop.rawValue {
-            let frame = CGRect(x: 0, y: self.view.frame.height - 44, w: screenWidth, h: 44)
-            let workInComeView = WorkInComeView(frame: frame)
-            self.view.addSubview(workInComeView)
             workInComeView.isHidden = false
             workInComeView.label.text = "工单收入"
             workInComeView.label1.text = "￥" + self.workModel.actualFee
+            self.workInComeView.snp.updateConstraints { (make) in
+                make.right.bottom.left.equalToSuperview()
+                make.height.equalTo(44)
+            }
+            self.tableView.snp.updateConstraints { (make) in
+                make.left.right.top.equalToSuperview()
+                make.bottom.equalTo(self.workInComeView.snp.top).offset(-5)
+            }
         }
         
     }
@@ -235,11 +253,11 @@ class WorkDetailController: BaseTableViewController {
 
 extension WorkDetailController{
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return getNumberOfSection()
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return getNumberOfRowInSection(section)
     }
     

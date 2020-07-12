@@ -103,7 +103,7 @@ extension WorkDetailController {
         }
     }
     
-    override  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return 0
         }
@@ -136,7 +136,7 @@ extension WorkDetailController {
     /**
      tableView的头部信息
      */
-    override  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if self.workModel.taskState == WorkState.WORK_ROB.rawValue && section == 4
             || self.stopState == StopState.Normal.rawValue && self.workModel.taskState == WorkState.WORK_BEGIN.rawValue && section == 6
             || self.stopState == StopState.Normal.rawValue && self.workModel.taskState == WorkState.WORK_PROGRESS.rawValue && !self.workModel.hasEverSubmitted && section == 7
@@ -166,7 +166,7 @@ extension WorkDetailController {
         return view
     }
     
-    override  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if self.workModel.taskState ==  WorkState.WORK_ROB.rawValue {
             if indexPath.section == 0 {
                 return 80

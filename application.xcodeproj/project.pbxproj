@@ -50,7 +50,6 @@
 		7325057124A32EF2001CF373 /* WorkTimeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7325056F24A32EF2001CF373 /* WorkTimeCell.xib */; };
 		734C541724B6E7B300B9DC55 /* WorkCostDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C541524B6E7B300B9DC55 /* WorkCostDetailCell.swift */; };
 		734C541824B6E7B300B9DC55 /* WorkCostDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 734C541624B6E7B300B9DC55 /* WorkCostDetailCell.xib */; };
-		734C541A24B7094900B9DC55 /* WorkStopilExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C541924B7094900B9DC55 /* WorkStopilExt.swift */; };
 		735ACBB924B443E600E97B68 /* WorkRoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735ACBB824B443E600E97B68 /* WorkRoutController.swift */; };
 		735ACBBC24B4495E00E97B68 /* WorkProgressItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735ACBBA24B4495E00E97B68 /* WorkProgressItemCell.swift */; };
 		735ACBBD24B4495E00E97B68 /* WorkProgressItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 735ACBBB24B4495E00E97B68 /* WorkProgressItemCell.xib */; };
@@ -266,7 +265,6 @@
 		7325056F24A32EF2001CF373 /* WorkTimeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkTimeCell.xib; sourceTree = "<group>"; };
 		734C541524B6E7B300B9DC55 /* WorkCostDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkCostDetailCell.swift; sourceTree = "<group>"; };
 		734C541624B6E7B300B9DC55 /* WorkCostDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkCostDetailCell.xib; sourceTree = "<group>"; };
-		734C541924B7094900B9DC55 /* WorkStopilExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkStopilExt.swift; sourceTree = "<group>"; };
 		735ACBB824B443E600E97B68 /* WorkRoutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkRoutController.swift; sourceTree = "<group>"; };
 		735ACBBA24B4495E00E97B68 /* WorkProgressItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkProgressItemCell.swift; sourceTree = "<group>"; };
 		735ACBBB24B4495E00E97B68 /* WorkProgressItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkProgressItemCell.xib; sourceTree = "<group>"; };
@@ -915,7 +913,6 @@
 				7382E8BB24A1CF9100401DC5 /* View */,
 				7382E8BD24A1CFA800401DC5 /* WorkDetailController.swift */,
 				3E34795424B20F1B00A2A5C0 /* WorkDetailExt.swift */,
-				734C541924B7094900B9DC55 /* WorkStopilExt.swift */,
 			);
 			name = Detail;
 			sourceTree = "<group>";
@@ -1866,7 +1863,6 @@
 				7362EA3424A061200011E56E /* NetView.swift in Sources */,
 				73BC0B262490CF2200B5DBDF /* PGUserDefaultsKey.swift in Sources */,
 				73BC0B5B2490CFBD00B5DBDF /* URL+Extension.swift in Sources */,
-				734C541A24B7094900B9DC55 /* WorkStopilExt.swift in Sources */,
 				735C0C912498EF7200194FB0 /* HelpItemTableViewCell.swift in Sources */,
 				73BC0B152490CE5500B5DBDF /* PGImagePicker.swift in Sources */,
 				736CF74C24B84865009AFF6A /* WorkRecordController.swift in Sources */,
