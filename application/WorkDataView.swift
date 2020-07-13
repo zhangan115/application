@@ -175,7 +175,7 @@ class WorkDataView: UIView {
         money.text = "￥" + workData.taskFee
         textName2.text = workData.taskLocation
         textName6.text = "资格要求：" + getTaskNeedSkill(workData)
-        textName3.text = workData.taskName
+        textName3.text = workData.taskContent
         textName4.text = "计划开始时间：" + dateString(millisecond: TimeInterval(workData.planStartTime), dateFormat: "yyyy-MM-dd HH:mm")
         textName5.text = "计划结束时间：" + dateString(millisecond: TimeInterval(workData.planEndTime), dateFormat: "yyyy-MM-dd HH:mm")
     }
@@ -189,7 +189,7 @@ class WorkDataView: UIView {
         contentLayoutView.snp.updateConstraints{(make)in
             make.left.equalToSuperview().offset(10)
             make.right.equalToSuperview().offset(-10)
-            make.bottom.equalToSuperview().offset(-18)
+            make.bottom.equalToSuperview().offset(0)
             make.top.equalToSuperview()
         }
         iconView.snp.updateConstraints{(make)in
@@ -241,6 +241,7 @@ class WorkDataView: UIView {
         textName3.snp.updateConstraints{(make)in
             make.left.equalTo(self.icon6View.snp.right).offset(4)
             make.centerY.equalTo(icon3View)
+            make.right.equalToSuperview().offset(-12)
         }
         tiemLayoutView.snp.updateConstraints{(make)in
             make.bottom.equalToSuperview()

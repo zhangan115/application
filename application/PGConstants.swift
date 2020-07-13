@@ -34,9 +34,9 @@ struct ColorConstants {
 }
 //个推key
 struct GtConfig {
-    let appId:String = "s5D2V5UOSYAoWDX1mKIjd"
-    let appKey:String = "avqI8DBgLF6hNbHvG8VhR"
-    let appSecret:String = "5GMDXNe35tAnYDLOByASu9"
+    let appId:String = "dpjmTCJBp78M4Fy0E7uNK5"
+    let appKey:String = "Y4PG6LMEJx6DhMrXf2QtW5"
+    let appSecret:String = "llYuybQ9yfAtln7HjQhhh"
     static var clientId: String!
 }
 

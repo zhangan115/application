@@ -14,7 +14,7 @@ class UserElectricianController: PGBaseViewController {
     @IBOutlet weak var button1:UIButton!
     @IBOutlet weak var button2:UIButton!
     @IBOutlet weak var buttonSure:UIButton!
-    
+    @IBOutlet weak var labelNote:UILabel!
     @IBOutlet weak var layout1:UIView!
     @IBOutlet weak var layout2:UIView!
     
@@ -94,6 +94,7 @@ class UserElectricianController: PGBaseViewController {
                 }
                 button1.loadNetWorkImage(model.specialOperationPic, placeholder: "qualifications_img1")
                 button2.loadNetWorkImage(model.vocationalQualificationPic, placeholder: "qualifications_img2")
+                labelNote.text = "如需更改操作证，或上传职业资格等级证，点击下方更新信息，进行上传！"
                 buttonSure.setTitle("更新信息", for: .normal)
                 buttonSure.isEnabled = true
             }else if model.verifyPassState == 3{
@@ -113,6 +114,7 @@ class UserElectricianController: PGBaseViewController {
             layout2.isHidden = false
             left1.constant  = mWidth + 10
             buttonSure.setTitle("提交审核", for: .normal)
+            labelNote.text = "请按照示意图上传本人电工证信息，避免模糊、反光、遮挡、光线过暗、信息不全"
             currentState = 0
         }else{
             var params : [String: Any] = [:]

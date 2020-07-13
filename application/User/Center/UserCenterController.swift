@@ -98,6 +98,7 @@ class UserCenterController: PGBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "个人中心"
+        self.hiddenNaviBarLine()
         self.view.backgroundColor = UIColor(hexString: "#F6F6F6")
         let bgView = UIView()
         let bgLayer1 = CAGradientLayer()

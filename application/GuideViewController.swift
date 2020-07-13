@@ -29,11 +29,9 @@ class GuideViewController: UIViewController {
         sureButton.layer.masksToBounds = true
         sureButton.layer.cornerRadius = 4
         sureButton.isHidden = true
-        let frame = self.view.bounds
-        print(frame.size.width)
-        width1.constant = frame.size.width
-        width2.constant = frame.size.width
-        width3.constant = frame.size.width
+        width1.constant = screenWidth
+        width2.constant = screenWidth
+        width3.constant = screenWidth
         image = UIImageView(image: UIImage(named: "carousel_img_1"))
         self.view.addSubview(image)
         image.snp.updateConstraints{(make)in

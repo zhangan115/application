@@ -13,6 +13,7 @@
                 <outlet property="button1" destination="fYJ-OL-kwP" id="FJp-hY-3EC"/>
                 <outlet property="button2" destination="3m5-e6-oSu" id="kGM-YM-4pm"/>
                 <outlet property="buttonSure" destination="mnZ-J7-bKs" id="6MX-cK-Xpr"/>
+                <outlet property="labelNote" destination="l9L-PE-5XI" id="Mvv-fr-4Cd"/>
                 <outlet property="layout1" destination="qkk-cX-g7I" id="Pfr-SF-sDb"/>
                 <outlet property="layout2" destination="fMp-h3-mE2" id="DZO-Fk-QZn"/>
                 <outlet property="left1" destination="Ngz-X9-UKq" id="3y8-fL-NbQ"/>

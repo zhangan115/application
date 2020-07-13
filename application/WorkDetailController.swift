@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 import RealmSwift
-
+import PGDatePicker
 var workCostCell = "WorkCostCell"
 var workInfoCell = "WorkInfoCell"
 var customerInfoCell = "CustomerInfoCell"
@@ -116,7 +116,9 @@ class WorkDetailController: PGBaseViewController,UITableViewDelegate,UITableView
     func showTimeDailog(time:Int){
         let text = "预计作业时间：" + dateString(millisecond: TimeInterval(time), dateFormat: "yyyy-MM-dd")
         let alertController = UIAlertController(title: text, message:"请在工单规定时间内完成作业", preferredStyle: .alert)
-        let noAction = UIAlertAction(title: "修改时间", style: .cancel, handler: nil)
+        let noAction = UIAlertAction(title: "修改时间", style: .cancel, handler: {(_)->Void in
+            self.showTimePick(0)
+        })
         let sureAction = UIAlertAction(title: "确定", style: .default, handler: {(_)->Void in
             self.robWork(time: time)
         })
@@ -124,6 +126,18 @@ class WorkDetailController: PGBaseViewController,UITableViewDelegate,UITableView
         alertController.addAction(sureAction)
         self.present(alertController, animated: true, completion: nil)
     }
+    
+    private func showTimePick(_ tag :Int) {
+          let startDatePickerManager = PGDatePickManager()
+          let datePicker = startDatePickerManager.datePicker!
+          startDatePickerManager.isShadeBackground = true
+          datePicker.tag = tag
+          datePicker.delegate = self
+          datePicker.datePickerMode = .date
+          datePicker.isHiddenMiddleText = false
+          datePicker.datePickerType = .segment
+          self.present(startDatePickerManager, animated: false, completion: nil)
+      }
     
     func robWork(time:Int){
         taskProvider.rxRequest(.takeTask(taskId:self.workModel.taskId, planArriveTime: time))
@@ -179,8 +193,9 @@ class WorkDetailController: PGBaseViewController,UITableViewDelegate,UITableView
                 workInComeView.label.text = "工单收入"
                 workInComeView.label1.text = "￥" + self.workModel.actualFee
                 self.workInComeView.snp.updateConstraints { (make) in
-                    make.right.bottom.left.equalToSuperview()
+                    make.right.left.equalToSuperview()
                     make.height.equalTo(44)
+                    make.bottom.equalToSuperview().offset(-TabbarSafeBottomMargin)
                 }
                 self.tableView.snp.updateConstraints { (make) in
                     make.left.right.top.equalToSuperview()

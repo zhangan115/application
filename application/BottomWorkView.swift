@@ -57,35 +57,30 @@ class BottomWorkView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        workDataView.snp.updateConstraints{(make)in
-            make.left.bottom.right.equalToSuperview()
-            make.height.equalTo(218)
-          
-        }
         raibWorkBtn.snp.updateConstraints{(make)in
-            make.bottom.equalTo(self.workDataView.snp.top).offset(-8)
+            make.top.equalToSuperview()
             make.left.equalToSuperview().offset(8)
             make.width.equalTo(98)
             make.height.equalTo(31)
-            make.top.greaterThanOrEqualToSuperview().offset(10)
         }
         refreshBtn.snp.updateConstraints{(make)in
             make.right.equalToSuperview().offset(-8)
-            make.bottom.equalTo(self.workDataView.snp.top).offset(-8)
             make.height.width.equalTo(31)
-            make.top.greaterThanOrEqualToSuperview().offset(10)
+            make.top.equalToSuperview()
         }
         locationBtn.snp.updateConstraints{(make)in
             make.right.equalTo(self.refreshBtn.snp.left).offset(-8)
-            make.bottom.equalTo(self.workDataView.snp.top).offset(-8)
             make.height.width.equalTo(31)
-            make.top.greaterThanOrEqualToSuperview().offset(10)
+            make.top.equalToSuperview()
         }
         serviceBtn.snp.updateConstraints{(make)in
             make.right.equalTo(self.locationBtn.snp.left).offset(-8)
-            make.bottom.equalTo(self.workDataView.snp.top).offset(-8)
             make.height.width.equalTo(31)
-            make.top.greaterThanOrEqualToSuperview().offset(10)
+            make.top.equalToSuperview()
+        }
+        workDataView.snp.updateConstraints{(make)in
+            make.left.bottom.right.equalToSuperview()
+            make.top.equalTo(self.raibWorkBtn.snp.bottom).offset(8)
         }
     }
     

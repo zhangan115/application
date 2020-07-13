@@ -62,18 +62,25 @@ class WebViewController: PGBaseViewController {
             if showButton {
                 make.height.equalTo(60)
             }else{
-               make.height.equalTo(0)
+                make.height.equalTo(0)
             }
         }
-        verifyButton.snp.updateConstraints{(make)in
-            make.left.equalToSuperview().offset(10)
-            make.right.equalToSuperview().offset(-10)
-            make.top.equalToSuperview().offset(10)
-            make.bottom.equalToSuperview().offset(-10)
+        if showButton {
+            verifyButton.snp.updateConstraints{(make)in
+                make.left.equalToSuperview().offset(10)
+                make.right.equalToSuperview().offset(-10)
+                make.height.equalTo(40)
+                make.centerY.equalToSuperview()
+            }
         }
         webView.snp.updateConstraints{(make)in
             make.left.right.top.equalToSuperview()
-            make.bottom.equalTo(self.buttonUiView.snp.top)
+            if showButton {
+                make.bottom.equalTo(self.buttonUiView.snp.top)
+            }else{
+                make.bottom.equalToSuperview()
+            }
+            
         }
         let fullUrl = Config.baseURL.absoluteString + url
         let request = URLRequest(url: URL(string:fullUrl)!)

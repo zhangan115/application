@@ -15,7 +15,7 @@ private let settingExitCell = "SettingExitCell"
 class SettingController: HomeTableController {
     
     var titleList:[String] = ["设置登录密码","清理缓存","关于我们","平台使用协议及隐私条款"]
-    
+    var fileCacheSize : String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "设置"
@@ -29,6 +29,15 @@ class SettingController: HomeTableController {
         self.tableView.register(UINib(nibName: itemCell, bundle: nil), forCellReuseIdentifier: itemCell)
         self.tableView.register(UINib(nibName: settingViewCell, bundle: nil), forCellReuseIdentifier: settingViewCell)
         self.tableView.register(UINib(nibName: settingExitCell, bundle: nil), forCellReuseIdentifier: settingExitCell)
+        countCache()
+    }
+    
+    func countCache(){
+        CacheCleanTool.fileSizeOfCachingg { (size) in
+            print(size)
+            self.fileCacheSize = size
+            self.tableView.reloadRows(at: [IndexPath(row: 0, section: 1)], with: .none)
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -53,7 +62,7 @@ class SettingController: HomeTableController {
         }
         if indexPath.section == 1 {
             cell.contentLable.isHidden = false
-            cell.contentLable.text = fileSizeOfCache().toString + "M"
+            cell.contentLable.text = fileCacheSize
         }else{
             cell.contentLable.isHidden = true
         }
@@ -74,8 +83,8 @@ class SettingController: HomeTableController {
             self.pushVC(controller)
         }
         if indexPath.section == 1 {
-            clearCache()
-            self.tableView.reloadData()
+            CacheCleanTool.clearCache()
+            self.countCache()
         }
         if indexPath.section == 2 {
             let controller = AboutUsController()

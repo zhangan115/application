@@ -165,7 +165,7 @@ class WorkEndItemView: UIView {
         } else {
             textName7.text = ">9km"
         }
-        textName3.text = workData.taskName
+        textName3.text = workData.taskContent
         if workData.terminateState == 1 {
             textName4.text = "等待客服审核…"
             textName4.textColor = UIColor(hexString:"#333333")
@@ -245,6 +245,7 @@ class WorkEndItemView: UIView {
         textName3.snp.updateConstraints{(make)in
             make.left.equalTo(self.icon6View.snp.right).offset(4)
             make.centerY.equalTo(icon3View)
+            make.right.equalToSuperview().offset(-12)
         }
         tiemLayoutView.snp.updateConstraints{(make)in
             make.bottom.equalToSuperview()

@@ -31,7 +31,8 @@ class HeaderWorkEnclosureView: UITableViewHeaderFooterView {
         self.contentView.backgroundColor = ColorConstants.tableViewBackground
         bgView.snp.updateConstraints{ (make) in
             make.left.right.bottom.equalToSuperview()
-            make.top.equalToSuperview().offset(12)
+//            make.top.equalToSuperview().offset(12)
+            make.height.equalTo(46)
         }
         centerLabel.snp.updateConstraints { (make) in
             make.top.equalToSuperview().offset(16)

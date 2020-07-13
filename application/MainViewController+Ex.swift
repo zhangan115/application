@@ -34,11 +34,11 @@ extension MainViewController {
         }
         serviceBtn.snp.updateConstraints{(make)in
             make.left.equalToSuperview().offset(8)
-            make.bottom.equalTo(-78)
+            make.bottom.equalTo(-78-TabbarSafeBottomMargin)
         }
         refreshBtn.snp.updateConstraints{(make)in
             make.right.equalToSuperview().offset(-8)
-            make.bottom.equalTo(-78)
+            make.bottom.equalTo(-78-TabbarSafeBottomMargin)
         }
         locationBtn.snp.updateConstraints{(make)in
             make.right.equalToSuperview().offset(-8)
@@ -49,7 +49,7 @@ extension MainViewController {
             make.bottom.equalTo(locationBtn.snp.top).offset(-12)
         }
         raibNowBtn.snp.updateConstraints{(make)in
-            make.bottom.equalToSuperview().offset(-18)
+            make.bottom.equalToSuperview().offset(-18-TabbarSafeBottomMargin)
             make.left.equalTo(45)
             make.right.equalTo(-45)
             make.height.equalTo(44)
@@ -94,8 +94,9 @@ extension MainViewController {
             make.centerY.equalToSuperview()
         }
         bottomWorkView.snp.updateConstraints{(make)in
-            make.left.right.bottom.equalToSuperview()
-            make.height.equalTo(249)
+            make.left.right.equalToSuperview()
+            make.height.equalTo(226)
+            make.bottom.equalToSuperview().offset(-18-TabbarSafeBottomMargin)
         }
     }
     

@@ -114,6 +114,7 @@
 		7382E8B724A1C86400401DC5 /* WorkRobItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7382E8B624A1C86400401DC5 /* WorkRobItemView.swift */; };
 		7382E8B924A1C8EF00401DC5 /* WorkRobItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7382E8B824A1C8EF00401DC5 /* WorkRobItemCell.swift */; };
 		7382E8BE24A1CFA800401DC5 /* WorkDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7382E8BD24A1CFA800401DC5 /* WorkDetailController.swift */; };
+		738A86AD24BC3FF500AD0DD4 /* CacheCleanTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738A86AC24BC3FF500AD0DD4 /* CacheCleanTool.swift */; };
 		7394064E249702AE001562CD /* GTSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73940649249702AE001562CD /* GTSDK.framework */; };
 		739406512497039B001562CD /* test.m in Sources */ = {isa = PBXBuildFile; fileRef = 739406502497039B001562CD /* test.m */; };
 		7394065324970574001562CD /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 739406522497055F001562CD /* libsqlite3.tbd */; };
@@ -337,6 +338,7 @@
 		7382E8B624A1C86400401DC5 /* WorkRobItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkRobItemView.swift; sourceTree = "<group>"; };
 		7382E8B824A1C8EF00401DC5 /* WorkRobItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkRobItemCell.swift; sourceTree = "<group>"; };
 		7382E8BD24A1CFA800401DC5 /* WorkDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkDetailController.swift; sourceTree = "<group>"; };
+		738A86AC24BC3FF500AD0DD4 /* CacheCleanTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheCleanTool.swift; sourceTree = "<group>"; };
 		73940649249702AE001562CD /* GTSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GTSDK.framework; sourceTree = "<group>"; };
 		7394064F2497039B001562CD /* application-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "application-Bridging-Header.h"; sourceTree = "<group>"; };
 		739406502497039B001562CD /* test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = test.m; sourceTree = "<group>"; };
@@ -1112,6 +1114,7 @@
 				73BC0B1F2490CF2200B5DBDF /* PGGlobalHelper.swift */,
 				73BC0B222490CF2200B5DBDF /* PGMacros.swift */,
 				73BC0B212490CF2200B5DBDF /* PGUserDefaultsKey.swift */,
+				738A86AC24BC3FF500AD0DD4 /* CacheCleanTool.swift */,
 			);
 			name = Stores;
 			sourceTree = "<group>";
@@ -1840,6 +1843,7 @@
 				73BC0B822490E4D100B5DBDF /* PageingListViewController.swift in Sources */,
 				737643582457F53F00CB2050 /* AppDelegate.swift in Sources */,
 				73BC0B552490CFBD00B5DBDF /* DispatchQueue+Extension.swift in Sources */,
+				738A86AD24BC3FF500AD0DD4 /* CacheCleanTool.swift in Sources */,
 				73D90CEA24B82F520036F63A /* WorkMoreItemCell.swift in Sources */,
 				7371C247249B0F5400CB6BAA /* UserDataSureCell.swift in Sources */,
 				73BC0B572490CFBD00B5DBDF /* UIView+Extension.swift in Sources */,
@@ -2017,7 +2021,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "application/金牌电工.entitlements";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 65MUSRJ8L7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2032,6 +2037,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sitop.electrician.application;
 				PRODUCT_NAME = "金牌电工";
+				PROVISIONING_PROFILE_SPECIFIER = SiTopElectrician;
 				SWIFT_OBJC_BRIDGING_HEADER = "application/Bridging/application-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
@@ -2046,7 +2052,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "application/金牌电工.entitlements";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 65MUSRJ8L7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2061,6 +2068,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sitop.electrician.application;
 				PRODUCT_NAME = "金牌电工";
+				PROVISIONING_PROFILE_SPECIFIER = SiTopElectrician;
 				SWIFT_OBJC_BRIDGING_HEADER = "application/Bridging/application-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;

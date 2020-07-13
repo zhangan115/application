@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import PGDatePicker
 extension WorkDetailController {
     
     //    case  TASK_NODE_CONFIRMING = 1
@@ -727,6 +727,23 @@ extension WorkDetailController {
             let cell = tableView.dequeueReusableCell(withIdentifier: workEnclosureCell) as! WorkEnclosureCell
             cell.setModel(model: self.workModel.taskAttachmentList[indexPath.row])
             return cell
+        }
+    }
+}
+
+
+extension WorkDetailController: PGDatePickerDelegate {
+    
+    func datePicker(_ datePicker: PGDatePicker!, didSelectDate dateComponents: DateComponents!) {
+        if let date = Calendar.current.date(from: dateComponents) {
+            if datePicker.tag == 0 {
+                let dateString: String! = date.toString(format: "yyyy-MM-dd")
+                let timeStr = date.toString(format: dateString + " 23:59:59")
+                let time = date2TimeStamp(time: timeStr, dateFormat: "yyyy-MM-dd HH:mm:ss").toInt
+                DispatchQueue.delay(time: 1.5, execute: {[weak self] in
+                   self?.showTimeDailog(time: time)
+                })
+            }
         }
     }
 }

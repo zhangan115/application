@@ -220,7 +220,7 @@ class WorkListItemView: UIView {
             textName7.text = ">9km"
         }
         
-        textName3.text = workData.taskName
+        textName3.text = workData.taskContent
         if requestType == 3 {
             icon4View.image = UIImage(named: "home_card_icon_time")
             raibWorkBtn.isHidden = false
@@ -340,6 +340,7 @@ class WorkListItemView: UIView {
         textName3.snp.updateConstraints{(make)in
             make.left.equalTo(self.icon6View.snp.right).offset(4)
             make.centerY.equalTo(icon3View)
+            make.right.equalToSuperview().offset(-12)
         }
         tiemLayoutView.snp.updateConstraints{(make)in
             make.bottom.equalToSuperview()

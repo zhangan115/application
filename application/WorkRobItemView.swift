@@ -178,8 +178,9 @@ class WorkRobItemView: UIView {
         self.tiemLayoutView.addSubview(button)
         return button
     }()
-    
+     var workData:WorkModel!
     func setData(workData:WorkModel){
+        self.workData = workData
         if workData.taskType == 1 {
             iconView.image = UIImage(named: "home_card_img_yellow")
         }else if workData.taskType == 2 {
@@ -201,20 +202,8 @@ class WorkRobItemView: UIView {
         }
         let requiredSocLevel = workData.requiredSocLevel
         let requiredEpqcLevel = workData.requiredEpqcLevel
-        var str = "资格要求：无要求"
-        if (workData.taskType != WorkType.WORK_TYPE_BASE.hashValue){
-            if (requiredSocLevel==nil && requiredEpqcLevel == nil){
-                str = "资格要求：技术电工"
-            }else if (requiredSocLevel != nil && requiredEpqcLevel == nil){
-                str = "资格要求：" + (getSpecialString(level:requiredSocLevel!) ?? "")
-            }else if (requiredSocLevel == nil && requiredEpqcLevel != nil){
-                str = "资格要求：" + (getVocationalString(level: requiredEpqcLevel!) ?? "")
-            }else{
-                str = "资格要求：" + (getSpecialString(level:requiredSocLevel!) ?? "") + " " + (getVocationalString(level: requiredEpqcLevel!) ?? "")
-            }
-        }
-        textName6.text = str
-        textName3.text = workData.taskName
+        textName6.text = "资格要求：" + getTaskNeedSkill(workData)
+        textName3.text = workData.taskContent
         textName4.text = "计划开始时间：" + dateString(millisecond: TimeInterval(workData.planStartTime), dateFormat: "yyyy-MM-dd HH:mm")
         textName5.text = "计划结束时间：" + dateString(millisecond: TimeInterval(workData.planEndTime), dateFormat: "yyyy-MM-dd HH:mm")
     }
@@ -289,6 +278,7 @@ class WorkRobItemView: UIView {
         textName3.snp.updateConstraints{(make)in
             make.left.equalTo(self.icon6View.snp.right).offset(4)
             make.centerY.equalTo(icon3View)
+            make.right.equalToSuperview().offset(-12)
         }
         tiemLayoutView.snp.updateConstraints{(make)in
             make.bottom.equalToSuperview()
@@ -325,7 +315,9 @@ class WorkRobItemView: UIView {
     
     
     @objc func raibWork(){
-        
+        let controller = WorkDetailController()
+        controller.workModel = self.workData
+        self.currentViewController().pushVC(controller)
     }
     
 }
