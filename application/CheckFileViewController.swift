@@ -16,6 +16,7 @@ class CheckFileViewController: PGBaseViewController {
       lazy var webView: UIWebView = {
           let view = UIWebView()
           view.backgroundColor = UIColor.clear
+            view.scalesPageToFit = true
           self.view.addSubview(view)
           return view
       }()
@@ -27,20 +28,22 @@ class CheckFileViewController: PGBaseViewController {
           self.webView.snp.updateConstraints{(make) in
               make.left.right.top.bottom.equalToSuperview()
           }
-        taskProvider.request(.checkFile(fileUrl: Config.baseURL.absoluteString + self.fileUrl)){ result in
-              switch result {
-              case .success:
-                let localLocation: URL = DefaultDownloadDir.appendingPathComponent(self.fileName)
-                  self.showFile(url: localLocation)
-              case let .failure(error):
-                  print(error)
-                  break
-              }
-          }
+        let url = Config.baseURL.absoluteString + self.fileUrl
+        showFile(url: URL.init(string: url)!)
+//        taskProvider.request(.checkFile(fileUrl:url)){ result in
+//              switch result {
+//              case .success:
+//                let localLocation: URL = DefaultDownloadDir.appendingPathComponent(self.fileName)
+//                  self.showFile(url: localLocation)
+//              case let .failure(error):
+//                  print(error)
+//                  break
+//              }
+//          }
       }
       
       private func showFile(url:URL){
-          self.webView.loadRequest(URLRequest.init(url: url))
+          self.webView.loadRequest(URLRequest(url: url))
       }
 
 }

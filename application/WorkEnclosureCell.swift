@@ -27,12 +27,12 @@ class WorkEnclosureCell: UITableViewCell {
     }
     
     @objc func showFileController(){
-         if model != nil  {
-             let controller = CheckFileViewController()
+        if model != nil  {
+            let controller = CheckFileViewController()
             controller.fileName = self.model!.fileName
             controller.fileUrl = self.model!.fileUrl
-             self.currentViewController().pushVC(controller)
-         }
-     }
+            self.currentViewController().pushVC(controller)
+        }
+    }
     
 }

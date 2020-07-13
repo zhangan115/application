@@ -12,7 +12,7 @@ import UIKit
 struct Config {
     #if DEBUG
     //http://172.16.40.240:8081
-    static let baseURL: URL = URL(string:"http://114.215.94.141:8085")!
+    static let baseURL: URL = URL(string:"http://172.16.40.240:8081")!
     #else
     static let baseURL: URL = URL(string:"http://114.215.94.141:8085")!
     #endif
@@ -241,6 +241,24 @@ func callPhoneTelpro(phone : String){
     if UIApplication.shared.canOpenURL(URL(string: phoneUrlStr)!){
         UIApplication.shared.openURL(URL(string: phoneUrlStr)!)
     }
+}
+
+func getTaskNeedSkill(_ model:WorkModel) -> String{
+    let requiredSocLevel = model.requiredSocLevel
+    let requiredEpqcLevel = model.requiredEpqcLevel
+    var str = "无要求"
+    if (model.taskType != WorkType.WORK_TYPE_BASE.hashValue){
+        if (requiredSocLevel == nil && requiredEpqcLevel == nil){
+            str = "技术电工"
+        }else if (requiredSocLevel != 0 && requiredEpqcLevel == 0){
+            str = (getSpecialString(level:requiredSocLevel!) ?? "")
+        }else if (requiredSocLevel == 0 && requiredEpqcLevel != 0){
+            str = (getVocationalString(level: requiredEpqcLevel!) ?? "")
+        }else if (requiredSocLevel != 0 && requiredEpqcLevel != 0){
+            str = (getSpecialString(level:requiredSocLevel!) ?? "") + " " + (getVocationalString(level: requiredEpqcLevel!) ?? "")
+        }
+    }
+    return str
 }
 
 func getSpecialString(level: Int)-> String? {

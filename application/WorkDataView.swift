@@ -174,21 +174,7 @@ class WorkDataView: UIView {
         equipmentView.image = UIImage(named: "home_card_img1")
         money.text = "￥" + workData.taskFee
         textName2.text = workData.taskLocation
-        let requiredSocLevel = workData.requiredSocLevel
-        let requiredEpqcLevel = workData.requiredEpqcLevel
-        var str = "资格要求：无要求"
-        if (workData.taskType != WorkType.WORK_TYPE_BASE.hashValue){
-            if (requiredSocLevel==nil && requiredEpqcLevel == nil){
-                str = "资格要求：技术电工"
-            }else if (requiredSocLevel != nil && requiredEpqcLevel == nil){
-                str = "资格要求：" + (getSpecialString(level:requiredSocLevel!) ?? "")
-            }else if (requiredSocLevel == nil && requiredEpqcLevel != nil){
-                str = "资格要求：" + (getVocationalString(level: requiredEpqcLevel!) ?? "")
-            }else{
-                str = "资格要求：" + (getSpecialString(level:requiredSocLevel!) ?? "") + " " + (getVocationalString(level: requiredEpqcLevel!) ?? "")
-            }
-        }
-        textName6.text = str
+        textName6.text = "资格要求：" + getTaskNeedSkill(workData)
         textName3.text = workData.taskName
         textName4.text = "计划开始时间：" + dateString(millisecond: TimeInterval(workData.planStartTime), dateFormat: "yyyy-MM-dd HH:mm")
         textName5.text = "计划结束时间：" + dateString(millisecond: TimeInterval(workData.planEndTime), dateFormat: "yyyy-MM-dd HH:mm")

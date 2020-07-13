@@ -9,7 +9,6 @@
 import Foundation
 import Moya
 
-
 let taskProvider = MoyaProvider<TaskTarget>(manager: PGAlamofireManager.sharedManager
     , plugins: [PGProvider.networkPlugin()])
 
@@ -165,12 +164,12 @@ extension TaskTarget:TargetType {
             return .uploadMultipart(multipartFormData)
         case .getSpareList,.getDirverList,.getInstrument:
             return .requestParameters(parameters: parameters!, encoding: URLEncoding.default)
-            case let .checkFile(fileUrl):
-                       let saveName = fileUrl.split("/").last ?? ""
-                       let localLocation: URL = DefaultDownloadDir.appendingPathComponent(saveName)
-                       let downloadDestination:DownloadDestination = { _, _ in
-                           return (localLocation, .removePreviousFile) }
-                       return .downloadDestination(downloadDestination)
+        case let .checkFile(fileUrl):
+            let saveName = fileUrl.split("/").last ?? ""
+            let localLocation: URL = DefaultDownloadDir.appendingPathComponent(saveName)
+            let downloadDestination:DownloadDestination = { _, _ in
+                return (localLocation, .removePreviousFile) }
+            return .downloadDestination(downloadDestination)
         default :
             return .requestPlain
         }
