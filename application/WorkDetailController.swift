@@ -160,7 +160,7 @@ class WorkDetailController: PGBaseViewController,UITableViewDelegate,UITableView
                     self?.rightMoreButton()
                 }
                 if model.isTerminated {
-                    if model.actualFee != nil{
+                    if model.actualFee != nil && model.actualFee.count > 0 {
                         self?.stopState = StopState.Stop.rawValue
                     }else{
                         self?.stopState = StopState.Progress.rawValue
@@ -175,19 +175,18 @@ class WorkDetailController: PGBaseViewController,UITableViewDelegate,UITableView
     
     func updateInComeView(){
         if self.workModel.taskState == WorkState.WORK_FINISH.rawValue || self.stopState == StopState.Stop.rawValue {
-            workInComeView.isHidden = false
-            workInComeView.label.text = "工单收入"
-            workInComeView.label1.text = "￥" + self.workModel.actualFee
-            self.workInComeView.snp.updateConstraints { (make) in
-                make.right.bottom.left.equalToSuperview()
-                make.height.equalTo(44)
-            }
-            self.tableView.snp.updateConstraints { (make) in
-                make.left.right.top.equalToSuperview()
-                make.bottom.equalTo(self.workInComeView.snp.top).offset(-5)
-            }
+                workInComeView.isHidden = false
+                workInComeView.label.text = "工单收入"
+                workInComeView.label1.text = "￥" + self.workModel.actualFee
+                self.workInComeView.snp.updateConstraints { (make) in
+                    make.right.bottom.left.equalToSuperview()
+                    make.height.equalTo(44)
+                }
+                self.tableView.snp.updateConstraints { (make) in
+                    make.left.right.top.equalToSuperview()
+                    make.bottom.equalTo(self.workInComeView.snp.top).offset(-5)
+                }
         }
-        
     }
     
     func subData(){

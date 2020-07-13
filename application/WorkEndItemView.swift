@@ -155,20 +155,7 @@ class WorkEndItemView: UIView {
         equipmentView.image = UIImage(named: "home_card_img1")
         money.text = "￥" + workData.taskFee
         textName2.text = workData.taskLocation
-        let requiredSocLevel = workData.requiredSocLevel
-        let requiredEpqcLevel = workData.requiredEpqcLevel
-        var str = "资格要求：无要求"
-        if (workData.taskType != WorkType.WORK_TYPE_BASE.hashValue){
-            if (requiredSocLevel==nil && requiredEpqcLevel == nil){
-                str = "资格要求：技术电工"
-            }else if (requiredSocLevel != nil && requiredEpqcLevel == nil){
-                str = "资格要求：" + (getSpecialString(level:requiredSocLevel!) ?? "")
-            }else if (requiredSocLevel == nil && requiredEpqcLevel != nil){
-                str = "资格要求：" + (getVocationalString(level: requiredEpqcLevel!) ?? "")
-            }else{
-                str = "资格要求：" + (getSpecialString(level:requiredSocLevel!) ?? "") + " " + (getVocationalString(level: requiredEpqcLevel!) ?? "")
-            }
-        }
+        textName6.text = "资格要求：" + getTaskNeedSkill(workData)
         if workData.distance < 3 {
             textName7.text = "<3km"
         } else if workData.distance < 6 && workData.distance >= 3{
@@ -178,7 +165,6 @@ class WorkEndItemView: UIView {
         } else {
             textName7.text = ">9km"
         }
-        textName6.text = str
         textName3.text = workData.taskName
         if workData.terminateState == 1 {
             textName4.text = "等待客服审核…"

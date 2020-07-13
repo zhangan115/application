@@ -114,7 +114,14 @@ class UserFreezyController: UIViewController {
         if let userModel = UserModel.unarchiver() {
             freezyResonLabel.text = userModel.freezeReason
             let timeStr = dateString(millisecond: TimeInterval(userModel.freezeTime ?? 0), dateFormat: "yyyy-MM-dd HH:mm:ss")
-            freezyTimeLabel.text = timeStr + " 可再次接单"
+            let attrs1 : [NSAttributedString.Key : Any] = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14,weight: .medium)
+                , NSAttributedString.Key.foregroundColor : UIColor(hexString: "#FF3232")!]
+            let attrs2 : [NSAttributedString.Key : Any] = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)
+                           , NSAttributedString.Key.foregroundColor : UIColor(hexString: "#333333")!]
+            let attributedString1 = NSMutableAttributedString(string:timeStr, attributes:attrs1)
+            let attributedString2 = NSMutableAttributedString(string:"可再次接单", attributes:attrs2)
+            attributedString1.append(attributedString2)
+            freezyTimeLabel.attributedText = attributedString1
         }
     }
     
