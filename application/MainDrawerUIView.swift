@@ -375,7 +375,7 @@ class MainDrawerUIView: UIView {
     }
     
     @objc func verify(){
-        if userModel.certificationType! == 0 {
+        if userModel.certificationType == nil || userModel.certificationType! == 0 {
             let controller = UserIdentityController()
             self.currentViewController().pushVC(controller)
         }else{

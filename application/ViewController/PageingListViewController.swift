@@ -11,6 +11,8 @@ import MJRefresh
 // 列表 分页 基础类
 class PageingListViewController: BaseHomeController {
     
+    var isRefresh = true
+    var isLoadMore = true
     var isPresent = false
     var responseDataList: [Any] = []
     var baseIastId: Int!
@@ -20,8 +22,6 @@ class PageingListViewController: BaseHomeController {
     
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: self.view.bounds, style: .plain)
-        tableView.tableFooterView = UIView()
-        tableView.tableFooterView = UIView()
         tableView.separatorInset = UIEdgeInsets.zero
         self.view.addSubview(tableView)
         return tableView
@@ -30,6 +30,12 @@ class PageingListViewController: BaseHomeController {
     override func viewDidLoad() {
         super.viewDidLoad()
         backButtonLogic()
+        if isRefresh {
+            setTableViewHeader()
+        }
+        if isLoadMore {
+            setTableViewFooter()
+        }
     }
     
     func setTableViewHeader() {
@@ -60,24 +66,33 @@ class PageingListViewController: BaseHomeController {
         
     }
     
-    func requestSuccessMonitor(list: [Any]) {
-        tableView.mj_header?.endRefreshing()
-        tableView.mj_footer?.endRefreshing()
-        if list.count == 0 {
-            tableView.mj_footer?.endRefreshingWithNoMoreData()
-        }
-        self.responseDataList.append(contentsOf: list)
-        if list.count < pagingCount {
-            tableView.mj_footer?.isHidden = true
-        }else {
-            tableView.mj_footer?.isHidden = false
-        }
-        if self.tableView.mj_header != nil {
-            self.tableView.safeReloadData()
-        }else{
-            self.tableView.noRefreshReloadData()
-        }
-    }
+     func requestSuccessMonitor(list: [Any]?) {
+         if isRefresh {
+             tableView.mj_header?.endRefreshing()
+         }
+         if isLoadMore {
+             if list != nil {
+                 if list!.isEmpty{
+                     tableView.mj_footer?.endRefreshingWithNoMoreData()
+                 }else{
+                     tableView.mj_footer?.endRefreshing()
+                 }
+             }
+         }
+         if list != nil {
+             self.responseDataList.append(contentsOf: list!)
+         }
+         if isLoadMore {
+             if list != nil {
+                 if list!.count < pagingCount {
+                     tableView.mj_footer?.isHidden = true
+                 }else {
+                     tableView.mj_footer?.isHidden = false
+                 }
+             }
+         }
+         self.tableView.safeReloadData()
+     }
     
     func backButtonLogic() {
         let button = UIButton(x: 0, y: 0, w: 40, h: 40, target: self, action: #selector(pop))
