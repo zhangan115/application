@@ -63,28 +63,6 @@
                             <constraint firstItem="OXu-jp-gEK" firstAttribute="leading" secondItem="O6v-xX-1Ea" secondAttribute="leading" constant="12" id="yj3-nd-zml"/>
                         </constraints>
                     </view>
-                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dN0-L5-vn0">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="28"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="客服验收中，请等待…" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PRE-wE-B0J">
-                                <rect key="frame" x="85" y="0.0" width="150" height="18"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="work_detail_icon_time" translatesAutoresizingMaskIntoConstraints="NO" id="5vx-x4-Lbx">
-                                <rect key="frame" x="67" y="2" width="14" height="14"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="PRE-wE-B0J" firstAttribute="centerY" secondItem="5vx-x4-Lbx" secondAttribute="centerY" id="FNR-ba-EWO"/>
-                            <constraint firstAttribute="height" constant="28" id="H4i-Wy-pIA"/>
-                            <constraint firstItem="PRE-wE-B0J" firstAttribute="centerX" secondItem="dN0-L5-vn0" secondAttribute="centerX" id="OBG-Av-IbB"/>
-                            <constraint firstItem="PRE-wE-B0J" firstAttribute="leading" secondItem="5vx-x4-Lbx" secondAttribute="trailing" constant="4" id="iyy-5k-LIR"/>
-                            <constraint firstItem="PRE-wE-B0J" firstAttribute="top" secondItem="dN0-L5-vn0" secondAttribute="top" id="kzj-6u-dDg"/>
-                        </constraints>
-                    </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kQt-zy-DQ5">
                         <rect key="frame" x="12" y="52" width="296" height="34"/>
                         <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -98,12 +76,35 @@
                             <action selector="sub:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="eMo-C0-OsH"/>
                         </connections>
                     </button>
+                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dN0-L5-vn0">
+                        <rect key="frame" x="0.0" y="40" width="320" height="40"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="客服验收中，请等待…" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PRE-wE-B0J">
+                                <rect key="frame" x="85" y="12" width="150" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="work_detail_icon_time" translatesAutoresizingMaskIntoConstraints="NO" id="5vx-x4-Lbx">
+                                <rect key="frame" x="67" y="14" width="14" height="14"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="PRE-wE-B0J" firstAttribute="centerY" secondItem="5vx-x4-Lbx" secondAttribute="centerY" id="FNR-ba-EWO"/>
+                            <constraint firstAttribute="height" constant="40" id="H4i-Wy-pIA"/>
+                            <constraint firstItem="PRE-wE-B0J" firstAttribute="centerX" secondItem="dN0-L5-vn0" secondAttribute="centerX" id="OBG-Av-IbB"/>
+                            <constraint firstItem="PRE-wE-B0J" firstAttribute="leading" secondItem="5vx-x4-Lbx" secondAttribute="trailing" constant="4" id="iyy-5k-LIR"/>
+                            <constraint firstItem="PRE-wE-B0J" firstAttribute="top" secondItem="dN0-L5-vn0" secondAttribute="top" constant="12" id="kzj-6u-dDg"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="O6v-xX-1Ea" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="16U-F9-cGb"/>
-                    <constraint firstItem="dN0-L5-vn0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="FDr-gc-wRK"/>
                     <constraint firstItem="dN0-L5-vn0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="FTF-t1-v3L"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="dN0-L5-vn0" secondAttribute="bottom" constant="12" id="HmN-mF-Uvb"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="kQt-zy-DQ5" secondAttribute="bottom" constant="12" id="Rj9-e0-Ggm"/>
+                    <constraint firstItem="dN0-L5-vn0" firstAttribute="top" secondItem="O6v-xX-1Ea" secondAttribute="bottom" id="X0c-2L-Qt3"/>
                     <constraint firstItem="O6v-xX-1Ea" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Yl2-8X-7Gb"/>
                     <constraint firstItem="kQt-zy-DQ5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="bV7-Ek-GRs"/>
                     <constraint firstItem="kQt-zy-DQ5" firstAttribute="top" relation="greaterThanOrEqual" secondItem="O6v-xX-1Ea" secondAttribute="bottom" constant="12" id="e9C-rt-avh"/>

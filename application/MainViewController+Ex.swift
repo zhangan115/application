@@ -124,7 +124,7 @@ extension MainViewController:MAMapViewDelegate,AMapLocationManagerDelegate{
         mapView.update(r)
     }
     
-    func requestLocation(){
+    func requestLocation(_ needRefresh : Bool = true){
         if isLocatioonRequest {
             return
         }
@@ -146,6 +146,7 @@ extension MainViewController:MAMapViewDelegate,AMapLocationManagerDelegate{
             }
             if let location = location {
                 self?.mapView.centerCoordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                self?.mapView.setZoomLevel(16, animated: true)
             }
             self?.currentLocation = location
             if let reGeocode = reGeocode {
@@ -156,7 +157,9 @@ extension MainViewController:MAMapViewDelegate,AMapLocationManagerDelegate{
             }
             self?.isLocatioonRequest = false
             if (self?.currentLocation) != nil{
-                self?.requestData()
+                if needRefresh {
+                    self?.requestData()
+                }
             }
         })
     }

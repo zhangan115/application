@@ -39,16 +39,15 @@ class CacheCleanTool: NSObject {
             
             //回到主线程 执行闭包
             DispatchQueue.main.async(execute: {
-                
                 var str : String = ""
-                
                 var realSize : Int = size
-                
                 if realSize < 1024  {
                     str = str.appendingFormat("%dB", realSize)
+                    str = "0M"
                 }else if size > 1024  &&   size < 1024 *  1024  {
                     realSize = realSize / 1024
                     str = str.appendingFormat("%dKB", realSize)
+                    str = "0M"
                 }else if size > 1024 * 1024  &&   size < 1024 *  1024  * 1024  {
                     realSize = realSize / 1024 / 1024
                     str = str.appendingFormat("%dM", realSize)

@@ -68,12 +68,24 @@ class WorkFinishController: PGBaseViewController {
         return view
     }()
     
-    lazy var textInput : UITextView = {
-        let view = UITextView()
+    lazy var textInput : PlaceholderTextView = {
+        let view = PlaceholderTextView()
         view.layer.masksToBounds = true
         view.layer.cornerRadius = 4
         view.backgroundColor = UIColor.white
+        view.placeholder = "请输入备注信息"
+        view.placeholderColor = UIColor(hexString: "#BBBBBB")!
+        view.placeholderFont = UIFont.systemFont(ofSize: 14)
         view.textColor = UIColor(hexString: "#333333")
+        view.font = UIFont.systemFont(ofSize: 14)
+        self.view.addSubview(view)
+        return view
+    }()
+    
+    lazy var countText : UILabel = {
+        let view = UILabel()
+        view.textColor = UIColor(hexString: "#888888")
+        view.text = 256.toString
         view.font = UIFont.systemFont(ofSize: 14)
         self.view.addSubview(view)
         return view
@@ -106,9 +118,16 @@ class WorkFinishController: PGBaseViewController {
     private func initView(){
         if let before =  self.workModel.afterFinishFile {
             viewList.removeAll()
+            var canSub = true
             for (index,item) in before.nodePicList.enumerated() {
                 let view = TakePhotoView()
                 view.titleLable.text = item.picName
+                view.setData(picNote: item)
+                if item.picUrlList.isEmpty {
+                    if canSub == true {
+                        canSub = false
+                    }
+                }
                 view.callback = {
                     for item in self.viewList {
                         if item.picNote?.picUrlList.isEmpty ?? true{
@@ -122,6 +141,7 @@ class WorkFinishController: PGBaseViewController {
                 view.picNote = item
                 self.viewList.append(view)
             }
+            self.startButton.isEnabled = canSub
             if !viewList.isEmpty {
                 self.view.addSubviews(self.viewList)
                 for (index,view) in viewList.enumerated() {
@@ -153,7 +173,24 @@ class WorkFinishController: PGBaseViewController {
                 make.height.equalTo(100)
                 make.top.equalTo(self.noteLabel.snp.bottom).offset(12)
             }
+            countText.snp.updateConstraints { (make) in
+                make.right.equalToSuperview().offset(-24)
+                make.bottom.equalTo(self.textInput.snp.bottom).offset(-8)
+            }
         }
+        NotificationCenter.default.addObserver(self, selector: #selector(textViewEditChanged(sender:)), name: UITextView.textDidChangeNotification, object: nil)
+    }
+    
+    let MAX_STARWORDS_LENGTH = 256
+    
+    @objc func textViewEditChanged(sender:NSNotification) {
+        let textVStr = textInput.text as NSString
+        if (textVStr.length >= MAX_STARWORDS_LENGTH) {
+            let str = textVStr.substring(to: MAX_STARWORDS_LENGTH)
+            textInput.text = str
+            self.workModel.lastNote =  textInput.text
+        }
+        countText.text = (MAX_STARWORDS_LENGTH - textInput.text.count).toString
     }
     
     let realm = try! Realm()

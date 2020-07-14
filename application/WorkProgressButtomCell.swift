@@ -24,12 +24,16 @@ class WorkProgressButtomCell: UITableViewCell {
     var workModel:WorkModel!
     var subCallBack:(()->())?
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.contentView.backgroundColor = UIColor.white
         subButton.layer.masksToBounds = true
         subButton.layer.cornerRadius = 4
+        
+        subButton.setTitleColor(UIColor(hexString: "#333333"), for: .normal)
+        subButton.setTitleColor(UIColor(hexString: "#F6F6F6"), for: .disabled)
+        subButton.setBackgroundColor(UIColor(hexString: "#FFCC00")!, forState: .normal)
+        subButton.setBackgroundColor(UIColor(hexString: "#CCCCCC")!, forState: .disabled)
         let tap = UITapGestureRecognizer(target: self, action: #selector(showRoutController))
         self.routView.addGestureRecognizer(tap)
     }
@@ -49,7 +53,7 @@ class WorkProgressButtomCell: UITableViewCell {
         }else{
             checkStateView.isHidden = true
         }
-        if workModel.taskType == WorkType.WORK_TYPE_ROUT.rawValue && workModel.taskState != WorkState.WORK_CHECK.rawValue {
+        if workModel.taskType == WorkType.WORK_TYPE_ROUT.rawValue {
             routView.isHidden = false
             routHeight.constant = 40
         }else{
@@ -67,10 +71,10 @@ class WorkProgressButtomCell: UITableViewCell {
     }
     
     @IBAction func sub(_ sender:UIButton){
-         self.subCallBack?()
+        self.subCallBack?()
     }
     
-   @objc func showRoutController(){
+    @objc func showRoutController(){
         let controller = WorkRoutController()
         controller.workModel = self.workModel
         controller.callback = {

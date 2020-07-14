@@ -67,7 +67,9 @@ class WorkModel: Mappable {
         self.planArriveTime = json["planArriveTime"].intValue
         self.canDo = json["canDo"].boolValue
         self.confirmUserId = json["confirmUserId"].intValue
-        self.actualFee = json["actualFee"].stringValue
+        if let fee = json["actualFee"].float {
+            self.actualFee = String(format: "%.2f",fee)
+        }
         self.createTime = json["createTime"].intValue
         self.customerContact = json["customerContact"].stringValue
         self.customerPhone = json["customerPhone"].stringValue
@@ -85,7 +87,7 @@ class WorkModel: Mappable {
         self.planStartTime = json["planStartTime"].intValue
         self.taskAttachment = json["taskAttachment"].stringValue
         self.taskContent = json["taskContent"].stringValue
-        self.taskFee = json["taskFee"].stringValue
+        self.taskFee = String(format: "%.2f",json["taskFee"].floatValue)
         self.taskId = json["taskId"].intValue
         self.taskLocation = json["taskLocation"].stringValue
         self.taskLocationLatitude = json["taskLocationLatitude"].doubleValue

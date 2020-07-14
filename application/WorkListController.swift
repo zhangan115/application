@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 private let itemCell = "WorkListViewCell"
-class WorkListController: BaseTableViewController {
+class WorkListController: PageingListViewController {
     
     var currentIndex = 3
     var headerPosition : Int? = nil
@@ -38,7 +38,7 @@ class WorkListController: BaseTableViewController {
     
     override func request() {
         if let userModel = UserModel.unarchiver() {
-            if userModel.certificationType! > 0 {
+            if userModel.certificationType != nil && userModel.certificationType! > 0 {
                 if self.currentIndex == WorkState.WORK_FINISH.rawValue || self.currentIndex == WorkState.WORK_CHECK.rawValue {
                     var params :[String:Any] = [:]
                     params["showTerminated"] = 0
@@ -102,11 +102,13 @@ class WorkListController: BaseTableViewController {
                             self?.requestSuccessMonitor(list: [])
                     }.disposed(by: self.disposeBag)
                 }
+            }else{
+                self.tableView.mj_header?.endRefreshing()
             }
         }
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: itemCell) as! WorkListViewCell
         cell.backgroundColor = ColorConstants.tableViewBackground
         let model = self.responseDataList[indexPath.section] as! WorkModel
@@ -114,7 +116,7 @@ class WorkListController: BaseTableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let model = self.responseDataList[indexPath.section] as! WorkModel
         let controller = WorkDetailController()
         controller.workModel = model
@@ -124,15 +126,15 @@ class WorkListController: BaseTableViewController {
 
 extension WorkListController {
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return responseDataList.count
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
-    override  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if self.currentIndex == WorkState.WORK_PROGRESS.rawValue {
             if  (!self.list1.isEmpty || !self.list2.isEmpty) && section == 0 {
                 let identifier = "header_1"
@@ -151,7 +153,7 @@ extension WorkListController {
                 return view
             }
             if self.headerPosition != nil && section == self.headerPosition! {
-                let identifier = "header"
+                let identifier = "header_2"
                 var view = tableView.dequeueReusableHeaderFooterView(withIdentifier: identifier) as? WorkListHeaderView
                 if view == nil {
                     view = WorkListHeaderView(reuseIdentifier: identifier)
@@ -174,7 +176,7 @@ extension WorkListController {
         return view
     }
     
-    override  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if self.currentIndex == WorkState.WORK_PROGRESS.rawValue {
             if (!self.list1.isEmpty || !self.list2.isEmpty) && section == 0{
                 return 46
@@ -187,7 +189,7 @@ extension WorkListController {
         return 12
     }
     
-    override  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 184
     }
 }
@@ -201,7 +203,7 @@ extension WorkListController {
                 workVerifyView.snp.updateConstraints { (make) in
                     make.left.right.equalToSuperview()
                     make.top.equalToSuperview().offset(170)
-                    make.bottom.greaterThanOrEqualToSuperview().offset(50)
+                    make.bottom.greaterThanOrEqualToSuperview().offset(-50)
                 }
             }
         }

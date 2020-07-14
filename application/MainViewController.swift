@@ -293,7 +293,7 @@ class MainViewController: BaseHomeController {
     //位置
     @objc func location(){
         hideBottomView()
-        requestLocation()
+        requestLocation(false)
     }
     //刷新
     @objc func refresh(){

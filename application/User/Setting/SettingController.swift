@@ -109,47 +109,7 @@ class SettingController: HomeTableController {
             self.present(alertController, animated: true, completion: nil)
         }
     }
-    
-    let fileManager = FileManager.default
-    
-    func fileSizeOfCache()-> Int {
-        // 获取Caches目录路径和目录下所有文件
-        let cachePath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first
-        let files = fileManager.subpaths(atPath: cachePath!)
-        //枚举出所有文件，计算文件大小
-        var folderSize :Int = 0
-        for file in files! {
-            // 路径拼接
-            let path = cachePath! +  ("/\(file)")
-            // 计算缓存大小
-            folderSize  += fileSizeAtPath(path:path)
-        }
-        return folderSize/(1024*1024)
-    }
-    
-    func fileSizeAtPath(path:String) -> Int{
-        if fileManager.fileExists(atPath: path) {
-            let attr = try! fileManager.attributesOfItem(atPath: path)
-            return Int(attr[FileAttributeKey.size] as! UInt64)
-        }
-        return 0
-    }
-    
-    
-    func clearCache() {
-        guard let cachePath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first,
-            let files = fileManager.subpaths(atPath: cachePath) else { return }
-        for file in files {
-            let path = cachePath + "(/\(file))"
-            if fileManager.fileExists(atPath: path) {
-                do {
-                    try fileManager.removeItem(atPath: path)
-                } catch  {
-                    print(error.localizedDescription)
-                }
-            }
-        }
-    }
+
 }
 
 extension SettingController {

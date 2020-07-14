@@ -26,7 +26,11 @@ class WorkRoutController: BaseTableViewController {
         self.isRefresh = false
         self.isLoadMore = false
         super.viewDidLoad()
-        self.title = "开始巡检"
+        if self.workModel.taskState == WorkState.WORK_PROGRESS.rawValue && !self.workModel.isTerminated {
+            self.title = "开始巡检"
+        }else{
+            self.title = "巡检项"
+        }
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 44
         self.tableView.separatorStyle = .none

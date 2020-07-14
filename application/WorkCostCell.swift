@@ -11,7 +11,7 @@ import UIKit
 class WorkCostCell: UITableViewCell {
     
     @IBOutlet var constLable:UILabel!
-    
+    @IBOutlet var titleLable:UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         self.contentView.backgroundColor = UIColor.white
@@ -19,7 +19,8 @@ class WorkCostCell: UITableViewCell {
     
     func setModel(model:WorkModel){
         if model.isTerminated {
-            if model.taskFee.count == 0{
+            if model.actualFee == nil || model.actualFee.count == 0 {
+                titleLable.text = "待客服核算工单费用"
                 self.constLable.text = "￥???"
             }else{
                 self.constLable.text = "￥" + model.taskFee

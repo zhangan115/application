@@ -25,7 +25,7 @@ class WorkProgressAfterCell: UITableViewCell {
     var updateCallBack:(()->())?
     var addFileCallBack:((String)->())?
     var delectFileCallBack:((Int)->())?
-    
+    var photoChangeCallBack:(()->())?
     var fileList:[String] = []
     var fileUrlList:[String]  = []
     var viewList:[TakePhotoView] = []
@@ -42,9 +42,11 @@ class WorkProgressAfterCell: UITableViewCell {
         if workModel.taskState == WorkState.WORK_PROGRESS.rawValue && !workModel.isTerminated {
             addFileButton.isHidden = false
             textCount.isHidden = false
-            noteTextView.placeholder = "请输入备注信息"
-            noteTextView.placeholderColor = UIColor(hexString: "#BBBBBB")!
-            noteTextView.placeholderFont = UIFont.systemFont(ofSize: 14)
+            if self.noteTextView.text.count == 0 {
+                noteTextView.placeholder = "请输入备注信息"
+                noteTextView.placeholderColor = UIColor(hexString: "#BBBBBB")!
+                noteTextView.placeholderFont = UIFont.systemFont(ofSize: 14)
+            }
         }else{
             addFileButton.isHidden = true
             addFileButtonHeigt.constant = 0
@@ -61,6 +63,9 @@ class WorkProgressAfterCell: UITableViewCell {
                     view.canTakePhoto = workModel.taskState == WorkState.WORK_PROGRESS.rawValue
                     view.tag = index
                     view.picNote = item
+                    view.callback = {
+                        self.photoChangeCallBack?()
+                    }
                     self.viewList.append(view)
                 }
                 if !viewList.isEmpty {
@@ -91,6 +96,7 @@ class WorkProgressAfterCell: UITableViewCell {
         if (textVStr.length >= MAX_STARWORDS_LENGTH) {
             let str = textVStr.substring(to: MAX_STARWORDS_LENGTH)
             noteTextView.text = str
+            self.workModel.lastNote =  noteTextView.text
         }
         textCount.text = (MAX_STARWORDS_LENGTH - noteTextView.text.count).toString
     }

@@ -35,6 +35,8 @@ class WorkDetailController: PGBaseViewController,UITableViewDelegate,UITableView
     var fileUrlList : [String]  = []
     var stopState:Int = StopState.Normal.rawValue
     let realm = try! Realm()
+    var canCommint = false
+    var currentNote:String? = nil
     
     lazy var tableView : UITableView = {
         let view = UITableView()
@@ -262,7 +264,27 @@ class WorkDetailController: PGBaseViewController,UITableViewDelegate,UITableView
         }.disposed(by: self.disposeBag)
     }
     
+    var finishRout = false
     
+    override func viewWillAppear(_ animated: Bool) {
+        if self.workModel.taskType == WorkType.WORK_TYPE_ROUT.rawValue {
+            if !self.canCommint {
+                let taskId : Int = workModel.taskId
+                let objects = self.realm.objects(TaskRoutRealm.self).filter("taskId == \(taskId)")
+                if workModel.afterFinishFile != nil {
+                    if workModel.afterFinishFile?.nodeDataList != nil && !workModel.afterFinishFile!.nodeDataList.isEmpty {
+                        let count = workModel.afterFinishFile!.nodeDataList.count
+                        if objects.count == count {
+                            if self.finishRout != true {
+                                self.finishRout = true
+                            }
+                        }
+                        self.tableView.reloadData()
+                    }
+                }
+            }
+        }
+    }
 }
 
 extension WorkDetailController{

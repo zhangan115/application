@@ -80,10 +80,7 @@ extension WorkDetailController {
                 return self.workModel.taskAttachmentList.count
             }
             if section == 3 {
-                if self.workModel.taskType == WorkType.WORK_TYPE_ROUT.rawValue {
-                    return 3
-                }
-                return 2
+                return 3
             }
             return 1
         }else if self.workModel.taskState == WorkState.WORK_FINISH.rawValue {
@@ -308,7 +305,6 @@ extension WorkDetailController {
                     let currentTime = Date().timeIntervalSince1970.toInt * 1000
                     let todayStrTime = dateString(millisecond: TimeInterval(currentTime), dateFormat: "yyyy-MM-dd 00:00:00")
                     let todayTime = date2TimeStamp(time: todayStrTime, dateFormat: "yyyy-MM-dd 00:00:00").toInt
-                    print(todayTime)
                     self.robWork(time: todayTime)
                 }else {
                     self.showTimeDailog(time: time!)
@@ -369,6 +365,9 @@ extension WorkDetailController {
             cell.button.setTitle("到达现场上传作业前照片", for: .normal)
             cell.callBack = {(time)in
                 let controller = WorkBeginController()
+                controller.callback = {
+                    self.request()
+                }
                 controller.workModel = self.workModel
                 self.pushVC(controller)
             }
@@ -405,7 +404,14 @@ extension WorkDetailController {
                     let saveName = url.split("/").last ?? ""
                     self.fileList.append(saveName)
                     self.fileUrlList.append(url)
+                    self.currentNote = cell.noteTextView.text
                     self.tableView.reloadRows(at: [indexPath], with: .none)
+                }
+                if self.currentNote != nil && self.currentNote!.count != 0 {
+                    cell.noteTextView.text = self.currentNote
+                }
+                cell.photoChangeCallBack = {
+                    self.tableView.reloadRows(at: [IndexPath(row: 2, section: 2)], with: .none)
                 }
                 cell.updateCallBack = {
                     self.request()
@@ -420,6 +426,25 @@ extension WorkDetailController {
             }else{
                 let cell = tableView.dequeueReusableCell(withIdentifier: workProgressButtomCell) as! WorkProgressButtomCell
                 cell.setModel(workModel: self.workModel)
+                var canSub = true
+                if self.workModel.afterFinishFile != nil {
+                    if self.workModel.afterFinishFile!.nodePicList != nil && !self.workModel.afterFinishFile!.nodePicList.isEmpty{
+                        for item in self.workModel.afterFinishFile!.nodePicList {
+                            if item.picUrlList == nil || item.picUrlList.isEmpty {
+                                canSub = false
+                                break
+                            }
+                        }
+                    }else{
+                        canSub = false
+                    }
+                }else{
+                    canSub = false
+                }
+                if self.canCommint != canSub {
+                    self.canCommint = canSub && self.finishRout
+                }
+                cell.subButton.isEnabled = self.canCommint
                 cell.subCallBack = {
                     self.subData()
                 }
@@ -447,6 +472,7 @@ extension WorkDetailController {
             return cell
         }
     }
+    
     //检验中
     func getCheckCell(indexPath:IndexPath)->UITableViewCell{
         if indexPath.section == 0 {
@@ -589,10 +615,17 @@ extension WorkDetailController {
                     let saveName = url.split("/").last ?? ""
                     self.fileList.append(saveName)
                     self.fileUrlList.append(url)
+                    self.currentNote = cell.noteTextView.text
                     self.tableView.reloadRows(at: [indexPath], with: .none)
+                }
+                if self.currentNote != nil && self.currentNote!.count != 0 {
+                    cell.noteTextView.text = self.currentNote
                 }
                 cell.updateCallBack = {
                     self.request()
+                }
+                cell.photoChangeCallBack = {
+                    self.tableView.reloadRows(at: [IndexPath(row: 2, section: 3)], with: .none)
                 }
                 cell.delectFileCallBack = {(index)in
                     self.fileList.remove(at: index)
@@ -604,6 +637,26 @@ extension WorkDetailController {
             }else{
                 let cell = tableView.dequeueReusableCell(withIdentifier: workProgressButtomCell) as! WorkProgressButtomCell
                 cell.setModel(workModel: self.workModel)
+                var canSub = true
+                if self.workModel.afterFinishFile != nil {
+                    if self.workModel.afterFinishFile!.nodePicList != nil && !self.workModel.afterFinishFile!.nodePicList.isEmpty{
+                        for item in self.workModel.afterFinishFile!.nodePicList {
+                            if item.picUrlList == nil || item.picUrlList.isEmpty {
+                                canSub = false
+                                break
+                            }
+                        }
+                    }else{
+                        canSub = false
+                    }
+                    
+                }else{
+                    canSub = false
+                }
+                if self.canCommint != canSub {
+                   self.canCommint = canSub && self.finishRout
+                }
+                cell.subButton.isEnabled = self.canCommint
                 cell.subCallBack = {
                     self.subData()
                 }
@@ -741,7 +794,7 @@ extension WorkDetailController: PGDatePickerDelegate {
                 let timeStr = date.toString(format: dateString + " 23:59:59")
                 let time = date2TimeStamp(time: timeStr, dateFormat: "yyyy-MM-dd HH:mm:ss").toInt
                 DispatchQueue.delay(time: 1.5, execute: {[weak self] in
-                   self?.showTimeDailog(time: time)
+                    self?.showTimeDailog(time: time)
                 })
             }
         }

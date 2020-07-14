@@ -232,6 +232,7 @@ class WorkDataView: UIView {
         textName6.snp.updateConstraints{(make)in
             make.left.equalTo(self.icon2View.snp.right).offset(4)
             make.centerY.equalTo(icon6View)
+            make.right.equalToSuperview().offset(-12)
         }
         icon3View.snp.updateConstraints{(make)in
             make.left.equalTo(self.equipmentView.snp.right).offset(5)
