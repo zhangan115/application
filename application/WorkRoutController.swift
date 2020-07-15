@@ -89,15 +89,19 @@ class WorkRoutController: BaseTableViewController {
                     let taskId : Int = model.taskId
                     for item in list {
                         let name : String = item.itemName
-                        let objects = self?.realm.objects(TaskRoutRealm.self).filter("taskId == \(taskId)").filter("itemName == %@",name)
-                        if objects != nil && !objects!.isEmpty {
-                            if let bean = objects!.first {
-                                self?.selectStrList.append(bean.itemValue)
+                        if model.taskState == WorkState.WORK_PROGRESS.rawValue && !model.isTerminated {
+                            let objects = self?.realm.objects(TaskRoutRealm.self).filter("taskId == \(taskId)").filter("itemName == %@",name)
+                            if objects != nil && !objects!.isEmpty {
+                                if let bean = objects!.first {
+                                    self?.selectStrList.append(bean.itemValue)
+                                }else{
+                                    self?.selectStrList.append(nil)
+                                }
                             }else{
                                 self?.selectStrList.append(nil)
                             }
                         }else{
-                            self?.selectStrList.append(nil)
+                            self?.selectStrList.append(item.itemValue)
                         }
                     }
                     self?.canNext = true

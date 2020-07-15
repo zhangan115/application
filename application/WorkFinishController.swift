@@ -246,6 +246,7 @@ class WorkFinishController: PGBaseViewController {
         taskProvider.rxRequest(.taskSubmit(params: params))
             .subscribe(onSuccess: { [weak self](json) in
                 //提交成功
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: kMessageNotifyKey), object: nil)
                 self?.view.toast("提交成功")
                 self?.navigationController?.popViewController(animated: false)
                 self?.callback?()

@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 private let itemCell = "WorkListViewCell"
-class WorkListController: PageingListViewController {
+class WorkListController: PageingListViewController,UITableViewDelegate,UITableViewDataSource {
     
     var currentIndex = 3
     var headerPosition : Int? = nil
@@ -24,16 +24,31 @@ class WorkListController: PageingListViewController {
     
     override func viewDidLoad() {
         self.isRefresh = true
+        self.isLoadMore = false
         super.viewDidLoad()
         hiddenNaviBarLine()
-        showUserVerify()
+        let height = self.view.bounds.height - 45
+        let width = self.view.bounds.width
+        self.tableView.frame = CGRect(x: 0, y: 0, w:width , h: height - CGFloat(CF_NavHeight + TabbarSafeBottomMargin))
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 44
         self.tableView.separatorStyle = .none
         self.tableView.backgroundColor = ColorConstants.tableViewBackground
         self.tableView.sectionHeaderHeight = 0.01
         self.tableView.sectionFooterHeight = 0.01
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
         self.tableView.register(WorkListViewCell.self, forCellReuseIdentifier: itemCell)
+        showUserVerify()
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name(rawValue: kMessageNotifyKey), object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func refresh(){
+        self.tableView.mj_header?.beginRefreshing()
     }
     
     override func request() {
@@ -122,6 +137,10 @@ class WorkListController: PageingListViewController {
         controller.workModel = model
         self.pushVC(controller)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+//        self.tableView.mj_header?.beginRefreshing()
+    }
 }
 
 extension WorkListController {
@@ -190,7 +209,14 @@ extension WorkListController {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 184
+        if let model = self.responseDataList[indexPath.section] as? WorkModel {
+            let requiredSocLevel = model.requiredSocLevel
+            let requiredEpqcLevel = model.requiredEpqcLevel
+            if requiredSocLevel != 0 &&  requiredEpqcLevel != 0{
+                return 212
+            }
+        }
+        return 192
     }
 }
 
@@ -205,6 +231,8 @@ extension WorkListController {
                     make.top.equalToSuperview().offset(170)
                     make.bottom.greaterThanOrEqualToSuperview().offset(-50)
                 }
+            }else{
+                self.tableView.mj_header?.beginRefreshing()
             }
         }
     }

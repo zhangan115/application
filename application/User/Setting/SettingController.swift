@@ -102,6 +102,7 @@ class SettingController: HomeTableController {
             let sureAction = UIAlertAction(title: "确定", style: .default, handler: {(_)->Void in
                 userProvider.rxRequest(.logout).subscribe().disposed(by: self.disposed)
                 UserDefaults.standard.set(false, forKey: kIsLogin)
+                UserDefaults.standard.set(false,forKey: "bindUserCid")
                 UIApplication.shared.keyWindow?.rootViewController = PGBaseNavigationController(rootViewController: UserLoginViewController())
             })
             alertController.addAction(noAction)

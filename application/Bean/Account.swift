@@ -59,8 +59,12 @@ class BillList:Mappable{
         if json.isEmpty {
             return
         }
-        self.billAmount = json["billAmount"].stringValue
-        self.billOverage = json["billOverage"].stringValue
+        if let fee = json["billAmount"].float {
+            self.billAmount = String(format: "%.2f",fee)
+        }
+        if let fee1 = json["billOverage"].float {
+            self.billOverage = String(format: "%.2f",fee1)
+        }
         self.billTime = json["billTime"].intValue
         self.billType = json["billType"].intValue
         self.billNote = json["billNote"].stringValue

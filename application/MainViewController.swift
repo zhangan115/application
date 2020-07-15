@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import SnapKit
 import Toaster
+import SwiftyJSON
 class MainViewController: BaseHomeController {
     
     lazy var titleLayoutView : UIView = {
@@ -221,7 +222,15 @@ class MainViewController: BaseHomeController {
         requestUserVeryList()
         hideBottomView()
         search.delegate = self
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        NotificationCenter.default.addObserver(self, selector: #selector(bindCid), name: NSNotification.Name(rawValue: kUserCidNotifyKey), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name(rawValue: kMessageNotifyKey), object: nil)
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     //显示侧栏
     @objc func showDrawable(){
         drawerView.showLayout()
@@ -323,6 +332,7 @@ class MainViewController: BaseHomeController {
     
     private func showUserVerifyDialog(_ type:Int){
         let verifyDialog =  MainUserVerifyController()
+        verifyDialog.modalPresentationStyle = .custom
         verifyDialog.callback = {(index) in
             if index == 1 {
                 let controller = UserIdentityController()
@@ -332,9 +342,8 @@ class MainViewController: BaseHomeController {
                 self.pushVC(controller)
             }
         }
-        self.present(verifyDialog, animated: true, completion: {
-            verifyDialog.initView(type)
-        })
+        verifyDialog.type = type
+        self.present(verifyDialog, animated: true, completion:nil)
     }
     
     func hideBottomView(){
@@ -343,6 +352,24 @@ class MainViewController: BaseHomeController {
         }
         if polyline != nil {
             mapView.remove(polyline)
+        }
+    }
+    
+    @objc func bindCid(){
+        if UserDefaults.standard.bool(forKey: "bindUserCid") {
+            return
+        }
+        if let clientId = UserDefaults.standard.string(forKey: "UserCid") {
+            userProviderNoPlugin.request(.postCid(cid: "IOS:" + clientId)) { (result) in
+                switch result {
+                case .success(let data):
+                    let json = try! JSON(data: data.data)
+                    if json["errorCode"] == 0 {
+                        UserDefaults.standard.set(true, forKey: "bindUserCid")
+                    }
+                case .failure(_): break
+                }
+            }
         }
     }
 }

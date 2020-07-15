@@ -139,6 +139,13 @@ extension WorkRobController {
     }
     
     override  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if let model = self.responseDataList[indexPath.section] as? WorkModel {
+            let requiredSocLevel = model.requiredSocLevel
+            let requiredEpqcLevel = model.requiredEpqcLevel
+            if requiredSocLevel != 0 &&  requiredEpqcLevel != 0{
+                return 240
+            }
+        }
         return 220
     }
     

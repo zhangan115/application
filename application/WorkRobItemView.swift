@@ -114,6 +114,17 @@ class WorkRobItemView: UIView {
         return view
     }()
     
+    lazy var textName8 :UILabel = {
+        let view = UILabel()
+        view.text = ""
+        view.numberOfLines = 0
+        view.font = UIFont.systemFont(ofSize: 14)
+        view.textColor = UIColor(hexString: "#454545")
+        self.contentLayoutView.addSubview(view)
+        return view
+    }()
+    
+    
     lazy var icon3View :UIImageView = {
         let view = UIImageView()
         view.image = UIImage(named:"home_card_icon_info")
@@ -178,7 +189,7 @@ class WorkRobItemView: UIView {
         self.tiemLayoutView.addSubview(button)
         return button
     }()
-     var workData:WorkModel!
+    var workData:WorkModel!
     func setData(workData:WorkModel){
         self.workData = workData
         if workData.taskType == 1 {
@@ -200,9 +211,8 @@ class WorkRobItemView: UIView {
         } else {
             textName7.text = ">9km"
         }
-        let requiredSocLevel = workData.requiredSocLevel
-        let requiredEpqcLevel = workData.requiredEpqcLevel
-        textName6.text = "资格要求：" + getTaskNeedSkill(workData)
+        textName6.text = "资格要求："
+        textName8.text = getTaskNeedSkill(workData)
         textName3.text = workData.taskContent
         textName4.text = "计划开始时间：" + dateString(millisecond: TimeInterval(workData.planStartTime), dateFormat: "yyyy-MM-dd HH:mm")
         textName5.text = "计划结束时间：" + dateString(millisecond: TimeInterval(workData.planEndTime), dateFormat: "yyyy-MM-dd HH:mm")
@@ -270,10 +280,15 @@ class WorkRobItemView: UIView {
             make.left.equalTo(self.icon7View.snp.right).offset(4)
             make.centerY.equalTo(icon6View)
         }
+        textName8.snp.updateConstraints{(make)in
+            make.left.equalTo(self.textName6.snp.right)
+            make.top.equalTo(self.textName6.snp.top)
+            make.right.equalToSuperview().offset(-12)
+        }
         icon3View.snp.updateConstraints{(make)in
             make.left.equalTo(self.equipmentView.snp.right).offset(5)
             make.height.width.equalTo(14)
-            make.top.equalTo(self.icon6View.snp.bottom).offset(10)
+            make.top.equalTo(self.textName8.snp.bottom).offset(10)
         }
         textName3.snp.updateConstraints{(make)in
             make.left.equalTo(self.icon6View.snp.right).offset(4)

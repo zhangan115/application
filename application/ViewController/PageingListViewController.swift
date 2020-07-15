@@ -10,7 +10,7 @@ import UIKit
 import MJRefresh
 // 列表 分页 基础类
 class PageingListViewController: BaseHomeController {
-    
+        
     var isRefresh = true
     var isLoadMore = true
     var isPresent = false

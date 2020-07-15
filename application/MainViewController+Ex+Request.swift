@@ -24,6 +24,10 @@ extension MainViewController {
     }
     
     func workListToShow(list:[WorkModel]){
+        if list.isEmpty {
+            self.location()
+            return
+        }
         self.currentWorkModel = list.first
         if let model = self.currentWorkModel {
             bottomWorkView.workDataView.setData(workData: model)

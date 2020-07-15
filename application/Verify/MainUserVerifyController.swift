@@ -105,10 +105,11 @@ class MainUserVerifyController: UIViewController {
         return view
     }()
     
+    var type:Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        initView(self.type)
     }
     
     func initView(_ type:Int){

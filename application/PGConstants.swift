@@ -255,7 +255,7 @@ func getTaskNeedSkill(_ model:WorkModel) -> String{
         }else if (requiredSocLevel == 0 && requiredEpqcLevel != 0){
             str = (getVocationalString(level: requiredEpqcLevel!) ?? "")
         }else if (requiredSocLevel != 0 && requiredEpqcLevel != 0){
-            str = (getSpecialString(level:requiredSocLevel!) ?? "") + " " + (getVocationalString(level: requiredEpqcLevel!) ?? "")
+            str = (getSpecialString(level:requiredSocLevel!) ?? "") + "\n" + (getVocationalString(level: requiredEpqcLevel!) ?? "")
         }
     }
     return str

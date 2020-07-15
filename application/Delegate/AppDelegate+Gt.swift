@@ -144,20 +144,9 @@ extension AppDelegate: GeTuiSdkDelegate {
     func geTuiSdkDidRegisterClient(_ clientId: String!) {
         // [4-EXT-1]: 个推SDK已注册，返回clientId
         print("geTuiSdkDidRegisterClient = ", clientId);
+        UserDefaults.standard.set(clientId, forKey: "UserCid")
         GtConfig.clientId = clientId
-        if UserDefaults.standard.bool(forKey: "bindUserCid") {
-            return
-        }
-        userProviderNoPlugin.request(.postCid(cid: clientId)) { (result) in
-            switch result {
-            case .success(let data):
-                let json = try! JSON(data: data.data)
-                if json["errorCode"] == 0 {
-                    UserDefaults.standard.set(true, forKey: "bindUserCid")
-                }
-            case .failure(_): break
-            }
-        }
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: kUserCidNotifyKey), object: nil)
     }
     
     /** SDK遇到错误回调 */
@@ -169,8 +158,8 @@ extension AppDelegate: GeTuiSdkDelegate {
     /** SDK收到sendMessage消息回调 */
     func geTuiSdkDidSendMessage(_ messageId: String!, result: Int32) {
         // [4-EXT]:发送上行消息结果反馈
-        let msg:String = "sendmessage=\(messageId),result=\(result)";
-        print("geTuiSdkDidSendMessage = ",msg);
+        let msg:String = "sendmessage=\(messageId),result=\(result)"
+        print("geTuiSdkDidSendMessage = ",msg)
     }
     
     func geTuiSdkDidReceivePayloadData(_ payloadData: Data!, andTaskId taskId: String!, andMsgId msgId: String!, andOffLine offLine: Bool, fromGtAppId appId: String!) {
@@ -179,13 +168,16 @@ extension AppDelegate: GeTuiSdkDelegate {
             payloadMsg = String.init(data: payloadData, encoding: String.Encoding.utf8)!;
         }
         print("geTuiSdkDidReceivePayloadData = ",payloadMsg);
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: kMessageNotifyKey), object: nil)
+        }
     }
 }
 
 extension AppDelegate {
     
     func messageTapAction(userInfo: [AnyHashable: Any]) {
-       
+        
     }
     
 }

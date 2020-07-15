@@ -87,6 +87,15 @@ class WorkDetailController: PGBaseViewController,UITableViewDelegate,UITableView
             make.bottom.equalTo(self.workInComeView.snp.top)
         }
         self.request()
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name(rawValue: kMessageNotifyKey), object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func refresh(){
+        self.request()
     }
     
     override func rightBarAction() {
@@ -130,16 +139,16 @@ class WorkDetailController: PGBaseViewController,UITableViewDelegate,UITableView
     }
     
     private func showTimePick(_ tag :Int) {
-          let startDatePickerManager = PGDatePickManager()
-          let datePicker = startDatePickerManager.datePicker!
-          startDatePickerManager.isShadeBackground = true
-          datePicker.tag = tag
-          datePicker.delegate = self
-          datePicker.datePickerMode = .date
-          datePicker.isHiddenMiddleText = false
-          datePicker.datePickerType = .segment
-          self.present(startDatePickerManager, animated: false, completion: nil)
-      }
+        let startDatePickerManager = PGDatePickManager()
+        let datePicker = startDatePickerManager.datePicker!
+        startDatePickerManager.isShadeBackground = true
+        datePicker.tag = tag
+        datePicker.delegate = self
+        datePicker.datePickerMode = .date
+        datePicker.isHiddenMiddleText = false
+        datePicker.datePickerType = .segment
+        self.present(startDatePickerManager, animated: false, completion: nil)
+    }
     
     func robWork(time:Int){
         taskProvider.rxRequest(.takeTask(taskId:self.workModel.taskId, planArriveTime: time))
@@ -148,7 +157,7 @@ class WorkDetailController: PGBaseViewController,UITableViewDelegate,UITableView
                     return
                 }
                 self?.view.toast("抢单成功")
-                self?.request()
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: kMessageNotifyKey), object: nil)
             }) {[weak self] _ in
                 self?.tableView.noRefreshReloadData()
         }.disposed(by: self.disposeBag)
@@ -182,6 +191,7 @@ class WorkDetailController: PGBaseViewController,UITableViewDelegate,UITableView
                         self?.stopState = StopState.Progress.rawValue
                     }
                 }
+                self?.checkSubState()
                 self?.tableView.noRefreshReloadData()
                 self?.updateInComeView()
             }) {[weak self] _ in
@@ -191,18 +201,18 @@ class WorkDetailController: PGBaseViewController,UITableViewDelegate,UITableView
     
     func updateInComeView(){
         if self.workModel.taskState == WorkState.WORK_FINISH.rawValue || self.stopState == StopState.Stop.rawValue {
-                workInComeView.isHidden = false
-                workInComeView.label.text = "工单收入"
-                workInComeView.label1.text = "￥" + self.workModel.actualFee
-                self.workInComeView.snp.updateConstraints { (make) in
-                    make.right.left.equalToSuperview()
-                    make.height.equalTo(44)
-                    make.bottom.equalToSuperview().offset(-TabbarSafeBottomMargin)
-                }
-                self.tableView.snp.updateConstraints { (make) in
-                    make.left.right.top.equalToSuperview()
-                    make.bottom.equalTo(self.workInComeView.snp.top).offset(-5)
-                }
+            workInComeView.isHidden = false
+            workInComeView.label.text = "工单收入"
+            workInComeView.label1.text = "￥" + self.workModel.actualFee
+            self.workInComeView.snp.updateConstraints { (make) in
+                make.right.left.equalToSuperview()
+                make.height.equalTo(44)
+                make.bottom.equalToSuperview().offset(-TabbarSafeBottomMargin)
+            }
+            self.tableView.snp.updateConstraints { (make) in
+                make.left.right.top.equalToSuperview()
+                make.bottom.equalTo(self.workInComeView.snp.top).offset(-5)
+            }
         }
     }
     
@@ -227,9 +237,14 @@ class WorkDetailController: PGBaseViewController,UITableViewDelegate,UITableView
             return
         }
         params["finishPic"] = stringList.toJson()
-        let cell = self.tableView.cellForRow(at: IndexPath(row: 1, section: 2)) as? WorkProgressAfterCell
+        var cell = self.tableView.cellForRow(at: IndexPath(row: 1, section: 2)) as? WorkProgressAfterCell
         if cell != nil {
-            params["note"] = cell?.noteTextView.text
+            params["note"] = cell!.noteTextView.text
+        }else{
+            cell = self.tableView.cellForRow(at: IndexPath(row: 1, section: 3)) as? WorkProgressAfterCell
+            if cell != nil {
+                params["note"] = cell!.noteTextView.text
+            }
         }
         var fileStringList : [[String:Any]] = []
         if !self.fileList.isEmpty {
@@ -258,7 +273,7 @@ class WorkDetailController: PGBaseViewController,UITableViewDelegate,UITableView
         taskProvider.rxRequest(.taskSubmit(params: params))
             .subscribe(onSuccess: { [weak self](json) in
                 self?.view.toast("提交成功")
-                self?.request()
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: kMessageNotifyKey), object: nil)
             }) {[weak self] (_) in
                 self?.view.toast("提交失败")
         }.disposed(by: self.disposeBag)
@@ -267,6 +282,10 @@ class WorkDetailController: PGBaseViewController,UITableViewDelegate,UITableView
     var finishRout = false
     
     override func viewWillAppear(_ animated: Bool) {
+        checkSubState()
+    }
+    
+    private func checkSubState(){
         if self.workModel.taskType == WorkType.WORK_TYPE_ROUT.rawValue {
             if !self.canCommint {
                 let taskId : Int = workModel.taskId
@@ -283,6 +302,8 @@ class WorkDetailController: PGBaseViewController,UITableViewDelegate,UITableView
                     }
                 }
             }
+        }else{
+            self.finishRout = true
         }
     }
 }

@@ -365,9 +365,6 @@ extension WorkDetailController {
             cell.button.setTitle("到达现场上传作业前照片", for: .normal)
             cell.callBack = {(time)in
                 let controller = WorkBeginController()
-                controller.callback = {
-                    self.request()
-                }
                 controller.workModel = self.workModel
                 self.pushVC(controller)
             }

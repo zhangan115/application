@@ -119,6 +119,7 @@ class WorkBeginController: PGBaseViewController {
     }
     
     func requestModel(){
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: kMessageNotifyKey), object: nil)
         taskProviderNoPlugin.rxRequest(.getWorkDetail(taskId: self.workModel.taskId))
             .toModel(type: WorkModel.self)
             .subscribe(onSuccess: { [weak self](model) in
@@ -128,15 +129,13 @@ class WorkBeginController: PGBaseViewController {
                     controller.workModel = self?.workModel
                     controller.callback = {
                         self?.navigationController?.popViewController(animated: false)
-                        self?.callback?()
                     }
                     self?.pushVC(controller)
                 } else {//结束后上传资料
                     let controller = WorkFinishController()
                     controller.workModel = self?.workModel
                     controller.callback = {
-                        self?.popVC()
-                        self?.callback?()
+                        self?.navigationController?.popViewController(animated: false)
                     }
                     self?.pushVC(controller)
                 }

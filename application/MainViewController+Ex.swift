@@ -228,6 +228,7 @@ extension MainViewController {
         }else {
             self.navigationController?.setNavigationBarHidden(true, animated: true)
         }
+//        self.requestData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -253,6 +254,7 @@ extension MainViewController {
         let controller = self.currentViewController()
         if controller.isKind(of: WebViewController.self) ||
             controller.isKind(of: WorkViewController.self) ||
+            controller.isKind(of: MainUserVerifyController.self) ||
             controller.isKind(of: UserIdentityController.self) ||
             controller.isKind(of: UserElectricianController.self){
             return true

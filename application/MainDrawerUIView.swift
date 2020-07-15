@@ -310,6 +310,7 @@ class MainDrawerUIView: UIView {
     }
     
     func setData(_ model:UserModel){
+        self.userModel = model
         userIcon.loadNetWorkImage(model.portraitUrl ?? "", placeholder: "sidebar_img_header_nor")
         if model.realName != nil && model.realName!.count > 0 {
             userNameLabel.text = model.realName

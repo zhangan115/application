@@ -74,16 +74,16 @@ class WorkProgressAfterCell: UITableViewCell {
                         view.frame = CGRect(x: 0, y: CGFloat(0 + index * 90), w: screenWidth, h: 90)
                     }
                 }
+                if workModel.afterFinishFile!.nodeNote != nil && workModel.afterFinishFile!.nodeNote.count > 0 {
+                    noteTextView.text = workModel.afterFinishFile!.nodeNote
+                }
             }
         }
         self.fileView.removeSubviews()
         reloadFileView()
-        if workModel.taskState > WorkState.WORK_PROGRESS.rawValue {
+        if workModel.taskState > WorkState.WORK_PROGRESS.rawValue{
             noteTextView.backgroundColor = ColorConstants.tableViewBackground
             noteTextView.isEditable = false
-            if workModel.afterFinishFile != nil {
-                noteTextView.text = workModel.afterFinishFile!.nodeNote
-            }
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(textViewEditChanged(sender:)), name: UITextView.textDidChangeNotification, object: nil)

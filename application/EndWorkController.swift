@@ -83,6 +83,13 @@ extension EndWorkController{
     }
     
     override  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 184
+       if let model = self.responseDataList[indexPath.section] as? WorkModel {
+            let requiredSocLevel = model.requiredSocLevel
+            let requiredEpqcLevel = model.requiredEpqcLevel
+            if requiredSocLevel != 0 &&  requiredEpqcLevel != 0{
+                return 212
+            }
+        }
+        return 192
     }
 }

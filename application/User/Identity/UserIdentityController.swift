@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import SwiftyJSON
 import PGActionSheet
 class UserIdentityController: PGBaseViewController {
     
@@ -280,17 +281,21 @@ extension UserIdentityController: UIImagePickerControllerDelegate, UINavigationC
                 self.reloadPhoto()
                 if self.currentPhotoPosition == 0 {
                     userProvider.requestResult( .getIdentifyInfo(picUrl: url)) { (json) in
-                        let wordsResult = responseJson["data"].dictionary
-                        let result  = wordsResult?["words_result"]
-                        if let result = result {
-                            let code = result["公民身份号码"].dictionary?["words"]?.stringValue
-                            let name = result["姓名"].dictionary?["words"]?.stringValue
-                            if let name = name {
-                                print(name)
+                        do {
+                            let wordsResult = json["data"].stringValue
+                            let dictionary = JSON(parseJSON: wordsResult)["words_result"].dictionary
+                            if let dic = dictionary {
+                                let json1 = dic["姓名"]?["words"]
+                                let json2 = dictionary?["公民身份号码"]?["words"]
+                                if let name = json1?.string {
+                                    self.userNameText.text = name
+                                }
+                                if let code = json2?.string  {
+                                    self.userCodeText.text = code
+                                }
                             }
-                            if let code = code {
-                                print(code)
-                            }
+                        } catch let error {
+                            print("error >>> \(error)")
                         }
                     }
                     self.userInfo.isHidden = false
