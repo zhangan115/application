@@ -37,6 +37,8 @@ class WorkDetailController: PGBaseViewController,UITableViewDelegate,UITableView
     let realm = try! Realm()
     var canCommint = false
     var currentNote:String? = nil
+    var dataRealm:TaskFinishRealm? = nil
+    var picUrlList:[String]  = []
     
     lazy var tableView : UITableView = {
         let view = UITableView()
@@ -192,11 +194,34 @@ class WorkDetailController: PGBaseViewController,UITableViewDelegate,UITableView
                     }
                 }
                 self?.checkSubState()
+                self?.getSaveData()
                 self?.tableView.noRefreshReloadData()
                 self?.updateInComeView()
             }) {[weak self] _ in
                 self?.tableView.noRefreshReloadData()
         }.disposed(by: disposeBag)
+    }
+    
+    func getSaveData(){
+        let taskId : Int = self.workModel.taskId
+        let object = realm.object(ofType: TaskFinishRealm.self, forPrimaryKey: taskId)
+        if object == nil {
+            dataRealm = TaskFinishRealm()
+            dataRealm!.taskId.value = taskId
+            try! realm.write {
+                realm.add(dataRealm!)
+            }
+        }else{
+            dataRealm = object
+            self.fileList = self.dataRealm!.fileNameList?.split(",") ?? []
+            self.fileUrlList = self.dataRealm!.fileUrList?.split(",") ?? []
+            if self.dataRealm!.note != nil && self.dataRealm!.note!.count > 0 {
+                self.currentNote = self.dataRealm!.note
+            }
+            if let url = self.dataRealm!.photoList?.split(",") {
+                self.picUrlList = url
+            }
+        }
     }
     
     func updateInComeView(){
@@ -216,13 +241,70 @@ class WorkDetailController: PGBaseViewController,UITableViewDelegate,UITableView
         }
     }
     
+    var finishRout = false
+    
+    override func viewWillAppear(_ animated: Bool) {
+        checkSubState()
+    }
+    
+    private func checkSubState(){
+        if self.workModel.taskType == WorkType.WORK_TYPE_ROUT.rawValue {
+            if !self.canCommint {
+                let taskId : Int = workModel.taskId
+                let objects = self.realm.objects(TaskRoutRealm.self).filter("taskId == \(taskId)")
+                if workModel.afterFinishFile != nil {
+                    if workModel.afterFinishFile?.nodeDataList != nil && !workModel.afterFinishFile!.nodeDataList.isEmpty {
+                        let count = workModel.afterFinishFile!.nodeDataList.count
+                        if objects.count == count {
+                            if self.finishRout != true {
+                                self.finishRout = true
+                            }
+                        }
+                        self.tableView.reloadData()
+                    }
+                }
+            }
+        }else{
+            self.finishRout = true
+        }
+        if self.workModel.taskState == WorkState.WORK_PROGRESS.rawValue {
+            self.getSaveData()
+            self.tableView.reloadData()
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        saveCacheData()
+    }
+    
+    func saveCacheData(){
+        if self.workModel.taskState == WorkState.WORK_PROGRESS.rawValue{
+            var cell = self.tableView.cellForRow(at: IndexPath(row: 1, section: 2)) as? WorkProgressAfterCell
+            if cell == nil {
+                cell = self.tableView.cellForRow(at: IndexPath(row: 1, section: 3)) as? WorkProgressAfterCell
+            }
+            if cell != nil {
+                self.currentNote = cell?.noteTextView.text
+            }
+        }
+        print(self.currentNote)
+        if self.dataRealm != nil {
+            try! realm.write {
+                self.dataRealm!.photoList = self.picUrlList.joined(separator: ",")
+                self.dataRealm!.fileNameList = self.fileList.joined(separator: ",")
+                self.dataRealm!.fileUrList = self.fileUrlList.joined(separator: ",")
+                self.dataRealm!.note = self.currentNote
+            }
+        }
+    }
+    
     func subData(){
         var canSub = true
         var params : [String:Any] = [:]
         params["taskId"] = self.workModel.taskId
         var stringList : [[String:Any]] = []
         for item in self.workModel.afterFinishFile!.nodePicList {
-            if item.picUrlList == nil || item.picUrlList.isEmpty {
+            if item.picUrlList == nil || item.picUrlList.isEmpty || item.picUrlList[0].count < 2{
                 canSub = false
                 break
             }
@@ -277,34 +359,6 @@ class WorkDetailController: PGBaseViewController,UITableViewDelegate,UITableView
             }) {[weak self] (_) in
                 self?.view.toast("提交失败")
         }.disposed(by: self.disposeBag)
-    }
-    
-    var finishRout = false
-    
-    override func viewWillAppear(_ animated: Bool) {
-        checkSubState()
-    }
-    
-    private func checkSubState(){
-        if self.workModel.taskType == WorkType.WORK_TYPE_ROUT.rawValue {
-            if !self.canCommint {
-                let taskId : Int = workModel.taskId
-                let objects = self.realm.objects(TaskRoutRealm.self).filter("taskId == \(taskId)")
-                if workModel.afterFinishFile != nil {
-                    if workModel.afterFinishFile?.nodeDataList != nil && !workModel.afterFinishFile!.nodeDataList.isEmpty {
-                        let count = workModel.afterFinishFile!.nodeDataList.count
-                        if objects.count == count {
-                            if self.finishRout != true {
-                                self.finishRout = true
-                            }
-                        }
-                        self.tableView.reloadData()
-                    }
-                }
-            }
-        }else{
-            self.finishRout = true
-        }
     }
 }
 

@@ -228,7 +228,7 @@ extension MainViewController {
         }else {
             self.navigationController?.setNavigationBarHidden(true, animated: true)
         }
-//        self.requestData()
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
     
     override func viewDidAppear(_ animated: Bool) {

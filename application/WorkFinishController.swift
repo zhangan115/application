@@ -18,9 +18,11 @@ class WorkFinishController: PGBaseViewController {
     var viewList:[TakePhotoView] = []
     var fileList : [String]  = []
     var fileUrlList : [String]  = []
-    
+    var picUrlList:[String]  = []
     var fromController:Int = -1
-    
+    let realm = try! Realm()
+    var dataRealm:TaskFinishRealm? = nil
+    var dataRoutRealm:Results<TaskRoutRealm>? = nil
     lazy var startButton:UIButton = {
         let view = UIButton()
         view.layer.masksToBounds = true
@@ -116,26 +118,58 @@ class WorkFinishController: PGBaseViewController {
     }
     
     private func initView(){
-        if let before =  self.workModel.afterFinishFile {
+        if let finish =  self.workModel.afterFinishFile {
+            let taskId : Int = self.workModel.taskId
+            let object = realm.object(ofType: TaskFinishRealm.self, forPrimaryKey: taskId)
+            if object == nil {
+                dataRealm = TaskFinishRealm()
+                dataRealm!.taskId.value = taskId
+                try! realm.write {
+                    realm.add(dataRealm!)
+                }
+            }else{
+                dataRealm = object
+                self.fileList = self.dataRealm!.fileNameList?.split(",") ?? []
+                self.fileUrlList = self.dataRealm!.fileUrList?.split(",") ?? []
+                if self.dataRealm!.note != nil && self.dataRealm!.note!.count > 0 {
+                    self.textInput.text = self.dataRealm!.note
+                    self.countText.text = (MAX_STARWORDS_LENGTH - textInput.text.count).toString
+                }
+                if let url = self.dataRealm!.photoList?.split(",") {
+                    self.picUrlList = url
+                }
+            }
             viewList.removeAll()
             var canSub = true
-            for (index,item) in before.nodePicList.enumerated() {
+            for (index,item) in finish.nodePicList.enumerated() {
                 let view = TakePhotoView()
+                if !picUrlList.isEmpty && picUrlList.count == finish.nodePicList.count {
+                    if item.picUrlList.isEmpty || item.picUrlList[0].count == 0{
+                        item.picUrlList = [picUrlList[index]]
+                    }
+                }else{
+                    picUrlList.append("-")
+                }
                 view.titleLable.text = item.picName
                 view.setData(picNote: item)
-                if item.picUrlList.isEmpty {
+                if item.picUrlList.isEmpty || item.picUrlList[0].count < 2{
                     if canSub == true {
                         canSub = false
                     }
                 }
                 view.callback = {
+                    self.picUrlList.removeAll()
+                    var canStart = true
                     for item in self.viewList {
-                        if item.picNote?.picUrlList.isEmpty ?? true{
-                            self.startButton.isEnabled = false
-                            break
+                        var photoUrl = "-"
+                        if item.picNote!.picUrlList != nil && !item.picNote!.picUrlList!.isEmpty && item.picNote!.picUrlList[0].count > 1 {
+                            photoUrl = item.picNote?.picUrlList[0] ?? "-"
+                        }else{
+                            canStart = false
                         }
-                        self.startButton.isEnabled = true
+                        self.picUrlList.append(photoUrl)
                     }
+                    self.startButton.isEnabled = canStart
                 }
                 view.tag = index
                 view.picNote = item
@@ -179,6 +213,7 @@ class WorkFinishController: PGBaseViewController {
             }
         }
         NotificationCenter.default.addObserver(self, selector: #selector(textViewEditChanged(sender:)), name: UITextView.textDidChangeNotification, object: nil)
+        updateFileView()
     }
     
     let MAX_STARWORDS_LENGTH = 256
@@ -193,7 +228,16 @@ class WorkFinishController: PGBaseViewController {
         countText.text = (MAX_STARWORDS_LENGTH - textInput.text.count).toString
     }
     
-    let realm = try! Realm()
+    override func viewWillDisappear(_ animated: Bool) {
+        if self.dataRealm != nil {
+            try! realm.write {
+                self.dataRealm!.photoList = self.picUrlList.joined(separator: ",")
+                self.dataRealm!.fileNameList = self.fileList.joined(separator: ",")
+                self.dataRealm!.fileUrList = self.fileUrlList.joined(separator: ",")
+                self.dataRealm!.note = self.textInput.text
+            }
+        }
+    }
     
     @objc func startAction(){
         var canSub = true
@@ -201,7 +245,7 @@ class WorkFinishController: PGBaseViewController {
         params["taskId"] = self.workModel.taskId
         var stringList : [[String:Any]] = []
         for item in self.viewList {
-            if item.picNote!.picUrlList == nil || item.picNote!.picUrlList.isEmpty {
+            if item.picNote!.picUrlList == nil || item.picNote!.picUrlList.isEmpty || item.picNote!.picUrlList[0].count < 2 {
                 canSub = false
                 break
             }
@@ -234,6 +278,7 @@ class WorkFinishController: PGBaseViewController {
             let taskId : Int = self.workModel.taskId
             let list = realm.objects(TaskRoutRealm.self).filter("taskId == \(taskId)")
             if !list.isEmpty {
+                self.dataRoutRealm = list
                 for item in list {
                     var param = [String:Any]()
                     param["itemName"] = item.itemName
@@ -249,6 +294,14 @@ class WorkFinishController: PGBaseViewController {
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: kMessageNotifyKey), object: nil)
                 self?.view.toast("提交成功")
                 self?.navigationController?.popViewController(animated: false)
+                if self?.dataRealm != nil {
+                    try! self?.realm.write {
+                        self?.realm.delete(self!.dataRealm!)
+                        if self?.dataRoutRealm != nil {
+                            self?.realm.delete(self!.dataRoutRealm!)
+                        }
+                    }
+                }
                 self?.callback?()
             }) {[weak self] (_) in
                 self?.view.toast("提交失败")
@@ -257,17 +310,6 @@ class WorkFinishController: PGBaseViewController {
     
     @objc func addFile(){
         avatarImageViewTapHandler(PGActionSheet(buttonList: ["拍照", "从相册选择"]),addFileButton)
-    }
-    
-    func requestModel(){
-        taskProviderNoPlugin.rxRequest(.getWorkDetail(taskId: self.workModel.taskId))
-            .toModel(type: WorkModel.self)
-            .subscribe(onSuccess: { [weak self](model) in
-                self?.workModel = model
-                self?.initView()
-            }) { (_) in
-                print("error")
-        }.disposed(by: self.disposeBag)
     }
     
     func avatarImageViewTapHandler(_ actionSheet:PGActionSheet,_ button:UIButton) {
@@ -287,7 +329,6 @@ class WorkFinishController: PGBaseViewController {
                 self.currentViewController().present(imagePicker, animated: false, completion: nil)
             }else {
                 button.setImage(UIImage(named: "upload_icon_photo"), for: .normal)
-                
             }
         }
     }
@@ -308,7 +349,14 @@ class WorkFinishController: PGBaseViewController {
             view.fileUrl = self.fileUrlList[index]
             view.fileName = file
             view.setData(name: file)
-            view.frame = CGRect(x: 0, y: CGFloat(0 + 34 * index), w: screenWidth, h: 34)
+            view.tag = index
+            view.frame = CGRect(x: 0, y: CGFloat(0 + 34 * index), w: screenWidth - 12, h: 34)
+            view.callback = {(view)in
+                let position = view.tag
+                self.fileList.remove(at: position)
+                self.fileUrlList.remove(at: position)
+                self.updateFileView()
+            }
             self.fileView.addSubview(view)
         }
         fileView.snp.updateConstraints { (make) in

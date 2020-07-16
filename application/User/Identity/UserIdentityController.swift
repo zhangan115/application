@@ -100,18 +100,16 @@ class UserIdentityController: PGBaseViewController {
                 verifyView.isHidden = false
                 if !UserDefaults.standard.bool(forKey: kUserPromise) {
                     let controller = PromiseController()
-                    self.present(controller, animated: true, completion: {
-                        controller.initView()
-                    })
+                    controller.modalPresentationStyle = .custom
+                    self.present(controller, animated: true, completion: nil)
                 }
             }
         }else{
             verifyView.isHidden = false
             if !UserDefaults.standard.bool(forKey: kUserPromise) {
                 let controller = PromiseController()
-                self.present(controller, animated: true, completion: {
-                    controller.initView()
-                })
+                controller.modalPresentationStyle = .custom
+                self.present(controller, animated: true, completion: nil)
             }
         }
     }
@@ -244,7 +242,7 @@ class UserIdentityController: PGBaseViewController {
         for item in self.photoList {
             if item.count == 0 {
                 buttonSure.isEnabled = false
-                break
+                return
             }
         }
         if userNameText.text == nil || userNameText.text!.count == 0 {

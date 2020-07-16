@@ -15,6 +15,7 @@ class UserElectricianController: PGBaseViewController {
     @IBOutlet weak var button2:UIButton!
     @IBOutlet weak var buttonSure:UIButton!
     @IBOutlet weak var labelNote:UILabel!
+    @IBOutlet weak var titleLabel:UILabel!
     @IBOutlet weak var layout1:UIView!
     @IBOutlet weak var layout2:UIView!
     
@@ -30,12 +31,10 @@ class UserElectricianController: PGBaseViewController {
     var currentPhotoPosition = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "电工认证"
+        self.title = "资格认证"
         self.view.backgroundColor = UIColor(hexString: "#F6F6F6")
         buttonSure.layer.masksToBounds = true
         buttonSure.layer.cornerRadius = 4
-        buttonSure.setTitle("审核中，请等待", for: .normal)
-        buttonSure.setTitle("审核中，请等待", for: .disabled)
         buttonSure.setTitleColor(UIColor(hexString: "#F6F6F6"), for: .disabled)
         buttonSure.setTitleColor(UIColor(hexString: "#333333"), for: .normal)
         buttonSure.setBackgroundColor(UIColor(hexString: "#CCCCCC")!, forState: .disabled)
@@ -68,6 +67,7 @@ class UserElectricianController: PGBaseViewController {
             self.currentState = model.verifyPassState
             //审核状态（1为待审核，2为审核通过，3为审核不通过）
             if model.verifyPassState == 1 {
+                titleLabel.text = "待认证信息"
                 photoList[0] = model.specialOperationPic
                 if photoList[0].count == 0 {
                     left1.constant  = 0
@@ -83,6 +83,7 @@ class UserElectricianController: PGBaseViewController {
                 buttonSure.setTitle("审核中，请等待", for: .disabled)
                 buttonSure.isEnabled = false
             }else if model.verifyPassState == 2 {
+                titleLabel.text = "已认证信息"
                 photoList[0] = model.specialOperationPic
                 if photoList[0].count == 0 {
                     left1.constant  = 0
@@ -96,6 +97,7 @@ class UserElectricianController: PGBaseViewController {
                 button2.loadNetWorkImage(model.vocationalQualificationPic, placeholder: "qualifications_img2")
                 labelNote.text = "如需更改操作证，或上传职业资格等级证，点击下方更新信息，进行上传！"
                 buttonSure.setTitle("更新信息", for: .normal)
+                 buttonSure.setTitle("更新信息", for: .disabled)
                 buttonSure.isEnabled = true
             }else if model.verifyPassState == 3{
                 for item in self.list.reversed() {
@@ -114,6 +116,7 @@ class UserElectricianController: PGBaseViewController {
             layout2.isHidden = false
             left1.constant  = mWidth + 10
             buttonSure.setTitle("提交审核", for: .normal)
+            buttonSure.setTitle("提交审核", for: .disabled)
             labelNote.text = "请按照示意图上传本人电工证信息，避免模糊、反光、遮挡、光线过暗、信息不全"
             currentState = 0
         }else{

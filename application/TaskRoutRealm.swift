@@ -16,3 +16,16 @@ class TaskRoutRealm : Object {
     @objc dynamic var itemValue: String? = nil
     
 }
+
+class TaskFinishRealm:Object{
+    
+    let taskId = RealmOptional<Int>()
+    @objc dynamic var photoList: String? = nil
+    @objc dynamic var fileNameList: String? = nil
+    @objc dynamic var fileUrList: String? = nil
+    @objc dynamic var note: String? = nil
+    
+    override static func primaryKey() -> String? {
+        return "taskId"
+    }
+}

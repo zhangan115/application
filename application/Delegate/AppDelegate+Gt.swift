@@ -177,7 +177,7 @@ extension AppDelegate: GeTuiSdkDelegate {
 extension AppDelegate {
     
     func messageTapAction(userInfo: [AnyHashable: Any]) {
-        
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
     
 }

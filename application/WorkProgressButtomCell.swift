@@ -22,6 +22,7 @@ class WorkProgressButtomCell: UITableViewCell {
     
     let realm = try! Realm()
     var workModel:WorkModel!
+    var showRoutCallBack:(()->())?
     var subCallBack:(()->())?
     
     override func awakeFromNib() {
@@ -62,7 +63,7 @@ class WorkProgressButtomCell: UITableViewCell {
         }
         let taskId : Int = workModel.taskId
         let objects = self.realm.objects(TaskRoutRealm.self).filter("taskId == \(taskId)")
-        if workModel.afterFinishFile != nil {
+        if workModel.taskState == WorkState.WORK_PROGRESS.rawValue && workModel.afterFinishFile != nil {
             if workModel.afterFinishFile?.nodeDataList != nil && !workModel.afterFinishFile!.nodeDataList.isEmpty {
                 let count = workModel.afterFinishFile!.nodeDataList.count
                 progressLable.text = "完成" + ((objects.count * 100 / count)  ).toString + "%"
@@ -75,6 +76,7 @@ class WorkProgressButtomCell: UITableViewCell {
     }
     
     @objc func showRoutController(){
+        self.showRoutCallBack?()
         let controller = WorkRoutController()
         controller.workModel = self.workModel
         controller.callback = {

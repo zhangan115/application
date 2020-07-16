@@ -78,3 +78,37 @@ class UserBillHeader {
     var billOut: Float = 0
     var list : [BillList]! = []
 }
+
+class Province : Mappable {
+    
+    var name: String!
+    var city: [City]!
+    
+    required init(fromJson json: JSON!) {
+        self.name = json["name"].stringValue
+        self.city = [City]()
+        let cityList = json["city"].arrayValue
+        if !cityList.isEmpty {
+            for item in cityList {
+                city.append(City.init(fromJson: item))
+            }
+        }
+    }
+}
+
+class City:Mappable {
+    
+    var name: String!
+    var area: [String]!
+    
+    required init(fromJson json: JSON!) {
+        self.name = json["name"].stringValue
+        self.area = [String]()
+        let areaList = json["area"].arrayValue
+        if !areaList.isEmpty {
+            for item in areaList {
+                area.append(item.stringValue)
+            }
+        }
+    }
+}

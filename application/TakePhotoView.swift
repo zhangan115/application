@@ -56,7 +56,7 @@ class TakePhotoView: UIView {
     func setData(picNote:PicNote?){
         self.picNote = picNote
         if let note = picNote {
-            if note.picUrlList != nil && !note.picUrlList.isEmpty {
+            if note.picUrlList != nil && !note.picUrlList.isEmpty && note.picUrlList[0].count > 1 {
                 takePhotoButton.loadNetWorkImage(note.picUrlList[0], placeholder: "img_null")
             }else{
                 takePhotoButton.setImage(UIImage(named: "upload_icon_photo"), for: .normal)
@@ -66,10 +66,12 @@ class TakePhotoView: UIView {
     
     @objc func takePhoto(){
         if canTakePhoto {
-            if self.picNote == nil || self.picNote!.picUrlList == nil || self.picNote!.picUrlList.isEmpty {
-                avatarImageViewTapHandler(PGActionSheet(buttonList: ["拍照", "从相册选择"]),takePhotoButton)
-            }else {
-                avatarImageViewTapHandler(PGActionSheet(buttonList: ["拍照", "从相册选择", "查看照片","删除照片"]),takePhotoButton)
+            if let note = picNote {
+                if  note.picUrlList != nil && !note.picUrlList.isEmpty && note.picUrlList[0].count > 1{
+                    avatarImageViewTapHandler(PGActionSheet(buttonList: ["拍照", "从相册选择", "查看照片","删除照片"]),takePhotoButton)
+                }else {
+                    avatarImageViewTapHandler(PGActionSheet(buttonList: ["拍照", "从相册选择"]),takePhotoButton)
+                }
             }
         }else{
             let imagePicker = PGImagePicker(currentImageView: takePhotoButton.imageView!)

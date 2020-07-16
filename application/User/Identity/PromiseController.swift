@@ -101,7 +101,7 @@ class PromiseController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        initView()
     }
     
     func initView(){

@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             fileURL:path,
             // 设置新的架构版本。必须大于之前所使用的
             // （如果之前从未设置过架构版本，那么当前的架构版本为 0）
-            schemaVersion: 1,
+            schemaVersion: 3,
             // 设置模块，如果 Realm 的架构版本低于上面所定义的版本，
             // 那么这段代码就会自动调用
             migrationBlock: { migration, oldSchemaVersion in

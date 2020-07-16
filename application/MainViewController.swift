@@ -224,11 +224,16 @@ class MainViewController: BaseHomeController {
         search.delegate = self
         UIApplication.shared.applicationIconBadgeNumber = 0
         NotificationCenter.default.addObserver(self, selector: #selector(bindCid), name: NSNotification.Name(rawValue: kUserCidNotifyKey), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name(rawValue: kMessageNotifyKey), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(messageRefresh), name: NSNotification.Name(rawValue: kMessageNotifyKey), object: nil)
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func messageRefresh(){
+        self.refresh()
+        self.requestUserData()
     }
     
     //显示侧栏

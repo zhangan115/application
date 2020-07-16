@@ -140,7 +140,15 @@ class UserDataController: HomeTableController {
             }
         }
         if indexPath.section == 3{
-            
+            let controller = ChooseProvinceController()
+            controller.modalPresentationStyle = .custom
+            controller.callback = {(content)in
+                if let content = content {
+                    self.contentList[3] = content
+                    self.tableView.reloadRows(at: [indexPath], with: .none)
+                }
+            }
+            self.presentVC(controller)
         }
     }
     

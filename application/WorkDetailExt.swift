@@ -397,21 +397,29 @@ extension WorkDetailController {
                 let cell = tableView.dequeueReusableCell(withIdentifier: workProgressAfterCell) as! WorkProgressAfterCell
                 cell.fileList = self.fileList
                 cell.fileUrlList = self.fileUrlList
+                cell.picUrlList = self.picUrlList
+                if self.currentNote != nil && self.currentNote!.count != 0 {
+                    self.workModel.afterFinishFile?.nodeNote = self.currentNote
+                    cell.noteTextView.text = self.currentNote
+                }else{
+                    cell.noteTextView.text = nil
+                }
+                cell.photoChangeCallBack = {
+                    self.picUrlList.removeAll()
+                    for item in cell.viewList {
+                        var photoUrl = "-"
+                        if item.picNote!.picUrlList != nil && !item.picNote!.picUrlList!.isEmpty && item.picNote!.picUrlList[0].count > 1 {
+                            photoUrl = item.picNote?.picUrlList[0] ?? "-"
+                        }
+                        self.picUrlList.append(photoUrl)
+                    }
+                    self.tableView.reloadRows(at: [IndexPath(row: 2, section: 2)], with: .none)
+                }
                 cell.addFileCallBack = {(url)in
                     let saveName = url.split("/").last ?? ""
                     self.fileList.append(saveName)
                     self.fileUrlList.append(url)
-                    self.currentNote = cell.noteTextView.text
                     self.tableView.reloadRows(at: [indexPath], with: .none)
-                }
-                if self.currentNote != nil && self.currentNote!.count != 0 {
-                    cell.noteTextView.text = self.currentNote
-                }
-                cell.photoChangeCallBack = {
-                    self.tableView.reloadRows(at: [IndexPath(row: 2, section: 2)], with: .none)
-                }
-                cell.updateCallBack = {
-                    self.request()
                 }
                 cell.delectFileCallBack = {(index)in
                     self.fileList.remove(at: index)
@@ -427,7 +435,7 @@ extension WorkDetailController {
                 if self.workModel.afterFinishFile != nil {
                     if self.workModel.afterFinishFile!.nodePicList != nil && !self.workModel.afterFinishFile!.nodePicList.isEmpty{
                         for item in self.workModel.afterFinishFile!.nodePicList {
-                            if item.picUrlList == nil || item.picUrlList.isEmpty {
+                            if item.picUrlList == nil || item.picUrlList.isEmpty || item.picUrlList[0].count < 2 {
                                 canSub = false
                                 break
                             }
@@ -608,21 +616,29 @@ extension WorkDetailController {
                 let cell = tableView.dequeueReusableCell(withIdentifier: workProgressAfterCell) as! WorkProgressAfterCell
                 cell.fileList = self.fileList
                 cell.fileUrlList = self.fileUrlList
+                cell.picUrlList = self.picUrlList
+                if self.currentNote != nil && self.currentNote!.count != 0 {
+                    self.workModel.afterFinishFile?.nodeNote = self.currentNote
+                    cell.noteTextView.text = self.currentNote
+                }else{
+                    cell.noteTextView.text = nil
+                }
+                cell.photoChangeCallBack = {
+                    self.picUrlList.removeAll()
+                    for item in cell.viewList {
+                        var photoUrl = "-"
+                        if item.picNote!.picUrlList != nil && !item.picNote!.picUrlList!.isEmpty && item.picNote!.picUrlList[0].count > 1 {
+                            photoUrl = item.picNote?.picUrlList[0] ?? "-"
+                        }
+                        self.picUrlList.append(photoUrl)
+                    }
+                    self.tableView.reloadRows(at: [IndexPath(row: 2, section: 3)], with: .none)
+                }
                 cell.addFileCallBack = {(url)in
                     let saveName = url.split("/").last ?? ""
                     self.fileList.append(saveName)
                     self.fileUrlList.append(url)
-                    self.currentNote = cell.noteTextView.text
                     self.tableView.reloadRows(at: [indexPath], with: .none)
-                }
-                if self.currentNote != nil && self.currentNote!.count != 0 {
-                    cell.noteTextView.text = self.currentNote
-                }
-                cell.updateCallBack = {
-                    self.request()
-                }
-                cell.photoChangeCallBack = {
-                    self.tableView.reloadRows(at: [IndexPath(row: 2, section: 3)], with: .none)
                 }
                 cell.delectFileCallBack = {(index)in
                     self.fileList.remove(at: index)
@@ -638,7 +654,7 @@ extension WorkDetailController {
                 if self.workModel.afterFinishFile != nil {
                     if self.workModel.afterFinishFile!.nodePicList != nil && !self.workModel.afterFinishFile!.nodePicList.isEmpty{
                         for item in self.workModel.afterFinishFile!.nodePicList {
-                            if item.picUrlList == nil || item.picUrlList.isEmpty {
+                            if item.picUrlList == nil || item.picUrlList.isEmpty || item.picUrlList[0].count < 2 {
                                 canSub = false
                                 break
                             }
@@ -646,12 +662,11 @@ extension WorkDetailController {
                     }else{
                         canSub = false
                     }
-                    
                 }else{
                     canSub = false
                 }
                 if self.canCommint != canSub {
-                   self.canCommint = canSub && self.finishRout
+                    self.canCommint = canSub && self.finishRout
                 }
                 cell.subButton.isEnabled = self.canCommint
                 cell.subCallBack = {

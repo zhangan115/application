@@ -136,19 +136,6 @@ class MainDrawerUIView: UIView {
         return label
     }()
     
-    lazy var userVerifyBtn: UIButton = {
-        let button = UIButton()
-        button.setTitle("立即加入", for: .normal)
-        button.setTitleColor(UIColor(hexString: "#333333"), for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-        button.setBackgroundColor(UIColor(hexString: "#FFCC00")!, forState: .normal)
-        button.layer.masksToBounds = true
-        button.layer.cornerRadius = 10
-        button.addTarget(self, action: #selector(verify), for: .touchUpInside)
-        self.userData.addSubview(button)
-        return button
-    }()
-    
     lazy var icon2 : UIImageView = {
         let view = UIImageView()
         view.layer.masksToBounds = true
@@ -157,6 +144,19 @@ class MainDrawerUIView: UIView {
         self.userData.addSubview(view)
         return view
     }()
+    
+    lazy var userVerifyBtn: UIButton = {
+           let button = UIButton()
+           button.setTitle("立即加入", for: .normal)
+           button.setTitleColor(UIColor(hexString: "#333333"), for: .normal)
+           button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+           button.setBackgroundColor(UIColor(hexString: "#FFCC00")!, forState: .normal)
+           button.layer.masksToBounds = true
+           button.layer.cornerRadius = 10
+           button.addTarget(self, action: #selector(verify), for: .touchUpInside)
+           self.userData.insertSubview(button, aboveSubview: icon2)
+           return button
+       }()
     
     lazy var button1 : UIButton = {
         let button = UIButton()

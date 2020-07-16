@@ -206,6 +206,9 @@
 		73D90CEB24B82F520036F63A /* WorkMoreItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73D90CE924B82F520036F63A /* WorkMoreItemCell.xib */; };
 		73D90CEF24B832A90036F63A /* WorkEndController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D90CED24B832A90036F63A /* WorkEndController.swift */; };
 		73D90CF024B832A90036F63A /* WorkEndController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73D90CEE24B832A90036F63A /* WorkEndController.xib */; };
+		73DFD12424BFDFF7003B75B7 /* province.json in Resources */ = {isa = PBXBuildFile; fileRef = 73DFD12324BFDFF7003B75B7 /* province.json */; };
+		73DFD12824BFE854003B75B7 /* ChooseProvinceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DFD12624BFE854003B75B7 /* ChooseProvinceController.swift */; };
+		73DFD12924BFE854003B75B7 /* ChooseProvinceController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73DFD12724BFE854003B75B7 /* ChooseProvinceController.xib */; };
 		73EC522F249B528A004D869A /* UserDataHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EC522E249B528A004D869A /* UserDataHeaderView.swift */; };
 		73EC5232249B5636004D869A /* UserBillController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EC5231249B5636004D869A /* UserBillController.swift */; };
 		73EC5237249B5688004D869A /* UserBillViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EC5235249B5688004D869A /* UserBillViewCell.swift */; };
@@ -434,6 +437,9 @@
 		73D90CE924B82F520036F63A /* WorkMoreItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkMoreItemCell.xib; sourceTree = "<group>"; };
 		73D90CED24B832A90036F63A /* WorkEndController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkEndController.swift; sourceTree = "<group>"; };
 		73D90CEE24B832A90036F63A /* WorkEndController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkEndController.xib; sourceTree = "<group>"; };
+		73DFD12324BFDFF7003B75B7 /* province.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = province.json; sourceTree = "<group>"; };
+		73DFD12624BFE854003B75B7 /* ChooseProvinceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseProvinceController.swift; sourceTree = "<group>"; };
+		73DFD12724BFE854003B75B7 /* ChooseProvinceController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChooseProvinceController.xib; sourceTree = "<group>"; };
 		73EC522E249B528A004D869A /* UserDataHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataHeaderView.swift; sourceTree = "<group>"; };
 		73EC5231249B5636004D869A /* UserBillController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBillController.swift; sourceTree = "<group>"; };
 		73EC5235249B5688004D869A /* UserBillViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBillViewCell.swift; sourceTree = "<group>"; };
@@ -877,6 +883,7 @@
 				73BC0AF62490CCC300B5DBDF /* Bridging */,
 				737643602457F54300CB2050 /* Assets.xcassets */,
 				737643652457F54300CB2050 /* Info.plist */,
+				73DFD12324BFDFF7003B75B7 /* province.json */,
 			);
 			path = application;
 			sourceTree = "<group>";
@@ -1370,6 +1377,7 @@
 		73BC0B6E2490DA3E00B5DBDF /* User */ = {
 			isa = PBXGroup;
 			children = (
+				73DFD12524BFE834003B75B7 /* Province */,
 				736CD60A2499B9CA00B66369 /* Center */,
 				7371C233249AF3B700CB6BAA /* About */,
 				736CD6142499DD2E00B66369 /* Identity */,
@@ -1483,6 +1491,15 @@
 				73D90CEE24B832A90036F63A /* WorkEndController.xib */,
 			);
 			name = End;
+			sourceTree = "<group>";
+		};
+		73DFD12524BFE834003B75B7 /* Province */ = {
+			isa = PBXGroup;
+			children = (
+				73DFD12624BFE854003B75B7 /* ChooseProvinceController.swift */,
+				73DFD12724BFE854003B75B7 /* ChooseProvinceController.xib */,
+			);
+			path = Province;
 			sourceTree = "<group>";
 		};
 		73EC522D249B5271004D869A /* View */ = {
@@ -1610,6 +1627,7 @@
 				737643642457F54300CB2050 /* LaunchScreen.storyboard in Resources */,
 				73F141A824B71D62000E93A4 /* WorkProgressButtomCell.xib in Resources */,
 				3E2BB45624B4BD7900A2E52C /* RoutTitleCell.xib in Resources */,
+				73DFD12924BFE854003B75B7 /* ChooseProvinceController.xib in Resources */,
 				736CF75924B85E4F009AFF6A /* MethodCell.xib in Resources */,
 				736CD6092499B33400B66369 /* UserIdentityController.xib in Resources */,
 				7325057124A32EF2001CF373 /* WorkTimeCell.xib in Resources */,
@@ -1642,6 +1660,7 @@
 				7371C248249B0F5400CB6BAA /* UserDataSureCell.xib in Resources */,
 				73BC0B1C2490CEB300B5DBDF /* UserLoginViewController.xib in Resources */,
 				736A4E412493503000B2C2F0 /* ForgetPass2ViewController.xib in Resources */,
+				73DFD12424BFDFF7003B75B7 /* province.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1760,6 +1779,7 @@
 				73BC0B0A2490CE5500B5DBDF /* Cookie.swift in Sources */,
 				736CD6052499A99900B66369 /* TestView.swift in Sources */,
 				7362EA2724A049250011E56E /* SGPageContentScrollView.m in Sources */,
+				73DFD12824BFE854003B75B7 /* ChooseProvinceController.swift in Sources */,
 				7394066A2497085A001562CD /* AppDelegate+Gt.swift in Sources */,
 				73BC0B112490CE5500B5DBDF /* Single+Model.swift in Sources */,
 				73B0DC39249A09050080D1C0 /* PermissionManager.swift in Sources */,

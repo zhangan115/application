@@ -8,6 +8,8 @@
 
 import UIKit
 import PGActionSheet
+import RealmSwift
+
 class WorkProgressAfterCell: UITableViewCell {
     
     @IBOutlet var bgView2 : UIView! // 背景
@@ -21,14 +23,16 @@ class WorkProgressAfterCell: UITableViewCell {
     @IBOutlet var textCount:UILabel!
     
     var workModel:WorkModel!
-    
-    var updateCallBack:(()->())?
     var addFileCallBack:((String)->())?
     var delectFileCallBack:((Int)->())?
     var photoChangeCallBack:(()->())?
     var fileList:[String] = []
     var fileUrlList:[String]  = []
     var viewList:[TakePhotoView] = []
+    
+    let realm = try! Realm()
+    var dataRealm:TaskFinishRealm? = nil
+    var picUrlList:[String]  = []
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -58,12 +62,27 @@ class WorkProgressAfterCell: UITableViewCell {
                 self.viewList.removeAll()
                 for (index,item) in finish.nodePicList.enumerated() {
                     let view = TakePhotoView()
+                    if !picUrlList.isEmpty && picUrlList.count == finish.nodePicList.count {
+                        if item.picUrlList.isEmpty || item.picUrlList[0].count == 0{
+                            item.picUrlList = [picUrlList[index]]
+                        }
+                    }else{
+                        picUrlList.append("-")
+                    }
                     view.setData(picNote: item)
                     view.titleLable.text = item.picName
                     view.canTakePhoto = workModel.taskState == WorkState.WORK_PROGRESS.rawValue
                     view.tag = index
                     view.picNote = item
                     view.callback = {
+                        self.picUrlList.removeAll()
+                        for item in self.viewList {
+                            var photoUrl = "-"
+                            if item.picNote!.picUrlList != nil && !item.picNote!.picUrlList!.isEmpty && item.picNote!.picUrlList[0].count > 1 {
+                                photoUrl = item.picNote?.picUrlList[0] ?? "-"
+                            }
+                            self.picUrlList.append(photoUrl)
+                        }
                         self.photoChangeCallBack?()
                     }
                     self.viewList.append(view)
@@ -115,6 +134,7 @@ class WorkProgressAfterCell: UITableViewCell {
                 view.callback = {(view)in
                     let position = view.tag
                     self.fileList.remove(at: position)
+                    self.fileUrlList.remove(at: position)
                     self.reloadFileView()
                     self.delectFileCallBack?(position)
                 }
@@ -163,6 +183,8 @@ class WorkProgressAfterCell: UITableViewCell {
         pickerVC.sourceType = sourceType
         currentViewController().present(pickerVC, animated: true, completion: nil)
     }
+    
+    
 }
 
 extension WorkProgressAfterCell: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
