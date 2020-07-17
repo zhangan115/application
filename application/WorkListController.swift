@@ -17,10 +17,12 @@ class WorkListController: PageingListViewController,UITableViewDelegate,UITableV
     var list1 : [WorkModel] = []
     var list2 : [WorkModel] = []
     var disposeBag = DisposeBag()
-    
+    var callback:(()->())?
     lazy var workVerifyView : WorkVerifyView = {
         return WorkVerifyView()
     }()
+    
+    var notifyIndex = -1
     
     override func viewDidLoad() {
         self.isRefresh = true
@@ -41,6 +43,7 @@ class WorkListController: PageingListViewController,UITableViewDelegate,UITableV
         self.tableView.register(WorkListViewCell.self, forCellReuseIdentifier: itemCell)
         showUserVerify()
         NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name(rawValue: kMessageNotifyKey), object: nil)
+       
     }
     
     deinit {
@@ -52,6 +55,10 @@ class WorkListController: PageingListViewController,UITableViewDelegate,UITableV
     }
     
     override func request() {
+        self.list1.removeAll()
+        self.list2.removeAll()
+        self.responseDataList.removeAll()
+        self.tableView.reloadData()
         if let userModel = UserModel.unarchiver() {
             if userModel.certificationType != nil && userModel.certificationType! > 0 {
                 if self.currentIndex == WorkState.WORK_FINISH.rawValue || self.currentIndex == WorkState.WORK_CHECK.rawValue {
@@ -138,9 +145,6 @@ class WorkListController: PageingListViewController,UITableViewDelegate,UITableV
         self.pushVC(controller)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-//        self.tableView.mj_header?.beginRefreshing()
-    }
 }
 
 extension WorkListController {

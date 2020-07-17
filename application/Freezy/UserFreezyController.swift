@@ -56,29 +56,25 @@ class UserFreezyController: UIViewController {
         label.text = ""
         label.textColor = UIColor(hexString: "#333333")
         label.font = UIFont.systemFont(ofSize: 16)
-        self.titleContentView.addSubview(label)
+        self.contentView.addSubview(label)
         return label
     }()
     
     lazy var freezyTimeLabel : UILabel = {
         let label = UILabel()
-        label.text = "冻结提示"
+        label.text = ""
         label.textColor = UIColor(hexString: "#333333")
         label.font = UIFont.systemFont(ofSize: 14)
-        self.titleContentView.addSubview(label)
+        self.contentView.addSubview(label)
         return label
     }()
     
     @objc func close(){
-        self.dismiss(animated: true, completion: {
-            
-        })
+        self.dismiss(animated: true, completion: nil)
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     func initView(){
@@ -105,7 +101,7 @@ class UserFreezyController: UIViewController {
         }
         freezyResonLabel.snp.updateConstraints { (make) in
             make.left.equalToSuperview().offset(12)
-            make.top.equalToSuperview().offset(20)
+            make.top.equalTo(self.titleContentView.snp.bottom).offset(20)
         }
         freezyTimeLabel.snp.updateConstraints { (make) in
             make.left.equalToSuperview().offset(12)

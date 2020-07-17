@@ -50,6 +50,7 @@
 		7325057124A32EF2001CF373 /* WorkTimeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7325056F24A32EF2001CF373 /* WorkTimeCell.xib */; };
 		734C541724B6E7B300B9DC55 /* WorkCostDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C541524B6E7B300B9DC55 /* WorkCostDetailCell.swift */; };
 		734C541824B6E7B300B9DC55 /* WorkCostDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 734C541624B6E7B300B9DC55 /* WorkCostDetailCell.xib */; };
+		734E46CB24C19FFA00E6C68D /* WorkFinish1Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734E46CA24C19FFA00E6C68D /* WorkFinish1Controller.swift */; };
 		735ACBB924B443E600E97B68 /* WorkRoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735ACBB824B443E600E97B68 /* WorkRoutController.swift */; };
 		735ACBBC24B4495E00E97B68 /* WorkProgressItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735ACBBA24B4495E00E97B68 /* WorkProgressItemCell.swift */; };
 		735ACBBD24B4495E00E97B68 /* WorkProgressItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 735ACBBB24B4495E00E97B68 /* WorkProgressItemCell.xib */; };
@@ -115,6 +116,8 @@
 		7382E8B924A1C8EF00401DC5 /* WorkRobItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7382E8B824A1C8EF00401DC5 /* WorkRobItemCell.swift */; };
 		7382E8BE24A1CFA800401DC5 /* WorkDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7382E8BD24A1CFA800401DC5 /* WorkDetailController.swift */; };
 		738A86AD24BC3FF500AD0DD4 /* CacheCleanTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738A86AC24BC3FF500AD0DD4 /* CacheCleanTool.swift */; };
+		738D27EA24C1922800737F72 /* FinishItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738D27E824C1922800737F72 /* FinishItemCell.swift */; };
+		738D27EB24C1922800737F72 /* FinishItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 738D27E924C1922800737F72 /* FinishItemCell.xib */; };
 		7394064E249702AE001562CD /* GTSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73940649249702AE001562CD /* GTSDK.framework */; };
 		739406512497039B001562CD /* test.m in Sources */ = {isa = PBXBuildFile; fileRef = 739406502497039B001562CD /* test.m */; };
 		7394065324970574001562CD /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 739406522497055F001562CD /* libsqlite3.tbd */; };
@@ -269,6 +272,7 @@
 		7325056F24A32EF2001CF373 /* WorkTimeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkTimeCell.xib; sourceTree = "<group>"; };
 		734C541524B6E7B300B9DC55 /* WorkCostDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkCostDetailCell.swift; sourceTree = "<group>"; };
 		734C541624B6E7B300B9DC55 /* WorkCostDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkCostDetailCell.xib; sourceTree = "<group>"; };
+		734E46CA24C19FFA00E6C68D /* WorkFinish1Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkFinish1Controller.swift; sourceTree = "<group>"; };
 		735ACBB824B443E600E97B68 /* WorkRoutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkRoutController.swift; sourceTree = "<group>"; };
 		735ACBBA24B4495E00E97B68 /* WorkProgressItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkProgressItemCell.swift; sourceTree = "<group>"; };
 		735ACBBB24B4495E00E97B68 /* WorkProgressItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkProgressItemCell.xib; sourceTree = "<group>"; };
@@ -342,6 +346,8 @@
 		7382E8B824A1C8EF00401DC5 /* WorkRobItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkRobItemCell.swift; sourceTree = "<group>"; };
 		7382E8BD24A1CFA800401DC5 /* WorkDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkDetailController.swift; sourceTree = "<group>"; };
 		738A86AC24BC3FF500AD0DD4 /* CacheCleanTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheCleanTool.swift; sourceTree = "<group>"; };
+		738D27E824C1922800737F72 /* FinishItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishItemCell.swift; sourceTree = "<group>"; };
+		738D27E924C1922800737F72 /* FinishItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinishItemCell.xib; sourceTree = "<group>"; };
 		73940649249702AE001562CD /* GTSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GTSDK.framework; sourceTree = "<group>"; };
 		7394064F2497039B001562CD /* application-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "application-Bridging-Header.h"; sourceTree = "<group>"; };
 		739406502497039B001562CD /* test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = test.m; sourceTree = "<group>"; };
@@ -514,7 +520,9 @@
 		3E4833DB24B35F7900A2203A /* Finish */ = {
 			isa = PBXGroup;
 			children = (
+				738D27E724C1921400737F72 /* Cell */,
 				3E4833DE24B35FB100A2203A /* WorkFinishController.swift */,
+				734E46CA24C19FFA00E6C68D /* WorkFinish1Controller.swift */,
 			);
 			name = Finish;
 			sourceTree = "<group>";
@@ -968,6 +976,15 @@
 				73F141A224B717A1000E93A4 /* WorkProgressAfterCell.xib */,
 				73F141A524B71D62000E93A4 /* WorkProgressButtomCell.swift */,
 				73F141A624B71D62000E93A4 /* WorkProgressButtomCell.xib */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		738D27E724C1921400737F72 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				738D27E824C1922800737F72 /* FinishItemCell.swift */,
+				738D27E924C1922800737F72 /* FinishItemCell.xib */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -1633,6 +1650,7 @@
 				7325057124A32EF2001CF373 /* WorkTimeCell.xib in Resources */,
 				73CC7B32249A4258009CC7FC /* SettingViewCell.xib in Resources */,
 				73F0F3F124B554AA00AA2E12 /* RoutButtonCell.xib in Resources */,
+				738D27EB24C1922800737F72 /* FinishItemCell.xib in Resources */,
 				737643612457F54300CB2050 /* Assets.xcassets in Resources */,
 				7371C237249AF3D300CB6BAA /* AboutUsController.xib in Resources */,
 				7325056A24A329D8001CF373 /* WorkEnclosureCell.xib in Resources */,
@@ -1735,6 +1753,7 @@
 				730C0D1B24A347FF009B2144 /* WorkTitleCell.swift in Sources */,
 				3EB299B8249D909F008ED3C4 /* MainDrawerUIView.swift in Sources */,
 				7325055D24A31FEE001CF373 /* CustomerInfoCell.swift in Sources */,
+				738D27EA24C1922800737F72 /* FinishItemCell.swift in Sources */,
 				73BC0B682490D64700B5DBDF /* TaskProvide.swift in Sources */,
 				73BC0B132490CE5500B5DBDF /* Tools.swift in Sources */,
 				739A49D224BAAFC1005E7ABE /* CustomerCalloutView1.swift in Sources */,
@@ -1744,6 +1763,7 @@
 				73BC0B0E2490CE5500B5DBDF /* ModelBean.swift in Sources */,
 				73D68C1F2497656D002055AD /* VerifyModel.swift in Sources */,
 				7371C23B249B0CAF00CB6BAA /* UserDataController.swift in Sources */,
+				734E46CB24C19FFA00E6C68D /* WorkFinish1Controller.swift in Sources */,
 				73CC7B35249A426F009CC7FC /* SettingExitCell.swift in Sources */,
 				73BC0B592490CFBD00B5DBDF /* Array+Extension.swift in Sources */,
 				73BC0B522490CFBD00B5DBDF /* UITableViewCell+Extension.swift in Sources */,
@@ -2044,6 +2064,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 65MUSRJ8L7;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/application/lib/GtSdkLib",
@@ -2075,6 +2096,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 65MUSRJ8L7;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/application/lib/GtSdkLib",

@@ -28,9 +28,20 @@ class WorkButtonCell: UITableViewCell {
     var callBack:((Int?)->())?
     
     @IBAction func buttonClick(sender:UIButton){
-        let isfreese = UserModel.unarchiver()!.isFreeze != nil && !UserModel.unarchiver()!.isFreeze
-        if self.workModel!.canDo && !isfreese {
+        if self.workModel!.canDo{
             if self.workModel!.taskState == WorkState.WORK_ROB.rawValue {
+                let userModel = UserModel.unarchiver()
+                      if userModel == nil{
+                          return
+                      }
+                      if userModel!.isFreeze ?? false {
+                          let controller = UserFreezyController()
+                          controller.modalPresentationStyle = .custom
+                          self.currentViewController().present(controller, animated: true, completion: {
+                              controller.initView()
+                          })
+                          return
+                      }
                 if self.workModel!.taskType == WorkType.WORK_TYPE_ROUT.rawValue {
                      showTimePick(0)
                 }else{
@@ -40,11 +51,7 @@ class WorkButtonCell: UITableViewCell {
                 self.callBack?(nil)
             }
         }else {
-            if !self.workModel!.canDo {
-                self.contentView.toast("请完善资质")
-                return
-            }
-            self.contentView.toast("当前账号已被冻结")
+            self.contentView.toast("请完善资质")
         }
     }
     

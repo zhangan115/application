@@ -14,7 +14,7 @@ class UserModel: NSObject, NSCoding, Mappable {
     var userId: Int! = 0
     var username: String? = nil
     var certificationType: Int? = nil
-    var isFreeze: Bool! = false
+    var isFreeze: Bool!
     var linkMan: String! = ""
     var linkManMobile: String! = ""
     var portraitUrl: String! = ""
@@ -79,6 +79,9 @@ class UserModel: NSObject, NSCoding, Mappable {
         }
         if freezeReason != nil {
             aCoder.encode(freezeReason, forKey: "freezeReason")
+        }
+        if isFreeze != nil {
+            aCoder.encode(isFreeze, forKey: "isFreeze")
         }
     }
     

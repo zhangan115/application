@@ -222,7 +222,6 @@ class MainViewController: BaseHomeController {
         requestUserVeryList()
         hideBottomView()
         search.delegate = self
-        UIApplication.shared.applicationIconBadgeNumber = 0
         NotificationCenter.default.addObserver(self, selector: #selector(bindCid), name: NSNotification.Name(rawValue: kUserCidNotifyKey), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(messageRefresh), name: NSNotification.Name(rawValue: kMessageNotifyKey), object: nil)
     }
@@ -277,6 +276,7 @@ class MainViewController: BaseHomeController {
         }
         if userModel!.isFreeze ?? false {
             let controller = UserFreezyController()
+            controller.modalPresentationStyle = .custom
             self.present(controller, animated: true, completion: {
                 controller.initView()
             })
@@ -313,9 +313,22 @@ class MainViewController: BaseHomeController {
     @objc func refresh(){
         hideBottomView()
         requestData()
+        requestUserData()
     }
     //立即抢单
     @objc func raibNow(){
+       let userModel = UserModel.unarchiver()
+       if userModel == nil{
+           return
+       }
+       if userModel!.isFreeze ?? false {
+           let controller = UserFreezyController()
+           controller.modalPresentationStyle = .custom
+           self.present(controller, animated: true, completion: {
+               controller.initView()
+           })
+           return
+       }
         if workModelList.isEmpty {
             self.view.toast("附近暂无工单")
             return
@@ -358,6 +371,7 @@ class MainViewController: BaseHomeController {
         if polyline != nil {
             mapView.remove(polyline)
         }
+        self.currentWorkModel = nil
     }
     
     @objc func bindCid(){

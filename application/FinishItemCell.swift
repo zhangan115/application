@@ -1,8 +1,8 @@
 //
-//  WorkFinishController.swift
+//  FinishItemCell.swift
 //  application
 //
-//  Created by Anson on 2020/7/6.
+//  Created by sitech on 2020/7/17.
 //  Copyright © 2020 Sitop. All rights reserved.
 //
 
@@ -10,7 +10,14 @@ import UIKit
 import RxSwift
 import PGActionSheet
 import RealmSwift
-class WorkFinishController: PGBaseViewController {
+
+class FinishItemCell: UITableViewCell {
+    
+    @IBOutlet var uiViewView:UIView!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
     
     var workModel:WorkModel!
     var disposeBag = DisposeBag()
@@ -24,19 +31,6 @@ class WorkFinishController: PGBaseViewController {
     var dataRealm:TaskFinishRealm? = nil
     var dataRoutRealm:Results<TaskRoutRealm>? = nil
     
-    override func viewDidLoad() {
-           super.viewDidLoad()
-           self.title = "完成后资料上传"
-           self.view.backgroundColor = ColorConstants.tableViewBackground
-           startButton.snp.updateConstraints { (make) in
-               make.left.equalToSuperview().offset(30)
-               make.right.equalToSuperview().offset(-30)
-               make.bottom.equalToSuperview().offset(-30)
-               make.height.equalTo(44)
-           }
-           self.request()
-       }
-    
     lazy var startButton:UIButton = {
         let view = UIButton()
         view.layer.masksToBounds = true
@@ -48,7 +42,7 @@ class WorkFinishController: PGBaseViewController {
         view.setBackgroundColor(UIColor(hexString: "#CCCCCC")!, forState: .disabled)
         view.addTarget(self, action: #selector(startAction), for: .touchUpInside)
         view.isEnabled = false
-        self.view.addSubview(view)
+        self.uiViewView.addSubview(view)
         return view
     }()
     
@@ -57,13 +51,13 @@ class WorkFinishController: PGBaseViewController {
         view.text = "附件"
         view.textColor = UIColor(hexString: "#454545")
         view.font = UIFont.systemFont(ofSize: 15)
-        self.view.addSubview(view)
+        self.uiViewView.addSubview(view)
         return view
     }()
     
     lazy var fileView : UIView = {
         let view = UIView()
-        self.view.addSubview(view)
+        self.uiViewView.addSubview(view)
         return view
     }()
     
@@ -71,7 +65,7 @@ class WorkFinishController: PGBaseViewController {
         let view = UIButton()
         view.addTarget(self, action: #selector(addFile), for: .touchUpInside)
         view.setImage(UIImage(named: "upload_icon_annex"), for: .normal)
-        self.view.addSubview(view)
+        self.uiViewView.addSubview(view)
         return view
     }()
     
@@ -80,7 +74,7 @@ class WorkFinishController: PGBaseViewController {
         view.text = "备注"
         view.textColor = UIColor(hexString: "#454545")
         view.font = UIFont.systemFont(ofSize: 15)
-        self.view.addSubview(view)
+        self.uiViewView.addSubview(view)
         return view
     }()
     
@@ -94,7 +88,7 @@ class WorkFinishController: PGBaseViewController {
         view.placeholderFont = UIFont.systemFont(ofSize: 14)
         view.textColor = UIColor(hexString: "#333333")
         view.font = UIFont.systemFont(ofSize: 14)
-        self.view.addSubview(view)
+        self.uiViewView.addSubview(view)
         return view
     }()
     
@@ -103,24 +97,20 @@ class WorkFinishController: PGBaseViewController {
         view.textColor = UIColor(hexString: "#888888")
         view.text = 256.toString
         view.font = UIFont.systemFont(ofSize: 14)
-        self.view.addSubview(view)
+        self.uiViewView.addSubview(view)
         return view
     }()
     
-
-    private func request(){
-        taskProviderNoPlugin.rxRequest(.getWorkDetail(taskId: self.workModel.taskId))
-            .toModel(type: WorkModel.self)
-            .subscribe(onSuccess: { [weak self](model) in
-                self?.workModel = model
-                self?.initView()
-            }) { [weak self](_) in
-                self?.view.toast("请求失败")
-        }.disposed(by: self.disposeBag)
+    func setData(_ model:WorkModel){
+        self.workModel = model
+        self.initView()
     }
     
     private func initView(){
         if let finish =  self.workModel.afterFinishFile {
+            if finish.nodePicList == nil {
+                return
+            }
             let taskId : Int = self.workModel.taskId
             let object = realm.object(ofType: TaskFinishRealm.self, forPrimaryKey: taskId)
             if object == nil {
@@ -179,7 +169,7 @@ class WorkFinishController: PGBaseViewController {
             }
             self.startButton.isEnabled = canSub
             if !viewList.isEmpty {
-                self.view.addSubviews(self.viewList)
+                self.uiViewView.addSubviews(self.viewList)
                 for (index,view) in viewList.enumerated() {
                     view.frame = CGRect(x: 0, y: CGFloat(0 + index * 90), w: screenWidth, h: 90)
                 }
@@ -213,6 +203,12 @@ class WorkFinishController: PGBaseViewController {
                 make.right.equalToSuperview().offset(-24)
                 make.bottom.equalTo(self.textInput.snp.bottom).offset(-8)
             }
+            startButton.snp.updateConstraints { (make) in
+                make.left.equalToSuperview().offset(30)
+                make.right.equalToSuperview().offset(-30)
+                make.top.equalTo(self.textInput.snp.bottom).offset(50)
+                make.height.equalTo(44)
+            }
         }
         NotificationCenter.default.addObserver(self, selector: #selector(textViewEditChanged(sender:)), name: UITextView.textDidChangeNotification, object: nil)
         updateFileView()
@@ -228,17 +224,6 @@ class WorkFinishController: PGBaseViewController {
             self.workModel.lastNote =  textInput.text
         }
         countText.text = (MAX_STARWORDS_LENGTH - textInput.text.count).toString
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        if self.dataRealm != nil {
-            try! realm.write {
-                self.dataRealm!.photoList = self.picUrlList.joined(separator: ",")
-                self.dataRealm!.fileNameList = self.fileList.joined(separator: ",")
-                self.dataRealm!.fileUrList = self.fileUrlList.joined(separator: ",")
-                self.dataRealm!.note = self.textInput.text
-            }
-        }
     }
     
     @objc func startAction(){
@@ -258,7 +243,7 @@ class WorkFinishController: PGBaseViewController {
             stringList.append(param)
         }
         if !canSub {
-            self.view.showAutoHUD("请完成资料上传")
+            self.showAutoHUD("请完成资料上传")
             return
         }
         params["finishPic"] = stringList.toJson()
@@ -293,16 +278,17 @@ class WorkFinishController: PGBaseViewController {
         taskProvider.rxRequest(.taskSubmit(params: params))
             .subscribe(onSuccess: { [weak self](json) in
                 //提交成功
-                self?.view.toast("提交成功")
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: kMessageNotifyKey), object: nil)
-                self?.navigationController?.popViewController(animated: false)
                 self?.callback?()
             }) {[weak self] (_) in
-                self?.view.toast("提交失败")
+                self?.toast("提交失败")
         }.disposed(by: self.disposeBag)
     }
     
     @objc func addFile(){
+        if self.fileList.count > 9 {
+            self.toast("最多添加9个附件")
+            return
+        }
         avatarImageViewTapHandler(PGActionSheet(buttonList: ["拍照", "从相册选择"]),addFileButton)
     }
     
@@ -362,7 +348,7 @@ class WorkFinishController: PGBaseViewController {
     }
 }
 
-extension WorkFinishController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension FinishItemCell: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         currentViewController().dismiss(animated: true, completion: nil)
@@ -372,12 +358,12 @@ extension WorkFinishController: UIImagePickerControllerDelegate, UINavigationCon
         currentViewController().dismiss(animated: true, completion: nil)
         var image: UIImage! = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         image = image.fixOrientation()
-        self.view.showHUD(message: "上传中...")
+        self.showHUD(message: "上传中...")
         let data = image.jpegData(compressionQuality: 0.3)
         if let data = data {
             taskProvider.requestResult(.uploadImage(taskId: workModel.taskId, data: data), success: {(responseJson) in
-                self.view.showHUD("上传成功", completion: {
-                    self.view.hiddenHUD()
+                self.showHUD("上传成功", completion: {
+                    self.hiddenHUD()
                 })
                 let url = responseJson["data"].arrayValue[0].stringValue
                 let saveName = url.split("/").last ?? ""
@@ -385,7 +371,7 @@ extension WorkFinishController: UIImagePickerControllerDelegate, UINavigationCon
                 self.fileUrlList.append(url)
                 self.updateFileView()
             },failure: {(error)in
-                self.view.hiddenHUD()
+                self.hiddenHUD()
             })
         }
     }

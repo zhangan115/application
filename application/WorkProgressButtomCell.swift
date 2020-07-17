@@ -66,8 +66,11 @@ class WorkProgressButtomCell: UITableViewCell {
         if workModel.taskState == WorkState.WORK_PROGRESS.rawValue && workModel.afterFinishFile != nil {
             if workModel.afterFinishFile?.nodeDataList != nil && !workModel.afterFinishFile!.nodeDataList.isEmpty {
                 let count = workModel.afterFinishFile!.nodeDataList.count
+                progressLable.isHidden = false
                 progressLable.text = "完成" + ((objects.count * 100 / count)  ).toString + "%"
             }
+        }else{
+            progressLable.isHidden = true
         }
     }
     

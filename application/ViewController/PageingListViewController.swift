@@ -21,7 +21,7 @@ class PageingListViewController: BaseHomeController {
     var pagingCount : Int = 20
     
     lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: self.view.bounds, style: .plain)
+        let tableView = UITableView(frame: self.view.bounds, style: .grouped)
         tableView.separatorInset = UIEdgeInsets.zero
         self.view.addSubview(tableView)
         return tableView

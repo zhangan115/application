@@ -401,6 +401,7 @@ extension WorkDetailController {
                 if self.currentNote != nil && self.currentNote!.count != 0 {
                     self.workModel.afterFinishFile?.nodeNote = self.currentNote
                     cell.noteTextView.text = self.currentNote
+                    cell.textCount.text = (cell.MAX_STARWORDS_LENGTH - (self.currentNote?.count ?? 0 )).toString
                 }else{
                     cell.noteTextView.text = nil
                 }
@@ -620,6 +621,7 @@ extension WorkDetailController {
                 if self.currentNote != nil && self.currentNote!.count != 0 {
                     self.workModel.afterFinishFile?.nodeNote = self.currentNote
                     cell.noteTextView.text = self.currentNote
+                    cell.textCount.text = (cell.MAX_STARWORDS_LENGTH - (self.currentNote?.count ?? 0 )).toString
                 }else{
                     cell.noteTextView.text = nil
                 }

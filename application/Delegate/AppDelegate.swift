@@ -22,7 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
-        UIApplication.shared.applicationIconBadgeNumber = 0
         //集成个推与地图
         configureGeTui()
         initAMap()

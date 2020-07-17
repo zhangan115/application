@@ -18,9 +18,17 @@ extension MainViewController {
             .subscribe(onSuccess: {[weak self] (list) in
                 self?.workListToShow(list: list)
             }) {[weak self](error) in
+                
                 self?.view.showAutoHUD("请求出错")
         }.disposed(by: disposeBag)
         requestAppVersion()
+    }
+    
+    func workError(){
+        mapView.removeAnnotations(self.annotations)
+        annotations.removeAll()
+        self.workModelList.removeAll()
+        hideBottomView()
     }
     
     func workListToShow(list:[WorkModel]){
@@ -54,9 +62,23 @@ extension MainViewController {
         }
         userProviderNoPlugin.requestResult(.getUserDetail(userId: user!.userId!), success: {[weak self](json) in
             let userModel = UserModel.init(fromJson: json["data"])
+            self?.drawerView.setData(userModel)
             UserModel.archiverUser(userModel)
             self?.certificationView.isHidden = userModel.certificationType! > 0
             self?.freezyView.isHidden = !userModel.isFreeze!
+            if userModel.isFreeze {
+                let timeStr = dateString(millisecond: TimeInterval(userModel.freezeTime ?? 0), dateFormat: "yyyy-MM-dd HH:mm:ss")
+                let attrs1 : [NSAttributedString.Key : Any] = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14,weight: .medium)
+                    , NSAttributedString.Key.foregroundColor : UIColor(hexString: "#FF3232")!]
+                let attrs2 : [NSAttributedString.Key : Any] = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 13)
+                    , NSAttributedString.Key.foregroundColor : UIColor(hexString: "#666666")!]
+                let attributedString1 = NSMutableAttributedString(string:userModel.freezeReason ?? "", attributes:attrs2)
+                let attributedString2 = NSMutableAttributedString(string:timeStr, attributes:attrs1)
+                let attributedString3 = NSMutableAttributedString(string:"可再次接单", attributes:attrs2)
+                attributedString1.append(attributedString2)
+                attributedString1.append(attributedString3)
+                self?.freezyLabel.attributedText = attributedString1
+            }
             self?.requestUserVeryList()
         })
     }

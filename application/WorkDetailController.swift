@@ -194,12 +194,37 @@ class WorkDetailController: PGBaseViewController,UITableViewDelegate,UITableView
                     }
                 }
                 self?.checkSubState()
+                self?.saveRoutData()
                 self?.getSaveData()
                 self?.tableView.noRefreshReloadData()
                 self?.updateInComeView()
             }) {[weak self] _ in
                 self?.tableView.noRefreshReloadData()
         }.disposed(by: disposeBag)
+    }
+    
+    func saveRoutData(){
+        if self.workModel.taskState == WorkState.WORK_PROGRESS.rawValue && !self.workModel.isTerminated {
+            if let list = self.workModel.afterFinishFile?.nodeDataList {
+                let taskId : Int = self.workModel.taskId
+                let objects = self.realm.objects(TaskRoutRealm.self).filter("taskId == \(taskId)")
+                if objects.isEmpty {
+                    var saveList : [TaskRoutRealm] = []
+                    for item in list {
+                        let bean = TaskRoutRealm()
+                        bean.taskId.value = taskId
+                        bean.itemName = item.itemName
+                        if item.itemValue != nil && item.itemValue!.count > 0 {
+                            bean.itemValue = item.itemValue
+                            saveList.append(bean)
+                        }
+                    }
+                    try! realm.write {
+                        realm.add(saveList)
+                    }
+                }
+            }
+        }
     }
     
     func getSaveData(){
@@ -287,7 +312,6 @@ class WorkDetailController: PGBaseViewController,UITableViewDelegate,UITableView
                 self.currentNote = cell?.noteTextView.text
             }
         }
-        print(self.currentNote)
         if self.dataRealm != nil {
             try! realm.write {
                 self.dataRealm!.photoList = self.picUrlList.joined(separator: ",")
