@@ -12,7 +12,7 @@ class WorkEndController: PGBaseViewController {
     
     var workModel:WorkModel!
     var disposeBag = DisposeBag()
-    let MAX_STARWORDS_LENGTH = 256
+    let MAX_STARWORDS_LENGTH = 255
     @IBOutlet var button:UIButton!
     @IBOutlet var textInput:PlaceholderTextView!
     @IBOutlet var textCount:UILabel!
