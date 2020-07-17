@@ -82,6 +82,8 @@ class WorkViewController: PGBaseViewController {
 extension WorkViewController: SGPageTitleViewDelegate {
     func pageTitleView(_ pageTitleView: SGPageTitleView!, selectedIndex: Int) {
         pageContentView.setPageCententViewCurrentIndex(selectedIndex)
+        let currentController = self.controllers[selectedIndex] as! WorkListController
+//        currentController.refresh()
     }
 }
 

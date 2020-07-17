@@ -20,6 +20,7 @@ let kUserPromise = "user_promise"
 
 // 有推送消息时通知的key值
 let kMessageNotifyKey = "messageNotifyKey"
+let kViewChangeNotifyKey = "viewNotifyKey"
 let kUserCidNotifyKey = "UserCidNotifyKey"
 
 //工单消息

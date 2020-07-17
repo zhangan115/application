@@ -51,7 +51,7 @@ class WorkRoutController: BaseTableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: routButtonCell) as! RoutButtonCell
             cell.button.isEnabled = self.canNext
             cell.callback = {
-                let controller = WorkFinishController()
+                let controller = WorkFinish1Controller()
                 controller.workModel = self.workModel
                 controller.callback = {
                     self.navigationController?.popViewController(animated: false)
