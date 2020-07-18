@@ -8,12 +8,16 @@
 
 import UIKit
 import RxSwift
+import RealmSwift
 class WorkBeginController: PGBaseViewController {
     
     var workModel:WorkModel!
     var disposeBag = DisposeBag()
     var callback:(()->())?
     var viewList:[TakePhotoView] = []
+    let realm = try! Realm()
+    var dataRealm:TaskBeginRealm? = nil
+    var picUrlList:[String]  = []
     
     lazy var noteLabel : UILabel = {
         let view = UILabel()
@@ -70,18 +74,45 @@ class WorkBeginController: PGBaseViewController {
     
     private func initView(){
         if let before =  self.workModel.beforeStartFile {
+            let taskId : Int = self.workModel.taskId
+            let object = realm.object(ofType: TaskBeginRealm.self, forPrimaryKey: taskId)
+            if object == nil {
+                dataRealm = TaskBeginRealm()
+                dataRealm!.taskId.value = taskId
+                try! realm.write {
+                    realm.add(dataRealm!)
+                }
+            }else{
+                dataRealm = object
+                if let url = self.dataRealm!.photoList?.split(",") {
+                    self.picUrlList = url
+                }
+            }
             viewList.removeAll()
             for (index,item) in before.nodePicList.enumerated() {
                 let view = TakePhotoView()
-                view.titleLable.text = item.picName
-                view.callback = {
-                    for item in self.viewList {
-                        if item.picNote?.picUrlList.isEmpty ?? true{
-                            self.startButton.isEnabled = false
-                            break
-                        }
-                        self.startButton.isEnabled = true
+                if !picUrlList.isEmpty && picUrlList.count == before.nodePicList.count {
+                    if item.picUrlList.isEmpty || item.picUrlList[0].count == 0{
+                        item.picUrlList = [picUrlList[index]]
                     }
+                }else{
+                    picUrlList.append("-")
+                }
+                view.titleLable.text = item.picName
+                view.setData(picNote: item)
+                view.callback = {
+                    self.picUrlList.removeAll()
+                    var canStart = true
+                    for item in self.viewList {
+                        var photoUrl = "-"
+                        if item.picNote!.picUrlList != nil && !item.picNote!.picUrlList!.isEmpty && item.picNote!.picUrlList[0].count > 1 {
+                            photoUrl = item.picNote?.picUrlList[0] ?? "-"
+                        }else{
+                            canStart = false
+                        }
+                        self.picUrlList.append(photoUrl)
+                    }
+                    self.startButton.isEnabled = canStart
                 }
                 view.tag = index
                 view.picNote = item
@@ -97,6 +128,23 @@ class WorkBeginController: PGBaseViewController {
                     make.right.equalToSuperview().offset(-12)
                     make.top.equalTo(self.viewList[viewList.count-1].snp.bottom).offset(12)
                 }
+                var canStart = true
+                for item in self.viewList {
+                    if item.picNote!.picUrlList != nil && !item.picNote!.picUrlList!.isEmpty && item.picNote!.picUrlList[0].count > 1 {
+                    }else{
+                        canStart = false
+                        break
+                    }
+                }
+                self.startButton.isEnabled = canStart
+            }
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if self.dataRealm != nil {
+            try! realm.write {
+                self.dataRealm!.photoList = self.picUrlList.joined(separator: ",")
             }
         }
     }

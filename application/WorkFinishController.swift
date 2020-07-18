@@ -218,7 +218,7 @@ class WorkFinishController: PGBaseViewController {
         updateFileView()
     }
     
-    let MAX_STARWORDS_LENGTH = 256
+    let MAX_STARWORDS_LENGTH = 255
     
     @objc func textViewEditChanged(sender:NSNotification) {
         let textVStr = textInput.text as NSString

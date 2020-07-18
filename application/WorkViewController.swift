@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 class WorkViewController: PGBaseViewController {
     
-    private var controllers :[UIViewController] = []
+    private var controllers :[WorkListController] = []
     private var pageTitleView: SGPageTitleView!
     private var pageContentView: SGPageContentView!
     var currentLocation : CLLocation!
@@ -77,18 +77,24 @@ class WorkViewController: PGBaseViewController {
         self.pushVC(controller)
     }
     
+    func controllerChange(index:Int){
+        controllers[index].refresh()
+    }
+    
 }
 
 extension WorkViewController: SGPageTitleViewDelegate {
     func pageTitleView(_ pageTitleView: SGPageTitleView!, selectedIndex: Int) {
         pageContentView.setPageCententViewCurrentIndex(selectedIndex)
-        let currentController = self.controllers[selectedIndex] as! WorkListController
-//        currentController.refresh()
+        controllerChange(index: selectedIndex)
     }
 }
 
 extension WorkViewController: SGPageContentViewDelegate {
     func pageContentView(_ pageContentView: SGPageContentView!, progress: CGFloat, originalIndex: Int, targetIndex: Int) {
         pageTitleView.setPageTitleViewWithProgress(progress, originalIndex: originalIndex, targetIndex: targetIndex)
+        if progress == CGFloat(1.0) {
+            controllerChange(index: targetIndex)
+        }
     }
 }

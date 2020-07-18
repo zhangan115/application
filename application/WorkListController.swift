@@ -51,14 +51,10 @@ class WorkListController: PageingListViewController,UITableViewDelegate,UITableV
     }
     
     @objc func refresh(){
-        self.tableView.mj_header?.beginRefreshing()
+        request()
     }
     
     override func request() {
-        self.list1.removeAll()
-        self.list2.removeAll()
-        self.responseDataList.removeAll()
-        self.tableView.reloadData()
         if let userModel = UserModel.unarchiver() {
             if userModel.certificationType != nil && userModel.certificationType! > 0 {
                 if self.currentIndex == WorkState.WORK_FINISH.rawValue || self.currentIndex == WorkState.WORK_CHECK.rawValue {

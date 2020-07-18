@@ -17,6 +17,8 @@ class WorkFinish1Controller: PageingListViewController,UITableViewDelegate,UITab
     var disposeBag = DisposeBag()
     var workModel:WorkModel!
     var callback:(()->())?
+    var beiginHeight : CGFloat = 0
+    var cellHeight : CGFloat = 0
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -51,6 +53,8 @@ class WorkFinish1Controller: PageingListViewController,UITableViewDelegate,UITab
         self.isLoadMore = false
         super.viewDidLoad()
         self.title = "完成后资料上传"
+        self.beiginHeight = self.view.frame.height
+        self.cellHeight = self.beiginHeight
         self.view.backgroundColor = ColorConstants.tableViewBackground
         self.view.backgroundColor = ColorConstants.tableViewBackground
         self.tableView.rowHeight = UITableView.automaticDimension

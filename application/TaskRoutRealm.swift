@@ -29,3 +29,11 @@ class TaskFinishRealm:Object{
         return "taskId"
     }
 }
+
+class TaskBeginRealm: Object {
+    let taskId = RealmOptional<Int>()
+    @objc dynamic var photoList: String? = nil
+    override static func primaryKey() -> String? {
+        return "taskId"
+    }
+}

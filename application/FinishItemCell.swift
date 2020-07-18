@@ -19,6 +19,8 @@ class FinishItemCell: UITableViewCell {
         super.awakeFromNib()
     }
     
+    var isLoad = false
+    
     var workModel:WorkModel!
     var disposeBag = DisposeBag()
     var callback:(()->())?
@@ -30,34 +32,18 @@ class FinishItemCell: UITableViewCell {
     let realm = try! Realm()
     var dataRealm:TaskFinishRealm? = nil
     var dataRoutRealm:Results<TaskRoutRealm>? = nil
-    
-    lazy var startButton:UIButton = {
-        let view = UIButton()
-        view.layer.masksToBounds = true
-        view.layer.cornerRadius = 4
-        view.setTitle("提交验收", for: .normal)
-        view.setTitleColor(UIColor(hexString: "#333333"), for: .normal)
-        view.setTitleColor(UIColor(hexString: "#F6F6F6"), for: .disabled)
-        view.setBackgroundColor(UIColor(hexString: "#FFCC00")!, forState: .normal)
-        view.setBackgroundColor(UIColor(hexString: "#CCCCCC")!, forState: .disabled)
-        view.addTarget(self, action: #selector(startAction), for: .touchUpInside)
-        view.isEnabled = false
-        self.uiViewView.addSubview(view)
-        return view
-    }()
+    var heightChangeCallBack:(()->())?
     
     lazy var fileLabel : UILabel = {
         let view = UILabel()
         view.text = "附件"
         view.textColor = UIColor(hexString: "#454545")
         view.font = UIFont.systemFont(ofSize: 15)
-        self.uiViewView.addSubview(view)
         return view
     }()
     
     lazy var fileView : UIView = {
         let view = UIView()
-        self.uiViewView.addSubview(view)
         return view
     }()
     
@@ -65,7 +51,6 @@ class FinishItemCell: UITableViewCell {
         let view = UIButton()
         view.addTarget(self, action: #selector(addFile), for: .touchUpInside)
         view.setImage(UIImage(named: "upload_icon_annex"), for: .normal)
-        self.uiViewView.addSubview(view)
         return view
     }()
     
@@ -74,7 +59,6 @@ class FinishItemCell: UITableViewCell {
         view.text = "备注"
         view.textColor = UIColor(hexString: "#454545")
         view.font = UIFont.systemFont(ofSize: 15)
-        self.uiViewView.addSubview(view)
         return view
     }()
     
@@ -88,7 +72,6 @@ class FinishItemCell: UITableViewCell {
         view.placeholderFont = UIFont.systemFont(ofSize: 14)
         view.textColor = UIColor(hexString: "#333333")
         view.font = UIFont.systemFont(ofSize: 14)
-        self.uiViewView.addSubview(view)
         return view
     }()
     
@@ -97,8 +80,21 @@ class FinishItemCell: UITableViewCell {
         view.textColor = UIColor(hexString: "#888888")
         view.text = 256.toString
         view.font = UIFont.systemFont(ofSize: 14)
-        self.uiViewView.addSubview(view)
         return view
+    }()
+    
+    lazy var startButton:UIButton = {
+           let view = UIButton()
+           view.layer.masksToBounds = true
+           view.layer.cornerRadius = 4
+           view.setTitle("提交验收", for: .normal)
+           view.setTitleColor(UIColor(hexString: "#333333"), for: .normal)
+           view.setTitleColor(UIColor(hexString: "#F6F6F6"), for: .disabled)
+           view.setBackgroundColor(UIColor(hexString: "#FFCC00")!, forState: .normal)
+           view.setBackgroundColor(UIColor(hexString: "#CCCCCC")!, forState: .disabled)
+           view.addTarget(self, action: #selector(startAction), for: .touchUpInside)
+           view.isEnabled = false
+           return view
     }()
     
     func setData(_ model:WorkModel){
@@ -107,6 +103,15 @@ class FinishItemCell: UITableViewCell {
     }
     
     private func initView(){
+        self.viewList.removeAll()
+        self.uiViewView.removeSubviews()
+        self.uiViewView.addSubview(fileLabel)
+        self.uiViewView.addSubview(fileView)
+        self.uiViewView.addSubview(addFileButton)
+        self.uiViewView.addSubview(noteLabel)
+        self.uiViewView.addSubview(textInput)
+        self.uiViewView.addSubview(countText)
+        self.uiViewView.addSubview(startButton)
         if let finish =  self.workModel.afterFinishFile {
             if finish.nodePicList == nil {
                 return
@@ -131,7 +136,6 @@ class FinishItemCell: UITableViewCell {
                     self.picUrlList = url
                 }
             }
-            viewList.removeAll()
             var canSub = true
             for (index,item) in finish.nodePicList.enumerated() {
                 let view = TakePhotoView()
@@ -173,6 +177,8 @@ class FinishItemCell: UITableViewCell {
                 for (index,view) in viewList.enumerated() {
                     view.frame = CGRect(x: 0, y: CGFloat(0 + index * 90), w: screenWidth, h: 90)
                 }
+            }else{
+                return
             }
             fileLabel.snp.updateConstraints { (make) in
                 make.left.equalToSuperview().offset(12)
@@ -212,9 +218,10 @@ class FinishItemCell: UITableViewCell {
         }
         NotificationCenter.default.addObserver(self, selector: #selector(textViewEditChanged(sender:)), name: UITextView.textDidChangeNotification, object: nil)
         updateFileView()
+        self.isLoad = true
     }
     
-    let MAX_STARWORDS_LENGTH = 256
+    let MAX_STARWORDS_LENGTH = 255
     
     @objc func textViewEditChanged(sender:NSNotification) {
         let textVStr = textInput.text as NSString
@@ -345,6 +352,7 @@ class FinishItemCell: UITableViewCell {
             make.height.equalTo(CGFloat( 34 * self.fileList.count))
             make.top.equalTo(self.fileLabel.snp.bottom).offset(12)
         }
+        self.heightChangeCallBack?()
     }
 }
 

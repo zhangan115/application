@@ -108,7 +108,7 @@ class WorkProgressAfterCell: UITableViewCell {
         NotificationCenter.default.addObserver(self, selector: #selector(textViewEditChanged(sender:)), name: UITextView.textDidChangeNotification, object: nil)
     }
     
-    let MAX_STARWORDS_LENGTH = 256
+    let MAX_STARWORDS_LENGTH = 255
     
     @objc func textViewEditChanged(sender:NSNotification) {
         let textVStr = noteTextView.text as NSString

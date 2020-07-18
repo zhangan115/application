@@ -8,7 +8,7 @@
 
 import UIKit
 import MapKit
-
+import Contacts
 class WorkListItemView: UIView {
     
     lazy var contentLayoutView : UIView = {
@@ -428,7 +428,9 @@ class WorkListItemView: UIView {
     func goToSystemMap(){
         let toLocation1 = CLLocationCoordinate2D(latitude: self.workData.taskLocationLatitude, longitude: self.workData.taskLocationLongitude)
         let currentLocation = MKMapItem.forCurrentLocation()
-        let toLocation = MKMapItem.init(placemark: MKPlacemark.init(coordinate: toLocation1, addressDictionary: nil))
+        var address :[String : Any] = [:]
+        address[CNPostalAddressStreetKey] = self.workData.taskLocation
+        let toLocation = MKMapItem.init(placemark: MKPlacemark.init(coordinate: toLocation1, addressDictionary: address))
         MKMapItem.openMaps(with: [currentLocation, toLocation],launchOptions: [MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving,MKLaunchOptionsShowsTrafficKey:true])
     }
     
