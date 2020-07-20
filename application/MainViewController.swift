@@ -317,19 +317,19 @@ class MainViewController: BaseHomeController {
     }
     //立即抢单
     @objc func raibNow(){
-       let userModel = UserModel.unarchiver()
-       if userModel == nil{
-           return
-       }
-       if userModel!.isFreeze ?? false {
-           let controller = UserFreezyController()
-           controller.modalPresentationStyle = .custom
-           self.present(controller, animated: true, completion: {
-               controller.initView()
-           })
-           return
-       }
-        if workModelList.isEmpty {
+        let userModel = UserModel.unarchiver()
+        if userModel == nil{
+            return
+        }
+        if userModel!.isFreeze ?? false {
+            let controller = UserFreezyController()
+            controller.modalPresentationStyle = .custom
+            self.present(controller, animated: true, completion: {
+                controller.initView()
+            })
+            return
+        }
+        if self.workModelList.isEmpty {
             self.view.toast("附近暂无工单")
             return
         }

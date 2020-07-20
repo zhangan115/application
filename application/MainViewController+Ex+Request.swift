@@ -18,7 +18,7 @@ extension MainViewController {
             .subscribe(onSuccess: {[weak self] (list) in
                 self?.workListToShow(list: list)
             }) {[weak self](error) in
-                
+                self?.workError()
                 self?.view.showAutoHUD("请求出错")
         }.disposed(by: disposeBag)
         requestAppVersion()
@@ -33,6 +33,7 @@ extension MainViewController {
     
     func workListToShow(list:[WorkModel]){
         if list.isEmpty {
+            workError()
             self.location()
             return
         }

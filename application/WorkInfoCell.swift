@@ -35,15 +35,7 @@ class WorkInfoCell: UITableViewCell {
             self.workTypeBtn.setBackgroundColor(UIColor(hexString: "#FF3232")!, forState: .normal)
         }
         labels[0].text = model.taskName
-        if model.distance < 3 {
-            labels[1].text = "<3km"
-        } else if model.distance < 6 && model.distance >= 3{
-            labels[1].text = "<6km"
-        } else if model.distance < 9 && model.distance >= 6{
-            labels[1].text = "<9km"
-        } else {
-            labels[1].text = ">9km"
-        }
+        labels[1].text = getDistance(model)
         labels[2].text = model.taskLocation
         labels[3].text = dateString(millisecond: TimeInterval(model.planStartTime), dateFormat: "yyyy-MM-dd HH:mm:ss")
         labels[4].text = dateString(millisecond: TimeInterval(model.planEndTime), dateFormat: "yyyy-MM-dd HH:mm:ss")

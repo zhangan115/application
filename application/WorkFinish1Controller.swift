@@ -17,11 +17,10 @@ class WorkFinish1Controller: PageingListViewController,UITableViewDelegate,UITab
     var disposeBag = DisposeBag()
     var workModel:WorkModel!
     var callback:(()->())?
-    var beiginHeight : CGFloat = 0
-    var cellHeight : CGFloat = 0
+    var sectionCount = 0
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return sectionCount
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -53,8 +52,6 @@ class WorkFinish1Controller: PageingListViewController,UITableViewDelegate,UITab
         self.isLoadMore = false
         super.viewDidLoad()
         self.title = "完成后资料上传"
-        self.beiginHeight = self.view.frame.height
-        self.cellHeight = self.beiginHeight
         self.view.backgroundColor = ColorConstants.tableViewBackground
         self.view.backgroundColor = ColorConstants.tableViewBackground
         self.tableView.rowHeight = UITableView.automaticDimension
@@ -74,6 +71,7 @@ class WorkFinish1Controller: PageingListViewController,UITableViewDelegate,UITab
             .toModel(type: WorkModel.self)
             .subscribe(onSuccess: { [weak self](model) in
                 self?.workModel = model
+                self?.sectionCount = 1
                 self?.tableView.reloadData()
             }) { [weak self](_) in
                 self?.view.toast("请求失败")

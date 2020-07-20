@@ -230,7 +230,6 @@ class WorkListItemView: UIView {
         } else {
             textName7.text = ">9km"
         }
-        
         textName3.text = workData.taskContent
         if requestType == 3 {
             icon4View.image = UIImage(named: "home_card_icon_time")

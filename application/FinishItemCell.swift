@@ -18,9 +18,7 @@ class FinishItemCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    
-    var isLoad = false
-    
+
     var workModel:WorkModel!
     var disposeBag = DisposeBag()
     var callback:(()->())?
@@ -34,16 +32,24 @@ class FinishItemCell: UITableViewCell {
     var dataRoutRealm:Results<TaskRoutRealm>? = nil
     var heightChangeCallBack:(()->())?
     
+    lazy var photoListView : UIView = {
+        let view = UIView()
+        self.uiViewView.addSubview(view)
+        return view
+    }()
+    
     lazy var fileLabel : UILabel = {
         let view = UILabel()
         view.text = "附件"
         view.textColor = UIColor(hexString: "#454545")
         view.font = UIFont.systemFont(ofSize: 15)
+        self.uiViewView.addSubview(view)
         return view
     }()
     
     lazy var fileView : UIView = {
         let view = UIView()
+        self.uiViewView.addSubview(view)
         return view
     }()
     
@@ -51,6 +57,7 @@ class FinishItemCell: UITableViewCell {
         let view = UIButton()
         view.addTarget(self, action: #selector(addFile), for: .touchUpInside)
         view.setImage(UIImage(named: "upload_icon_annex"), for: .normal)
+        self.uiViewView.addSubview(view)
         return view
     }()
     
@@ -59,6 +66,7 @@ class FinishItemCell: UITableViewCell {
         view.text = "备注"
         view.textColor = UIColor(hexString: "#454545")
         view.font = UIFont.systemFont(ofSize: 15)
+        self.uiViewView.addSubview(view)
         return view
     }()
     
@@ -72,6 +80,7 @@ class FinishItemCell: UITableViewCell {
         view.placeholderFont = UIFont.systemFont(ofSize: 14)
         view.textColor = UIColor(hexString: "#333333")
         view.font = UIFont.systemFont(ofSize: 14)
+        self.uiViewView.addSubview(view)
         return view
     }()
     
@@ -80,21 +89,23 @@ class FinishItemCell: UITableViewCell {
         view.textColor = UIColor(hexString: "#888888")
         view.text = 256.toString
         view.font = UIFont.systemFont(ofSize: 14)
+        self.uiViewView.addSubview(view)
         return view
     }()
     
     lazy var startButton:UIButton = {
-           let view = UIButton()
-           view.layer.masksToBounds = true
-           view.layer.cornerRadius = 4
-           view.setTitle("提交验收", for: .normal)
-           view.setTitleColor(UIColor(hexString: "#333333"), for: .normal)
-           view.setTitleColor(UIColor(hexString: "#F6F6F6"), for: .disabled)
-           view.setBackgroundColor(UIColor(hexString: "#FFCC00")!, forState: .normal)
-           view.setBackgroundColor(UIColor(hexString: "#CCCCCC")!, forState: .disabled)
-           view.addTarget(self, action: #selector(startAction), for: .touchUpInside)
-           view.isEnabled = false
-           return view
+        let view = UIButton()
+        view.layer.masksToBounds = true
+        view.layer.cornerRadius = 4
+        view.setTitle("提交验收", for: .normal)
+        view.setTitleColor(UIColor(hexString: "#333333"), for: .normal)
+        view.setTitleColor(UIColor(hexString: "#F6F6F6"), for: .disabled)
+        view.setBackgroundColor(UIColor(hexString: "#FFCC00")!, forState: .normal)
+        view.setBackgroundColor(UIColor(hexString: "#CCCCCC")!, forState: .disabled)
+        view.addTarget(self, action: #selector(startAction), for: .touchUpInside)
+        view.isEnabled = false
+        self.uiViewView.addSubview(view)
+        return view
     }()
     
     func setData(_ model:WorkModel){
@@ -104,14 +115,6 @@ class FinishItemCell: UITableViewCell {
     
     private func initView(){
         self.viewList.removeAll()
-        self.uiViewView.removeSubviews()
-        self.uiViewView.addSubview(fileLabel)
-        self.uiViewView.addSubview(fileView)
-        self.uiViewView.addSubview(addFileButton)
-        self.uiViewView.addSubview(noteLabel)
-        self.uiViewView.addSubview(textInput)
-        self.uiViewView.addSubview(countText)
-        self.uiViewView.addSubview(startButton)
         if let finish =  self.workModel.afterFinishFile {
             if finish.nodePicList == nil {
                 return
@@ -173,52 +176,58 @@ class FinishItemCell: UITableViewCell {
             }
             self.startButton.isEnabled = canSub
             if !viewList.isEmpty {
-                self.uiViewView.addSubviews(self.viewList)
-                for (index,view) in viewList.enumerated() {
-                    view.frame = CGRect(x: 0, y: CGFloat(0 + index * 90), w: screenWidth, h: 90)
+                self.photoListView.removeSubviews()
+                self.photoListView.addSubviews(self.viewList)
+                photoListView.snp.updateConstraints { (make) in
+                    make.left.right.top.equalToSuperview()
+                    make.height.equalTo(self.viewList.count * 90)
                 }
-            }else{
-                return
-            }
-            fileLabel.snp.updateConstraints { (make) in
-                make.left.equalToSuperview().offset(12)
-                make.top.equalTo(self.viewList.last!.snp.bottom).offset(20)
-            }
-            fileView.snp.updateConstraints { (make) in
-                make.left.equalToSuperview().offset(12)
-                make.right.equalToSuperview().offset(-12)
-                make.height.equalTo(0)
-                make.top.equalTo(self.fileLabel.snp.bottom).offset(12)
-            }
-            addFileButton.snp.updateConstraints { (make) in
-                make.left.equalToSuperview().offset(12)
-                make.width.height.equalTo(27)
-                make.top.equalTo(self.fileView.snp.bottom).offset(0)
-            }
-            noteLabel.snp.updateConstraints { (make) in
-                make.left.equalToSuperview().offset(12)
-                make.top.equalTo(self.addFileButton.snp.bottom).offset(16)
-            }
-            textInput.snp.updateConstraints { (make) in
-                make.left.equalToSuperview().offset(12)
-                make.right.equalToSuperview().offset(-12)
-                make.height.equalTo(100)
-                make.top.equalTo(self.noteLabel.snp.bottom).offset(12)
-            }
-            countText.snp.updateConstraints { (make) in
-                make.right.equalToSuperview().offset(-24)
-                make.bottom.equalTo(self.textInput.snp.bottom).offset(-8)
-            }
-            startButton.snp.updateConstraints { (make) in
-                make.left.equalToSuperview().offset(30)
-                make.right.equalToSuperview().offset(-30)
-                make.top.equalTo(self.textInput.snp.bottom).offset(50)
-                make.height.equalTo(44)
+                for (index,view) in viewList.enumerated() {
+                    view.snp.updateConstraints { (make) in
+                        make.left.right.equalToSuperview()
+                        make.height.equalTo(90)
+                        make.top.equalToSuperview().offset(index * 90)
+                    }
+                }
+                fileLabel.snp.updateConstraints { (make) in
+                    make.left.equalToSuperview().offset(12)
+                    make.top.equalTo(self.photoListView.snp.bottom).offset(20)
+                }
+                fileView.snp.updateConstraints { (make) in
+                    make.left.equalToSuperview().offset(12)
+                    make.right.equalToSuperview().offset(-12)
+                    make.height.equalTo(0)
+                    make.top.equalTo(self.fileLabel.snp.bottom).offset(12)
+                }
+                addFileButton.snp.updateConstraints { (make) in
+                    make.left.equalToSuperview().offset(12)
+                    make.width.height.equalTo(27)
+                    make.top.equalTo(self.fileView.snp.bottom).offset(0)
+                }
+                noteLabel.snp.updateConstraints { (make) in
+                    make.left.equalToSuperview().offset(12)
+                    make.top.equalTo(self.addFileButton.snp.bottom).offset(16)
+                }
+                textInput.snp.updateConstraints { (make) in
+                    make.left.equalToSuperview().offset(12)
+                    make.right.equalToSuperview().offset(-12)
+                    make.height.equalTo(100)
+                    make.top.equalTo(self.noteLabel.snp.bottom).offset(12)
+                }
+                countText.snp.updateConstraints { (make) in
+                    make.right.equalToSuperview().offset(-24)
+                    make.bottom.equalTo(self.textInput.snp.bottom).offset(-8)
+                }
+                startButton.snp.updateConstraints { (make) in
+                    make.left.equalToSuperview().offset(30)
+                    make.right.equalToSuperview().offset(-30)
+                    make.top.equalTo(self.textInput.snp.bottom).offset(50)
+                    make.height.equalTo(44)
+                }
             }
         }
         NotificationCenter.default.addObserver(self, selector: #selector(textViewEditChanged(sender:)), name: UITextView.textDidChangeNotification, object: nil)
         updateFileView()
-        self.isLoad = true
     }
     
     let MAX_STARWORDS_LENGTH = 255

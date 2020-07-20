@@ -150,6 +150,10 @@ class WorkBeginController: PGBaseViewController {
     }
     
     @objc func startAction(){
+        if self.workModel.taskState > WorkState.WORK_BEGIN.rawValue {
+            self.startController(self.workModel)
+            return
+        }
         var stringList : [[String:Any]] = []
         for item in self.viewList {
             var param = [String:Any]()
@@ -172,24 +176,28 @@ class WorkBeginController: PGBaseViewController {
             .toModel(type: WorkModel.self)
             .subscribe(onSuccess: { [weak self](model) in
                 self?.workModel = model
-                if (model.taskType == WorkType.WORK_TYPE_ROUT.rawValue) {//去巡检
-                    let controller = WorkRoutController()
-                    controller.workModel = self?.workModel
-                    controller.callback = {
-                        self?.navigationController?.popViewController(animated: false)
-                    }
-                    self?.pushVC(controller)
-                } else {//结束后上传资料
-                    let controller = WorkFinish1Controller()
-                    controller.workModel = self?.workModel
-                    controller.callback = {
-                        self?.navigationController?.popViewController(animated: false)
-                    }
-                    self?.pushVC(controller)
-                }
+                self?.startController(model)
             }) { (_) in
                 print("error")
         }.disposed(by: self.disposeBag)
     }
     
+    
+    func startController(_ model:WorkModel){
+        if (model.taskType == WorkType.WORK_TYPE_ROUT.rawValue) {//去巡检
+            let controller = WorkRoutController()
+            controller.workModel = self.workModel
+            controller.callback = {
+                self.navigationController?.popViewController(animated: false)
+            }
+            self.pushVC(controller)
+        } else {//结束后上传资料
+            let controller = WorkFinish1Controller()
+            controller.workModel = self.workModel
+            controller.callback = {
+                self.navigationController?.popViewController(animated: false)
+            }
+            self.pushVC(controller)
+        }
+    }
 }

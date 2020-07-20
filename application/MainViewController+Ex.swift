@@ -149,10 +149,11 @@ extension MainViewController:MAMapViewDelegate,AMapLocationManagerDelegate{
                 self?.mapView.setZoomLevel(16, animated: true)
             }
             self?.currentLocation = location
+            UserDefaults.standard.set(location?.coordinate.latitude, forKey: KLocationLat)
+            UserDefaults.standard.set(location?.coordinate.longitude, forKey: KLocationLon)
             if let reGeocode = reGeocode {
                 self?.cityLabel.text = reGeocode.city
                 let currentArea = reGeocode.province + " " + reGeocode.city + " " + reGeocode.district
-                print(currentArea)
                 UserDefaults.standard.set(currentArea, forKey: kUserLocation)
             }
             self?.isLocatioonRequest = false

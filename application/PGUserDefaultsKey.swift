@@ -17,6 +17,9 @@ let kUsername = "username"
 let kPassword = "password"
 let kUserPromise = "user_promise"
 
+let KLocationLat = "location_lat"
+let KLocationLon = "location_lon"
+
 
 // 有推送消息时通知的key值
 let kMessageNotifyKey = "messageNotifyKey"

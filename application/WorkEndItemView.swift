@@ -168,15 +168,7 @@ class WorkEndItemView: UIView {
         textName2.text = workData.taskLocation
         textName6.text = "资格要求："
         textName8.text = getTaskNeedSkill(workData)
-        if workData.distance < 3 {
-            textName7.text = "<3km"
-        } else if workData.distance < 6 && workData.distance >= 3{
-            textName7.text = "<6km"
-        } else if workData.distance < 9 && workData.distance >= 6{
-            textName7.text = "<9km"
-        } else {
-            textName7.text = ">9km"
-        }
+        textName7.text = getDistance(workData)
         textName3.text = workData.taskContent
         if workData.terminateState == 1 {
             textName4.text = "等待客服审核…"

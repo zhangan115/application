@@ -12,7 +12,7 @@ import UIKit
 struct Config {
     #if DEBUG
     //http://172.16.40.240:8081
-    static let baseURL: URL = URL(string:"http://114.215.94.141:8085")!
+    static let baseURL: URL = URL(string:"http://172.16.40.240:8081")!
     #else
     static let baseURL: URL = URL(string:"http://114.215.94.141:8085")!
     #endif
@@ -285,4 +285,22 @@ func getVocationalString(level: Int)-> String? {
     default:
         return nil
     }
+}
+
+
+func getDistance(_ workModel:WorkModel)-> String{
+    let latitude =  UserDefaults.standard.double(forKey: KLocationLat)
+    let longitude =  UserDefaults.standard.double(forKey: KLocationLon)
+    let currentLocation = CLLocation(latitude: latitude, longitude: longitude)
+    let latitude2 = workModel.taskLocationLatitude ?? 0
+    let longitude2 = workModel.taskLocationLongitude ?? 0
+    let abs = currentLocation.distance(from: CLLocation(latitude: latitude2, longitude: longitude2))/1000
+    if abs < 3 {
+        return "<3km"
+    } else if abs < 6 && abs >= 3{
+        return "<6km"
+    }  else if abs < 9 && abs >= 6{
+        return "<9km"
+    }
+    return ">9km"
 }
