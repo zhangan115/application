@@ -183,7 +183,9 @@ class WorkDetailController: PGBaseViewController,UITableViewDelegate,UITableView
                     }
                 }
                 self?.workModel = model
-                if model.taskState >= WorkState.WORK_BEGIN.rawValue {
+                if model.taskState >= WorkState.WORK_BEGIN.rawValue &&
+                    model.taskState < WorkState.WORK_FINISH.rawValue &&
+                    !model.isTerminated{
                     self?.rightMoreButton()
                 }
                 if model.isTerminated {
@@ -238,8 +240,12 @@ class WorkDetailController: PGBaseViewController,UITableViewDelegate,UITableView
             }
         }else{
             dataRealm = object
-            self.fileList = self.dataRealm!.fileNameList?.split(",") ?? []
-            self.fileUrlList = self.dataRealm!.fileUrList?.split(",") ?? []
+            if self.fileList.isEmpty{
+                self.fileList = self.dataRealm!.fileNameList?.split(",") ?? []
+            }
+            if self.fileUrlList.isEmpty {
+                self.fileUrlList = self.dataRealm!.fileUrList?.split(",") ?? []
+            }
             if self.dataRealm!.note != nil && self.dataRealm!.note!.count > 0 {
                 self.currentNote = self.dataRealm!.note
             }

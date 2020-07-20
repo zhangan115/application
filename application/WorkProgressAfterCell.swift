@@ -45,6 +45,7 @@ class WorkProgressAfterCell: UITableViewCell {
         self.workModel = workModel
         if workModel.taskState == WorkState.WORK_PROGRESS.rawValue && !workModel.isTerminated {
             addFileButton.isHidden = false
+            addFileButtonHeigt.constant = 27
             textCount.isHidden = false
             if self.noteTextView.text.count == 0 {
                 noteTextView.placeholder = "请输入备注信息"
@@ -55,6 +56,7 @@ class WorkProgressAfterCell: UITableViewCell {
             addFileButton.isHidden = true
             addFileButtonHeigt.constant = 0
             textCount.isHidden = true
+            noteTextView.placeholder = ""
         }
         if let finish = workModel.afterFinishFile {
             if finish.nodePicList != nil && !finish.nodePicList.isEmpty{
@@ -103,6 +105,9 @@ class WorkProgressAfterCell: UITableViewCell {
         if workModel.taskState > WorkState.WORK_PROGRESS.rawValue{
             noteTextView.backgroundColor = ColorConstants.tableViewBackground
             noteTextView.isEditable = false
+        }else{
+            noteTextView.backgroundColor = UIColor.white
+            noteTextView.isEditable = true
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(textViewEditChanged(sender:)), name: UITextView.textDidChangeNotification, object: nil)
