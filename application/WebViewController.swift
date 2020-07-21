@@ -8,11 +8,11 @@
 
 import UIKit
 import SnapKit
+import WebKit
 class WebViewController: PGBaseViewController {
     
-    lazy var webView : UIWebView = {
-        let web = UIWebView()
-        web.scalesPageToFit = true
+    lazy var webView : WKWebView = {
+        let web = WKWebView()
         self.view.addSubview(web)
         return web
     }()
@@ -84,7 +84,7 @@ class WebViewController: PGBaseViewController {
         }
         let fullUrl = Config.baseURL.absoluteString + url
         let request = URLRequest(url: URL(string:fullUrl)!)
-        webView.loadRequest(request)
+        webView.load(request)
     }
     
 }

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import EZSwiftExtensions
 import Foundation
 
 class PGBaseNavigationController: UINavigationController, UIGestureRecognizerDelegate {

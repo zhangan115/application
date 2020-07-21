@@ -7,16 +7,15 @@
 //
 
 import UIKit
-
+import WebKit
 class CheckFileViewController: PGBaseViewController {
 
     var fileName:String!
     var fileUrl:String!
       
-      lazy var webView: UIWebView = {
-          let view = UIWebView()
+      lazy var webView: WKWebView = {
+          let view = WKWebView()
           view.backgroundColor = UIColor.clear
-            view.scalesPageToFit = true
           self.view.addSubview(view)
           return view
       }()
@@ -30,20 +29,10 @@ class CheckFileViewController: PGBaseViewController {
           }
         let url = Config.baseURL.absoluteString + self.fileUrl
         showFile(url: URL.init(string: url)!)
-//        taskProvider.request(.checkFile(fileUrl:url)){ result in
-//              switch result {
-//              case .success:
-//                let localLocation: URL = DefaultDownloadDir.appendingPathComponent(self.fileName)
-//                  self.showFile(url: localLocation)
-//              case let .failure(error):
-//                  print(error)
-//                  break
-//              }
-//          }
       }
       
       private func showFile(url:URL){
-          self.webView.loadRequest(URLRequest(url: url))
+          self.webView.load(URLRequest(url: url))
       }
 
 }

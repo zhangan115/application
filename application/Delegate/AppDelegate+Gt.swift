@@ -158,7 +158,7 @@ extension AppDelegate: GeTuiSdkDelegate {
     /** SDK收到sendMessage消息回调 */
     func geTuiSdkDidSendMessage(_ messageId: String!, result: Int32) {
         // [4-EXT]:发送上行消息结果反馈
-        let msg:String = "sendmessage=\(messageId),result=\(result)"
+        let msg:String = "sendmessage=\(messageId ?? ""),result=\(result)"
         print("geTuiSdkDidSendMessage = ",msg)
     }
     

@@ -11,7 +11,7 @@ import Moya
 import SwiftyJSON
 import Result
 import PKHUD
-import RxCocoa
+
 import RxSwift
 
 final class PGProvider: NSObject {

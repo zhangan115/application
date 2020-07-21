@@ -11,7 +11,7 @@ import UIKit
 
 public extension UIColor {
     
-    public convenience init?(hexString: String, alpha: CGFloat = 1.0) {
+    convenience init?(hexString: String, alpha: CGFloat = 1.0) {
         var formatted = hexString.replacingOccurrences(of: "0x", with: "")
         formatted = formatted.replacingOccurrences(of: "#", with: "")
         if let hex = Int(formatted, radix: 16) {

@@ -8,7 +8,6 @@
 
 import UIKit
 import Foundation
-import EZSwiftExtensions
 
 extension UITableViewCell {
     

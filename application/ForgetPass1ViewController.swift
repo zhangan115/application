@@ -70,7 +70,7 @@ class ForgetPass1ViewController: PGBaseViewController {
     var currentPhoneCode = ""
     
     @IBAction func toGetCode(_ sender: UIButton){
-        if userName == nil || userName!.length == 0 {
+        if userName == nil || userName!.count == 0 {
             Toast(text: "请输入手机号").show()
             return
         }

@@ -11,7 +11,6 @@ import PKHUD
 import NVActivityIndicatorView
 import Toaster
 import MBProgressHUD
-import EZSwiftExtensions
 
 extension MBProgressHUD {
     func showMessage(_ message: String) {
