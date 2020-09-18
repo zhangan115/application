@@ -33,6 +33,11 @@ final class PGProvider: NSObject {
     }
     
     public class func successLogic (responseObject: Response, success:  @escaping Success, failure: Failure, relogin: @escaping Relogin) {
+        //       let loginAbsoluteUrlString: String = String(Config.baseURL.absoluteString) + Config.loginUrl
+        //        let absoluteString = responseObject.request?.url?.absoluteString
+        //        if absoluteString == loginAbsoluteUrlString { //如果是登录接口，则保存cookie
+        //
+        //        }
         let cookie: HTTPCookie? = HTTPCookieStorage.shared.cookies(for: (responseObject.request?.url)!)?.first
         if let cookie = cookie {
             let cookieModel = Cookie(name: cookie.name, value: cookie.value, domain: cookie.domain, isSecure: cookie.isSecure, path: cookie.path)
@@ -41,6 +46,8 @@ final class PGProvider: NSObject {
         let statusCode = responseObject.statusCode
         if statusCode == 200 {
             let json = try! JSON(data: responseObject.data)
+//            print(responseObject.request?.url)
+//            print(json)
             let errorCode = json["errorCode"].intValue
             if errorCode == 0 {
                 success(json)
